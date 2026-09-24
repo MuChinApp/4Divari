@@ -214,6 +214,15 @@ $$;
 -- 10) Freshness function
 select public.refresh_listing_freshness();
 
+-- listing_contact RPC exists (Phase 3 contact channel)
+do $$
+begin
+  if to_regprocedure('public.listing_contact(uuid)') is null then
+    raise exception 'Missing listing_contact(uuid) function';
+  end if;
+end;
+$$;
+
 commit;
 
 select 'SCHEMA_SMOKE_OK' as result;

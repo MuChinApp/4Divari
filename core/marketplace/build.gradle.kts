@@ -1,13 +1,13 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.hilt)
     alias(libs.plugins.ksp)
 }
 
 android {
-    namespace = "ir.chardivari.feature.saved"
+    namespace = "ir.chardivari.core.marketplace"
     compileSdk = rootProject.extra["compileSdk"] as Int
 
     defaultConfig {
@@ -22,27 +22,20 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
-
-    buildFeatures {
-        compose = true
-    }
 }
 
 dependencies {
-    implementation(project(":core:ui"))
-    implementation(project(":core:designsystem"))
     implementation(project(":core:common"))
-    implementation(project(":core:analytics"))
-    implementation(project(":core:marketplace"))
+    implementation(project(":core:environment"))
     implementation(project(":core:network"))
 
-    implementation(libs.compose.ui)
-    implementation(libs.compose.material3)
-    implementation(libs.compose.runtime)
-    implementation(libs.androidx.lifecycle.viewmodel.compose)
-    implementation(libs.androidx.lifecycle.runtime.compose)
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.kotlinx.serialization)
+    implementation(libs.okhttp)
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.kotlinx.coroutines.android)
     implementation(libs.hilt.android)
-    implementation(libs.hilt.navigation.compose)
+    implementation(libs.javax.inject)
     ksp(libs.hilt.compiler)
 
     testImplementation(libs.junit)

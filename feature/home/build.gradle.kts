@@ -34,6 +34,7 @@ dependencies {
     implementation(project(":core:common"))
     implementation(project(":core:analytics"))
     implementation(project(":core:network"))
+    implementation(project(":core:marketplace"))
 
     implementation(libs.compose.ui)
     implementation(libs.compose.material3)
@@ -48,4 +49,5 @@ dependencies {
     testImplementation(libs.truth)
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.turbine)
+    testImplementation(libs.mockk)
 }

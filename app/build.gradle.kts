@@ -97,11 +97,13 @@ dependencies {
     implementation(project(":core:navigation"))
     implementation(project(":core:analytics"))
     implementation(project(":core:auth"))
+    implementation(project(":core:marketplace"))
     implementation(project(":feature:home"))
     implementation(project(":feature:search"))
     implementation(project(":feature:saved"))
     implementation(project(":feature:profile"))
     implementation(project(":feature:auth"))
+    implementation(project(":feature:property"))
 
     // Compose
     implementation(platform(libs.compose.bom))

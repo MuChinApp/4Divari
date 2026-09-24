@@ -118,4 +118,6 @@ class AuthSessionTokenProvider @Inject constructor(
     private val store: SessionStore,
 ) : SessionTokenProvider {
     override fun accessToken(): String? = store.currentBlocking()?.accessToken
+
+    override fun currentUserId(): String? = store.currentBlocking()?.userId
 }

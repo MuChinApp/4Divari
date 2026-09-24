@@ -20,10 +20,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.navigation.NavGraph.Companion.findStartDestination
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import dagger.hilt.android.AndroidEntryPoint
 import ir.chardivari.core.designsystem.components.FloatingSurface
 import ir.chardivari.core.designsystem.theme.ChardivariTheme
@@ -33,6 +35,7 @@ import ir.chardivari.core.ui.PlaceholderScreen
 import ir.chardivari.feature.auth.AuthRoute
 import ir.chardivari.feature.home.HomeRoute
 import ir.chardivari.feature.profile.ProfileRoute
+import ir.chardivari.feature.property.PropertyDetailRoute
 import ir.chardivari.feature.saved.SavedRoute
 import ir.chardivari.feature.search.SearchRoute
 
@@ -80,7 +83,9 @@ private fun ChardivariRoot() {
                     ) {
                         tabs.forEach { tab ->
                             NavigationBarItem(
-                                selected = currentRoute == tab.route,
+                                selected = currentRoute == tab.route ||
+                                    (tab.route == Routes.SEARCH &&
+                                        currentRoute?.startsWith("search") == true),
                                 onClick = {
                                     navController.navigate(tab.route) {
                                         popUpTo(navController.graph.findStartDestination().id) {
@@ -107,15 +112,77 @@ private fun ChardivariRoot() {
             startDestination = Routes.HOME,
             modifier = Modifier.padding(padding),
         ) {
-            composable(Routes.HOME) { HomeRoute() }
-            composable(Routes.SEARCH) { SearchRoute() }
+            composable(Routes.HOME) {
+                HomeRoute(
+                    onListingClick = { id ->
+                        navController.navigate(Routes.propertyDetail(id))
+                    },
+                    onSearchNavigate = { query ->
+                        navController.navigate(Routes.searchWithQuery(query))
+                    },
+                )
+            }
+            composable(
+                route = Routes.SEARCH_QUERY,
+                arguments = listOf(
+                    navArgument("query") {
+                        type = NavType.StringType
+                        defaultValue = ""
+                    },
+                ),
+            ) { entry ->
+                SearchRoute(
+                    onListingClick = { id ->
+                        navController.navigate(Routes.propertyDetail(id))
+                    },
+                    onLogin = { navController.navigate(Routes.AUTH) },
+                    initialQuery = entry.arguments?.getString("query"),
+                )
+            }
+            composable(Routes.SEARCH) {
+                SearchRoute(
+                    onListingClick = { id ->
+                        navController.navigate(Routes.propertyDetail(id))
+                    },
+                    onLogin = { navController.navigate(Routes.AUTH) },
+                )
+            }
             composable(Routes.MAP) {
                 PlaceholderScreen(
                     title = "نقشه",
-                    message = "جستجوی نقشه‌ای، مارکرها و رسم محدوده در فاز بازار آماده می‌شود.",
+                    message = "جستجوی نقشه‌ای، مارکرها و رسم محدوده پس از افزودن SDK نقشه فعال می‌شود.\nفعلاً نتیجه ساختگی نمایش داده نمی‌شود.",
                 )
             }
-            composable(Routes.SAVED) { SavedRoute() }
+            composable(Routes.SAVED) {
+                SavedRoute(
+                    onListingClick = { id ->
+                        navController.navigate(Routes.propertyDetail(id))
+                    },
+                    onLogin = { navController.navigate(Routes.AUTH) },
+                    onOpenSearch = {
+                        navController.navigate(Routes.SEARCH) {
+                            popUpTo(navController.graph.findStartDestination().id) {
+                                saveState = true
+                            }
+                            launchSingleTop = true
+                            restoreState = true
+                        }
+                    },
+                )
+            }
+            composable(
+                route = Routes.PROPERTY_DETAIL,
+                arguments = listOf(
+                    navArgument("propertyId") { type = NavType.StringType },
+                ),
+            ) { entry ->
+                val id = entry.arguments?.getString("propertyId").orEmpty()
+                PropertyDetailRoute(
+                    listingId = id,
+                    onBack = { navController.popBackStack() },
+                    onLogin = { navController.navigate(Routes.AUTH) },
+                )
+            }
             composable(Routes.PROFILE) {
                 ProfileRoute(
                     onLogin = { navController.navigate(Routes.AUTH) },

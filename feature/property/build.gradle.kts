@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "ir.chardivari.feature.saved"
+    namespace = "ir.chardivari.feature.property"
     compileSdk = rootProject.extra["compileSdk"] as Int
 
     defaultConfig {
@@ -33,8 +33,8 @@ dependencies {
     implementation(project(":core:designsystem"))
     implementation(project(":core:common"))
     implementation(project(":core:analytics"))
-    implementation(project(":core:marketplace"))
     implementation(project(":core:network"))
+    implementation(project(":core:marketplace"))
 
     implementation(libs.compose.ui)
     implementation(libs.compose.material3)
@@ -43,6 +43,8 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.hilt.android)
     implementation(libs.hilt.navigation.compose)
+    implementation(libs.coil.compose)
+    implementation(libs.compose.material.icons)
     ksp(libs.hilt.compiler)
 
     testImplementation(libs.junit)

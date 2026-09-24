@@ -31,13 +31,15 @@ include(":core:ui")
 include(":core:navigation")
 include(":core:analytics")
 include(":core:auth")
+include(":core:marketplace")
 
-// Features — customer-facing shells (Phase 1: navigation placeholders)
+// Features — customer-facing
 include(":feature:home")
 include(":feature:search")
 include(":feature:saved")
 include(":feature:profile")
 include(":feature:auth")
+include(":feature:property")
 
 // App — composition root
 include(":app")

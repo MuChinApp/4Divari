@@ -7,6 +7,7 @@ import androidx.compose.material.icons.outlined.Map
 import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material.icons.outlined.Search
 import androidx.compose.ui.graphics.vector.ImageVector
+import java.net.URLEncoder
 
 /**
  * Route graph for the customer app.
@@ -17,15 +18,20 @@ import androidx.compose.ui.graphics.vector.ImageVector
 object Routes {
     const val HOME = "home"
     const val SEARCH = "search"
+    const val SEARCH_QUERY = "search?query={query}"
     const val MAP = "map"
     const val SAVED = "saved"
     const val PROFILE = "profile"
     const val ONBOARDING = "onboarding"
     const val AUTH = "auth"
 
-    // Future feature routes (declared now, implemented in later phases)
     const val PROPERTY_DETAIL = "property/{propertyId}"
     fun propertyDetail(propertyId: String) = "property/$propertyId"
+
+    fun searchWithQuery(query: String): String {
+        val encoded = URLEncoder.encode(query, "UTF-8")
+        return "search?query=$encoded"
+    }
 }
 
 enum class CustomerTab(

@@ -33,15 +33,19 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextAlign
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import ir.chardivari.core.designsystem.components.PropertyCard
 import ir.chardivari.core.designsystem.components.SectionHeader
 import ir.chardivari.core.designsystem.tokens.AppShapes
 import ir.chardivari.core.designsystem.tokens.AppSpacing
+import ir.chardivari.core.marketplace.ListingCardUi
 import ir.chardivari.core.ui.UiStateRenderer
 
 @Composable
 fun HomeRoute(
     modifier: Modifier = Modifier,
     viewModel: HomeViewModel = hiltViewModel(),
+    onListingClick: (String) -> Unit = {},
+    onSearchNavigate: (String) -> Unit = {},
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
 
@@ -54,11 +58,16 @@ fun HomeRoute(
             modifier = Modifier.padding(padding),
             onRetry = viewModel::load,
             emptyTitle = "هنوز فایلی منتشر نشده است",
+            emptyDescription = "به‌زودی اولین ملک‌ها اینجا نمایش داده می‌شوند.",
             loadingLabel = "در حال آماده‌سازی خانه…",
         ) { model ->
             HomeContent(
                 model = model,
-                onSearchSubmit = viewModel::onSearchSubmitted,
+                onSearchSubmit = { query ->
+                    viewModel.onSearchSubmitted(query)
+                    onSearchNavigate(query)
+                },
+                onListingClick = onListingClick,
             )
         }
     }
@@ -68,6 +77,7 @@ fun HomeRoute(
 private fun HomeContent(
     model: HomeUiModel,
     onSearchSubmit: (String) -> Unit,
+    onListingClick: (String) -> Unit,
 ) {
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
@@ -96,10 +106,40 @@ private fun HomeContent(
             }
         }
 
+        if (model.newListings.isNotEmpty()) {
+            item {
+                SectionHeader(title = "ملک‌های جدید")
+                Spacer(Modifier.height(AppSpacing.Sm))
+            }
+            items(model.newListings, key = { "new-${it.listingId}" }) { listing ->
+                ListingCardRow(listing = listing, onClick = onListingClick)
+            }
+        }
+
         items(model.sections, key = { it.id }) { section ->
             SectionRail(section)
         }
     }
+}
+
+@Composable
+private fun ListingCardRow(
+    listing: ListingCardUi,
+    onClick: (String) -> Unit,
+) {
+    PropertyCard(
+        photoUrl = listing.photoUrl,
+        priceLine = listing.priceLine,
+        pricePerSqmLine = listing.pricePerSqmLine,
+        titleLine = listing.titleLine,
+        locationLine = listing.locationLine,
+        amenitiesLine = listing.amenitiesLine,
+        verificationLabel = listing.verificationLabel,
+        updatedLabel = listing.updatedLabel,
+        modifier = Modifier.padding(horizontal = AppSpacing.Lg),
+        isFixtureData = listing.isFixture,
+        onClick = { onClick(listing.listingId) },
+    )
 }
 
 @Composable
@@ -141,7 +181,7 @@ private fun TransactionActions() {
     Row(horizontalArrangement = Arrangement.spacedBy(AppSpacing.Sm)) {
         TransactionChip("خرید", selected = true)
         TransactionChip("اجاره", selected = false)
-        TransactionChip("فروش", selected = false)
+        TransactionChip("رهن و اجاره", selected = false)
     }
 }
 
