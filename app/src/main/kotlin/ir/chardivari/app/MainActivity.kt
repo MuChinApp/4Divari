@@ -38,6 +38,8 @@ import ir.chardivari.feature.profile.ProfileRoute
 import ir.chardivari.feature.property.PropertyDetailRoute
 import ir.chardivari.feature.saved.SavedRoute
 import ir.chardivari.feature.search.SearchRoute
+import ir.chardivari.feature.seller.SellerRoute
+import ir.chardivari.feature.seller.SellerWizardRoute
 
 /**
  * Single activity. RTL enforced for Persian-first product.
@@ -183,6 +185,25 @@ private fun ChardivariRoot() {
             }
             composable(Routes.PROFILE) {
                 ProfileRoute(
+                    onLogin = { navController.navigate(Routes.AUTH) },
+                    onOpenSeller = { navController.navigate(Routes.SELLER) },
+                )
+            }
+            composable(Routes.SELLER) {
+                SellerRoute(
+                    onBack = { navController.popBackStack() },
+                    onNewListing = { navController.navigate(Routes.SELLER_WIZARD) },
+                    onLogin = { navController.navigate(Routes.AUTH) },
+                )
+            }
+            composable(Routes.SELLER_WIZARD) {
+                SellerWizardRoute(
+                    onBack = { navController.popBackStack() },
+                    onPublished = { _ ->
+                        navController.navigate(Routes.SELLER) {
+                            popUpTo(Routes.SELLER) { inclusive = true }
+                        }
+                    },
                     onLogin = { navController.navigate(Routes.AUTH) },
                 )
             }

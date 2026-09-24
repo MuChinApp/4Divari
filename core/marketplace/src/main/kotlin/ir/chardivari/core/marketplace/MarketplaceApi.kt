@@ -88,6 +88,51 @@ interface MarketplaceApi {
         @Header("apikey") apiKey: String,
         @Body body: ListingContactRequestDto,
     ): Response<List<ListingContactDto>>
+
+    // ---- Seller wizard (SECURITY DEFINER RPCs — 00093_seller_wizard.sql) ----
+
+    @POST("rpc/seller_create_draft")
+    suspend fun sellerCreateDraft(
+        @Header("apikey") apiKey: String,
+        @Body body: SellerCreateDraftRequestDto,
+    ): Response<SellerDraftCreatedDto>
+
+    @POST("rpc/seller_set_status")
+    suspend fun sellerSetStatus(
+        @Header("apikey") apiKey: String,
+        @Body body: SellerSetStatusRequestDto,
+    ): Response<String>
+
+    @GET
+    suspend fun fetchSellerListings(
+        @Url url: String,
+        @Header("apikey") apiKey: String,
+        @Header("Authorization") authorization: String,
+        @Query("select") select: String,
+        @Query("seller_id") sellerId: String,
+        @Query("order") order: String,
+    ): Response<List<SellerListingDto>>
+
+    @Headers("Prefer: return=minimal")
+    @POST("property_media")
+    suspend fun insertPropertyMedia(
+        @Header("apikey") apiKey: String,
+        @Header("Authorization") authorization: String,
+        @Body body: PropertyMediaWriteDto,
+    ): Response<Void>
+
+    /**
+     * Raw binary upload to `{supabaseUrl}/storage/v1/object/...`.
+     * Content-Type comes from the RequestBody media type (OkHttp bridge).
+     */
+    @POST
+    suspend fun uploadStorageObject(
+        @Url url: String,
+        @Header("apikey") apiKey: String,
+        @Header("Authorization") authorization: String,
+        @Header("x-upsert") upsert: String = "true",
+        @Body body: okhttp3.RequestBody,
+    ): Response<okhttp3.ResponseBody>
 }
 
 @Serializable

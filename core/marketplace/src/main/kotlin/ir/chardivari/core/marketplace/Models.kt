@@ -51,6 +51,7 @@ enum class PropertyType {
 @Serializable
 data class PropertyMediaDto(
     val id: String? = null,
+    @SerialName("storage_path")
     val storagePath: String,
     @SerialName("media_type")
     val mediaType: String = "image",

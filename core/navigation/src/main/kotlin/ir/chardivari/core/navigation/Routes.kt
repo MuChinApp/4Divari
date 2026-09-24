@@ -28,6 +28,9 @@ object Routes {
     const val PROPERTY_DETAIL = "property/{propertyId}"
     fun propertyDetail(propertyId: String) = "property/$propertyId"
 
+    const val SELLER = "seller"
+    const val SELLER_WIZARD = "seller/new"
+
     fun searchWithQuery(query: String): String {
         val encoded = URLEncoder.encode(query, "UTF-8")
         return "search?query=$encoded"

@@ -40,6 +40,7 @@ include(":feature:saved")
 include(":feature:profile")
 include(":feature:auth")
 include(":feature:property")
+include(":feature:seller")
 
 // App — composition root
 include(":app")

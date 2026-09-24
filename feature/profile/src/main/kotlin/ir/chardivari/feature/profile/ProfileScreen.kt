@@ -24,12 +24,14 @@ import ir.chardivari.core.designsystem.tokens.AppSpacing
 
 /**
  * Profile — Phase 1 shows an honest auth entry point.
- * No fake "logged in" state. Production auth lands in Phase 2.
+ * No fake "logged in" state. Phase 4 adds the seller (list my property) entry;
+ * login gating lives in the seller feature itself.
  */
 @Composable
 fun ProfileRoute(
     modifier: Modifier = Modifier,
     onLogin: () -> Unit = {},
+    onOpenSeller: () -> Unit = {},
 ) {
     Scaffold(
         modifier = modifier.fillMaxSize(),
@@ -68,6 +70,13 @@ fun ProfileRoute(
                 modifier = Modifier.fillMaxWidth(),
             ) {
                 Text("ورود / ثبت‌نام")
+            }
+            Spacer(Modifier.height(AppSpacing.Md))
+            OutlinedButton(
+                onClick = onOpenSeller,
+                modifier = Modifier.fillMaxWidth(),
+            ) {
+                Text("ثبت ملک و مدیریت آگهی‌ها")
             }
         }
     }

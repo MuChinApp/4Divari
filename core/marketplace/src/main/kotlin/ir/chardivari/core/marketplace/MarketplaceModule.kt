@@ -39,6 +39,12 @@ abstract class MarketplaceBindModule {
     abstract fun bindListingContactRepository(
         impl: SupabaseListingContactRepository,
     ): ListingContactRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindSellerRepository(
+        impl: SupabaseSellerRepository,
+    ): SellerRepository
 }
 
 /**
