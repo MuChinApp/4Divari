@@ -69,6 +69,17 @@ $$;
 comment on function public.listing_contact(uuid) is
   'SECURITY DEFINER: phone + display name for contacting a listing party. Read-only.';
 
-grant execute on function public.listing_contact(uuid) to anon;
-grant execute on function public.listing_contact(uuid) to authenticated;
-grant execute on function public.listing_contact(uuid) to app_user;
+-- Supabase API roles exist only on managed platforms; plain CI Postgres has app_user only.
+do $$
+begin
+  if exists (select 1 from pg_roles where rolname = 'anon') then
+    grant execute on function public.listing_contact(uuid) to anon;
+  end if;
+  if exists (select 1 from pg_roles where rolname = 'authenticated') then
+    grant execute on function public.listing_contact(uuid) to authenticated;
+  end if;
+  if exists (select 1 from pg_roles where rolname = 'app_user') then
+    grant execute on function public.listing_contact(uuid) to app_user;
+  end if;
+end;
+$$;

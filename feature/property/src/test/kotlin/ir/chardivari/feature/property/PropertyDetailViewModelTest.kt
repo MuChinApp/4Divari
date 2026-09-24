@@ -71,14 +71,14 @@ class PropertyDetailViewModelTest {
     )
 
     private class FakeListings(
-        var result: AppResult<Listing> = AppResult.Success(sample),
+        var result: AppResult<Listing> = AppResult.Success(sampleListing()),
     ) : ListingRepository {
         override suspend fun feed(limit: Int) = AppResult.Empty
         override suspend fun search(filters: SearchFilters, limit: Int) = AppResult.Empty
         override suspend fun byId(listingId: String): AppResult<Listing> = result
 
-        private companion object {
-            val sample = Listing(
+        companion object {
+            fun sampleListing() = Listing(
                 id = "l1",
                 propertyId = "p1",
                 dealType = DealType.SALE,

@@ -45,7 +45,6 @@ import ir.chardivari.core.ui.UiStateRenderer
 
 @Composable
 fun PropertyDetailRoute(
-    @Suppress("UNUSED_PARAMETER") listingId: String,
     modifier: Modifier = Modifier,
     viewModel: PropertyDetailViewModel = hiltViewModel(),
     onBack: () -> Unit = {},

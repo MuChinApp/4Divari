@@ -190,7 +190,7 @@ class SupabaseFavoritesRepository @Inject constructor(
                     if (err is AppError.Client && err.code == 409) {
                         AppResult.Success(Unit)
                     } else {
-                        result
+                        AppResult.Failure(err, result.cause)
                     }
                 }
             }

@@ -175,10 +175,8 @@ private fun ChardivariRoot() {
                 arguments = listOf(
                     navArgument("propertyId") { type = NavType.StringType },
                 ),
-            ) { entry ->
-                val id = entry.arguments?.getString("propertyId").orEmpty()
+            ) {
                 PropertyDetailRoute(
-                    listingId = id,
                     onBack = { navController.popBackStack() },
                     onLogin = { navController.navigate(Routes.AUTH) },
                 )

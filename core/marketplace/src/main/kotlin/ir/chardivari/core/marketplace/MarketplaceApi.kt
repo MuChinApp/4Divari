@@ -50,14 +50,14 @@ interface MarketplaceApi {
         @Header("apikey") apiKey: String,
         @Header("Authorization") authorization: String,
         @Body body: FavoriteWriteDto,
-    ): Response<Unit>
+    ): Response<Void>
 
     @DELETE
     suspend fun deleteFavorite(
         @Url url: String,
         @Header("apikey") apiKey: String,
         @Header("Authorization") authorization: String,
-    ): Response<Unit>
+    ): Response<Void>
 
     @GET
     suspend fun fetchSavedSearches(
@@ -81,7 +81,7 @@ interface MarketplaceApi {
         @Url url: String,
         @Header("apikey") apiKey: String,
         @Header("Authorization") authorization: String,
-    ): Response<Unit>
+    ): Response<Void>
 
     @POST("rpc/listing_contact")
     suspend fun listingContact(
