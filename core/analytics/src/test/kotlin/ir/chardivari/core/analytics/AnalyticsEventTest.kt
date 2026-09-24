@@ -11,6 +11,10 @@ class AnalyticsEventTest {
         assertEquals("property_view", AnalyticsEvent.PropertyView.name)
         assertEquals("search_created", AnalyticsEvent.SearchCreated(0, 0).name)
         assertEquals("lead_created", AnalyticsEvent.LeadCreated("l1", "web").name)
+        assertEquals(
+            "contact_lead_created",
+            AnalyticsEvent.ContactLeadCreated("listing-1").name,
+        )
         assertEquals("auth_otp_requested", AnalyticsEvent.AuthOtpRequested.name)
         assertEquals("auth_login_succeeded", AnalyticsEvent.AuthLoginSucceeded.name)
         assertEquals("auth_login_failed", AnalyticsEvent.AuthLoginFailed("rate").name)

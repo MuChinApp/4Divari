@@ -59,14 +59,6 @@ sealed interface AnalyticsEvent {
         )
     }
 
-    data class LeadCreated(val listingId: String, val source: String) : AnalyticsEvent {
-        override val name: String = "lead_created"
-        override val params: Map<String, String> = mapOf(
-            "listing_id" to listingId,
-            "source" to source,
-        )
-    }
-
     data class VisitRequested(val propertyId: String) : AnalyticsEvent {
         override val name: String = "visit_requested"
         override val params: Map<String, String> = mapOf("property_id" to propertyId)
@@ -97,6 +89,14 @@ sealed interface AnalyticsEvent {
         override val params: Map<String, String> = mapOf(
             "lead_id" to leadId,
             "source" to source,
+        )
+    }
+
+    /** Contact side-effect created a CRM lead server-side (00094 listing_contact). */
+    data class ContactLeadCreated(val listingId: String) : AnalyticsEvent {
+        override val name: String = "contact_lead_created"
+        override val params: Map<String, String> = mapOf(
+            "listing_id" to listingId,
         )
     }
 

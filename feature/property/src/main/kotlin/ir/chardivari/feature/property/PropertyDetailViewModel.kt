@@ -124,10 +124,7 @@ class PropertyDetailViewModel @Inject constructor(
                     )
                     if (result.data.leadCreated) {
                         analytics.track(
-                            AnalyticsEvent.LeadCreated(
-                                listingId = listingId,
-                                source = "contact",
-                            ),
+                            AnalyticsEvent.ContactLeadCreated(listingId = listingId),
                         )
                     }
                 }
