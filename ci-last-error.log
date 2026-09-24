@@ -1,9 +1,9 @@
-=== CI FAILURE CAPTURE 2026-09-24T04:22:10Z ===
+=== CI FAILURE CAPTURE 2026-09-24T04:26:33Z ===
 
 ########## /tmp/test-log.txt : FAILURE HEADERS ##########
 17:FAILURE: Build failed with an exception.
 19:* What went wrong:
-167:BUILD FAILED in 1m 19s
+167:BUILD FAILED in 1m 14s
 
 ########## /tmp/test-log.txt (first 80 lines) ##########
 Downloading https://services.gradle.org/distributions/gradle-8.11.1-bin.zip
@@ -20,7 +20,7 @@ For more details see https://docs.gradle.org/8.11.1/release-notes.html
 
 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.11.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
 Daemon will be stopped at the end of the build 
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/tests-1790223626385.json
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/tests-1790223895567.json
 
 FAILURE: Build failed with an exception.
 
@@ -167,7 +167,7 @@ org.gradle.api.CircularReferenceException: Circular dependency between the follo
 	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:48)
 
 
-BUILD FAILED in 1m 19s
+BUILD FAILED in 1m 14s
 
 ########## /tmp/detekt-log.txt : FAILURE HEADERS ##########
 10:/home/runner/work/4Divari/4Divari/feature/auth/src/main/kotlin/ir/chardivari/feature/auth/AuthScreen.kt:91:15: The function AuthScreen(state: AuthUiModel, error: AppError?, modifier: Modifier, onPhoneChange: (String) -> Unit, onSendOtp: () -> Unit, onVerify: (String) -> Unit, onResend: () -> Unit, onBack: () -> Unit) has too many parameters. The current threshold is set to 6. [LongParameterList]
@@ -188,9 +188,9 @@ Daemon will be stopped at the end of the build
 /home/runner/work/4Divari/4Divari/core/auth/src/main/kotlin/ir/chardivari/core/auth/AuthRepository.kt:200:17: Instead of catching for a general exception type and checking for a specific exception type, use multiple catch blocks. [InstanceOfCheckForException]
 /home/runner/work/4Divari/4Divari/core/auth/src/main/kotlin/ir/chardivari/core/auth/SessionStore.kt:38:20: Use check() or error() instead of throwing an IllegalStateException. [UseCheckOrError]
 
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/detekt-1790223698902.json
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/detekt-1790223962457.json
 
-BUILD SUCCESSFUL in 21s
+BUILD SUCCESSFUL in 20s
 1 actionable task: 1 executed
 
 ########## /tmp/detekt-log.txt (last 80 lines) ##########
@@ -209,20 +209,20 @@ Daemon will be stopped at the end of the build
 /home/runner/work/4Divari/4Divari/core/auth/src/main/kotlin/ir/chardivari/core/auth/AuthRepository.kt:200:17: Instead of catching for a general exception type and checking for a specific exception type, use multiple catch blocks. [InstanceOfCheckForException]
 /home/runner/work/4Divari/4Divari/core/auth/src/main/kotlin/ir/chardivari/core/auth/SessionStore.kt:38:20: Use check() or error() instead of throwing an IllegalStateException. [UseCheckOrError]
 
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/detekt-1790223698902.json
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/detekt-1790223962457.json
 
-BUILD SUCCESSFUL in 21s
+BUILD SUCCESSFUL in 20s
 1 actionable task: 1 executed
 
 ########## /tmp/lint-log.txt : FAILURE HEADERS ##########
 5:FAILURE: Build failed with an exception.
 7:* What went wrong:
-25:BUILD FAILED in 13s
+25:BUILD FAILED in 14s
 
 ########## /tmp/lint-log.txt (first 80 lines) ##########
 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.11.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
 Daemon will be stopped at the end of the build 
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/lint-1790223720594.json
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/lint-1790223982843.json
 
 FAILURE: Build failed with an exception.
 
@@ -244,12 +244,12 @@ Circular dependency between the following tasks:
 > Run with --scan to get full insights.
 > Get more help at https://help.gradle.org.
 
-BUILD FAILED in 13s
+BUILD FAILED in 14s
 
 ########## /tmp/lint-log.txt (last 80 lines) ##########
 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.11.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
 Daemon will be stopped at the end of the build 
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/lint-1790223720594.json
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/lint-1790223982843.json
 
 FAILURE: Build failed with an exception.
 
@@ -271,4 +271,4 @@ Circular dependency between the following tasks:
 > Run with --scan to get full insights.
 > Get more help at https://help.gradle.org.
 
-BUILD FAILED in 13s
+BUILD FAILED in 14s
