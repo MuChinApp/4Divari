@@ -1,14 +1,15 @@
-=== CI FAILURE CAPTURE 2026-09-24T18:59:31Z ===
+=== CI FAILURE CAPTURE 2026-09-24T19:04:17Z ===
 
 ########## /tmp/test-log.txt : FAILURE HEADERS ##########
-219:e: file:///home/runner/work/4Divari/4Divari/core/common/src/main/kotlin/ir/chardivari/core/common/Format.kt:15:13 Incompatible types 'kotlin.Char' and 'kotlin.ranges.CharRange'.
-220:e: file:///home/runner/work/4Divari/4Divari/core/common/src/main/kotlin/ir/chardivari/core/common/Format.kt:16:13 Incompatible types 'kotlin.Char' and 'kotlin.ranges.CharRange'.
-222:> Task :core:common:compileDebugKotlin FAILED
-230:FAILURE: Build failed with an exception.
-232:* What went wrong:
-275:Caused by: org.gradle.workers.internal.DefaultWorkerExecutor$WorkExecutionException: A failure occurred while executing org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction
-404:Caused by: org.jetbrains.kotlin.gradle.tasks.CompilationErrorException: Compilation error. See log for more details
-437:BUILD FAILED in 2m 3s
+225:e: file:///home/runner/work/4Divari/4Divari/core/analytics/src/main/kotlin/ir/chardivari/core/analytics/AnalyticsEvent.kt:62:16 Conflicting declarations:
+227:e: file:///home/runner/work/4Divari/4Divari/core/analytics/src/main/kotlin/ir/chardivari/core/analytics/AnalyticsEvent.kt:95:16 Conflicting declarations:
+229:e: file:///home/runner/work/4Divari/4Divari/core/analytics/src/main/kotlin/ir/chardivari/core/analytics/AnalyticsEvent.kt:98:26 Unresolved reference 'leadId'.
+231:> Task :core:analytics:compileDebugKotlin FAILED
+239:FAILURE: Build failed with an exception.
+241:* What went wrong:
+284:Caused by: org.gradle.workers.internal.DefaultWorkerExecutor$WorkExecutionException: A failure occurred while executing org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction
+413:Caused by: org.jetbrains.kotlin.gradle.tasks.CompilationErrorException: Compilation error. See log for more details
+446:BUILD FAILED in 1m 57s
 
 ########## /tmp/test-log.txt (first 80 lines) ##########
 Downloading https://services.gradle.org/distributions/gradle-8.11.1-bin.zip
@@ -25,67 +26,67 @@ For more details see https://docs.gradle.org/8.11.1/release-notes.html
 
 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.11.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
 Daemon will be stopped at the end of the build 
-> Task :app:preBuild UP-TO-DATE
-> Task :core:auth:preBuild UP-TO-DATE
 > Task :core:common:preBuild UP-TO-DATE
+> Task :core:auth:preBuild UP-TO-DATE
 > Task :core:analytics:preBuild UP-TO-DATE
-> Task :core:common:preDebugBuild UP-TO-DATE
-> Task :app:preDebugBuild UP-TO-DATE
+> Task :app:preBuild UP-TO-DATE
 > Task :core:auth:preDebugBuild UP-TO-DATE
 > Task :core:analytics:preDebugBuild UP-TO-DATE
+> Task :app:preDebugBuild UP-TO-DATE
+> Task :core:common:preDebugBuild UP-TO-DATE
 > Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
-> Task :core:common:writeDebugAarMetadata
-> Task :app:generateDebugBuildConfig
 > Task :core:analytics:writeDebugAarMetadata
-> Task :core:marketplace:preBuild UP-TO-DATE
-> Task :core:marketplace:preDebugBuild UP-TO-DATE
-> Task :core:designsystem:preBuild UP-TO-DATE
-> Task :core:environment:preBuild UP-TO-DATE
-> Task :core:environment:preDebugBuild UP-TO-DATE
 > Task :core:auth:writeDebugAarMetadata
-> Task :core:designsystem:preDebugBuild UP-TO-DATE
+> Task :app:generateDebugBuildConfig
+> Task :core:common:writeDebugAarMetadata
+> Task :core:marketplace:preBuild UP-TO-DATE
 > Task :core:navigation:preBuild UP-TO-DATE
+> Task :core:designsystem:preBuild UP-TO-DATE
 > Task :core:navigation:preDebugBuild UP-TO-DATE
+> Task :core:environment:preBuild UP-TO-DATE
+> Task :core:marketplace:preDebugBuild UP-TO-DATE
+> Task :core:designsystem:preDebugBuild UP-TO-DATE
+> Task :core:environment:preDebugBuild UP-TO-DATE
+> Task :core:marketplace:writeDebugAarMetadata
+> Task :core:environment:writeDebugAarMetadata
+> Task :core:navigation:writeDebugAarMetadata
 > Task :core:designsystem:writeDebugAarMetadata
 > Task :core:network:preBuild UP-TO-DATE
-> Task :core:network:preDebugBuild UP-TO-DATE
-> Task :core:marketplace:writeDebugAarMetadata
-> Task :core:ui:preBuild UP-TO-DATE
-> Task :core:ui:preDebugBuild UP-TO-DATE
-> Task :core:environment:writeDebugAarMetadata
 > Task :feature:agent:preBuild UP-TO-DATE
 > Task :feature:agent:preDebugBuild UP-TO-DATE
-> Task :core:navigation:writeDebugAarMetadata
+> Task :core:ui:preBuild UP-TO-DATE
+> Task :core:network:preDebugBuild UP-TO-DATE
 > Task :feature:auth:preBuild UP-TO-DATE
+> Task :core:ui:preDebugBuild UP-TO-DATE
 > Task :feature:auth:preDebugBuild UP-TO-DATE
-> Task :core:ui:writeDebugAarMetadata
+> Task :core:network:writeDebugAarMetadata
 > Task :feature:home:preBuild UP-TO-DATE
 > Task :feature:home:preDebugBuild UP-TO-DATE
-> Task :feature:agent:writeDebugAarMetadata
+> Task :feature:auth:writeDebugAarMetadata
 > Task :feature:profile:preBuild UP-TO-DATE
 > Task :feature:profile:preDebugBuild UP-TO-DATE
-> Task :core:network:writeDebugAarMetadata
-> Task :feature:auth:writeDebugAarMetadata
+> Task :core:ui:writeDebugAarMetadata
+> Task :feature:agent:writeDebugAarMetadata
 > Task :feature:property:preBuild UP-TO-DATE
 > Task :feature:property:preDebugBuild UP-TO-DATE
 > Task :feature:saved:preBuild UP-TO-DATE
 > Task :feature:saved:preDebugBuild UP-TO-DATE
-> Task :feature:profile:writeDebugAarMetadata
+> Task :feature:property:writeDebugAarMetadata
+> Task :feature:saved:writeDebugAarMetadata
 > Task :feature:search:preBuild UP-TO-DATE
-> Task :feature:search:preDebugBuild UP-TO-DATE
+> Task :feature:profile:writeDebugAarMetadata
 > Task :feature:home:writeDebugAarMetadata
+> Task :feature:search:preDebugBuild UP-TO-DATE
 > Task :feature:seller:preBuild UP-TO-DATE
 > Task :feature:seller:preDebugBuild UP-TO-DATE
-> Task :feature:saved:writeDebugAarMetadata
-> Task :feature:property:writeDebugAarMetadata
+> Task :core:analytics:generateDebugResValues
+> Task :app:generateDebugResValues
 > Task :feature:seller:writeDebugAarMetadata
 > Task :feature:search:writeDebugAarMetadata
-> Task :core:auth:generateDebugResValues
-> Task :app:generateDebugResValues
-> Task :core:analytics:generateDebugResValues
-> Task :core:common:generateDebugResValues FROM-CACHE
-> Task :core:auth:generateDebugResources
 > Task :core:analytics:generateDebugResources
+> Task :core:auth:generateDebugResValues FROM-CACHE
+> Task :core:common:generateDebugResValues FROM-CACHE
+> Task :core:auth:generateDebugResources FROM-CACHE
 > Task :core:common:generateDebugResources FROM-CACHE
 > Task :core:auth:packageDebugResources
 > Task :core:analytics:packageDebugResources
@@ -171,8 +172,8 @@ Caused by: org.jetbrains.kotlin.gradle.tasks.CompilationErrorException: Compilat
 	... 2 more
 
 
-BUILD FAILED in 2m 3s
-163 actionable tasks: 91 executed, 72 from cache
+BUILD FAILED in 1m 57s
+168 actionable tasks: 92 executed, 76 from cache
 
 ########## /tmp/detekt-log.txt : FAILURE HEADERS ##########
 35:/home/runner/work/4Divari/4Divari/feature/auth/src/main/kotlin/ir/chardivari/feature/auth/AuthScreen.kt:91:15: The function AuthScreen(state: AuthUiModel, error: AppError?, modifier: Modifier, onPhoneChange: (String) -> Unit, onSendOtp: () -> Unit, onVerify: (String) -> Unit, onResend: () -> Unit, onBack: () -> Unit) has too many parameters. The current threshold is set to 6. [LongParameterList]
@@ -209,13 +210,13 @@ Daemon will be stopped at the end of the build
 /home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerWizardViewModel.kt:243:9: The function publish is too long (89). The maximum length is 80. [LongMethod]
 /home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerWizardViewModel.kt:243:9: The function publish appears to be too complex based on Cyclomatic Complexity (complexity: 26). Defined complexity threshold for methods is set to '15' [CyclomaticComplexMethod]
 /home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerWizardViewModel.kt:80:7: Class 'SellerWizardViewModel' with '32' functions detected. Defined threshold inside classes is set to '20' [TooManyFunctions]
-/home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerManageScreen.kt:262:13: The function SellerRow is too long (92). The maximum length is 80. [LongMethod]
 /home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerManageScreen.kt:60:5: The function SellerRoute is too long (100). The maximum length is 80. [LongMethod]
+/home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerManageScreen.kt:262:13: The function SellerRow is too long (92). The maximum length is 80. [LongMethod]
 /home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerManageScreen.kt:262:13: The function SellerRow appears to be too complex based on Cyclomatic Complexity (complexity: 21). Defined complexity threshold for methods is set to '15' [CyclomaticComplexMethod]
 /home/runner/work/4Divari/4Divari/feature/auth/src/main/kotlin/ir/chardivari/feature/auth/AuthScreen.kt:91:15: The function AuthScreen(state: AuthUiModel, error: AppError?, modifier: Modifier, onPhoneChange: (String) -> Unit, onSendOtp: () -> Unit, onVerify: (String) -> Unit, onResend: () -> Unit, onBack: () -> Unit) has too many parameters. The current threshold is set to 6. [LongParameterList]
 /home/runner/work/4Divari/4Divari/feature/agent/src/main/kotlin/ir/chardivari/feature/agent/AgentLeadsScreen.kt:128:20: The function LeadRow(lead: ir.chardivari.core.marketplace.AgentLead, expanded: Boolean, busy: Boolean, matches: List<ir.chardivari.core.marketplace.LeadMatch>, matchesLoading: Boolean, onToggle: () -> Unit, onStageChange: (String) -> Unit, onPriorityChange: (Int) -> Unit, onEditNotes: () -> Unit, onOpenRequirement: () -> Unit, onRefreshMatches: () -> Unit) has too many parameters. The current threshold is set to 6. [LongParameterList]
-/home/runner/work/4Divari/4Divari/feature/agent/src/main/kotlin/ir/chardivari/feature/agent/AgentLeadsScreen.kt:128:13: The function LeadRow is too long (134). The maximum length is 80. [LongMethod]
 /home/runner/work/4Divari/4Divari/feature/agent/src/main/kotlin/ir/chardivari/feature/agent/AgentLeadsScreen.kt:323:13: The function RequirementDialog is too long (136). The maximum length is 80. [LongMethod]
+/home/runner/work/4Divari/4Divari/feature/agent/src/main/kotlin/ir/chardivari/feature/agent/AgentLeadsScreen.kt:128:13: The function LeadRow is too long (134). The maximum length is 80. [LongMethod]
 /home/runner/work/4Divari/4Divari/feature/agent/src/main/kotlin/ir/chardivari/feature/agent/AgentLeadsScreen.kt:128:13: The function LeadRow appears to be too complex based on Cyclomatic Complexity (complexity: 18). Defined complexity threshold for methods is set to '15' [CyclomaticComplexMethod]
 /home/runner/work/4Divari/4Divari/feature/agent/src/main/kotlin/ir/chardivari/feature/agent/AgentRoute.kt:106:24: The function GateMessage(modifier: Modifier, icon: @Composable () -> Unit, title: String, description: String, primaryActionLabel: String, onPrimaryAction: () -> Unit, secondaryActionLabel: String?, onSecondaryAction: (() -> Unit)?) has too many parameters. The current threshold is set to 6. [LongParameterList]
 /home/runner/work/4Divari/4Divari/feature/agent/src/main/kotlin/ir/chardivari/feature/agent/AgentLeadsViewModel.kt:212:9: The function saveRequirement appears to be too complex based on Cyclomatic Complexity (complexity: 29). Defined complexity threshold for methods is set to '15' [CyclomaticComplexMethod]
@@ -238,9 +239,9 @@ Daemon will be stopped at the end of the build
 /home/runner/work/4Divari/4Divari/feature/agent/src/main/kotlin/ir/chardivari/feature/agent/AgentRoute.kt:67:1: Line detected, which is longer than the defined maximum line length in the code style. [MaxLineLength]
 /home/runner/work/4Divari/4Divari/feature/agent/src/main/kotlin/ir/chardivari/feature/agent/AgentRoute.kt:78:1: Line detected, which is longer than the defined maximum line length in the code style. [MaxLineLength]
 
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/detekt-1790276317298.json
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/detekt-1790276599042.json
 
-BUILD SUCCESSFUL in 25s
+BUILD SUCCESSFUL in 24s
 1 actionable task: 1 executed
 
 ########## /tmp/detekt-log.txt (last 80 lines) ##########
@@ -275,13 +276,13 @@ Daemon will be stopped at the end of the build
 /home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerWizardViewModel.kt:243:9: The function publish is too long (89). The maximum length is 80. [LongMethod]
 /home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerWizardViewModel.kt:243:9: The function publish appears to be too complex based on Cyclomatic Complexity (complexity: 26). Defined complexity threshold for methods is set to '15' [CyclomaticComplexMethod]
 /home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerWizardViewModel.kt:80:7: Class 'SellerWizardViewModel' with '32' functions detected. Defined threshold inside classes is set to '20' [TooManyFunctions]
-/home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerManageScreen.kt:262:13: The function SellerRow is too long (92). The maximum length is 80. [LongMethod]
 /home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerManageScreen.kt:60:5: The function SellerRoute is too long (100). The maximum length is 80. [LongMethod]
+/home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerManageScreen.kt:262:13: The function SellerRow is too long (92). The maximum length is 80. [LongMethod]
 /home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerManageScreen.kt:262:13: The function SellerRow appears to be too complex based on Cyclomatic Complexity (complexity: 21). Defined complexity threshold for methods is set to '15' [CyclomaticComplexMethod]
 /home/runner/work/4Divari/4Divari/feature/auth/src/main/kotlin/ir/chardivari/feature/auth/AuthScreen.kt:91:15: The function AuthScreen(state: AuthUiModel, error: AppError?, modifier: Modifier, onPhoneChange: (String) -> Unit, onSendOtp: () -> Unit, onVerify: (String) -> Unit, onResend: () -> Unit, onBack: () -> Unit) has too many parameters. The current threshold is set to 6. [LongParameterList]
 /home/runner/work/4Divari/4Divari/feature/agent/src/main/kotlin/ir/chardivari/feature/agent/AgentLeadsScreen.kt:128:20: The function LeadRow(lead: ir.chardivari.core.marketplace.AgentLead, expanded: Boolean, busy: Boolean, matches: List<ir.chardivari.core.marketplace.LeadMatch>, matchesLoading: Boolean, onToggle: () -> Unit, onStageChange: (String) -> Unit, onPriorityChange: (Int) -> Unit, onEditNotes: () -> Unit, onOpenRequirement: () -> Unit, onRefreshMatches: () -> Unit) has too many parameters. The current threshold is set to 6. [LongParameterList]
-/home/runner/work/4Divari/4Divari/feature/agent/src/main/kotlin/ir/chardivari/feature/agent/AgentLeadsScreen.kt:128:13: The function LeadRow is too long (134). The maximum length is 80. [LongMethod]
 /home/runner/work/4Divari/4Divari/feature/agent/src/main/kotlin/ir/chardivari/feature/agent/AgentLeadsScreen.kt:323:13: The function RequirementDialog is too long (136). The maximum length is 80. [LongMethod]
+/home/runner/work/4Divari/4Divari/feature/agent/src/main/kotlin/ir/chardivari/feature/agent/AgentLeadsScreen.kt:128:13: The function LeadRow is too long (134). The maximum length is 80. [LongMethod]
 /home/runner/work/4Divari/4Divari/feature/agent/src/main/kotlin/ir/chardivari/feature/agent/AgentLeadsScreen.kt:128:13: The function LeadRow appears to be too complex based on Cyclomatic Complexity (complexity: 18). Defined complexity threshold for methods is set to '15' [CyclomaticComplexMethod]
 /home/runner/work/4Divari/4Divari/feature/agent/src/main/kotlin/ir/chardivari/feature/agent/AgentRoute.kt:106:24: The function GateMessage(modifier: Modifier, icon: @Composable () -> Unit, title: String, description: String, primaryActionLabel: String, onPrimaryAction: () -> Unit, secondaryActionLabel: String?, onSecondaryAction: (() -> Unit)?) has too many parameters. The current threshold is set to 6. [LongParameterList]
 /home/runner/work/4Divari/4Divari/feature/agent/src/main/kotlin/ir/chardivari/feature/agent/AgentLeadsViewModel.kt:212:9: The function saveRequirement appears to be too complex based on Cyclomatic Complexity (complexity: 29). Defined complexity threshold for methods is set to '15' [CyclomaticComplexMethod]
@@ -304,120 +305,86 @@ Daemon will be stopped at the end of the build
 /home/runner/work/4Divari/4Divari/feature/agent/src/main/kotlin/ir/chardivari/feature/agent/AgentRoute.kt:67:1: Line detected, which is longer than the defined maximum line length in the code style. [MaxLineLength]
 /home/runner/work/4Divari/4Divari/feature/agent/src/main/kotlin/ir/chardivari/feature/agent/AgentRoute.kt:78:1: Line detected, which is longer than the defined maximum line length in the code style. [MaxLineLength]
 
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/detekt-1790276317298.json
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/detekt-1790276599042.json
 
-BUILD SUCCESSFUL in 25s
+BUILD SUCCESSFUL in 24s
 1 actionable task: 1 executed
 
 ########## /tmp/lint-log.txt : FAILURE HEADERS ##########
-113:e: file:///home/runner/work/4Divari/4Divari/core/common/src/main/kotlin/ir/chardivari/core/common/Format.kt:15:13 Incompatible types 'kotlin.Char' and 'kotlin.ranges.CharRange'.
-114:e: file:///home/runner/work/4Divari/4Divari/core/common/src/main/kotlin/ir/chardivari/core/common/Format.kt:16:13 Incompatible types 'kotlin.Char' and 'kotlin.ranges.CharRange'.
-116:> Task :core:common:compileDebugKotlin FAILED
-122:FAILURE: Build failed with an exception.
-124:* What went wrong:
-135:BUILD FAILED in 31s
+182:e: file:///home/runner/work/4Divari/4Divari/core/analytics/src/main/kotlin/ir/chardivari/core/analytics/AnalyticsEvent.kt:62:16 Conflicting declarations:
+184:e: file:///home/runner/work/4Divari/4Divari/core/analytics/src/main/kotlin/ir/chardivari/core/analytics/AnalyticsEvent.kt:95:16 Conflicting declarations:
+186:e: file:///home/runner/work/4Divari/4Divari/core/analytics/src/main/kotlin/ir/chardivari/core/analytics/AnalyticsEvent.kt:98:26 Unresolved reference 'leadId'.
+188:> Task :core:analytics:compileDebugKotlin FAILED
+194:FAILURE: Build failed with an exception.
+196:* What went wrong:
+207:BUILD FAILED in 37s
 
 ########## /tmp/lint-log.txt (first 80 lines) ##########
 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.11.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
 Daemon will be stopped at the end of the build 
 > Task :core:designsystem:checkKotlinGradlePluginConfigurationErrors SKIPPED
-> Task :core:environment:preBuild UP-TO-DATE
 > Task :core:ui:preBuild UP-TO-DATE
-> Task :core:ui:preDebugBuild UP-TO-DATE
-> Task :core:environment:preDebugBuild UP-TO-DATE
 > Task :core:common:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:environment:preBuild UP-TO-DATE
 > Task :core:common:preBuild UP-TO-DATE
 > Task :core:common:preDebugBuild UP-TO-DATE
+> Task :core:ui:preDebugBuild UP-TO-DATE
 > Task :core:designsystem:preBuild UP-TO-DATE
 > Task :core:designsystem:preDebugBuild UP-TO-DATE
+> Task :core:environment:preDebugBuild UP-TO-DATE
 > Task :core:designsystem:generateDebugResValues UP-TO-DATE
 > Task :core:common:generateDebugResValues UP-TO-DATE
 > Task :core:common:generateDebugResources UP-TO-DATE
 > Task :core:designsystem:generateDebugResources UP-TO-DATE
 > Task :core:designsystem:packageDebugResources UP-TO-DATE
 > Task :core:common:packageDebugResources UP-TO-DATE
-> Task :core:common:parseDebugLocalResources UP-TO-DATE
 > Task :core:designsystem:parseDebugLocalResources UP-TO-DATE
-> Task :core:designsystem:generateDebugRFile UP-TO-DATE
+> Task :core:common:parseDebugLocalResources UP-TO-DATE
 > Task :core:common:generateDebugRFile UP-TO-DATE
-> Task :core:environment:mergeDebugJniLibFolders
+> Task :core:designsystem:generateDebugRFile UP-TO-DATE
 > Task :core:ui:mergeDebugJniLibFolders
-> Task :core:environment:mergeDebugNativeLibs NO-SOURCE
+> Task :core:environment:mergeDebugJniLibFolders
 > Task :core:ui:mergeDebugNativeLibs NO-SOURCE
-> Task :core:ui:stripDebugDebugSymbols NO-SOURCE
+> Task :core:environment:mergeDebugNativeLibs NO-SOURCE
 > Task :core:environment:stripDebugDebugSymbols NO-SOURCE
-> Task :core:ui:copyDebugJniLibsProjectAndLocalJars
+> Task :core:ui:stripDebugDebugSymbols NO-SOURCE
 > Task :core:environment:copyDebugJniLibsProjectAndLocalJars
 > Task :core:ui:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:ui:copyDebugJniLibsProjectAndLocalJars
 > Task :core:environment:checkKotlinGradlePluginConfigurationErrors SKIPPED
 > Task :core:ui:generateDebugResValues UP-TO-DATE
 > Task :core:environment:generateDebugBuildConfig UP-TO-DATE
-> Task :core:ui:generateDebugResources UP-TO-DATE
 > Task :core:environment:generateDebugResValues UP-TO-DATE
+> Task :core:ui:generateDebugResources UP-TO-DATE
 > Task :core:environment:generateDebugResources UP-TO-DATE
 > Task :core:ui:packageDebugResources UP-TO-DATE
-> Task :core:ui:parseDebugLocalResources UP-TO-DATE
 > Task :core:environment:packageDebugResources UP-TO-DATE
+> Task :core:ui:parseDebugLocalResources UP-TO-DATE
 > Task :core:environment:parseDebugLocalResources UP-TO-DATE
-> Task :core:ui:generateDebugRFile UP-TO-DATE
 > Task :core:environment:generateDebugRFile UP-TO-DATE
+> Task :core:ui:generateDebugRFile UP-TO-DATE
 > Task :core:ui:extractDeepLinksForAarDebug
 > Task :core:ui:javaPreCompileDebug FROM-CACHE
-> Task :core:environment:compileDebugKotlin UP-TO-DATE
+> Task :core:common:compileDebugKotlin UP-TO-DATE
 > Task :core:ui:mergeDebugShaders
 > Task :core:ui:compileDebugShaders NO-SOURCE
 > Task :core:ui:generateDebugAssets UP-TO-DATE
+> Task :core:environment:compileDebugKotlin UP-TO-DATE
+> Task :core:common:javaPreCompileDebug UP-TO-DATE
+> Task :core:common:compileDebugJavaWithJavac NO-SOURCE
+> Task :core:common:bundleLibCompileToJarDebug UP-TO-DATE
 > Task :core:ui:packageDebugAssets
 > Task :core:ui:prepareDebugArtProfile
+> Task :core:common:mergeDebugJniLibFolders
 > Task :core:ui:prepareLintJarForPublish
+> Task :core:common:mergeDebugNativeLibs NO-SOURCE
+> Task :core:common:stripDebugDebugSymbols NO-SOURCE
 > Task :core:ui:processDebugManifest UP-TO-DATE
 > Task :core:ui:writeDebugAarMetadata UP-TO-DATE
 > Task :core:network:preBuild UP-TO-DATE
 > Task :core:network:preDebugBuild UP-TO-DATE
-> Task :core:network:mergeDebugJniLibFolders
-> Task :core:common:javaPreCompileDebug FROM-CACHE
-> Task :core:common:mergeDebugJniLibFolders
-> Task :core:common:mergeDebugNativeLibs NO-SOURCE
-> Task :core:common:stripDebugDebugSymbols NO-SOURCE
 > Task :core:common:copyDebugJniLibsProjectAndLocalJars
-> Task :core:common:extractDeepLinksForAarDebug FROM-CACHE
-> Task :core:designsystem:compileDebugKotlin UP-TO-DATE
-> Task :core:common:mergeDebugShaders
-> Task :core:common:compileDebugShaders NO-SOURCE
-> Task :core:common:generateDebugAssets UP-TO-DATE
-> Task :core:designsystem:javaPreCompileDebug FROM-CACHE
-> Task :core:designsystem:compileDebugJavaWithJavac NO-SOURCE
-> Task :core:common:packageDebugAssets
-> Task :core:common:prepareDebugArtProfile
-> Task :core:common:prepareLintJarForPublish
-> Task :core:common:processDebugManifest UP-TO-DATE
-> Task :core:common:writeDebugAarMetadata UP-TO-DATE
-> Task :core:network:mergeDebugNativeLibs NO-SOURCE
-> Task :core:network:stripDebugDebugSymbols NO-SOURCE
-> Task :core:network:copyDebugJniLibsProjectAndLocalJars
-> Task :core:network:checkKotlinGradlePluginConfigurationErrors SKIPPED
-> Task :core:network:generateDebugResValues UP-TO-DATE
-> Task :core:network:generateDebugResources UP-TO-DATE
-
-########## /tmp/lint-log.txt (last 80 lines) ##########
 > Task :core:network:mergeDebugJniLibFolders
-> Task :core:common:javaPreCompileDebug FROM-CACHE
-> Task :core:common:mergeDebugJniLibFolders
-> Task :core:common:mergeDebugNativeLibs NO-SOURCE
-> Task :core:common:stripDebugDebugSymbols NO-SOURCE
-> Task :core:common:copyDebugJniLibsProjectAndLocalJars
-> Task :core:common:extractDeepLinksForAarDebug FROM-CACHE
-> Task :core:designsystem:compileDebugKotlin UP-TO-DATE
-> Task :core:common:mergeDebugShaders
-> Task :core:common:compileDebugShaders NO-SOURCE
-> Task :core:common:generateDebugAssets UP-TO-DATE
-> Task :core:designsystem:javaPreCompileDebug FROM-CACHE
-> Task :core:designsystem:compileDebugJavaWithJavac NO-SOURCE
-> Task :core:common:packageDebugAssets
-> Task :core:common:prepareDebugArtProfile
-> Task :core:common:prepareLintJarForPublish
-> Task :core:common:processDebugManifest UP-TO-DATE
-> Task :core:common:writeDebugAarMetadata UP-TO-DATE
 > Task :core:network:mergeDebugNativeLibs NO-SOURCE
 > Task :core:network:stripDebugDebugSymbols NO-SOURCE
 > Task :core:network:copyDebugJniLibsProjectAndLocalJars
@@ -428,47 +395,82 @@ Daemon will be stopped at the end of the build
 > Task :core:network:parseDebugLocalResources UP-TO-DATE
 > Task :core:network:generateDebugRFile UP-TO-DATE
 > Task :core:network:extractDeepLinksForAarDebug FROM-CACHE
-> Task :core:designsystem:bundleLibCompileToJarDebug
-> Task :core:designsystem:mergeDebugJniLibFolders
 > Task :core:network:javaPreCompileDebug UP-TO-DATE
-> Task :core:designsystem:mergeDebugNativeLibs NO-SOURCE
 > Task :core:network:mergeDebugShaders
-> Task :core:designsystem:stripDebugDebugSymbols NO-SOURCE
 > Task :core:network:compileDebugShaders NO-SOURCE
 > Task :core:network:generateDebugAssets UP-TO-DATE
-> Task :core:designsystem:copyDebugJniLibsProjectAndLocalJars
 > Task :core:network:packageDebugAssets
-> Task :core:network:prepareDebugArtProfile
-> Task :core:network:prepareLintJarForPublish
-> Task :core:network:processDebugManifest UP-TO-DATE
-> Task :core:network:writeDebugAarMetadata UP-TO-DATE
-> Task :core:navigation:preBuild UP-TO-DATE
-> Task :core:navigation:preDebugBuild UP-TO-DATE
-> Task :core:navigation:mergeDebugJniLibFolders
-> Task :core:navigation:mergeDebugNativeLibs NO-SOURCE
-> Task :core:navigation:stripDebugDebugSymbols NO-SOURCE
-> Task :core:navigation:copyDebugJniLibsProjectAndLocalJars
-> Task :core:navigation:checkKotlinGradlePluginConfigurationErrors SKIPPED
-> Task :core:navigation:generateDebugResValues UP-TO-DATE
-> Task :core:navigation:generateDebugResources UP-TO-DATE
-> Task :core:navigation:packageDebugResources UP-TO-DATE
-> Task :core:navigation:parseDebugLocalResources UP-TO-DATE
-> Task :core:navigation:generateDebugRFile UP-TO-DATE
 
-> Task :core:common:compileDebugKotlin
-e: file:///home/runner/work/4Divari/4Divari/core/common/src/main/kotlin/ir/chardivari/core/common/Format.kt:15:13 Incompatible types 'kotlin.Char' and 'kotlin.ranges.CharRange'.
-e: file:///home/runner/work/4Divari/4Divari/core/common/src/main/kotlin/ir/chardivari/core/common/Format.kt:16:13 Incompatible types 'kotlin.Char' and 'kotlin.ranges.CharRange'.
+########## /tmp/lint-log.txt (last 80 lines) ##########
+> Task :core:common:writeDebugAarMetadata UP-TO-DATE
+> Task :core:environment:prepareLintJarForPublish
+> Task :core:environment:processDebugManifest UP-TO-DATE
+> Task :core:environment:processDebugJavaRes
+> Task :core:environment:mergeDebugJavaResource
+> Task :core:common:mergeDebugJavaResource
+> Task :core:environment:syncDebugLibJars
+> Task :core:common:syncDebugLibJars
+> Task :core:environment:writeDebugAarMetadata UP-TO-DATE
+> Task :core:common:bundleDebugLocalLintAar
+> Task :core:environment:bundleDebugLocalLintAar
+> Task :core:common:bundleLibRuntimeToJarDebug
+> Task :core:environment:bundleLibCompileToJarDebug
+> Task :core:designsystem:extractDeepLinksForAarDebug FROM-CACHE
+> Task :core:environment:bundleLibRuntimeToJarDebug
+> Task :core:designsystem:mergeDebugGeneratedProguardFiles
+> Task :core:designsystem:mergeDebugConsumerProguardFiles
+> Task :core:designsystem:mergeDebugShaders
+> Task :core:designsystem:compileDebugShaders NO-SOURCE
+> Task :core:designsystem:generateDebugAssets UP-TO-DATE
+> Task :core:designsystem:packageDebugAssets
+> Task :core:designsystem:prepareDebugArtProfile
+> Task :core:designsystem:prepareLintJarForPublish
+> Task :core:designsystem:processDebugManifest UP-TO-DATE
+> Task :core:designsystem:processDebugJavaRes
+> Task :core:designsystem:mergeDebugJavaResource
+> Task :core:designsystem:syncDebugLibJars
+> Task :core:designsystem:writeDebugAarMetadata UP-TO-DATE
+> Task :core:designsystem:bundleDebugLocalLintAar
+> Task :core:navigation:extractDeepLinksForAarDebug FROM-CACHE
+> Task :core:navigation:javaPreCompileDebug FROM-CACHE
+> Task :core:navigation:mergeDebugShaders
+> Task :core:navigation:compileDebugShaders NO-SOURCE
+> Task :core:navigation:generateDebugAssets UP-TO-DATE
+> Task :core:navigation:packageDebugAssets
+> Task :core:navigation:prepareDebugArtProfile
+> Task :core:navigation:prepareLintJarForPublish
+> Task :core:navigation:processDebugManifest UP-TO-DATE
+> Task :core:navigation:writeDebugAarMetadata UP-TO-DATE
+> Task :core:analytics:preBuild UP-TO-DATE
+> Task :core:analytics:preDebugBuild UP-TO-DATE
+> Task :core:analytics:mergeDebugJniLibFolders
+> Task :core:analytics:mergeDebugNativeLibs NO-SOURCE
+> Task :core:analytics:stripDebugDebugSymbols NO-SOURCE
+> Task :core:analytics:copyDebugJniLibsProjectAndLocalJars
+> Task :core:analytics:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:analytics:generateDebugResValues UP-TO-DATE
+> Task :core:analytics:generateDebugResources UP-TO-DATE
+> Task :core:analytics:packageDebugResources UP-TO-DATE
+> Task :core:analytics:parseDebugLocalResources UP-TO-DATE
+> Task :core:analytics:generateDebugRFile UP-TO-DATE
 
-> Task :core:common:compileDebugKotlin FAILED
-> Task :core:environment:extractDebugAnnotations
-> Task :core:designsystem:extractDebugAnnotations
+> Task :core:analytics:compileDebugKotlin
+e: file:///home/runner/work/4Divari/4Divari/core/analytics/src/main/kotlin/ir/chardivari/core/analytics/AnalyticsEvent.kt:62:16 Conflicting declarations:
+data class LeadCreated : AnalyticsEvent
+e: file:///home/runner/work/4Divari/4Divari/core/analytics/src/main/kotlin/ir/chardivari/core/analytics/AnalyticsEvent.kt:95:16 Conflicting declarations:
+data class LeadCreated : AnalyticsEvent
+e: file:///home/runner/work/4Divari/4Divari/core/analytics/src/main/kotlin/ir/chardivari/core/analytics/AnalyticsEvent.kt:98:26 Unresolved reference 'leadId'.
+
+> Task :core:analytics:compileDebugKotlin FAILED
+> Task :core:ui:compileDebugKotlin
 > Task :core:navigation:compileDebugKotlin
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/lint-1790276343134.json
+> Task :core:network:kspDebugKotlin
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/lint-1790276623543.json
 
 FAILURE: Build failed with an exception.
 
 * What went wrong:
-Execution failed for task ':core:common:compileDebugKotlin'.
+Execution failed for task ':core:analytics:compileDebugKotlin'.
 > A failure occurred while executing org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction
    > Compilation error. See log for more details
 
@@ -478,5 +480,5 @@ Execution failed for task ':core:common:compileDebugKotlin'.
 > Run with --scan to get full insights.
 > Get more help at https://help.gradle.org.
 
-BUILD FAILED in 31s
-75 actionable tasks: 30 executed, 5 from cache, 40 up-to-date
+BUILD FAILED in 37s
+132 actionable tasks: 68 executed, 8 from cache, 56 up-to-date
