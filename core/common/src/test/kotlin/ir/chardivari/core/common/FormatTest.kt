@@ -75,13 +75,13 @@ class UiStateTest {
 
     @Test
     fun `failure to ui state retryability`() {
-        val offline = AppResult.Failure<Int>(AppError.Offline).toUiState()
-        assertTrue((offline as UiState.Error).canRetry)
+        val offline: AppResult<Int> = AppResult.Failure(AppError.Offline)
+        assertTrue((offline.toUiState() as UiState.Error).canRetry)
 
-        val validation = AppResult.Failure<Int>(AppError.Validation()).toUiState()
-        assertFalse((validation as UiState.Error).canRetry)
+        val validation: AppResult<Int> = AppResult.Failure(AppError.Validation())
+        assertFalse((validation.toUiState() as UiState.Error).canRetry)
 
-        val success = AppResult.Success(1).toUiState()
-        assertTrue(success is UiState.Content)
+        val success: AppResult<Int> = AppResult.Success(1)
+        assertTrue(success.toUiState() is UiState.Content)
     }
 }

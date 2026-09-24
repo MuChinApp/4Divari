@@ -21,7 +21,6 @@ object ErrorMapper {
         is SocketTimeoutException -> AppError.Offline
         is IOException -> AppError.Offline
         is SerializationException -> AppError.Serialization
-        is retrofit2.serialization.SerializationException -> AppError.Serialization
         is HttpException -> fromHttpCode(t.code(), t.message())
         else -> AppError.Unexpected
     }

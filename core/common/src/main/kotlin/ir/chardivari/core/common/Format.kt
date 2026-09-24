@@ -8,16 +8,16 @@ import java.util.Locale
  * Backend contracts stay language-neutral (Latin digits, ISO-8601, IRR as Long);
  * display formatting happens only at the edge.
  */
-object Format {
-
-    private val persianDigits = charArrayOf('۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹')
-
-    /** Convert ASCII digits to Persian digits for display. */
-    fun String.toPersianDigits(): String = buildString(length) {
-        for (ch in this@toPersianDigits) {
-            append(if (ch in '0'..'9') persianDigits[ch - '0'] else ch)
-        }
+/** Convert ASCII digits to Persian digits for display. */
+fun String.toPersianDigits(): String = buildString(length) {
+    for (ch in this@toPersianDigits) {
+        append(if (ch in '0'..'9') PERSIAN_DIGITS[ch - '0'] else ch)
     }
+}
+
+private val PERSIAN_DIGITS = charArrayOf('۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹')
+
+object Format {
 
     fun toPersianDigits(value: Long): String = value.toString().toPersianDigits()
 
