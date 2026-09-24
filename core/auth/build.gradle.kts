@@ -3,7 +3,6 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.ksp)
-    alias(libs.plugins.hilt)
 }
 
 android {
@@ -24,11 +23,8 @@ android {
     }
 }
 
-// See feature/auth — avoid Hilt ASM transform cycle on library modules.
-hilt {
-    enableAggregatingTask = false
-}
-
+// No Hilt Gradle plugin on library modules (see feature/auth) — KSP
+// hilt-compiler generates @Module/@Inject code; aggregation at :app only.
 dependencies {
     implementation(project(":core:common"))
     implementation(project(":core:environment"))

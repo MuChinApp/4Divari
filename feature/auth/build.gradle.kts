@@ -2,7 +2,6 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
-    alias(libs.plugins.hilt)
     alias(libs.plugins.ksp)
 }
 
@@ -28,13 +27,10 @@ android {
     }
 }
 
-// Library modules only need Hilt codegen for @HiltViewModel; module
-// aggregation runs once at :app. Disabling here breaks the known
-// bundleLibCompileToJarDebug ↔ transformDebugClassesWithAsm cycle.
-hilt {
-    enableAggregatingTask = false
-}
-
+// No Hilt Gradle plugin here: library modules only need KSP codegen for
+// @HiltViewModel. The plugin's ASM transform creates a
+// bundleLibCompileToJarDebug ↔ transformDebugClassesWithAsm cycle with
+// this module's KSP graph. Aggregation runs once at :app.
 dependencies {
     implementation(project(":core:ui"))
     implementation(project(":core:designsystem"))
