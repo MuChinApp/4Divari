@@ -24,18 +24,14 @@ allprojects {
 }
 
 // Detekt static analysis — runs in CI, not required for local compile.
+// Keep config minimal: avoid typing Detekt task class in Kotlin DSL
+// (plugin classpath resolution differs across detekt releases).
 detekt {
     config.setFrom(files("config/detekt/detekt.yml"))
     buildUponDefaultConfig = true
-    // Leaf modules may introduce style debt during rapid Phase 1; gate is still reported.
     ignoreFailures = true
 }
 
-tasks.withType<io.gitlab.arturbosch.detekt.gradle.Detekt>().configureEach {
-    reports {
-        html.required.set(false)
-        xml.required.set(true)
-        txt.required.set(false)
-        sarif.required.set(true)
-    }
+tasks.named("detekt") {
+    // Default reports are fine; SARIF optional for code scanning later.
 }

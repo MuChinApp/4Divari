@@ -71,8 +71,14 @@ jobs:
             for f in /tmp/test-log.txt /tmp/detekt-log.txt /tmp/lint-log.txt /tmp/assemble-log.txt; do
               if [ -f "$f" ]; then
                 echo ""
-                echo "########## $f (last 200 lines) ##########"
-                tail -n 200 "$f"
+                echo "########## $f : FAILURE HEADERS ##########"
+                grep -n -E "What went wrong|Script compilation|FAILURE:|Caused by:|^e: |error:|FAILED" "$f" | head -80 || true
+                echo ""
+                echo "########## $f (first 80 lines) ##########"
+                head -n 80 "$f"
+                echo ""
+                echo "########## $f (last 80 lines) ##########"
+                tail -n 80 "$f"
               fi
             done
           } > ci-last-error.log || true
