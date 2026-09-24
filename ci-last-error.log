@@ -1,13 +1,14 @@
-=== CI FAILURE CAPTURE 2026-09-24T18:07:51Z ===
+=== CI FAILURE CAPTURE 2026-09-24T18:59:31Z ===
 
 ########## /tmp/test-log.txt : FAILURE HEADERS ##########
-499:> Task :feature:seller:testDebugUnitTest FAILED
-501:SellerWizardViewModelTest > publish retry after upload failure reuses draft and skips uploaded media FAILED
-504:SellerWizardViewModelTest > publish happy path uploads media then activates and tracks ListingCreated FAILED
-512:FAILURE: Build failed with an exception.
-514:* What went wrong:
-554:Caused by: org.gradle.api.internal.exceptions.MarkedVerificationException: There were failing tests. See the report at: file:///home/runner/work/4Divari/4Divari/feature/seller/build/reports/tests/testDebugUnitTest/index.html
-687:BUILD FAILED in 3m 2s
+219:e: file:///home/runner/work/4Divari/4Divari/core/common/src/main/kotlin/ir/chardivari/core/common/Format.kt:15:13 Incompatible types 'kotlin.Char' and 'kotlin.ranges.CharRange'.
+220:e: file:///home/runner/work/4Divari/4Divari/core/common/src/main/kotlin/ir/chardivari/core/common/Format.kt:16:13 Incompatible types 'kotlin.Char' and 'kotlin.ranges.CharRange'.
+222:> Task :core:common:compileDebugKotlin FAILED
+230:FAILURE: Build failed with an exception.
+232:* What went wrong:
+275:Caused by: org.gradle.workers.internal.DefaultWorkerExecutor$WorkExecutionException: A failure occurred while executing org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction
+404:Caused by: org.jetbrains.kotlin.gradle.tasks.CompilationErrorException: Compilation error. See log for more details
+437:BUILD FAILED in 2m 3s
 
 ########## /tmp/test-log.txt (first 80 lines) ##########
 Downloading https://services.gradle.org/distributions/gradle-8.11.1-bin.zip
@@ -24,105 +25,74 @@ For more details see https://docs.gradle.org/8.11.1/release-notes.html
 
 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.11.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
 Daemon will be stopped at the end of the build 
+> Task :app:preBuild UP-TO-DATE
 > Task :core:auth:preBuild UP-TO-DATE
 > Task :core:common:preBuild UP-TO-DATE
 > Task :core:analytics:preBuild UP-TO-DATE
-> Task :app:preBuild UP-TO-DATE
-> Task :core:analytics:preDebugBuild UP-TO-DATE
 > Task :core:common:preDebugBuild UP-TO-DATE
 > Task :app:preDebugBuild UP-TO-DATE
 > Task :core:auth:preDebugBuild UP-TO-DATE
+> Task :core:analytics:preDebugBuild UP-TO-DATE
 > Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
 > Task :core:common:writeDebugAarMetadata
 > Task :app:generateDebugBuildConfig
 > Task :core:analytics:writeDebugAarMetadata
-> Task :core:auth:writeDebugAarMetadata
 > Task :core:marketplace:preBuild UP-TO-DATE
 > Task :core:marketplace:preDebugBuild UP-TO-DATE
 > Task :core:designsystem:preBuild UP-TO-DATE
 > Task :core:environment:preBuild UP-TO-DATE
-> Task :core:designsystem:preDebugBuild UP-TO-DATE
 > Task :core:environment:preDebugBuild UP-TO-DATE
+> Task :core:auth:writeDebugAarMetadata
+> Task :core:designsystem:preDebugBuild UP-TO-DATE
 > Task :core:navigation:preBuild UP-TO-DATE
 > Task :core:navigation:preDebugBuild UP-TO-DATE
-> Task :core:marketplace:writeDebugAarMetadata
+> Task :core:designsystem:writeDebugAarMetadata
 > Task :core:network:preBuild UP-TO-DATE
 > Task :core:network:preDebugBuild UP-TO-DATE
-> Task :core:environment:writeDebugAarMetadata
-> Task :core:designsystem:writeDebugAarMetadata
+> Task :core:marketplace:writeDebugAarMetadata
 > Task :core:ui:preBuild UP-TO-DATE
 > Task :core:ui:preDebugBuild UP-TO-DATE
-> Task :feature:auth:preBuild UP-TO-DATE
+> Task :core:environment:writeDebugAarMetadata
+> Task :feature:agent:preBuild UP-TO-DATE
+> Task :feature:agent:preDebugBuild UP-TO-DATE
 > Task :core:navigation:writeDebugAarMetadata
+> Task :feature:auth:preBuild UP-TO-DATE
 > Task :feature:auth:preDebugBuild UP-TO-DATE
+> Task :core:ui:writeDebugAarMetadata
 > Task :feature:home:preBuild UP-TO-DATE
 > Task :feature:home:preDebugBuild UP-TO-DATE
-> Task :core:network:writeDebugAarMetadata
+> Task :feature:agent:writeDebugAarMetadata
 > Task :feature:profile:preBuild UP-TO-DATE
 > Task :feature:profile:preDebugBuild UP-TO-DATE
+> Task :core:network:writeDebugAarMetadata
 > Task :feature:auth:writeDebugAarMetadata
-> Task :feature:home:writeDebugAarMetadata
-> Task :core:ui:writeDebugAarMetadata
 > Task :feature:property:preBuild UP-TO-DATE
 > Task :feature:property:preDebugBuild UP-TO-DATE
 > Task :feature:saved:preBuild UP-TO-DATE
 > Task :feature:saved:preDebugBuild UP-TO-DATE
+> Task :feature:profile:writeDebugAarMetadata
 > Task :feature:search:preBuild UP-TO-DATE
 > Task :feature:search:preDebugBuild UP-TO-DATE
-> Task :feature:profile:writeDebugAarMetadata
-> Task :feature:search:writeDebugAarMetadata
-> Task :feature:saved:writeDebugAarMetadata
-> Task :feature:property:writeDebugAarMetadata
+> Task :feature:home:writeDebugAarMetadata
 > Task :feature:seller:preBuild UP-TO-DATE
 > Task :feature:seller:preDebugBuild UP-TO-DATE
+> Task :feature:saved:writeDebugAarMetadata
+> Task :feature:property:writeDebugAarMetadata
+> Task :feature:seller:writeDebugAarMetadata
+> Task :feature:search:writeDebugAarMetadata
+> Task :core:auth:generateDebugResValues
 > Task :app:generateDebugResValues
 > Task :core:analytics:generateDebugResValues
-> Task :feature:seller:writeDebugAarMetadata
-> Task :core:auth:generateDebugResValues
-> Task :core:analytics:generateDebugResources
-> Task :core:auth:generateDebugResources
 > Task :core:common:generateDebugResValues FROM-CACHE
+> Task :core:auth:generateDebugResources
+> Task :core:analytics:generateDebugResources
 > Task :core:common:generateDebugResources FROM-CACHE
 > Task :core:auth:packageDebugResources
 > Task :core:analytics:packageDebugResources
 > Task :core:common:packageDebugResources
-> Task :core:environment:generateDebugResValues FROM-CACHE
 > Task :core:designsystem:generateDebugResValues FROM-CACHE
-> Task :core:marketplace:generateDebugResValues FROM-CACHE
-> Task :core:marketplace:generateDebugResources FROM-CACHE
 
 ########## /tmp/test-log.txt (last 80 lines) ##########
-	at org.gradle.internal.Try$Success.map(Try.java:175)
-	at org.gradle.internal.execution.steps.BuildCacheStep.executeWithCache(BuildCacheStep.java:85)
-	at org.gradle.internal.execution.steps.BuildCacheStep.lambda$execute$0(BuildCacheStep.java:74)
-	at org.gradle.internal.Either$Left.fold(Either.java:115)
-	at org.gradle.internal.execution.caching.CachingState.fold(CachingState.java:62)
-	at org.gradle.internal.execution.steps.BuildCacheStep.execute(BuildCacheStep.java:73)
-	at org.gradle.internal.execution.steps.BuildCacheStep.execute(BuildCacheStep.java:48)
-	at org.gradle.internal.execution.steps.StoreExecutionStateStep.execute(StoreExecutionStateStep.java:46)
-	at org.gradle.internal.execution.steps.StoreExecutionStateStep.execute(StoreExecutionStateStep.java:35)
-	at org.gradle.internal.execution.steps.SkipUpToDateStep.executeBecause(SkipUpToDateStep.java:75)
-	at org.gradle.internal.execution.steps.SkipUpToDateStep.lambda$execute$2(SkipUpToDateStep.java:53)
-	at org.gradle.internal.execution.steps.SkipUpToDateStep.execute(SkipUpToDateStep.java:53)
-	at org.gradle.internal.execution.steps.SkipUpToDateStep.execute(SkipUpToDateStep.java:35)
-	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsFinishedStep.execute(MarkSnapshottingInputsFinishedStep.java:37)
-	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsFinishedStep.execute(MarkSnapshottingInputsFinishedStep.java:27)
-	at org.gradle.internal.execution.steps.ResolveIncrementalCachingStateStep.executeDelegate(ResolveIncrementalCachingStateStep.java:49)
-	at org.gradle.internal.execution.steps.ResolveIncrementalCachingStateStep.executeDelegate(ResolveIncrementalCachingStateStep.java:27)
-	at org.gradle.internal.execution.steps.AbstractResolveCachingStateStep.execute(AbstractResolveCachingStateStep.java:71)
-	at org.gradle.internal.execution.steps.AbstractResolveCachingStateStep.execute(AbstractResolveCachingStateStep.java:39)
-	at org.gradle.internal.execution.steps.ResolveChangesStep.execute(ResolveChangesStep.java:65)
-	at org.gradle.internal.execution.steps.ResolveChangesStep.execute(ResolveChangesStep.java:36)
-	at org.gradle.internal.execution.steps.ValidateStep.execute(ValidateStep.java:107)
-	at org.gradle.internal.execution.steps.ValidateStep.execute(ValidateStep.java:56)
-	at org.gradle.internal.execution.steps.AbstractCaptureStateBeforeExecutionStep.execute(AbstractCaptureStateBeforeExecutionStep.java:64)
-	at org.gradle.internal.execution.steps.AbstractCaptureStateBeforeExecutionStep.execute(AbstractCaptureStateBeforeExecutionStep.java:43)
-	at org.gradle.internal.execution.steps.AbstractSkipEmptyWorkStep.executeWithNonEmptySources(AbstractSkipEmptyWorkStep.java:125)
-	at org.gradle.internal.execution.steps.AbstractSkipEmptyWorkStep.execute(AbstractSkipEmptyWorkStep.java:61)
-	at org.gradle.internal.execution.steps.AbstractSkipEmptyWorkStep.execute(AbstractSkipEmptyWorkStep.java:36)
-	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsStartedStep.execute(MarkSnapshottingInputsStartedStep.java:38)
-	at org.gradle.internal.execution.steps.LoadPreviousExecutionStateStep.execute(LoadPreviousExecutionStateStep.java:36)
-	at org.gradle.internal.execution.steps.LoadPreviousExecutionStateStep.execute(LoadPreviousExecutionStateStep.java:23)
 	at org.gradle.internal.execution.steps.HandleStaleOutputsStep.execute(HandleStaleOutputsStep.java:75)
 	at org.gradle.internal.execution.steps.HandleStaleOutputsStep.execute(HandleStaleOutputsStep.java:41)
 	at org.gradle.internal.execution.steps.AssignMutableWorkspaceStep.lambda$execute$0(AssignMutableWorkspaceStep.java:35)
@@ -168,31 +138,69 @@ Daemon will be stopped at the end of the build
 	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.run(DefaultPlanExecutor.java:376)
 	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
 	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:48)
+Caused by: org.jetbrains.kotlin.gradle.tasks.CompilationErrorException: Compilation error. See log for more details
+	at org.jetbrains.kotlin.gradle.tasks.TasksUtilsKt.throwExceptionIfCompilationFailed(tasksUtils.kt:21)
+	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.run(GradleKotlinCompilerWork.kt:119)
+	at org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction.execute(GradleCompilerRunnerWithWorkers.kt:76)
+	at org.gradle.workers.internal.DefaultWorkerServer.execute(DefaultWorkerServer.java:63)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1$1.create(NoIsolationWorkerFactory.java:66)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1$1.create(NoIsolationWorkerFactory.java:62)
+	at org.gradle.internal.classloader.ClassLoaderUtils.executeInClassloader(ClassLoaderUtils.java:100)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1.lambda$execute$0(NoIsolationWorkerFactory.java:62)
+	at org.gradle.workers.internal.AbstractWorker$1.call(AbstractWorker.java:44)
+	at org.gradle.workers.internal.AbstractWorker$1.call(AbstractWorker.java:41)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:209)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:204)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:166)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:59)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:53)
+	at org.gradle.workers.internal.AbstractWorker.executeWrappedInBuildOperation(AbstractWorker.java:41)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1.execute(NoIsolationWorkerFactory.java:59)
+	at org.gradle.workers.internal.DefaultWorkerExecutor.lambda$submitWork$0(DefaultWorkerExecutor.java:174)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.runExecution(DefaultConditionalExecutionQueue.java:194)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.access$700(DefaultConditionalExecutionQueue.java:127)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner$1.run(DefaultConditionalExecutionQueue.java:169)
+	at org.gradle.internal.Factories$1.create(Factories.java:31)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocks(DefaultWorkerLeaseService.java:263)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:127)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:132)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.runBatch(DefaultConditionalExecutionQueue.java:164)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.run(DefaultConditionalExecutionQueue.java:133)
+	... 2 more
 
 
-BUILD FAILED in 3m 2s
-361 actionable tasks: 262 executed, 99 from cache
+BUILD FAILED in 2m 3s
+163 actionable tasks: 91 executed, 72 from cache
 
 ########## /tmp/detekt-log.txt : FAILURE HEADERS ##########
-28:/home/runner/work/4Divari/4Divari/feature/auth/src/main/kotlin/ir/chardivari/feature/auth/AuthScreen.kt:91:15: The function AuthScreen(state: AuthUiModel, error: AppError?, modifier: Modifier, onPhoneChange: (String) -> Unit, onSendOtp: () -> Unit, onVerify: (String) -> Unit, onResend: () -> Unit, onBack: () -> Unit) has too many parameters. The current threshold is set to 6. [LongParameterList]
+35:/home/runner/work/4Divari/4Divari/feature/auth/src/main/kotlin/ir/chardivari/feature/auth/AuthScreen.kt:91:15: The function AuthScreen(state: AuthUiModel, error: AppError?, modifier: Modifier, onPhoneChange: (String) -> Unit, onSendOtp: () -> Unit, onVerify: (String) -> Unit, onResend: () -> Unit, onBack: () -> Unit) has too many parameters. The current threshold is set to 6. [LongParameterList]
 
 ########## /tmp/detekt-log.txt (first 80 lines) ##########
 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.11.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
 Daemon will be stopped at the end of the build 
 
 > Task :detekt
-/home/runner/work/4Divari/4Divari/app/src/main/kotlin/ir/chardivari/app/MainActivity.kt:70:13: The function ChardivariRoot is too long (147). The maximum length is 80. [LongMethod]
+/home/runner/work/4Divari/4Divari/app/src/main/kotlin/ir/chardivari/app/MainActivity.kt:71:13: The function ChardivariRoot is too long (157). The maximum length is 80. [LongMethod]
 /home/runner/work/4Divari/4Divari/core/designsystem/src/main/kotlin/ir/chardivari/core/designsystem/components/StateComponents.kt:64:15: The function EmptyState(title: String, modifier: Modifier, description: String?, actionLabel: String?, onAction: (() -> Unit)?, icon: ImageVector) has too many parameters. The current threshold is set to 6. [LongParameterList]
 /home/runner/work/4Divari/4Divari/core/designsystem/src/main/kotlin/ir/chardivari/core/designsystem/components/StateComponents.kt:111:15: The function ErrorState(title: String, modifier: Modifier, description: String?, canRetry: Boolean, onRetry: (() -> Unit)?, secondaryActionLabel: String?, onSecondaryAction: (() -> Unit)?) has too many parameters. The current threshold is set to 6. [LongParameterList]
 /home/runner/work/4Divari/4Divari/core/designsystem/src/main/kotlin/ir/chardivari/core/designsystem/components/PropertyCard.kt:90:17: The function PropertyCard(photoUrl: String?, priceLine: String, pricePerSqmLine: String, titleLine: String, locationLine: String, amenitiesLine: String?, verificationLabel: String?, updatedLabel: String, modifier: Modifier, isFixtureData: Boolean, onFavorite: () -> Unit, onShare: () -> Unit, onCompare: () -> Unit, onClick: () -> Unit) has too many parameters. The current threshold is set to 6. [LongParameterList]
 /home/runner/work/4Divari/4Divari/core/designsystem/src/main/kotlin/ir/chardivari/core/designsystem/components/PropertyCard.kt:90:5: The function PropertyCard is too long (103). The maximum length is 80. [LongMethod]
 /home/runner/work/4Divari/4Divari/core/ui/src/main/kotlin/ir/chardivari/core/ui/UiStateRenderer.kt:24:24: The function UiStateRenderer(state: UiState<T>, modifier: Modifier, onRetry: () -> Unit, emptyTitle: String, emptyDescription: String?, loadingLabel: String, content: @Composable (T) -> Unit) has too many parameters. The current threshold is set to 6. [LongParameterList]
 /home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/ListingPresenter.kt:88:9: The function detail appears to be too complex based on Cyclomatic Complexity (complexity: 15). Defined complexity threshold for methods is set to '15' [CyclomaticComplexMethod]
+/home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/AgentRepositories.kt:395:11: Interface 'AgentRepository' with '13' functions detected. Defined threshold inside interfaces is set to '10' [TooManyFunctions]
 /home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/SellerRepositories.kt:46:28: The function uploadMedia(propertyId: String, mimeType: String, bytes: ByteArray, mediaType: String, sortOrder: Int, isCover: Boolean) has too many parameters. The current threshold is set to 6. [LongParameterList]
 /home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/SellerRepositories.kt:242:31: The function buildSellerPropertyPayload(propertyType: String, areaSqm: Int, bedrooms: Int, province: String, city: String, neighborhood: String, floor: Int?, totalFloors: Int?, buildYear: Int?, hasElevator: Boolean, hasParking: Boolean, hasStorage: Boolean, hasBalcony: Boolean, description: String?) has too many parameters. The current threshold is set to 6. [LongParameterList]
-/home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/MarketplaceApi.kt:63:35: The function fetchSavedSearches(url: String, apiKey: String, authorization: String, select: String, userId: String, order: String) has too many parameters. The current threshold is set to 6. [LongParameterList]
-/home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/MarketplaceApi.kt:107:36: The function fetchSellerListings(url: String, apiKey: String, authorization: String, select: String, sellerId: String, order: String) has too many parameters. The current threshold is set to 6. [LongParameterList]
-/home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/MarketplaceApi.kt:22:11: Interface 'MarketplaceApi' with '14' functions detected. Defined threshold inside interfaces is set to '10' [TooManyFunctions]
+/home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/MarketplaceApi.kt:64:35: The function fetchSavedSearches(url: String, apiKey: String, authorization: String, select: String, userId: String, order: String) has too many parameters. The current threshold is set to 6. [LongParameterList]
+/home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/MarketplaceApi.kt:108:36: The function fetchSellerListings(url: String, apiKey: String, authorization: String, select: String, sellerId: String, order: String) has too many parameters. The current threshold is set to 6. [LongParameterList]
+/home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/MarketplaceApi.kt:142:29: The function fetchMyRoles(url: String, apiKey: String, authorization: String, select: String, userId: String, role: String) has too many parameters. The current threshold is set to 6. [LongParameterList]
+/home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/MarketplaceApi.kt:158:35: The function fetchAgentListings(url: String, apiKey: String, authorization: String, select: String, agentId: String, status: String, order: String) has too many parameters. The current threshold is set to 6. [LongParameterList]
+/home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/MarketplaceApi.kt:169:32: The function fetchAgentLeads(url: String, apiKey: String, authorization: String, select: String, agentId: String, order: String) has too many parameters. The current threshold is set to 6. [LongParameterList]
+/home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/MarketplaceApi.kt:191:33: The function fetchRequirement(url: String, apiKey: String, authorization: String, select: String, leadId: String, isActive: String, limit: Int) has too many parameters. The current threshold is set to 6. [LongParameterList]
+/home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/MarketplaceApi.kt:206:33: The function fetchLeadMatches(url: String, apiKey: String, authorization: String, select: String, requirement: String, leadId: String, order: String) has too many parameters. The current threshold is set to 6. [LongParameterList]
+/home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/MarketplaceApi.kt:235:33: The function fetchAgentVisits(url: String, apiKey: String, authorization: String, select: String, agentId: String, order: String) has too many parameters. The current threshold is set to 6. [LongParameterList]
+/home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/MarketplaceApi.kt:23:11: Interface 'MarketplaceApi' with '27' functions detected. Defined threshold inside interfaces is set to '10' [TooManyFunctions]
 /home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerWizardScreen.kt:70:5: The function SellerWizardRoute is too long (136). The maximum length is 80. [LongMethod]
 /home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerWizardScreen.kt:70:5: The function SellerWizardRoute appears to be too complex based on Cyclomatic Complexity (complexity: 15). Defined complexity threshold for methods is set to '15' [CyclomaticComplexMethod]
 /home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerWizardScreen.kt:600:13: The function ReviewStep appears to be too complex based on Cyclomatic Complexity (complexity: 23). Defined complexity threshold for methods is set to '15' [CyclomaticComplexMethod]
@@ -201,10 +209,17 @@ Daemon will be stopped at the end of the build
 /home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerWizardViewModel.kt:243:9: The function publish is too long (89). The maximum length is 80. [LongMethod]
 /home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerWizardViewModel.kt:243:9: The function publish appears to be too complex based on Cyclomatic Complexity (complexity: 26). Defined complexity threshold for methods is set to '15' [CyclomaticComplexMethod]
 /home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerWizardViewModel.kt:80:7: Class 'SellerWizardViewModel' with '32' functions detected. Defined threshold inside classes is set to '20' [TooManyFunctions]
-/home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerManageScreen.kt:193:13: The function SellerRow is too long (87). The maximum length is 80. [LongMethod]
-/home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerManageScreen.kt:57:5: The function SellerRoute is too long (87). The maximum length is 80. [LongMethod]
-/home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerManageScreen.kt:193:13: The function SellerRow appears to be too complex based on Cyclomatic Complexity (complexity: 18). Defined complexity threshold for methods is set to '15' [CyclomaticComplexMethod]
+/home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerManageScreen.kt:262:13: The function SellerRow is too long (92). The maximum length is 80. [LongMethod]
+/home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerManageScreen.kt:60:5: The function SellerRoute is too long (100). The maximum length is 80. [LongMethod]
+/home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerManageScreen.kt:262:13: The function SellerRow appears to be too complex based on Cyclomatic Complexity (complexity: 21). Defined complexity threshold for methods is set to '15' [CyclomaticComplexMethod]
 /home/runner/work/4Divari/4Divari/feature/auth/src/main/kotlin/ir/chardivari/feature/auth/AuthScreen.kt:91:15: The function AuthScreen(state: AuthUiModel, error: AppError?, modifier: Modifier, onPhoneChange: (String) -> Unit, onSendOtp: () -> Unit, onVerify: (String) -> Unit, onResend: () -> Unit, onBack: () -> Unit) has too many parameters. The current threshold is set to 6. [LongParameterList]
+/home/runner/work/4Divari/4Divari/feature/agent/src/main/kotlin/ir/chardivari/feature/agent/AgentLeadsScreen.kt:128:20: The function LeadRow(lead: ir.chardivari.core.marketplace.AgentLead, expanded: Boolean, busy: Boolean, matches: List<ir.chardivari.core.marketplace.LeadMatch>, matchesLoading: Boolean, onToggle: () -> Unit, onStageChange: (String) -> Unit, onPriorityChange: (Int) -> Unit, onEditNotes: () -> Unit, onOpenRequirement: () -> Unit, onRefreshMatches: () -> Unit) has too many parameters. The current threshold is set to 6. [LongParameterList]
+/home/runner/work/4Divari/4Divari/feature/agent/src/main/kotlin/ir/chardivari/feature/agent/AgentLeadsScreen.kt:128:13: The function LeadRow is too long (134). The maximum length is 80. [LongMethod]
+/home/runner/work/4Divari/4Divari/feature/agent/src/main/kotlin/ir/chardivari/feature/agent/AgentLeadsScreen.kt:323:13: The function RequirementDialog is too long (136). The maximum length is 80. [LongMethod]
+/home/runner/work/4Divari/4Divari/feature/agent/src/main/kotlin/ir/chardivari/feature/agent/AgentLeadsScreen.kt:128:13: The function LeadRow appears to be too complex based on Cyclomatic Complexity (complexity: 18). Defined complexity threshold for methods is set to '15' [CyclomaticComplexMethod]
+/home/runner/work/4Divari/4Divari/feature/agent/src/main/kotlin/ir/chardivari/feature/agent/AgentRoute.kt:106:24: The function GateMessage(modifier: Modifier, icon: @Composable () -> Unit, title: String, description: String, primaryActionLabel: String, onPrimaryAction: () -> Unit, secondaryActionLabel: String?, onSecondaryAction: (() -> Unit)?) has too many parameters. The current threshold is set to 6. [LongParameterList]
+/home/runner/work/4Divari/4Divari/feature/agent/src/main/kotlin/ir/chardivari/feature/agent/AgentLeadsViewModel.kt:212:9: The function saveRequirement appears to be too complex based on Cyclomatic Complexity (complexity: 29). Defined complexity threshold for methods is set to '15' [CyclomaticComplexMethod]
+/home/runner/work/4Divari/4Divari/feature/agent/src/main/kotlin/ir/chardivari/feature/agent/AgentLeadsViewModel.kt:86:7: Class 'AgentLeadsViewModel' with '20' functions detected. Defined threshold inside classes is set to '20' [TooManyFunctions]
 /home/runner/work/4Divari/4Divari/feature/search/src/main/kotlin/ir/chardivari/feature/search/SearchScreen.kt:107:26: The function SearchContent(model: SearchUiModel, onQueryChange: (String) -> Unit, onDealType: (DealType?) -> Unit, onCityChange: (String) -> Unit, onClear: () -> Unit, onSave: () -> Unit, onListingClick: (String) -> Unit) has too many parameters. The current threshold is set to 6. [LongParameterList]
 /home/runner/work/4Divari/4Divari/feature/search/src/main/kotlin/ir/chardivari/feature/search/SearchScreen.kt:107:13: The function SearchContent is too long (134). The maximum length is 80. [LongMethod]
 /home/runner/work/4Divari/4Divari/feature/saved/src/main/kotlin/ir/chardivari/feature/saved/SavedScreen.kt:99:25: The function SavedContent(model: SavedUiModel, onTab: (SavedTab) -> Unit, onRemoveSearch: (String) -> Unit, onRemoveFavorite: (String) -> Unit, onListingClick: (String) -> Unit, onOpenSearch: (String?) -> Unit) has too many parameters. The current threshold is set to 6. [LongParameterList]
@@ -214,13 +229,18 @@ Daemon will be stopped at the end of the build
 /home/runner/work/4Divari/4Divari/core/network/src/main/kotlin/ir/chardivari/core/network/ErrorMapper.kt:54:17: Instead of catching for a general exception type and checking for a specific exception type, use multiple catch blocks. [InstanceOfCheckForException]
 /home/runner/work/4Divari/4Divari/core/network/src/main/kotlin/ir/chardivari/core/network/SafeApi.kt:23:21: Instead of catching for a general exception type and checking for a specific exception type, use multiple catch blocks. [InstanceOfCheckForException]
 /home/runner/work/4Divari/4Divari/core/auth/src/main/kotlin/ir/chardivari/core/auth/AuthRepository.kt:199:17: Instead of catching for a general exception type and checking for a specific exception type, use multiple catch blocks. [InstanceOfCheckForException]
-/home/runner/work/4Divari/4Divari/app/src/main/kotlin/ir/chardivari/app/MainActivity.kt:155:1: Line detected, which is longer than the defined maximum line length in the code style. [MaxLineLength]
+/home/runner/work/4Divari/4Divari/feature/agent/src/main/kotlin/ir/chardivari/feature/agent/AgentLeadsScreen.kt:218:22: Using the forEach method on ranges has a heavy performance cost. Prefer using simple for loops. [ForEachOnRange]
+/home/runner/work/4Divari/4Divari/feature/agent/src/main/kotlin/ir/chardivari/feature/agent/AgentLeadsScreen.kt:388:22: Using the forEach method on ranges has a heavy performance cost. Prefer using simple for loops. [ForEachOnRange]
+/home/runner/work/4Divari/4Divari/app/src/main/kotlin/ir/chardivari/app/MainActivity.kt:156:1: Line detected, which is longer than the defined maximum line length in the code style. [MaxLineLength]
 /home/runner/work/4Divari/4Divari/core/auth/src/main/kotlin/ir/chardivari/core/auth/SessionStore.kt:39:20: Use check() or error() instead of throwing an IllegalStateException. [UseCheckOrError]
-/home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/SellerRepositories.kt:58:13: SELLER_LISTING_SELECT can be a `const val`. [MayBeConst]
+/home/runner/work/4Divari/4Divari/core/marketplace/src/test/kotlin/ir/chardivari/core/marketplace/AgentPayloadTest.kt:75:1: Line detected, which is longer than the defined maximum line length in the code style. [MaxLineLength]
+/home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/SellerRepositories.kt:58:14: SELLER_LISTING_SELECT can be a `const val`. [MayBeConst]
+/home/runner/work/4Divari/4Divari/feature/agent/src/main/kotlin/ir/chardivari/feature/agent/AgentRoute.kt:67:1: Line detected, which is longer than the defined maximum line length in the code style. [MaxLineLength]
+/home/runner/work/4Divari/4Divari/feature/agent/src/main/kotlin/ir/chardivari/feature/agent/AgentRoute.kt:78:1: Line detected, which is longer than the defined maximum line length in the code style. [MaxLineLength]
 
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/detekt-1790273145176.json
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/detekt-1790276317298.json
 
-BUILD SUCCESSFUL in 23s
+BUILD SUCCESSFUL in 25s
 1 actionable task: 1 executed
 
 ########## /tmp/detekt-log.txt (last 80 lines) ##########
@@ -228,18 +248,25 @@ To honour the JVM settings for this build a single-use Daemon process will be fo
 Daemon will be stopped at the end of the build 
 
 > Task :detekt
-/home/runner/work/4Divari/4Divari/app/src/main/kotlin/ir/chardivari/app/MainActivity.kt:70:13: The function ChardivariRoot is too long (147). The maximum length is 80. [LongMethod]
+/home/runner/work/4Divari/4Divari/app/src/main/kotlin/ir/chardivari/app/MainActivity.kt:71:13: The function ChardivariRoot is too long (157). The maximum length is 80. [LongMethod]
 /home/runner/work/4Divari/4Divari/core/designsystem/src/main/kotlin/ir/chardivari/core/designsystem/components/StateComponents.kt:64:15: The function EmptyState(title: String, modifier: Modifier, description: String?, actionLabel: String?, onAction: (() -> Unit)?, icon: ImageVector) has too many parameters. The current threshold is set to 6. [LongParameterList]
 /home/runner/work/4Divari/4Divari/core/designsystem/src/main/kotlin/ir/chardivari/core/designsystem/components/StateComponents.kt:111:15: The function ErrorState(title: String, modifier: Modifier, description: String?, canRetry: Boolean, onRetry: (() -> Unit)?, secondaryActionLabel: String?, onSecondaryAction: (() -> Unit)?) has too many parameters. The current threshold is set to 6. [LongParameterList]
 /home/runner/work/4Divari/4Divari/core/designsystem/src/main/kotlin/ir/chardivari/core/designsystem/components/PropertyCard.kt:90:17: The function PropertyCard(photoUrl: String?, priceLine: String, pricePerSqmLine: String, titleLine: String, locationLine: String, amenitiesLine: String?, verificationLabel: String?, updatedLabel: String, modifier: Modifier, isFixtureData: Boolean, onFavorite: () -> Unit, onShare: () -> Unit, onCompare: () -> Unit, onClick: () -> Unit) has too many parameters. The current threshold is set to 6. [LongParameterList]
 /home/runner/work/4Divari/4Divari/core/designsystem/src/main/kotlin/ir/chardivari/core/designsystem/components/PropertyCard.kt:90:5: The function PropertyCard is too long (103). The maximum length is 80. [LongMethod]
 /home/runner/work/4Divari/4Divari/core/ui/src/main/kotlin/ir/chardivari/core/ui/UiStateRenderer.kt:24:24: The function UiStateRenderer(state: UiState<T>, modifier: Modifier, onRetry: () -> Unit, emptyTitle: String, emptyDescription: String?, loadingLabel: String, content: @Composable (T) -> Unit) has too many parameters. The current threshold is set to 6. [LongParameterList]
 /home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/ListingPresenter.kt:88:9: The function detail appears to be too complex based on Cyclomatic Complexity (complexity: 15). Defined complexity threshold for methods is set to '15' [CyclomaticComplexMethod]
+/home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/AgentRepositories.kt:395:11: Interface 'AgentRepository' with '13' functions detected. Defined threshold inside interfaces is set to '10' [TooManyFunctions]
 /home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/SellerRepositories.kt:46:28: The function uploadMedia(propertyId: String, mimeType: String, bytes: ByteArray, mediaType: String, sortOrder: Int, isCover: Boolean) has too many parameters. The current threshold is set to 6. [LongParameterList]
 /home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/SellerRepositories.kt:242:31: The function buildSellerPropertyPayload(propertyType: String, areaSqm: Int, bedrooms: Int, province: String, city: String, neighborhood: String, floor: Int?, totalFloors: Int?, buildYear: Int?, hasElevator: Boolean, hasParking: Boolean, hasStorage: Boolean, hasBalcony: Boolean, description: String?) has too many parameters. The current threshold is set to 6. [LongParameterList]
-/home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/MarketplaceApi.kt:63:35: The function fetchSavedSearches(url: String, apiKey: String, authorization: String, select: String, userId: String, order: String) has too many parameters. The current threshold is set to 6. [LongParameterList]
-/home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/MarketplaceApi.kt:107:36: The function fetchSellerListings(url: String, apiKey: String, authorization: String, select: String, sellerId: String, order: String) has too many parameters. The current threshold is set to 6. [LongParameterList]
-/home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/MarketplaceApi.kt:22:11: Interface 'MarketplaceApi' with '14' functions detected. Defined threshold inside interfaces is set to '10' [TooManyFunctions]
+/home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/MarketplaceApi.kt:64:35: The function fetchSavedSearches(url: String, apiKey: String, authorization: String, select: String, userId: String, order: String) has too many parameters. The current threshold is set to 6. [LongParameterList]
+/home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/MarketplaceApi.kt:108:36: The function fetchSellerListings(url: String, apiKey: String, authorization: String, select: String, sellerId: String, order: String) has too many parameters. The current threshold is set to 6. [LongParameterList]
+/home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/MarketplaceApi.kt:142:29: The function fetchMyRoles(url: String, apiKey: String, authorization: String, select: String, userId: String, role: String) has too many parameters. The current threshold is set to 6. [LongParameterList]
+/home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/MarketplaceApi.kt:158:35: The function fetchAgentListings(url: String, apiKey: String, authorization: String, select: String, agentId: String, status: String, order: String) has too many parameters. The current threshold is set to 6. [LongParameterList]
+/home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/MarketplaceApi.kt:169:32: The function fetchAgentLeads(url: String, apiKey: String, authorization: String, select: String, agentId: String, order: String) has too many parameters. The current threshold is set to 6. [LongParameterList]
+/home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/MarketplaceApi.kt:191:33: The function fetchRequirement(url: String, apiKey: String, authorization: String, select: String, leadId: String, isActive: String, limit: Int) has too many parameters. The current threshold is set to 6. [LongParameterList]
+/home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/MarketplaceApi.kt:206:33: The function fetchLeadMatches(url: String, apiKey: String, authorization: String, select: String, requirement: String, leadId: String, order: String) has too many parameters. The current threshold is set to 6. [LongParameterList]
+/home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/MarketplaceApi.kt:235:33: The function fetchAgentVisits(url: String, apiKey: String, authorization: String, select: String, agentId: String, order: String) has too many parameters. The current threshold is set to 6. [LongParameterList]
+/home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/MarketplaceApi.kt:23:11: Interface 'MarketplaceApi' with '27' functions detected. Defined threshold inside interfaces is set to '10' [TooManyFunctions]
 /home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerWizardScreen.kt:70:5: The function SellerWizardRoute is too long (136). The maximum length is 80. [LongMethod]
 /home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerWizardScreen.kt:70:5: The function SellerWizardRoute appears to be too complex based on Cyclomatic Complexity (complexity: 15). Defined complexity threshold for methods is set to '15' [CyclomaticComplexMethod]
 /home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerWizardScreen.kt:600:13: The function ReviewStep appears to be too complex based on Cyclomatic Complexity (complexity: 23). Defined complexity threshold for methods is set to '15' [CyclomaticComplexMethod]
@@ -248,10 +275,17 @@ Daemon will be stopped at the end of the build
 /home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerWizardViewModel.kt:243:9: The function publish is too long (89). The maximum length is 80. [LongMethod]
 /home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerWizardViewModel.kt:243:9: The function publish appears to be too complex based on Cyclomatic Complexity (complexity: 26). Defined complexity threshold for methods is set to '15' [CyclomaticComplexMethod]
 /home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerWizardViewModel.kt:80:7: Class 'SellerWizardViewModel' with '32' functions detected. Defined threshold inside classes is set to '20' [TooManyFunctions]
-/home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerManageScreen.kt:193:13: The function SellerRow is too long (87). The maximum length is 80. [LongMethod]
-/home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerManageScreen.kt:57:5: The function SellerRoute is too long (87). The maximum length is 80. [LongMethod]
-/home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerManageScreen.kt:193:13: The function SellerRow appears to be too complex based on Cyclomatic Complexity (complexity: 18). Defined complexity threshold for methods is set to '15' [CyclomaticComplexMethod]
+/home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerManageScreen.kt:262:13: The function SellerRow is too long (92). The maximum length is 80. [LongMethod]
+/home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerManageScreen.kt:60:5: The function SellerRoute is too long (100). The maximum length is 80. [LongMethod]
+/home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerManageScreen.kt:262:13: The function SellerRow appears to be too complex based on Cyclomatic Complexity (complexity: 21). Defined complexity threshold for methods is set to '15' [CyclomaticComplexMethod]
 /home/runner/work/4Divari/4Divari/feature/auth/src/main/kotlin/ir/chardivari/feature/auth/AuthScreen.kt:91:15: The function AuthScreen(state: AuthUiModel, error: AppError?, modifier: Modifier, onPhoneChange: (String) -> Unit, onSendOtp: () -> Unit, onVerify: (String) -> Unit, onResend: () -> Unit, onBack: () -> Unit) has too many parameters. The current threshold is set to 6. [LongParameterList]
+/home/runner/work/4Divari/4Divari/feature/agent/src/main/kotlin/ir/chardivari/feature/agent/AgentLeadsScreen.kt:128:20: The function LeadRow(lead: ir.chardivari.core.marketplace.AgentLead, expanded: Boolean, busy: Boolean, matches: List<ir.chardivari.core.marketplace.LeadMatch>, matchesLoading: Boolean, onToggle: () -> Unit, onStageChange: (String) -> Unit, onPriorityChange: (Int) -> Unit, onEditNotes: () -> Unit, onOpenRequirement: () -> Unit, onRefreshMatches: () -> Unit) has too many parameters. The current threshold is set to 6. [LongParameterList]
+/home/runner/work/4Divari/4Divari/feature/agent/src/main/kotlin/ir/chardivari/feature/agent/AgentLeadsScreen.kt:128:13: The function LeadRow is too long (134). The maximum length is 80. [LongMethod]
+/home/runner/work/4Divari/4Divari/feature/agent/src/main/kotlin/ir/chardivari/feature/agent/AgentLeadsScreen.kt:323:13: The function RequirementDialog is too long (136). The maximum length is 80. [LongMethod]
+/home/runner/work/4Divari/4Divari/feature/agent/src/main/kotlin/ir/chardivari/feature/agent/AgentLeadsScreen.kt:128:13: The function LeadRow appears to be too complex based on Cyclomatic Complexity (complexity: 18). Defined complexity threshold for methods is set to '15' [CyclomaticComplexMethod]
+/home/runner/work/4Divari/4Divari/feature/agent/src/main/kotlin/ir/chardivari/feature/agent/AgentRoute.kt:106:24: The function GateMessage(modifier: Modifier, icon: @Composable () -> Unit, title: String, description: String, primaryActionLabel: String, onPrimaryAction: () -> Unit, secondaryActionLabel: String?, onSecondaryAction: (() -> Unit)?) has too many parameters. The current threshold is set to 6. [LongParameterList]
+/home/runner/work/4Divari/4Divari/feature/agent/src/main/kotlin/ir/chardivari/feature/agent/AgentLeadsViewModel.kt:212:9: The function saveRequirement appears to be too complex based on Cyclomatic Complexity (complexity: 29). Defined complexity threshold for methods is set to '15' [CyclomaticComplexMethod]
+/home/runner/work/4Divari/4Divari/feature/agent/src/main/kotlin/ir/chardivari/feature/agent/AgentLeadsViewModel.kt:86:7: Class 'AgentLeadsViewModel' with '20' functions detected. Defined threshold inside classes is set to '20' [TooManyFunctions]
 /home/runner/work/4Divari/4Divari/feature/search/src/main/kotlin/ir/chardivari/feature/search/SearchScreen.kt:107:26: The function SearchContent(model: SearchUiModel, onQueryChange: (String) -> Unit, onDealType: (DealType?) -> Unit, onCityChange: (String) -> Unit, onClear: () -> Unit, onSave: () -> Unit, onListingClick: (String) -> Unit) has too many parameters. The current threshold is set to 6. [LongParameterList]
 /home/runner/work/4Divari/4Divari/feature/search/src/main/kotlin/ir/chardivari/feature/search/SearchScreen.kt:107:13: The function SearchContent is too long (134). The maximum length is 80. [LongMethod]
 /home/runner/work/4Divari/4Divari/feature/saved/src/main/kotlin/ir/chardivari/feature/saved/SavedScreen.kt:99:25: The function SavedContent(model: SavedUiModel, onTab: (SavedTab) -> Unit, onRemoveSearch: (String) -> Unit, onRemoveFavorite: (String) -> Unit, onListingClick: (String) -> Unit, onOpenSearch: (String?) -> Unit) has too many parameters. The current threshold is set to 6. [LongParameterList]
@@ -261,49 +295,60 @@ Daemon will be stopped at the end of the build
 /home/runner/work/4Divari/4Divari/core/network/src/main/kotlin/ir/chardivari/core/network/ErrorMapper.kt:54:17: Instead of catching for a general exception type and checking for a specific exception type, use multiple catch blocks. [InstanceOfCheckForException]
 /home/runner/work/4Divari/4Divari/core/network/src/main/kotlin/ir/chardivari/core/network/SafeApi.kt:23:21: Instead of catching for a general exception type and checking for a specific exception type, use multiple catch blocks. [InstanceOfCheckForException]
 /home/runner/work/4Divari/4Divari/core/auth/src/main/kotlin/ir/chardivari/core/auth/AuthRepository.kt:199:17: Instead of catching for a general exception type and checking for a specific exception type, use multiple catch blocks. [InstanceOfCheckForException]
-/home/runner/work/4Divari/4Divari/app/src/main/kotlin/ir/chardivari/app/MainActivity.kt:155:1: Line detected, which is longer than the defined maximum line length in the code style. [MaxLineLength]
+/home/runner/work/4Divari/4Divari/feature/agent/src/main/kotlin/ir/chardivari/feature/agent/AgentLeadsScreen.kt:218:22: Using the forEach method on ranges has a heavy performance cost. Prefer using simple for loops. [ForEachOnRange]
+/home/runner/work/4Divari/4Divari/feature/agent/src/main/kotlin/ir/chardivari/feature/agent/AgentLeadsScreen.kt:388:22: Using the forEach method on ranges has a heavy performance cost. Prefer using simple for loops. [ForEachOnRange]
+/home/runner/work/4Divari/4Divari/app/src/main/kotlin/ir/chardivari/app/MainActivity.kt:156:1: Line detected, which is longer than the defined maximum line length in the code style. [MaxLineLength]
 /home/runner/work/4Divari/4Divari/core/auth/src/main/kotlin/ir/chardivari/core/auth/SessionStore.kt:39:20: Use check() or error() instead of throwing an IllegalStateException. [UseCheckOrError]
-/home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/SellerRepositories.kt:58:13: SELLER_LISTING_SELECT can be a `const val`. [MayBeConst]
+/home/runner/work/4Divari/4Divari/core/marketplace/src/test/kotlin/ir/chardivari/core/marketplace/AgentPayloadTest.kt:75:1: Line detected, which is longer than the defined maximum line length in the code style. [MaxLineLength]
+/home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/SellerRepositories.kt:58:14: SELLER_LISTING_SELECT can be a `const val`. [MayBeConst]
+/home/runner/work/4Divari/4Divari/feature/agent/src/main/kotlin/ir/chardivari/feature/agent/AgentRoute.kt:67:1: Line detected, which is longer than the defined maximum line length in the code style. [MaxLineLength]
+/home/runner/work/4Divari/4Divari/feature/agent/src/main/kotlin/ir/chardivari/feature/agent/AgentRoute.kt:78:1: Line detected, which is longer than the defined maximum line length in the code style. [MaxLineLength]
 
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/detekt-1790273145176.json
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/detekt-1790276317298.json
 
-BUILD SUCCESSFUL in 23s
+BUILD SUCCESSFUL in 25s
 1 actionable task: 1 executed
 
 ########## /tmp/lint-log.txt : FAILURE HEADERS ##########
+113:e: file:///home/runner/work/4Divari/4Divari/core/common/src/main/kotlin/ir/chardivari/core/common/Format.kt:15:13 Incompatible types 'kotlin.Char' and 'kotlin.ranges.CharRange'.
+114:e: file:///home/runner/work/4Divari/4Divari/core/common/src/main/kotlin/ir/chardivari/core/common/Format.kt:16:13 Incompatible types 'kotlin.Char' and 'kotlin.ranges.CharRange'.
+116:> Task :core:common:compileDebugKotlin FAILED
+122:FAILURE: Build failed with an exception.
+124:* What went wrong:
+135:BUILD FAILED in 31s
 
 ########## /tmp/lint-log.txt (first 80 lines) ##########
 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.11.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
 Daemon will be stopped at the end of the build 
-> Task :core:ui:preBuild UP-TO-DATE
-> Task :core:environment:preBuild UP-TO-DATE
 > Task :core:designsystem:checkKotlinGradlePluginConfigurationErrors SKIPPED
-> Task :core:designsystem:preBuild UP-TO-DATE
-> Task :core:designsystem:preDebugBuild UP-TO-DATE
-> Task :core:common:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:environment:preBuild UP-TO-DATE
+> Task :core:ui:preBuild UP-TO-DATE
 > Task :core:ui:preDebugBuild UP-TO-DATE
+> Task :core:environment:preDebugBuild UP-TO-DATE
+> Task :core:common:checkKotlinGradlePluginConfigurationErrors SKIPPED
 > Task :core:common:preBuild UP-TO-DATE
 > Task :core:common:preDebugBuild UP-TO-DATE
-> Task :core:environment:preDebugBuild UP-TO-DATE
-> Task :core:common:generateDebugResValues UP-TO-DATE
+> Task :core:designsystem:preBuild UP-TO-DATE
+> Task :core:designsystem:preDebugBuild UP-TO-DATE
 > Task :core:designsystem:generateDebugResValues UP-TO-DATE
-> Task :core:designsystem:generateDebugResources UP-TO-DATE
+> Task :core:common:generateDebugResValues UP-TO-DATE
 > Task :core:common:generateDebugResources UP-TO-DATE
+> Task :core:designsystem:generateDebugResources UP-TO-DATE
 > Task :core:designsystem:packageDebugResources UP-TO-DATE
 > Task :core:common:packageDebugResources UP-TO-DATE
 > Task :core:common:parseDebugLocalResources UP-TO-DATE
 > Task :core:designsystem:parseDebugLocalResources UP-TO-DATE
-> Task :core:common:generateDebugRFile UP-TO-DATE
 > Task :core:designsystem:generateDebugRFile UP-TO-DATE
-> Task :core:ui:mergeDebugJniLibFolders
+> Task :core:common:generateDebugRFile UP-TO-DATE
 > Task :core:environment:mergeDebugJniLibFolders
-> Task :core:ui:mergeDebugNativeLibs NO-SOURCE
+> Task :core:ui:mergeDebugJniLibFolders
 > Task :core:environment:mergeDebugNativeLibs NO-SOURCE
+> Task :core:ui:mergeDebugNativeLibs NO-SOURCE
 > Task :core:ui:stripDebugDebugSymbols NO-SOURCE
 > Task :core:environment:stripDebugDebugSymbols NO-SOURCE
 > Task :core:ui:copyDebugJniLibsProjectAndLocalJars
-> Task :core:ui:checkKotlinGradlePluginConfigurationErrors SKIPPED
 > Task :core:environment:copyDebugJniLibsProjectAndLocalJars
+> Task :core:ui:checkKotlinGradlePluginConfigurationErrors SKIPPED
 > Task :core:environment:checkKotlinGradlePluginConfigurationErrors SKIPPED
 > Task :core:ui:generateDebugResValues UP-TO-DATE
 > Task :core:environment:generateDebugBuildConfig UP-TO-DATE
@@ -313,125 +358,125 @@ Daemon will be stopped at the end of the build
 > Task :core:ui:packageDebugResources UP-TO-DATE
 > Task :core:ui:parseDebugLocalResources UP-TO-DATE
 > Task :core:environment:packageDebugResources UP-TO-DATE
-> Task :core:ui:generateDebugRFile UP-TO-DATE
 > Task :core:environment:parseDebugLocalResources UP-TO-DATE
+> Task :core:ui:generateDebugRFile UP-TO-DATE
 > Task :core:environment:generateDebugRFile UP-TO-DATE
 > Task :core:ui:extractDeepLinksForAarDebug
-> Task :core:ui:javaPreCompileDebug UP-TO-DATE
+> Task :core:ui:javaPreCompileDebug FROM-CACHE
+> Task :core:environment:compileDebugKotlin UP-TO-DATE
 > Task :core:ui:mergeDebugShaders
 > Task :core:ui:compileDebugShaders NO-SOURCE
 > Task :core:ui:generateDebugAssets UP-TO-DATE
-> Task :core:environment:compileDebugKotlin UP-TO-DATE
-> Task :core:common:compileDebugKotlin UP-TO-DATE
-> Task :core:common:javaPreCompileDebug UP-TO-DATE
 > Task :core:ui:packageDebugAssets
-> Task :core:common:compileDebugJavaWithJavac NO-SOURCE
 > Task :core:ui:prepareDebugArtProfile
-> Task :core:common:bundleLibCompileToJarDebug UP-TO-DATE
-> Task :core:common:mergeDebugJniLibFolders
 > Task :core:ui:prepareLintJarForPublish
-> Task :core:common:mergeDebugNativeLibs NO-SOURCE
 > Task :core:ui:processDebugManifest UP-TO-DATE
-> Task :core:common:stripDebugDebugSymbols NO-SOURCE
 > Task :core:ui:writeDebugAarMetadata UP-TO-DATE
 > Task :core:network:preBuild UP-TO-DATE
 > Task :core:network:preDebugBuild UP-TO-DATE
-> Task :core:common:copyDebugJniLibsProjectAndLocalJars
 > Task :core:network:mergeDebugJniLibFolders
+> Task :core:common:javaPreCompileDebug FROM-CACHE
+> Task :core:common:mergeDebugJniLibFolders
+> Task :core:common:mergeDebugNativeLibs NO-SOURCE
+> Task :core:common:stripDebugDebugSymbols NO-SOURCE
+> Task :core:common:copyDebugJniLibsProjectAndLocalJars
+> Task :core:common:extractDeepLinksForAarDebug FROM-CACHE
+> Task :core:designsystem:compileDebugKotlin UP-TO-DATE
+> Task :core:common:mergeDebugShaders
+> Task :core:common:compileDebugShaders NO-SOURCE
+> Task :core:common:generateDebugAssets UP-TO-DATE
+> Task :core:designsystem:javaPreCompileDebug FROM-CACHE
+> Task :core:designsystem:compileDebugJavaWithJavac NO-SOURCE
+> Task :core:common:packageDebugAssets
+> Task :core:common:prepareDebugArtProfile
+> Task :core:common:prepareLintJarForPublish
+> Task :core:common:processDebugManifest UP-TO-DATE
+> Task :core:common:writeDebugAarMetadata UP-TO-DATE
 > Task :core:network:mergeDebugNativeLibs NO-SOURCE
 > Task :core:network:stripDebugDebugSymbols NO-SOURCE
-> Task :core:designsystem:compileDebugKotlin UP-TO-DATE
-> Task :core:designsystem:javaPreCompileDebug UP-TO-DATE
 > Task :core:network:copyDebugJniLibsProjectAndLocalJars
 > Task :core:network:checkKotlinGradlePluginConfigurationErrors SKIPPED
 > Task :core:network:generateDebugResValues UP-TO-DATE
+> Task :core:network:generateDebugResources UP-TO-DATE
+
+########## /tmp/lint-log.txt (last 80 lines) ##########
+> Task :core:network:mergeDebugJniLibFolders
+> Task :core:common:javaPreCompileDebug FROM-CACHE
+> Task :core:common:mergeDebugJniLibFolders
+> Task :core:common:mergeDebugNativeLibs NO-SOURCE
+> Task :core:common:stripDebugDebugSymbols NO-SOURCE
+> Task :core:common:copyDebugJniLibsProjectAndLocalJars
+> Task :core:common:extractDeepLinksForAarDebug FROM-CACHE
+> Task :core:designsystem:compileDebugKotlin UP-TO-DATE
+> Task :core:common:mergeDebugShaders
+> Task :core:common:compileDebugShaders NO-SOURCE
+> Task :core:common:generateDebugAssets UP-TO-DATE
+> Task :core:designsystem:javaPreCompileDebug FROM-CACHE
 > Task :core:designsystem:compileDebugJavaWithJavac NO-SOURCE
-> Task :core:designsystem:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :core:common:packageDebugAssets
+> Task :core:common:prepareDebugArtProfile
+> Task :core:common:prepareLintJarForPublish
+> Task :core:common:processDebugManifest UP-TO-DATE
+> Task :core:common:writeDebugAarMetadata UP-TO-DATE
+> Task :core:network:mergeDebugNativeLibs NO-SOURCE
+> Task :core:network:stripDebugDebugSymbols NO-SOURCE
+> Task :core:network:copyDebugJniLibsProjectAndLocalJars
+> Task :core:network:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:network:generateDebugResValues UP-TO-DATE
 > Task :core:network:generateDebugResources UP-TO-DATE
 > Task :core:network:packageDebugResources UP-TO-DATE
 > Task :core:network:parseDebugLocalResources UP-TO-DATE
 > Task :core:network:generateDebugRFile UP-TO-DATE
 > Task :core:network:extractDeepLinksForAarDebug FROM-CACHE
+> Task :core:designsystem:bundleLibCompileToJarDebug
+> Task :core:designsystem:mergeDebugJniLibFolders
 > Task :core:network:javaPreCompileDebug UP-TO-DATE
+> Task :core:designsystem:mergeDebugNativeLibs NO-SOURCE
+> Task :core:network:mergeDebugShaders
+> Task :core:designsystem:stripDebugDebugSymbols NO-SOURCE
+> Task :core:network:compileDebugShaders NO-SOURCE
+> Task :core:network:generateDebugAssets UP-TO-DATE
+> Task :core:designsystem:copyDebugJniLibsProjectAndLocalJars
+> Task :core:network:packageDebugAssets
+> Task :core:network:prepareDebugArtProfile
+> Task :core:network:prepareLintJarForPublish
+> Task :core:network:processDebugManifest UP-TO-DATE
+> Task :core:network:writeDebugAarMetadata UP-TO-DATE
+> Task :core:navigation:preBuild UP-TO-DATE
+> Task :core:navigation:preDebugBuild UP-TO-DATE
+> Task :core:navigation:mergeDebugJniLibFolders
+> Task :core:navigation:mergeDebugNativeLibs NO-SOURCE
+> Task :core:navigation:stripDebugDebugSymbols NO-SOURCE
+> Task :core:navigation:copyDebugJniLibsProjectAndLocalJars
+> Task :core:navigation:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:navigation:generateDebugResValues UP-TO-DATE
+> Task :core:navigation:generateDebugResources UP-TO-DATE
+> Task :core:navigation:packageDebugResources UP-TO-DATE
+> Task :core:navigation:parseDebugLocalResources UP-TO-DATE
+> Task :core:navigation:generateDebugRFile UP-TO-DATE
 
-########## /tmp/lint-log.txt (last 80 lines) ##########
-> Task :feature:property:generateDebugUnitTestLintModel
-> Task :feature:profile:lintAnalyzeDebugUnitTest
-> Task :feature:search:preDebugAndroidTestBuild UP-TO-DATE
-> Task :feature:search:generateDebugAndroidTestResValues FROM-CACHE
-> Task :feature:saved:generateDebugUnitTestLintModel
-> Task :feature:search:generateDebugAndroidTestLintModel
-> Task :feature:property:lintAnalyzeDebugAndroidTest
-> Task :feature:saved:lintAnalyzeDebugAndroidTest
-> Task :feature:search:preDebugUnitTestBuild UP-TO-DATE
-> Task :feature:search:generateDebugUnitTestLintModel
-> Task :feature:search:lintAnalyzeDebugAndroidTest
-> Task :feature:property:lintAnalyzeDebugUnitTest
-> Task :feature:seller:preDebugAndroidTestBuild UP-TO-DATE
-> Task :feature:seller:generateDebugAndroidTestResValues FROM-CACHE
-> Task :feature:saved:lintAnalyzeDebugUnitTest
-> Task :feature:seller:generateDebugAndroidTestLintModel
-> Task :feature:seller:preDebugUnitTestBuild UP-TO-DATE
-> Task :core:analytics:generateDebugLintReportModel
-> Task :feature:seller:generateDebugUnitTestLintModel
-> Task :core:analytics:lintReportDebug
-> Task :core:analytics:lintDebug
-> Task :core:auth:generateDebugLintReportModel
-> Task :feature:seller:lintAnalyzeDebugAndroidTest
-> Task :core:auth:lintReportDebug
-> Task :core:auth:lintDebug
-> Task :core:common:generateDebugLintReportModel
-> Task :core:common:lintReportDebug
-> Task :core:common:lintDebug
-> Task :core:designsystem:generateDebugLintReportModel
-> Task :core:designsystem:lintReportDebug
-> Task :core:designsystem:lintDebug
-> Task :core:environment:generateDebugLintReportModel
-> Task :core:environment:lintReportDebug
-> Task :core:environment:lintDebug
-> Task :core:marketplace:generateDebugLintReportModel
-> Task :feature:search:lintAnalyzeDebugUnitTest
-> Task :core:navigation:generateDebugLintReportModel
-> Task :core:marketplace:lintReportDebug
-> Task :core:marketplace:lintDebug
-> Task :core:network:generateDebugLintReportModel
-> Task :core:navigation:lintReportDebug
-> Task :core:navigation:lintDebug
-> Task :core:ui:generateDebugLintReportModel
-> Task :core:network:lintReportDebug
-> Task :core:network:lintDebug
-> Task :core:ui:lintReportDebug
-> Task :core:ui:lintDebug
-> Task :feature:auth:generateDebugLintReportModel
-> Task :feature:home:generateDebugLintReportModel
-> Task :feature:auth:lintReportDebug
-> Task :feature:auth:lintDebug
-> Task :feature:profile:generateDebugLintReportModel
-> Task :feature:home:lintReportDebug
-> Task :feature:home:lintDebug
-> Task :feature:property:generateDebugLintReportModel
-> Task :feature:profile:lintReportDebug
-> Task :feature:profile:lintDebug
-> Task :feature:saved:generateDebugLintReportModel
-> Task :feature:property:lintReportDebug
-> Task :feature:property:lintDebug
-> Task :feature:search:generateDebugLintReportModel
-> Task :feature:saved:lintReportDebug
-> Task :feature:saved:lintDebug
-> Task :feature:seller:generateDebugLintReportModel
-> Task :feature:search:lintReportDebug
-> Task :feature:search:lintDebug
-> Task :feature:seller:lintAnalyzeDebugUnitTest
-> Task :feature:seller:lintAnalyzeDebug
-> Task :feature:seller:lintReportDebug
-> Task :feature:seller:lintDebug
-> Task :app:lintAnalyzeDebug
+> Task :core:common:compileDebugKotlin
+e: file:///home/runner/work/4Divari/4Divari/core/common/src/main/kotlin/ir/chardivari/core/common/Format.kt:15:13 Incompatible types 'kotlin.Char' and 'kotlin.ranges.CharRange'.
+e: file:///home/runner/work/4Divari/4Divari/core/common/src/main/kotlin/ir/chardivari/core/common/Format.kt:16:13 Incompatible types 'kotlin.Char' and 'kotlin.ranges.CharRange'.
 
-> Task :app:lintReportDebug
-Wrote HTML report to file:///home/runner/work/4Divari/4Divari/app/build/reports/lint-results-debug.html
+> Task :core:common:compileDebugKotlin FAILED
+> Task :core:environment:extractDebugAnnotations
+> Task :core:designsystem:extractDebugAnnotations
+> Task :core:navigation:compileDebugKotlin
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/lint-1790276343134.json
 
-> Task :app:lintDebug
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/lint-1790273168641.json
+FAILURE: Build failed with an exception.
 
-BUILD SUCCESSFUL in 1m 45s
-699 actionable tasks: 398 executed, 32 from cache, 269 up-to-date
+* What went wrong:
+Execution failed for task ':core:common:compileDebugKotlin'.
+> A failure occurred while executing org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction
+   > Compilation error. See log for more details
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 31s
+75 actionable tasks: 30 executed, 5 from cache, 40 up-to-date
