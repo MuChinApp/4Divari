@@ -12,8 +12,8 @@ import java.util.Locale
 fun String.toAsciiDigits(): String = buildString(length) {
     for (ch in this@toAsciiDigits) {
         when (ch) {
-            '\u06F0'..'\u06F9' -> append(('0'.code + (ch - '\u06F0')).toChar())
-            '\u0660'..'\u0669' -> append(('0'.code + (ch - '\u0660')).toChar())
+            in '\u06F0'..'\u06F9' -> append(('0'.code + (ch - '\u06F0')).toChar())
+            in '\u0660'..'\u0669' -> append(('0'.code + (ch - '\u0660')).toChar())
             else -> append(ch)
         }
     }
