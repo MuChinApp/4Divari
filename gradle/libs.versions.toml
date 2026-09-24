@@ -39,6 +39,7 @@ espresso = "3.6.1"
 
 # Quality
 detekt = "1.23.7"
+detektFormatting = "1.23.7"
 javaxInject = "1"
 
 [libraries]
@@ -87,6 +88,7 @@ mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
 androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidxTestExt" }
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso" }
 javax-inject = { group = "javax.inject", name = "javax.inject", version.ref = "javaxInject" }
+detekt-formatting = { group = "io.gitlab.arturbosch.detekt", name = "detekt-formatting", version.ref = "detektFormatting" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

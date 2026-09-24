@@ -23,15 +23,17 @@ allprojects {
     version = "0.1.0"
 }
 
-// Detekt static analysis — runs in CI, not required for local compile.
-// Keep config minimal: avoid typing Detekt task class in Kotlin DSL
-// (plugin classpath resolution differs across detekt releases).
+// Root Detekt scans all Kotlin sources (main + test) across modules.
+// Configured only via the `detekt {}` extension — no task type FQNs
+// (those broke script compilation in an earlier CI iteration).
 detekt {
     config.setFrom(files("config/detekt/detekt.yml"))
     buildUponDefaultConfig = true
+    // Phase 1 ramp-up: report debt but do not fail the pipeline.
     ignoreFailures = true
-}
-
-tasks.named("detekt") {
-    // Default reports are fine; SARIF optional for code scanning later.
+    source.setFrom(
+        fileTree("app/src") { include("**/*.kt") },
+        fileTree("core") { include("**/*.kt") },
+        fileTree("feature") { include("**/*.kt") },
+    )
 }

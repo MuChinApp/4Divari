@@ -152,8 +152,18 @@ Principles: FK + indexes + unique constraints + timestamps + soft-delete where n
 - [x] Navigation: customer tabs, role-ready structure
 - [x] Tests: Format (Persian digits/price), AppResult/UiState, ErrorMapper, HomeViewModel, Analytics schema
 - [x] CI: test → detekt → lint → assembleDebug (+ release gate on main)
-- [ ] CI green on this branch — **pending first full run** (see CI status)
+- [x] **CI green on `arena/01a0d112-4divari`** — run `35948318038` (commit `abffaa6`): all steps success (tests, detekt, lint, assembleDebug)
 
 ---
+
+## 11. Post-Phase-1 CI notes (this branch)
+
+| Run | Result | Lesson |
+|-----|--------|--------|
+| probe | ✅ | Actions available on public repo |
+| first foundation push | ❌ | root Detekt FQN broke all Gradle tasks |
+| OFL license in `res/font` | ❌ | Android rejects non-font files in `res/font` |
+| compile rounds | ❌→✅ | Composable context, Int/Long, suspend type, Failure generics, retrofit package |
+| `35948318038` @ `abffaa6` | ✅ **GREEN** | test + detekt + lint + assembleDebug all pass |
 
 *No fake polish. Every placeholder above is labeled as placeholder.*

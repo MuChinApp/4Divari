@@ -10,7 +10,7 @@ Real-estate marketplace platform for Iran — discovery, trust, and decision sup
 
 | Layer | State |
 |-------|--------|
-| App skeleton, design system, RTL, nav, network, DI, env, analytics, CI | ✅ |
+| App skeleton, design system, RTL, nav, network, DI, env, analytics, CI | ✅ **CI green** (`abffaa6`) |
 | Backend (Supabase, auth, RLS) | ⬜ Phase 2 |
 | Marketplace feeds / map / detail | ⬜ Phase 3 |
 | Seller / Agent / Chat / Trust / AI | ⬜ Phases 4–8 |
