@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- English secondary locale — future. Key parity with values/strings.xml. -->
+    <string name="app_name">4Divari</string>
+    <string name="app_tagline">Where a safe deal begins</string>
+    <string name="action_retry">Retry</string>
+    <string name="action_login">Sign in / Sign up</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_search">Search</string>
+    <string name="nav_map">Map</string>
+    <string name="nav_saved">Saved</string>
+    <string name="nav_profile">Profile</string>
+</resources>

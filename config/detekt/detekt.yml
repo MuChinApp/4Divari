@@ -1,0 +1,31 @@
+# Minimal detekt config — CI static analysis gate.
+build:
+  maxIssues: 0
+
+complexity:
+  LongMethod:
+    threshold: 80
+  TooManyFunctions:
+    thresholdInFiles: 20
+    thresholdInClasses: 20
+    thresholdInInterfaces: 10
+
+naming:
+  FunctionNaming:
+    ignoreAnnotated: ['Composable']
+
+style:
+  MagicNumber:
+    active: false
+  MaxLineLength:
+    maxLineLength: 140
+  ReturnCount:
+    active: false
+  WildcardImport:
+    active: false
+
+exceptions:
+  TooGenericExceptionCaught:
+    active: false
+  SwallowedException:
+    active: false

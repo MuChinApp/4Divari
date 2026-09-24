@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">چاردیواری</string>
+    <string name="app_tagline">جایی برای شروع یک معامله مطمئن</string>
+    <string name="action_retry">تلاش دوباره</string>
+    <string name="action_login">ورود / ثبت‌نام</string>
+    <string name="nav_home">خانه</string>
+    <string name="nav_search">جستجو</string>
+    <string name="nav_map">نقشه</string>
+    <string name="nav_saved">ذخیره‌ها</string>
+    <string name="nav_profile">پروفایل</string>
+</resources>

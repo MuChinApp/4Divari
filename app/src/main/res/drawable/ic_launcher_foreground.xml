@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Simple "4 walls" mark: four corner brackets forming an open square. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Top-left wall -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M30,30 h10 v28 h-10 z" />
+    <!-- Top wall -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M30,30 h48 v10 h-48 z" />
+    <!-- Right wall -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M68,30 h10 v48 h-10 z" />
+    <!-- Bottom wall -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M30,68 h48 v10 h-48 z" />
+</vector>
