@@ -57,6 +57,8 @@ data class ListingContact(
     val phoneE164: String,
     val displayName: String?,
     val partyRole: String?,
+    /** True when this contact opened a new agent lead server-side (Phase 5). */
+    val leadCreated: Boolean = false,
 )
 
 /** Shared config probe — missing Supabase fails closed (never invents data). */
@@ -346,6 +348,7 @@ class SupabaseListingContactRepository @Inject constructor(
                             phoneE164 = phone,
                             displayName = row.displayName,
                             partyRole = row.partyRole,
+                            leadCreated = row.leadCreated,
                         ),
                     )
                 }

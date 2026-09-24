@@ -32,6 +32,7 @@ import ir.chardivari.core.designsystem.theme.ChardivariTheme
 import ir.chardivari.core.navigation.CustomerTab
 import ir.chardivari.core.navigation.Routes
 import ir.chardivari.core.ui.PlaceholderScreen
+import ir.chardivari.feature.agent.AgentRoute
 import ir.chardivari.feature.auth.AuthRoute
 import ir.chardivari.feature.home.HomeRoute
 import ir.chardivari.feature.profile.ProfileRoute
@@ -187,6 +188,16 @@ private fun ChardivariRoot() {
                 ProfileRoute(
                     onLogin = { navController.navigate(Routes.AUTH) },
                     onOpenSeller = { navController.navigate(Routes.SELLER) },
+                    onOpenAgent = { navController.navigate(Routes.AGENT) },
+                )
+            }
+            composable(Routes.AGENT) {
+                AgentRoute(
+                    onBack = { navController.popBackStack() },
+                    onLogin = { navController.navigate(Routes.AUTH) },
+                    onListingClick = { id ->
+                        navController.navigate(Routes.propertyDetail(id))
+                    },
                 )
             }
             composable(Routes.SELLER) {

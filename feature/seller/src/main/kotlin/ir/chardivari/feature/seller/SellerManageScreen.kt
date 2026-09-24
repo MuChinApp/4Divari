@@ -20,8 +20,11 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.TextButton
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
@@ -145,13 +148,79 @@ fun SellerRoute(
                             },
                             busy = item.id in ui.busyIds,
                             onAction = { action -> viewModel.performAction(item.id, action) },
+                            onAssign = if (item.status == "ACTIVE" || item.status == "PAUSED") {
+                                { viewModel.openAssign(item.id) }
+                            } else {
+                                null
+                            },
                         )
                         HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant)
                     }
                 }
             }
+
+            ui.assign?.let { dialog ->
+                AssignDialog(
+                    dialog = dialog,
+                    onDismiss = viewModel::closeAssign,
+                    onPhoneChange = viewModel::setAssignPhone,
+                    onSubmit = viewModel::submitAssign,
+                )
+            }
         }
     }
+}
+
+@Composable
+private fun AssignDialog(
+    dialog: AssignDialogUi,
+    onDismiss: () -> Unit,
+    onPhoneChange: (String) -> Unit,
+    onSubmit: () -> Unit,
+) {
+    AlertDialog(
+        onDismissRequest = { if (!dialog.busy) onDismiss() },
+        title = { Text("واگذاری به مشاور") },
+        text = {
+            androidx.compose.foundation.layout.Column(
+                verticalArrangement = androidx.compose.foundation.layout.Arrangement.spacedBy(
+                    AppSpacing.Sm,
+                ),
+            ) {
+                OutlinedTextField(
+                    value = dialog.phone,
+                    onValueChange = onPhoneChange,
+                    label = { Text("شماره موبایل مشاور") },
+                    singleLine = true,
+                    enabled = !dialog.busy,
+                    modifier = Modifier.fillMaxWidth(),
+                )
+                Text(
+                    text = "شماره باید متعلق به حسابی با نقش مشاور فعال باشد. " +
+                        "برای برداشتن مشاور، شماره را خالی بگذارید.",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+                dialog.error?.let {
+                    Text(
+                        text = it,
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.error,
+                    )
+                }
+            }
+        },
+        confirmButton = {
+            androidx.compose.material3.Button(onClick = onSubmit, enabled = !dialog.busy) {
+                Text(if (dialog.busy) "در حال انجام…" else "تأیید")
+            }
+        },
+        dismissButton = {
+            TextButton(onClick = onDismiss, enabled = !dialog.busy) {
+                Text("انصراف")
+            }
+        },
+    )
 }
 
 @Composable
@@ -195,6 +264,7 @@ private fun SellerRow(
     coverUrl: String?,
     busy: Boolean,
     onAction: (SellerAction) -> Unit,
+    onAssign: (() -> Unit)? = null,
 ) {
     Row(
         modifier = Modifier
@@ -256,7 +326,7 @@ private fun SellerRow(
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
             val actions = allowedActions(item.status)
-            if (actions.isNotEmpty()) {
+            if (actions.isNotEmpty() || onAssign != null) {
                 Spacer(Modifier.height(AppSpacing.Xs))
                 Row(horizontalArrangement = Arrangement.spacedBy(AppSpacing.Sm)) {
                     actions.forEach { action ->
@@ -275,6 +345,11 @@ private fun SellerRow(
                             ) {
                                 Text(actionLabel(action))
                             }
+                        }
+                    }
+                    if (onAssign != null && !busy) {
+                        TextButton(onClick = onAssign) {
+                            Text("واگذاری به مشاور")
                         }
                     }
                 }

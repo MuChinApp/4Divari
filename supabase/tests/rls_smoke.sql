@@ -19,6 +19,46 @@ values ('40000000-0000-0000-0000-00000000000d', '30000000-0000-0000-0000-0000000
         '10000000-0000-0000-0000-00000000000a', 'SALE', 5000000000, 'DRAFT')
 on conflict (id) do nothing;
 
+-- ---- Phase 5 agent fixtures (superuser) ----
+insert into users (id, phone_e164, phone_verified_at, status)
+values
+  ('50000000-0000-0000-0000-00000000000e', '+9893111111113', now(), 'active'),
+  ('60000000-0000-0000-0000-00000000000c', '+9893111111114', now(), 'active')
+on conflict (phone_e164) do nothing;
+
+insert into user_roles (user_id, role)
+values ('50000000-0000-0000-0000-00000000000e', 'AGENT')
+on conflict do nothing;
+
+insert into properties (id, property_type, area_sqm, bedrooms, has_elevator, city, province)
+values ('51000000-0000-0000-0000-00000000000f', 'APARTMENT', 90, 2, true, 'Tehran', 'Tehran')
+on conflict (id) do nothing;
+
+insert into listings (id, property_id, seller_id, agent_id, deal_type, price_rial, status)
+values ('52000000-0000-0000-0000-000000000001', '51000000-0000-0000-0000-00000000000f',
+        '10000000-0000-0000-0000-00000000000a', '50000000-0000-0000-0000-00000000000e',
+        'SALE', 5000000000, 'ACTIVE')
+on conflict (id) do nothing;
+
+insert into leads (id, agent_id, buyer_id, listing_id, source, stage)
+values ('53000000-0000-0000-0000-000000000002', '50000000-0000-0000-0000-00000000000e',
+        '20000000-0000-0000-0000-00000000000b', '52000000-0000-0000-0000-000000000001',
+        'contact', 'NEW')
+on conflict (id) do nothing;
+
+insert into buyer_requirements (id, buyer_id, lead_id, deal_type, budget_min_rial, budget_max_rial,
+                                area_min, area_max, bedrooms, cities, features, is_active)
+values ('54000000-0000-0000-0000-000000000003', '20000000-0000-0000-0000-00000000000b',
+        '53000000-0000-0000-0000-000000000002', 'SALE', 4000000000, 6000000000,
+        80, 100, array[2], array['Tehran'], '{"has_elevator": true}'::jsonb, true)
+on conflict (id) do nothing;
+
+insert into visits (id, listing_id, buyer_id, agent_id, slot_start, slot_end, status)
+values ('55000000-0000-0000-0000-000000000004', '52000000-0000-0000-0000-000000000001',
+        '20000000-0000-0000-0000-00000000000b', '50000000-0000-0000-0000-00000000000e',
+        now() + interval '2 day', now() + interval '2 day 1 hour', 'REQUESTED')
+on conflict (id) do nothing;
+
 -- ---- Drop to non-privileged role (RLS applies) ----
 set role app_user;
 
@@ -261,7 +301,174 @@ begin
 end;
 $$;
 
+
+-- ---- Phase 5: agent dashboard + matching (as agent) ----
+select set_config('request.jwt.claim.sub', '50000000-0000-0000-0000-00000000000e', false);
+
+do $$
+declare
+  v_stats jsonb;
+  v_n int;
+  v_score numeric;
+begin
+  v_stats := public.agent_dashboard_stats();
+  if (v_stats->>'files_active')::int < 1 then
+    raise exception 'agent dashboard files_active expected >=1 got %', v_stats->>'files_active';
+  end if;
+  if (v_stats->>'leads_new')::int < 1 then
+    raise exception 'agent dashboard leads_new expected >=1';
+  end if;
+  if (v_stats->>'visits_pending')::int < 1 then
+    raise exception 'agent dashboard visits_pending expected >=1';
+  end if;
+
+  v_n := public.refresh_lead_matches('53000000-0000-0000-0000-000000000002');
+  if v_n < 1 then
+    raise exception 'refresh_lead_matches produced no matches (got %)', v_n;
+  end if;
+
+  select m.score into v_score
+  from matches m
+  where m.requirement_id = '54000000-0000-0000-0000-000000000003'
+    and m.listing_id = '52000000-0000-0000-0000-000000000001';
+  if v_score is null or v_score < 0 or v_score > 100 then
+    raise exception 'match score out of range or missing: %', v_score;
+  end if;
+  -- fixture listing satisfies city+budget+area+bedrooms+elevator → high score
+  if v_score < 70 then
+    raise exception 'expected strong match score, got %', v_score;
+  end if;
+
+  -- agent reads visits for own files
+  select count(*) into v_n from visits where listing_id = '52000000-0000-0000-0000-000000000001';
+  if v_n <> 1 then
+    raise exception 'agent cannot read own visit (got %)', v_n;
+  end if;
+end;
+$$;
+
+-- agent confirms the visit (party update)
+update visits set status = 'CONFIRMED'
+where id = '55000000-0000-0000-0000-000000000004';
+
+-- agent requirement upsert round-trip
+do $$
+declare v_id uuid;
+begin
+  v_id := public.agent_upsert_requirement(
+    '53000000-0000-0000-0000-000000000002', 'SALE',
+    4000000000, 6500000000, 80, 110, array[2,3], array['Tehran'], null);
+  if v_id is null then
+    raise exception 'agent_upsert_requirement returned null';
+  end if;
+  if not exists (select 1 from buyer_requirements where id = v_id and lead_id is not null) then
+    raise exception 'requirement lead link missing';
+  end if;
+end;
+$$;
+
+-- ---- Phase 5: stranger C contacts (lead created once, then dedup) ----
+select set_config('request.jwt.claim.sub', '60000000-0000-0000-0000-00000000000c', false);
+
+do $$
+declare
+  r record;
+  v_n int;
+begin
+  select * into r from public.listing_contact('52000000-0000-0000-0000-000000000001');
+  if r.lead_created is not true then
+    raise exception 'first contact should create a lead (got %)', r.lead_created;
+  end if;
+
+  select * into r from public.listing_contact('52000000-0000-0000-0000-000000000001');
+  if r.lead_created is not false then
+    raise exception 'second contact must dedup (got %)', r.lead_created;
+  end if;
+
+  -- (lead row itself is agent-scoped under RLS; counted below as superuser)
+
+  -- C is not the agent and not a party: cannot read the buyer requirement
+  select count(*) into v_n from buyer_requirements
+  where id = '54000000-0000-0000-0000-000000000003';
+  if v_n <> 0 then
+    raise exception 'RLS leak: stranger read buyer requirement';
+  end if;
+
+  -- C is not a listing party: assignment rejected
+  begin
+    perform public.assign_agent('52000000-0000-0000-0000-000000000001', '+9893111111114');
+    raise exception 'assign_agent allowed for non-party';
+  exception
+    when raise_exception then
+      if sqlerrm = 'assign_agent allowed for non-party' then
+        raise;
+      elsif sqlerrm = 'not a listing party' then
+        null;
+      else
+        raise;
+      end if;
+  end;
+
+  -- C cannot refresh matches of someone else's lead
+  begin
+    perform public.refresh_lead_matches('53000000-0000-0000-0000-000000000002');
+    raise exception 'refresh_lead_matches allowed for non-agent';
+  exception
+    when raise_exception then
+      if sqlerrm = 'refresh_lead_matches allowed for non-agent' then
+        raise;
+      elsif sqlerrm = 'lead not found or not owned' then
+        null;
+      else
+        raise;
+      end if;
+  end;
+end;
+$$;
+
+-- ---- Phase 5: seller A assigns the (already assigned) agent; bad phone rejected ----
+select set_config('request.jwt.claim.sub', '10000000-0000-0000-0000-00000000000a', false);
+
+do $$
+declare v_agent uuid;
+begin
+  v_agent := (public.assign_agent('52000000-0000-0000-0000-000000000001', '+9893111111113')->>'agent_id')::uuid;
+  if v_agent is distinct from '50000000-0000-0000-0000-00000000000e'::uuid then
+    raise exception 'assign_agent did not resolve AGENT role holder';
+  end if;
+
+  begin
+    perform public.assign_agent('52000000-0000-0000-0000-000000000001', '+9893111111114');
+    raise exception 'assigned non-agent phone';
+  exception
+    when raise_exception then
+      if sqlerrm = 'assigned non-agent phone' then
+        raise;
+      elsif sqlerrm = 'no active agent with this phone' then
+        null;
+      else
+        raise;
+      end if;
+  end;
+end;
+$$;
+
 reset role;
+
+-- ---- Superuser verification: exactly one contact lead was created ----
+do $$
+declare v_n int;
+begin
+  select count(*) into v_n from leads
+  where buyer_id = '60000000-0000-0000-0000-00000000000c'
+    and agent_id = '50000000-0000-0000-0000-00000000000e'
+    and source = 'contact';
+  if v_n <> 1 then
+    raise exception 'expected exactly one contact lead (got %)', v_n;
+  end if;
+end;
+$$;
+
 rollback;
 
 select 'RLS_SMOKE_OK' as result;

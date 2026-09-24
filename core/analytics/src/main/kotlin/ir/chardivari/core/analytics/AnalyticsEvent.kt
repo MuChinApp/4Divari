@@ -59,6 +59,14 @@ sealed interface AnalyticsEvent {
         )
     }
 
+    data class LeadCreated(val listingId: String, val source: String) : AnalyticsEvent {
+        override val name: String = "lead_created"
+        override val params: Map<String, String> = mapOf(
+            "listing_id" to listingId,
+            "source" to source,
+        )
+    }
+
     data class VisitRequested(val propertyId: String) : AnalyticsEvent {
         override val name: String = "visit_requested"
         override val params: Map<String, String> = mapOf("property_id" to propertyId)

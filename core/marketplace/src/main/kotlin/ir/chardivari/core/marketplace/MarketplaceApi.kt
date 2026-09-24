@@ -8,6 +8,7 @@ import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Headers
+import retrofit2.http.HTTP
 import retrofit2.http.POST
 import retrofit2.http.Query
 import retrofit2.http.Url
@@ -133,6 +134,131 @@ interface MarketplaceApi {
         @Header("x-upsert") upsert: String = "true",
         @Body body: okhttp3.RequestBody,
     ): Response<okhttp3.ResponseBody>
+
+    // ---- Agent tooling (Phase 5 — 00094_agent_tooling.sql) ----
+
+    /** Own roles only — `user_roles_self_read` RLS; used as the agent gate. */
+    @GET
+    suspend fun fetchMyRoles(
+        @Url url: String,
+        @Header("apikey") apiKey: String,
+        @Header("Authorization") authorization: String,
+        @Query("select") select: String,
+        @Query("user_id") userId: String,
+        @Query("role") role: String,
+    ): Response<List<UserRoleDto>>
+
+    @POST("rpc/agent_dashboard_stats")
+    suspend fun agentDashboardStats(
+        @Header("apikey") apiKey: String,
+    ): Response<AgentDashboardDto>
+
+    /** Agent's own files (ACTIVE + PAUSED). Same row shape as the seller manage screen. */
+    @GET
+    suspend fun fetchAgentListings(
+        @Url url: String,
+        @Header("apikey") apiKey: String,
+        @Header("Authorization") authorization: String,
+        @Query("select") select: String,
+        @Query("agent_id") agentId: String,
+        @Query("status") status: String,
+        @Query("order") order: String,
+    ): Response<List<SellerListingDto>>
+
+    @GET
+    suspend fun fetchAgentLeads(
+        @Url url: String,
+        @Header("apikey") apiKey: String,
+        @Header("Authorization") authorization: String,
+        @Query("select") select: String,
+        @Query("agent_id") agentId: String,
+        @Query("order") order: String,
+    ): Response<List<LeadDto>>
+
+    @HTTP(method = "PATCH", path = "leads", hasBody = true)
+    @Headers("Prefer: return=minimal")
+    suspend fun updateLead(
+        @Query("id") id: String,
+        @Header("apikey") apiKey: String,
+        @Header("Authorization") authorization: String,
+        @Body body: LeadPatchDto,
+    ): Response<Void>
+
+    /**
+     * Active requirement for one lead — Empty when none exists yet.
+     */
+    @GET
+    suspend fun fetchRequirement(
+        @Url url: String,
+        @Header("apikey") apiKey: String,
+        @Header("Authorization") authorization: String,
+        @Query("select") select: String,
+        @Query("lead_id") leadId: String,
+        @Query("is_active") isActive: String,
+        @Query("limit") limit: Int,
+    ): Response<List<BuyerRequirementDto>>
+
+    /**
+     * Matches for one lead's requirement (inner-joined embed filter —
+     * `matches_requirement_owner_read` lets the listing agent see them).
+     */
+    @GET
+    suspend fun fetchLeadMatches(
+        @Url url: String,
+        @Header("apikey") apiKey: String,
+        @Header("Authorization") authorization: String,
+        @Query("select") select: String,
+        @Query("requirement") requirement: String,
+        @Query("requirement.lead_id") leadId: String,
+        @Query("order") order: String,
+    ): Response<List<LeadMatchDto>>
+
+    @POST("rpc/agent_upsert_requirement")
+    suspend fun agentUpsertRequirement(
+        @Header("apikey") apiKey: String,
+        @Body body: AgentUpsertRequirementRequestDto,
+    ): Response<String>
+
+    @POST("rpc/refresh_lead_matches")
+    suspend fun refreshLeadMatches(
+        @Header("apikey") apiKey: String,
+        @Body body: RefreshLeadMatchesRequestDto,
+    ): Response<Int>
+
+    @POST("rpc/assign_agent")
+    suspend fun assignAgent(
+        @Header("apikey") apiKey: String,
+        @Body body: AssignAgentRequestDto,
+    ): Response<AssignAgentResultDto>
+
+    @GET
+    suspend fun fetchAgentVisits(
+        @Url url: String,
+        @Header("apikey") apiKey: String,
+        @Header("Authorization") authorization: String,
+        @Query("select") select: String,
+        @Query("agent_id") agentId: String,
+        @Query("order") order: String,
+    ): Response<List<VisitDto>>
+
+    @HTTP(method = "PATCH", path = "visits", hasBody = true)
+    @Headers("Prefer: return=minimal")
+    suspend fun updateVisitStatus(
+        @Query("id") id: String,
+        @Header("apikey") apiKey: String,
+        @Header("Authorization") authorization: String,
+        @Body body: VisitPatchDto,
+    ): Response<Void>
+
+    /** Agent profile row (public read under RLS). */
+    @GET
+    suspend fun fetchProfile(
+        @Url url: String,
+        @Header("apikey") apiKey: String,
+        @Header("Authorization") authorization: String,
+        @Query("select") select: String,
+        @Query("id") id: String,
+    ): Response<List<ProfileDto>>
 }
 
 @Serializable
@@ -191,4 +317,11 @@ data class ListingContactDto(
     val displayName: String? = null,
     @SerialName("party_role")
     val partyRole: String? = null,
+    /**
+     * True when this authenticated contact created a new lead for the
+     * listing's agent (00094 `listing_contact`). Default false keeps older
+     * server builds source-compatible; false is also the honest default.
+     */
+    @SerialName("lead_created")
+    val leadCreated: Boolean = false,
 )

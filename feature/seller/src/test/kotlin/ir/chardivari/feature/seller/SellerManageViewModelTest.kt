@@ -6,6 +6,7 @@ import ir.chardivari.core.common.AppError
 import ir.chardivari.core.common.AppResult
 import ir.chardivari.core.common.UiState
 import ir.chardivari.core.marketplace.DealType
+import ir.chardivari.core.marketplace.AgentRepository
 import ir.chardivari.core.marketplace.SellerAction
 import ir.chardivari.core.marketplace.SellerDraftCreated
 import ir.chardivari.core.marketplace.SellerListingItem
@@ -39,6 +40,64 @@ private fun item(id: String, status: String) = SellerListingItem(
     propertyType = null,
     coverPath = null,
 )
+
+private class FakeAgent(
+    var assignResult: AppResult<String?> = AppResult.Success("agent-1"),
+) : AgentRepository {
+    val assignCalls = mutableListOf<Pair<String, String?>>()
+
+    override suspend fun isAgent(): AppResult<Boolean> = AppResult.Success(true)
+
+    override suspend fun dashboard(): AppResult<ir.chardivari.core.marketplace.AgentDashboard> =
+        AppResult.Failure(AppError.Unexpected)
+
+    override suspend fun myFiles(): AppResult<List<SellerListingItem>> =
+        AppResult.Failure(AppError.Unexpected)
+
+    override suspend fun leads(): AppResult<List<ir.chardivari.core.marketplace.AgentLead>> =
+        AppResult.Failure(AppError.Unexpected)
+
+    override suspend fun leadMatches(
+        leadId: String,
+    ): AppResult<List<ir.chardivari.core.marketplace.LeadMatch>> =
+        AppResult.Failure(AppError.Unexpected)
+
+    override suspend fun requirementForLead(
+        leadId: String,
+    ): AppResult<ir.chardivari.core.marketplace.BuyerRequirement> =
+        AppResult.Failure(AppError.Unexpected)
+
+    override suspend fun upsertRequirement(
+        input: ir.chardivari.core.marketplace.RequirementInput,
+    ): AppResult<Unit> = AppResult.Failure(AppError.Unexpected)
+
+    override suspend fun refreshMatches(leadId: String): AppResult<Int> =
+        AppResult.Failure(AppError.Unexpected)
+
+    override suspend fun updateLead(
+        leadId: String,
+        stage: String?,
+        priority: Int?,
+        notes: String?,
+    ): AppResult<Unit> = AppResult.Failure(AppError.Unexpected)
+
+    override suspend fun visits(): AppResult<List<ir.chardivari.core.marketplace.AgentVisit>> =
+        AppResult.Failure(AppError.Unexpected)
+
+    override suspend fun setVisitStatus(visitId: String, status: String): AppResult<Unit> =
+        AppResult.Failure(AppError.Unexpected)
+
+    override suspend fun assignAgent(
+        listingId: String,
+        agentPhone: String?,
+    ): AppResult<String?> {
+        assignCalls += listingId to agentPhone
+        return assignResult
+    }
+
+    override suspend fun profile(): AppResult<ir.chardivari.core.marketplace.AgentProfile> =
+        AppResult.Failure(AppError.Unexpected)
+}
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class SellerManageViewModelTest {
@@ -92,10 +151,12 @@ class SellerManageViewModelTest {
     }
 
     private lateinit var seller: FakeSeller
+    private lateinit var agent: FakeAgent
     private lateinit var tracker: RecordingTracker
 
     private fun viewModel() = SellerManageViewModel(
         sellerRepository = seller,
+        agentRepository = agent,
         storage = StorageBaseUrl(null),
         analytics = tracker,
     )
@@ -104,6 +165,7 @@ class SellerManageViewModelTest {
     fun setUp() {
         Dispatchers.setMain(dispatcher)
         seller = FakeSeller()
+        agent = FakeAgent()
         tracker = RecordingTracker()
     }
 
@@ -182,5 +244,61 @@ class SellerManageViewModelTest {
         vm.clearMessage()
         val state = vm.uiState.value as UiState.Content
         assertNull(state.data.message)
+    }
+
+    @Test
+    fun `assign success closes dialog and confirms`() = runTest {
+        val vm = viewModel()
+        vm.load()
+        vm.openAssign("L1")
+        vm.setAssignPhone("09121234567")
+        vm.submitAssign()
+
+        val state = (vm.uiState.value as UiState.Content).data
+        assertNull(state.assign)
+        assertEquals("فایل به مشاور واگذار شد", state.message)
+        assertEquals(listOf("L1" to "09121234567"), agent.assignCalls)
+    }
+
+    @Test
+    fun `assign blank phone sends null to unassign`() = runTest {
+        val vm = viewModel()
+        vm.load()
+        vm.openAssign("L1")
+        vm.submitAssign()
+
+        assertEquals(listOf("L1" to null), agent.assignCalls)
+        val state = (vm.uiState.value as UiState.Content).data
+        assertEquals("واگذاری مشاور برداشته شد", state.message)
+    }
+
+    @Test
+    fun `assign failure keeps dialog with error`() = runTest {
+        agent.assignResult = AppResult.Failure(
+            AppError.Client(code = 400, serverMessage = "no active agent with this phone"),
+        )
+        val vm = viewModel()
+        vm.load()
+        vm.openAssign("L1")
+        vm.setAssignPhone("09120000000")
+        vm.submitAssign()
+
+        val state = (vm.uiState.value as UiState.Content).data
+        assertNotNull(state.assign)
+        assertTrue(state.assign?.error?.contains("مشاور فعال") == true)
+        assertNull(state.message)
+    }
+
+    @Test
+    fun `assign short phone is rejected client-side`() = runTest {
+        val vm = viewModel()
+        vm.load()
+        vm.openAssign("L1")
+        vm.setAssignPhone("123")
+        vm.submitAssign()
+
+        assertEquals(emptyList<Pair<String, String?>>(), agent.assignCalls)
+        val state = (vm.uiState.value as UiState.Content).data
+        assertTrue(state.assign?.error != null)
     }
 }

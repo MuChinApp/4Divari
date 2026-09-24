@@ -105,6 +105,7 @@ dependencies {
     implementation(project(":feature:auth"))
     implementation(project(":feature:property"))
     implementation(project(":feature:seller"))
+    implementation(project(":feature:agent"))
 
     // Compose
     implementation(platform(libs.compose.bom))

@@ -41,6 +41,7 @@ include(":feature:profile")
 include(":feature:auth")
 include(":feature:property")
 include(":feature:seller")
+include(":feature:agent")
 
 // App — composition root
 include(":app")

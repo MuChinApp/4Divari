@@ -31,6 +31,12 @@ object Routes {
     const val SELLER = "seller"
     const val SELLER_WIZARD = "seller/new"
 
+    /**
+     * Agent shell (Phase 5) — entered from the Profile screen; customer
+     * root tabs never swap, route keys stay stable for deep links.
+     */
+    const val AGENT = "agent"
+
     fun searchWithQuery(query: String): String {
         val encoded = URLEncoder.encode(query, "UTF-8")
         return "search?query=$encoded"
@@ -52,8 +58,5 @@ enum class CustomerTab(
     companion object {
         /** Customer bottom nav — default. */
         val customer: List<CustomerTab> = entries.toList()
-
-        // Phase 5 will add:
-        // enum class AgentTab { DASHBOARD, FILES, LEADS, VISITS, MESSAGES, PROFILE }
     }
 }

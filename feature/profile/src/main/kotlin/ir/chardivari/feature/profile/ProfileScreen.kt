@@ -25,13 +25,16 @@ import ir.chardivari.core.designsystem.tokens.AppSpacing
 /**
  * Profile — Phase 1 shows an honest auth entry point.
  * No fake "logged in" state. Phase 4 adds the seller (list my property) entry;
- * login gating lives in the seller feature itself.
+ * Phase 5 adds the agent dashboard entry — role gating happens honestly inside
+ * the agent route (not-logged-in / no-agent-role states), login gating lives
+ * in the seller feature itself.
  */
 @Composable
 fun ProfileRoute(
     modifier: Modifier = Modifier,
     onLogin: () -> Unit = {},
     onOpenSeller: () -> Unit = {},
+    onOpenAgent: () -> Unit = {},
 ) {
     Scaffold(
         modifier = modifier.fillMaxSize(),
@@ -77,6 +80,13 @@ fun ProfileRoute(
                 modifier = Modifier.fillMaxWidth(),
             ) {
                 Text("ثبت ملک و مدیریت آگهی‌ها")
+            }
+            Spacer(Modifier.height(AppSpacing.Md))
+            OutlinedButton(
+                onClick = onOpenAgent,
+                modifier = Modifier.fillMaxWidth(),
+            ) {
+                Text("داشبورد مشاور")
             }
         }
     }

@@ -8,6 +8,21 @@ import java.util.Locale
  * Backend contracts stay language-neutral (Latin digits, ISO-8601, IRR as Long);
  * display formatting happens only at the edge.
  */
+/** Normalize Persian/Arabic digits to ASCII for parsing user input. */
+fun String.toAsciiDigits(): String = buildString(length) {
+    for (ch in this@toAsciiDigits) {
+        when (ch) {
+            '\u06F0'..'\u06F9' -> append(('0'.code + (ch - '\u06F0')).toChar())
+            '\u0660'..'\u0669' -> append(('0'.code + (ch - '\u0660')).toChar())
+            else -> append(ch)
+        }
+    }
+}
+
+fun String.toAsciiLongOrNull(): Long? = toAsciiDigits().toLongOrNull()
+
+fun String.toAsciiIntOrNull(): Int? = toAsciiDigits().toIntOrNull()
+
 /** Convert ASCII digits to Persian digits for display. */
 fun String.toPersianDigits(): String = buildString(length) {
     for (ch in this@toPersianDigits) {

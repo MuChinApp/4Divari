@@ -45,6 +45,12 @@ abstract class MarketplaceBindModule {
     abstract fun bindSellerRepository(
         impl: SupabaseSellerRepository,
     ): SellerRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindAgentRepository(
+        impl: SupabaseAgentRepository,
+    ): AgentRepository
 }
 
 /**

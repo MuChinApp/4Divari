@@ -55,7 +55,7 @@ interface SellerRepository {
 
 data class SellerDraftCreated(val listingId: String, val propertyId: String)
 
-private val SELLER_LISTING_SELECT =
+internal val SELLER_LISTING_SELECT =
     "id,property_id,deal_type,price_rial,deposit_rial,rent_rial,status," +
         "published_at,created_at," +
         "property:properties(id,property_type,area_sqm,city,neighborhood," +
@@ -144,7 +144,7 @@ class SupabaseSellerRepository @Inject constructor(
                     apiKey = key,
                     authorization = authHeader,
                     select = SELLER_LISTING_SELECT,
-                    sellerId = userId,
+                    sellerId = "eq.$userId",
                     order = "created_at.desc",
                 )
             }

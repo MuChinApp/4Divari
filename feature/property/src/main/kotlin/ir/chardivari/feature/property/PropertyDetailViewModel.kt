@@ -122,6 +122,14 @@ class PropertyDetailViewModel @Inject constructor(
                     _uiState.value = UiState.Content(
                         current.copy(contact = result.data, contactLoading = false),
                     )
+                    if (result.data.leadCreated) {
+                        analytics.track(
+                            AnalyticsEvent.LeadCreated(
+                                listingId = listingId,
+                                source = "contact",
+                            ),
+                        )
+                    }
                 }
                 AppResult.Empty -> {
                     _uiState.value = UiState.Content(
