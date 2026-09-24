@@ -96,4 +96,17 @@ sealed interface AnalyticsEvent {
         override val name: String = "screen_view"
         override val params: Map<String, String> = mapOf("screen" to screen)
     }
+
+    data object AuthOtpRequested : AnalyticsEvent {
+        override val name: String = "auth_otp_requested"
+    }
+
+    data object AuthLoginSucceeded : AnalyticsEvent {
+        override val name: String = "auth_login_succeeded"
+    }
+
+    data class AuthLoginFailed(val reason: String) : AnalyticsEvent {
+        override val name: String = "auth_login_failed"
+        override val params: Map<String, String> = mapOf("reason" to reason)
+    }
 }

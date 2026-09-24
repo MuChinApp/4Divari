@@ -57,7 +57,7 @@ fun ProfileRoute(
             )
             Spacer(Modifier.height(AppSpacing.Sm))
             Text(
-                text = "ورود با شماره موبایل و کد یک‌بارمصرف\nدر فاز بعدی فعال می‌شود.",
+                text = "با شماره موبایل و کد یک‌بارمصرف وارد شوید.",
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 textAlign = TextAlign.Center,

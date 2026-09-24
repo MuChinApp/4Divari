@@ -30,12 +30,14 @@ include(":core:designsystem")
 include(":core:ui")
 include(":core:navigation")
 include(":core:analytics")
+include(":core:auth")
 
 // Features — customer-facing shells (Phase 1: navigation placeholders)
 include(":feature:home")
 include(":feature:search")
 include(":feature:saved")
 include(":feature:profile")
+include(":feature:auth")
 
 // App — composition root
 include(":app")

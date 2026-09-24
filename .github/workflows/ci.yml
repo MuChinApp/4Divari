@@ -110,11 +110,82 @@ jobs:
           retention-days: 14
           if-no-files-found: ignore
 
+  backend:
+    name: Postgres migrations + RLS tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: chardivari
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 12
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Install psql client
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq postgresql-client
+
+      - name: Apply migrations and run smoke tests
+        id: backend-tests
+        env:
+          DB_URL: postgresql://postgres:postgres@localhost:5432/chardivari
+        run: |
+          set -o pipefail
+          chmod +x supabase/tests/run_migrations.sh
+          ./supabase/tests/run_migrations.sh 2>&1 | tee /tmp/backend-log.txt
+
+      - name: Capture backend failure log
+        if: failure()
+        run: |
+          {
+            echo "=== BACKEND FAILURE CAPTURE $(date -u +%FT%TZ) =="
+            if [ -f /tmp/backend-log.txt ]; then
+              grep -n -E "ERROR|FATAL|psql:|RLS|SMOKE|exception" /tmp/backend-log.txt | head -80 || true
+              echo "---- last 120 lines ----"
+              tail -n 120 /tmp/backend-log.txt
+            fi
+          } > ci-backend-error.log || true
+
+      - name: Commit backend failure log
+        if: failure()
+        run: |
+          if [ -f ci-backend-error.log ]; then
+            git config user.name "MuChinApp"
+            git config user.email "311970907+MuChinApp@users.noreply.github.com"
+            git add -f ci-backend-error.log
+            git commit -m "ci: capture backend failure log [skip ci]" || true
+            git push origin HEAD || true
+          fi
+
+      - name: Upload backend logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: backend-reports-${{ github.sha }}
+          path: |
+            /tmp/backend-log.txt
+            ci-backend-error.log
+          retention-days: 14
+          if-no-files-found: ignore
+
   release-check:
     name: Release build gate
     runs-on: ubuntu-latest
     timeout-minutes: 45
-    needs: build-and-test
+    needs: [build-and-test, backend]
     if: github.ref == 'refs/heads/main'
 
     steps:

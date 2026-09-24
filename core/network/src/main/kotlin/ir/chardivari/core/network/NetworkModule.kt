@@ -30,12 +30,30 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideOkHttpClient(config: AppConfig): OkHttpClient {
+    fun provideOkHttpClient(
+        config: AppConfig,
+        sessionTokenProvider: SessionTokenProvider,
+    ): OkHttpClient {
         val builder = OkHttpClient.Builder()
             .connectTimeout(20, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
             .writeTimeout(30, TimeUnit.SECONDS)
             .retryOnConnectionFailure(true)
+
+        // Bearer token for every API call when a session exists.
+        // Implemented against the SessionTokenProvider interface so this
+        // module does not depend on core:auth (avoids a Gradle/Hilt cycle).
+        builder.addInterceptor { chain ->
+            val token = sessionTokenProvider.accessToken()
+            val request = if (token.isNullOrBlank()) {
+                chain.request()
+            } else {
+                chain.request().newBuilder()
+                    .header("Authorization", "Bearer $token")
+                    .build()
+            }
+            chain.proceed(request)
+        }
 
         if (config.enableNetworkLogging) {
             builder.addInterceptor(
@@ -45,7 +63,6 @@ object NetworkModule {
             )
         }
 
-        // Authorization interceptor is added in Phase 2 (auth feature).
         return builder.build()
     }
 

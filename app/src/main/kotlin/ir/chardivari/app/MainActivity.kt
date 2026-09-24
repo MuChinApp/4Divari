@@ -30,6 +30,7 @@ import ir.chardivari.core.designsystem.theme.ChardivariTheme
 import ir.chardivari.core.navigation.CustomerTab
 import ir.chardivari.core.navigation.Routes
 import ir.chardivari.core.ui.PlaceholderScreen
+import ir.chardivari.feature.auth.AuthRoute
 import ir.chardivari.feature.home.HomeRoute
 import ir.chardivari.feature.profile.ProfileRoute
 import ir.chardivari.feature.saved.SavedRoute
@@ -115,7 +116,16 @@ private fun ChardivariRoot() {
                 )
             }
             composable(Routes.SAVED) { SavedRoute() }
-            composable(Routes.PROFILE) { ProfileRoute() }
+            composable(Routes.PROFILE) {
+                ProfileRoute(
+                    onLogin = { navController.navigate(Routes.AUTH) },
+                )
+            }
+            composable(Routes.AUTH) {
+                AuthRoute(
+                    onLoggedIn = { navController.popBackStack() },
+                )
+            }
         }
     }
 }

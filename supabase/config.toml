@@ -1,0 +1,36 @@
+# Minimal Supabase project config for 4Divari.
+# Local `supabase start` requires Docker; CI uses plain PostgreSQL + migrations.
+
+project_id = "4divari"
+
+[api]
+enabled = true
+port = 54321
+schemas = ["public", "graphql_public"]
+extra_search_path = ["public", "extensions"]
+max_rows = 1000
+
+[db]
+port = 54322
+major_version = 16
+
+[auth]
+enabled = true
+# Phone OTP — NO fixed codes in production. Development OTP only via
+# site config in non-production environments.
+site_url = "app://4divari"
+additional_redirect_urls = ["app://4divari"]
+jwt_expiry = 3600
+enable_signup = true
+
+[auth.sms]
+enable_confirmations = true
+# Twilio/MessageBird/etc. configured per environment — never committed here.
+
+[storage]
+enabled = true
+file_size_limit = "50MiB"
+
+[inbucket]
+# Local email testing — unused for phone-first auth.
+enabled = false
