@@ -87,7 +87,7 @@ interface MarketplaceApi {
     suspend fun listingContact(
         @Header("apikey") apiKey: String,
         @Body body: ListingContactRequestDto,
-    ): Response<ListingContactDto>
+    ): Response<List<ListingContactDto>>
 }
 
 @Serializable

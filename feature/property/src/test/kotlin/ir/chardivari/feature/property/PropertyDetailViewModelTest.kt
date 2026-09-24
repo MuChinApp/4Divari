@@ -47,29 +47,6 @@ class PropertyDetailViewModelTest {
         }
     }
 
-    private val sample = Listing(
-        id = "l1",
-        propertyId = "p1",
-        dealType = DealType.SALE,
-        priceRial = 5_000_000_000L,
-        depositRial = null,
-        rentRial = null,
-        status = "ACTIVE",
-        publishedAt = "2026-09-01T00:00:00+00:00",
-        verificationStatus = "verified",
-        freshness = "fresh",
-        dataSource = "REAL",
-        property = PropertyDto(
-            id = "p1",
-            propertyType = PropertyType.APARTMENT,
-            areaSqm = 100,
-            bedrooms = 3,
-            city = "تهران",
-            province = "تهران",
-            description = "توضیح آزمایشی",
-        ),
-    )
-
     private class FakeListings(
         var result: AppResult<Listing> = AppResult.Success(sampleListing()),
     ) : ListingRepository {
