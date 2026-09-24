@@ -1,21 +1,14 @@
-=== CI FAILURE CAPTURE 2026-09-24T17:51:56Z ===
+=== CI FAILURE CAPTURE 2026-09-24T18:01:33Z ===
 
 ########## /tmp/test-log.txt : FAILURE HEADERS ##########
-453:> Task :feature:seller:compileDebugKotlin FAILED
-454:e: file:///home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerWizardViewModel.kt:183:53 No parameter with name 'publishError' found.
-455:e: file:///home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerWizardViewModel.kt:268:47 Cannot access class 'kotlinx.serialization.json.JsonObject'. Check your module classpath for missing or conflicting dependencies.
-456:e: file:///home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/WizardValidation.kt:6:16 Unresolved reference 'serialization'.
-457:e: file:///home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/WizardValidation.kt:88:45 Unresolved reference 'JsonObject'.
-458:e: file:///home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/WizardValidation.kt:90:12 Cannot access class 'kotlinx.serialization.json.JsonObject'. Check your module classpath for missing or conflicting dependencies.
-459:e: file:///home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/WizardValidation.kt:109:44 Unresolved reference 'JsonObject'.
-460:e: file:///home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/WizardValidation.kt:114:26 Cannot access class 'kotlinx.serialization.json.JsonObject'. Check your module classpath for missing or conflicting dependencies.
-461:e: file:///home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/WizardValidation.kt:121:26 Cannot access class 'kotlinx.serialization.json.JsonObject'. Check your module classpath for missing or conflicting dependencies.
-462:e: file:///home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/WizardValidation.kt:128:39 Cannot access class 'kotlinx.serialization.json.JsonObject'. Check your module classpath for missing or conflicting dependencies.
-470:FAILURE: Build failed with an exception.
-472:* What went wrong:
-515:Caused by: org.gradle.workers.internal.DefaultWorkerExecutor$WorkExecutionException: A failure occurred while executing org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction
-644:Caused by: org.jetbrains.kotlin.gradle.tasks.CompilationErrorException: Compilation error. See log for more details
-677:BUILD FAILED in 2m 48s
+492:> Task :feature:seller:compileDebugUnitTestKotlin FAILED
+493:e: file:///home/runner/work/4Divari/4Divari/feature/seller/src/test/kotlin/ir/chardivari/feature/seller/SellerManageViewModelTest.kt:68:12 Return type of 'createDraft' is not a subtype of the return type of the overridden member 'suspend fun createDraft(property: JsonObject, listing: JsonObject): AppResult<SellerDraftCreated>' defined in 'ir/chardivari/core/marketplace/SellerRepository'.
+494:e: file:///home/runner/work/4Divari/4Divari/feature/seller/src/test/kotlin/ir/chardivari/feature/seller/SellerManageViewModelTest.kt:68:22 Unresolved reference 'SellerDraftCreated'.
+499:FAILURE: Build failed with an exception.
+501:* What went wrong:
+544:Caused by: org.gradle.workers.internal.DefaultWorkerExecutor$WorkExecutionException: A failure occurred while executing org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction
+673:Caused by: org.jetbrains.kotlin.gradle.tasks.CompilationErrorException: Compilation error. See log for more details
+706:BUILD FAILED in 2m 51s
 
 ########## /tmp/test-log.txt (first 80 lines) ##########
 Downloading https://services.gradle.org/distributions/gradle-8.11.1-bin.zip
@@ -32,72 +25,72 @@ For more details see https://docs.gradle.org/8.11.1/release-notes.html
 
 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.11.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
 Daemon will be stopped at the end of the build 
+> Task :app:preBuild UP-TO-DATE
 > Task :core:auth:preBuild UP-TO-DATE
 > Task :core:analytics:preBuild UP-TO-DATE
-> Task :app:preBuild UP-TO-DATE
 > Task :core:common:preBuild UP-TO-DATE
 > Task :app:preDebugBuild UP-TO-DATE
+> Task :core:auth:preDebugBuild UP-TO-DATE
 > Task :core:analytics:preDebugBuild UP-TO-DATE
 > Task :core:common:preDebugBuild UP-TO-DATE
-> Task :core:auth:preDebugBuild UP-TO-DATE
 > Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
 > Task :core:auth:writeDebugAarMetadata
 > Task :core:common:writeDebugAarMetadata
-> Task :core:analytics:writeDebugAarMetadata
-> Task :core:marketplace:preBuild UP-TO-DATE
-> Task :core:environment:preBuild UP-TO-DATE
 > Task :app:generateDebugBuildConfig
+> Task :core:environment:preBuild UP-TO-DATE
+> Task :core:analytics:writeDebugAarMetadata
 > Task :core:environment:preDebugBuild UP-TO-DATE
-> Task :core:marketplace:preDebugBuild UP-TO-DATE
-> Task :core:designsystem:preBuild UP-TO-DATE
-> Task :core:designsystem:preDebugBuild UP-TO-DATE
+> Task :core:marketplace:preBuild UP-TO-DATE
 > Task :core:navigation:preBuild UP-TO-DATE
 > Task :core:navigation:preDebugBuild UP-TO-DATE
+> Task :core:designsystem:preBuild UP-TO-DATE
+> Task :core:marketplace:preDebugBuild UP-TO-DATE
+> Task :core:designsystem:preDebugBuild UP-TO-DATE
+> Task :core:environment:writeDebugAarMetadata
 > Task :core:marketplace:writeDebugAarMetadata
 > Task :core:network:preBuild UP-TO-DATE
 > Task :core:network:preDebugBuild UP-TO-DATE
+> Task :core:designsystem:writeDebugAarMetadata
 > Task :core:navigation:writeDebugAarMetadata
-> Task :core:environment:writeDebugAarMetadata
 > Task :core:ui:preBuild UP-TO-DATE
 > Task :core:ui:preDebugBuild UP-TO-DATE
-> Task :core:designsystem:writeDebugAarMetadata
 > Task :feature:auth:preBuild UP-TO-DATE
 > Task :feature:auth:preDebugBuild UP-TO-DATE
-> Task :core:network:writeDebugAarMetadata
 > Task :feature:home:preBuild UP-TO-DATE
 > Task :feature:home:preDebugBuild UP-TO-DATE
+> Task :core:network:writeDebugAarMetadata
 > Task :feature:profile:preBuild UP-TO-DATE
 > Task :feature:profile:preDebugBuild UP-TO-DATE
 > Task :feature:auth:writeDebugAarMetadata
+> Task :core:ui:writeDebugAarMetadata
+> Task :feature:home:writeDebugAarMetadata
 > Task :feature:property:preBuild UP-TO-DATE
 > Task :feature:property:preDebugBuild UP-TO-DATE
-> Task :feature:profile:writeDebugAarMetadata
-> Task :feature:home:writeDebugAarMetadata
-> Task :core:ui:writeDebugAarMetadata
 > Task :feature:saved:preBuild UP-TO-DATE
 > Task :feature:search:preBuild UP-TO-DATE
-> Task :feature:seller:preBuild UP-TO-DATE
 > Task :feature:saved:preDebugBuild UP-TO-DATE
-> Task :feature:seller:preDebugBuild UP-TO-DATE
 > Task :feature:search:preDebugBuild UP-TO-DATE
-> Task :feature:property:writeDebugAarMetadata
-> Task :feature:seller:writeDebugAarMetadata
-> Task :feature:search:writeDebugAarMetadata
 > Task :feature:saved:writeDebugAarMetadata
+> Task :feature:seller:preBuild UP-TO-DATE
+> Task :feature:profile:writeDebugAarMetadata
+> Task :feature:property:writeDebugAarMetadata
+> Task :feature:seller:preDebugBuild UP-TO-DATE
+> Task :feature:search:writeDebugAarMetadata
+> Task :core:analytics:generateDebugResValues
 > Task :app:generateDebugResValues
-> Task :core:analytics:generateDebugResValues FROM-CACHE
-> Task :core:common:generateDebugResValues FROM-CACHE
-> Task :core:auth:generateDebugResValues FROM-CACHE
-> Task :core:common:generateDebugResources
-> Task :core:auth:generateDebugResources
+> Task :feature:seller:writeDebugAarMetadata
 > Task :core:analytics:generateDebugResources
-> Task :core:auth:packageDebugResources
+> Task :core:auth:generateDebugResValues FROM-CACHE
+> Task :core:common:generateDebugResValues FROM-CACHE
+> Task :core:auth:generateDebugResources FROM-CACHE
+> Task :core:common:generateDebugResources FROM-CACHE
 > Task :core:common:packageDebugResources
+> Task :core:auth:packageDebugResources
 > Task :core:analytics:packageDebugResources
-> Task :core:designsystem:generateDebugResValues FROM-CACHE
 > Task :core:environment:generateDebugResValues FROM-CACHE
+> Task :core:designsystem:generateDebugResValues FROM-CACHE
 > Task :core:marketplace:generateDebugResValues FROM-CACHE
-> Task :core:environment:generateDebugResources FROM-CACHE
+> Task :core:marketplace:generateDebugResources FROM-CACHE
 
 ########## /tmp/test-log.txt (last 80 lines) ##########
 	at org.gradle.internal.execution.steps.HandleStaleOutputsStep.execute(HandleStaleOutputsStep.java:75)
@@ -178,8 +171,8 @@ Caused by: org.jetbrains.kotlin.gradle.tasks.CompilationErrorException: Compilat
 	... 2 more
 
 
-BUILD FAILED in 2m 48s
-327 actionable tasks: 230 executed, 97 from cache
+BUILD FAILED in 2m 51s
+356 actionable tasks: 256 executed, 100 from cache
 
 ########## /tmp/detekt-log.txt : FAILURE HEADERS ##########
 28:/home/runner/work/4Divari/4Divari/feature/auth/src/main/kotlin/ir/chardivari/feature/auth/AuthScreen.kt:91:15: The function AuthScreen(state: AuthUiModel, error: AppError?, modifier: Modifier, onPhoneChange: (String) -> Unit, onSendOtp: () -> Unit, onVerify: (String) -> Unit, onResend: () -> Unit, onBack: () -> Unit) has too many parameters. The current threshold is set to 6. [LongParameterList]
@@ -206,11 +199,11 @@ Daemon will be stopped at the end of the build
 /home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerWizardScreen.kt:600:13: The function ReviewStep appears to be too complex based on Cyclomatic Complexity (complexity: 23). Defined complexity threshold for methods is set to '15' [CyclomaticComplexMethod]
 /home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/WizardValidation.kt:12:26: The function validateStep appears to be too complex based on Cyclomatic Complexity (complexity: 43). Defined complexity threshold for methods is set to '15' [CyclomaticComplexMethod]
 /home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/WizardValidation.kt:12:26: Function validateStep is nested too deeply. [NestedBlockDepth]
-/home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerWizardViewModel.kt:241:9: The function publish is too long (89). The maximum length is 80. [LongMethod]
-/home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerWizardViewModel.kt:241:9: The function publish appears to be too complex based on Cyclomatic Complexity (complexity: 26). Defined complexity threshold for methods is set to '15' [CyclomaticComplexMethod]
+/home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerWizardViewModel.kt:243:9: The function publish is too long (89). The maximum length is 80. [LongMethod]
+/home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerWizardViewModel.kt:243:9: The function publish appears to be too complex based on Cyclomatic Complexity (complexity: 26). Defined complexity threshold for methods is set to '15' [CyclomaticComplexMethod]
 /home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerWizardViewModel.kt:80:7: Class 'SellerWizardViewModel' with '32' functions detected. Defined threshold inside classes is set to '20' [TooManyFunctions]
-/home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerManageScreen.kt:193:13: The function SellerRow is too long (87). The maximum length is 80. [LongMethod]
 /home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerManageScreen.kt:57:5: The function SellerRoute is too long (87). The maximum length is 80. [LongMethod]
+/home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerManageScreen.kt:193:13: The function SellerRow is too long (87). The maximum length is 80. [LongMethod]
 /home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerManageScreen.kt:193:13: The function SellerRow appears to be too complex based on Cyclomatic Complexity (complexity: 18). Defined complexity threshold for methods is set to '15' [CyclomaticComplexMethod]
 /home/runner/work/4Divari/4Divari/feature/auth/src/main/kotlin/ir/chardivari/feature/auth/AuthScreen.kt:91:15: The function AuthScreen(state: AuthUiModel, error: AppError?, modifier: Modifier, onPhoneChange: (String) -> Unit, onSendOtp: () -> Unit, onVerify: (String) -> Unit, onResend: () -> Unit, onBack: () -> Unit) has too many parameters. The current threshold is set to 6. [LongParameterList]
 /home/runner/work/4Divari/4Divari/feature/search/src/main/kotlin/ir/chardivari/feature/search/SearchScreen.kt:107:26: The function SearchContent(model: SearchUiModel, onQueryChange: (String) -> Unit, onDealType: (DealType?) -> Unit, onCityChange: (String) -> Unit, onClear: () -> Unit, onSave: () -> Unit, onListingClick: (String) -> Unit) has too many parameters. The current threshold is set to 6. [LongParameterList]
@@ -226,7 +219,7 @@ Daemon will be stopped at the end of the build
 /home/runner/work/4Divari/4Divari/core/auth/src/main/kotlin/ir/chardivari/core/auth/SessionStore.kt:39:20: Use check() or error() instead of throwing an IllegalStateException. [UseCheckOrError]
 /home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/SellerRepositories.kt:58:13: SELLER_LISTING_SELECT can be a `const val`. [MayBeConst]
 
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/detekt-1790272244309.json
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/detekt-1790272768663.json
 
 BUILD SUCCESSFUL in 22s
 1 actionable task: 1 executed
@@ -253,11 +246,11 @@ Daemon will be stopped at the end of the build
 /home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerWizardScreen.kt:600:13: The function ReviewStep appears to be too complex based on Cyclomatic Complexity (complexity: 23). Defined complexity threshold for methods is set to '15' [CyclomaticComplexMethod]
 /home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/WizardValidation.kt:12:26: The function validateStep appears to be too complex based on Cyclomatic Complexity (complexity: 43). Defined complexity threshold for methods is set to '15' [CyclomaticComplexMethod]
 /home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/WizardValidation.kt:12:26: Function validateStep is nested too deeply. [NestedBlockDepth]
-/home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerWizardViewModel.kt:241:9: The function publish is too long (89). The maximum length is 80. [LongMethod]
-/home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerWizardViewModel.kt:241:9: The function publish appears to be too complex based on Cyclomatic Complexity (complexity: 26). Defined complexity threshold for methods is set to '15' [CyclomaticComplexMethod]
+/home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerWizardViewModel.kt:243:9: The function publish is too long (89). The maximum length is 80. [LongMethod]
+/home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerWizardViewModel.kt:243:9: The function publish appears to be too complex based on Cyclomatic Complexity (complexity: 26). Defined complexity threshold for methods is set to '15' [CyclomaticComplexMethod]
 /home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerWizardViewModel.kt:80:7: Class 'SellerWizardViewModel' with '32' functions detected. Defined threshold inside classes is set to '20' [TooManyFunctions]
-/home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerManageScreen.kt:193:13: The function SellerRow is too long (87). The maximum length is 80. [LongMethod]
 /home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerManageScreen.kt:57:5: The function SellerRoute is too long (87). The maximum length is 80. [LongMethod]
+/home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerManageScreen.kt:193:13: The function SellerRow is too long (87). The maximum length is 80. [LongMethod]
 /home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerManageScreen.kt:193:13: The function SellerRow appears to be too complex based on Cyclomatic Complexity (complexity: 18). Defined complexity threshold for methods is set to '15' [CyclomaticComplexMethod]
 /home/runner/work/4Divari/4Divari/feature/auth/src/main/kotlin/ir/chardivari/feature/auth/AuthScreen.kt:91:15: The function AuthScreen(state: AuthUiModel, error: AppError?, modifier: Modifier, onPhoneChange: (String) -> Unit, onSendOtp: () -> Unit, onVerify: (String) -> Unit, onResend: () -> Unit, onBack: () -> Unit) has too many parameters. The current threshold is set to 6. [LongParameterList]
 /home/runner/work/4Divari/4Divari/feature/search/src/main/kotlin/ir/chardivari/feature/search/SearchScreen.kt:107:26: The function SearchContent(model: SearchUiModel, onQueryChange: (String) -> Unit, onDealType: (DealType?) -> Unit, onCityChange: (String) -> Unit, onClear: () -> Unit, onSave: () -> Unit, onListingClick: (String) -> Unit) has too many parameters. The current threshold is set to 6. [LongParameterList]
@@ -273,89 +266,76 @@ Daemon will be stopped at the end of the build
 /home/runner/work/4Divari/4Divari/core/auth/src/main/kotlin/ir/chardivari/core/auth/SessionStore.kt:39:20: Use check() or error() instead of throwing an IllegalStateException. [UseCheckOrError]
 /home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/SellerRepositories.kt:58:13: SELLER_LISTING_SELECT can be a `const val`. [MayBeConst]
 
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/detekt-1790272244309.json
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/detekt-1790272768663.json
 
 BUILD SUCCESSFUL in 22s
 1 actionable task: 1 executed
 
 ########## /tmp/lint-log.txt : FAILURE HEADERS ##########
-655:> Task :feature:seller:compileDebugKotlin FAILED
-656:e: file:///home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerWizardViewModel.kt:183:53 No parameter with name 'publishError' found.
-657:e: file:///home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerWizardViewModel.kt:268:47 Cannot access class 'kotlinx.serialization.json.JsonObject'. Check your module classpath for missing or conflicting dependencies.
-658:e: file:///home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/WizardValidation.kt:6:16 Unresolved reference 'serialization'.
-659:e: file:///home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/WizardValidation.kt:88:45 Unresolved reference 'JsonObject'.
-660:e: file:///home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/WizardValidation.kt:90:12 Cannot access class 'kotlinx.serialization.json.JsonObject'. Check your module classpath for missing or conflicting dependencies.
-661:e: file:///home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/WizardValidation.kt:109:44 Unresolved reference 'JsonObject'.
-662:e: file:///home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/WizardValidation.kt:114:26 Cannot access class 'kotlinx.serialization.json.JsonObject'. Check your module classpath for missing or conflicting dependencies.
-663:e: file:///home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/WizardValidation.kt:121:26 Cannot access class 'kotlinx.serialization.json.JsonObject'. Check your module classpath for missing or conflicting dependencies.
-664:e: file:///home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/WizardValidation.kt:128:39 Cannot access class 'kotlinx.serialization.json.JsonObject'. Check your module classpath for missing or conflicting dependencies.
-671:FAILURE: Build failed with an exception.
-673:* What went wrong:
-684:BUILD FAILED in 52s
 
 ########## /tmp/lint-log.txt (first 80 lines) ##########
 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.11.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
 Daemon will be stopped at the end of the build 
-> Task :core:common:checkKotlinGradlePluginConfigurationErrors SKIPPED
 > Task :core:ui:preBuild UP-TO-DATE
-> Task :core:designsystem:checkKotlinGradlePluginConfigurationErrors SKIPPED
 > Task :core:environment:preBuild UP-TO-DATE
-> Task :core:ui:preDebugBuild UP-TO-DATE
+> Task :core:designsystem:checkKotlinGradlePluginConfigurationErrors SKIPPED
 > Task :core:designsystem:preBuild UP-TO-DATE
+> Task :core:environment:preDebugBuild UP-TO-DATE
+> Task :core:common:checkKotlinGradlePluginConfigurationErrors SKIPPED
 > Task :core:common:preBuild UP-TO-DATE
 > Task :core:common:preDebugBuild UP-TO-DATE
 > Task :core:designsystem:preDebugBuild UP-TO-DATE
-> Task :core:environment:preDebugBuild UP-TO-DATE
-> Task :core:designsystem:generateDebugResValues UP-TO-DATE
+> Task :core:ui:preDebugBuild UP-TO-DATE
 > Task :core:common:generateDebugResValues UP-TO-DATE
+> Task :core:designsystem:generateDebugResValues UP-TO-DATE
 > Task :core:common:generateDebugResources UP-TO-DATE
 > Task :core:designsystem:generateDebugResources UP-TO-DATE
-> Task :core:designsystem:packageDebugResources UP-TO-DATE
 > Task :core:common:packageDebugResources UP-TO-DATE
+> Task :core:designsystem:packageDebugResources UP-TO-DATE
 > Task :core:designsystem:parseDebugLocalResources UP-TO-DATE
 > Task :core:common:parseDebugLocalResources UP-TO-DATE
-> Task :core:common:generateDebugRFile UP-TO-DATE
 > Task :core:designsystem:generateDebugRFile UP-TO-DATE
+> Task :core:common:generateDebugRFile UP-TO-DATE
 > Task :core:ui:mergeDebugJniLibFolders
 > Task :core:environment:mergeDebugJniLibFolders
 > Task :core:environment:mergeDebugNativeLibs NO-SOURCE
 > Task :core:ui:mergeDebugNativeLibs NO-SOURCE
 > Task :core:environment:stripDebugDebugSymbols NO-SOURCE
 > Task :core:ui:stripDebugDebugSymbols NO-SOURCE
-> Task :core:environment:copyDebugJniLibsProjectAndLocalJars
-> Task :core:ui:checkKotlinGradlePluginConfigurationErrors SKIPPED
 > Task :core:ui:copyDebugJniLibsProjectAndLocalJars
+> Task :core:ui:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:environment:copyDebugJniLibsProjectAndLocalJars
 > Task :core:environment:checkKotlinGradlePluginConfigurationErrors SKIPPED
-> Task :core:environment:generateDebugBuildConfig UP-TO-DATE
 > Task :core:ui:generateDebugResValues UP-TO-DATE
-> Task :core:environment:generateDebugResValues UP-TO-DATE
+> Task :core:environment:generateDebugBuildConfig UP-TO-DATE
 > Task :core:ui:generateDebugResources UP-TO-DATE
+> Task :core:environment:generateDebugResValues UP-TO-DATE
 > Task :core:environment:generateDebugResources UP-TO-DATE
 > Task :core:ui:packageDebugResources UP-TO-DATE
-> Task :core:environment:packageDebugResources UP-TO-DATE
 > Task :core:ui:parseDebugLocalResources UP-TO-DATE
+> Task :core:environment:packageDebugResources UP-TO-DATE
 > Task :core:environment:parseDebugLocalResources UP-TO-DATE
 > Task :core:ui:generateDebugRFile UP-TO-DATE
 > Task :core:environment:generateDebugRFile UP-TO-DATE
+> Task :core:common:compileDebugKotlin UP-TO-DATE
+> Task :core:common:javaPreCompileDebug UP-TO-DATE
+> Task :core:environment:compileDebugKotlin UP-TO-DATE
+> Task :core:common:compileDebugJavaWithJavac NO-SOURCE
 > Task :core:ui:extractDeepLinksForAarDebug
 > Task :core:ui:javaPreCompileDebug UP-TO-DATE
-> Task :core:common:compileDebugKotlin UP-TO-DATE
+> Task :core:common:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :core:common:mergeDebugJniLibFolders
 > Task :core:ui:mergeDebugShaders
-> Task :core:environment:compileDebugKotlin UP-TO-DATE
+> Task :core:common:mergeDebugNativeLibs NO-SOURCE
+> Task :core:common:stripDebugDebugSymbols NO-SOURCE
 > Task :core:ui:compileDebugShaders NO-SOURCE
 > Task :core:ui:generateDebugAssets UP-TO-DATE
-> Task :core:common:javaPreCompileDebug UP-TO-DATE
-> Task :core:common:compileDebugJavaWithJavac NO-SOURCE
-> Task :core:common:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :core:common:copyDebugJniLibsProjectAndLocalJars
 > Task :core:ui:packageDebugAssets
 > Task :core:ui:prepareDebugArtProfile
 > Task :core:ui:prepareLintJarForPublish
-> Task :core:common:mergeDebugJniLibFolders
-> Task :core:common:mergeDebugNativeLibs NO-SOURCE
-> Task :core:common:stripDebugDebugSymbols NO-SOURCE
 > Task :core:ui:processDebugManifest UP-TO-DATE
 > Task :core:ui:writeDebugAarMetadata UP-TO-DATE
-> Task :core:common:copyDebugJniLibsProjectAndLocalJars
 > Task :core:network:preBuild UP-TO-DATE
 > Task :core:network:preDebugBuild UP-TO-DATE
 > Task :core:network:mergeDebugJniLibFolders
@@ -364,95 +344,95 @@ Daemon will be stopped at the end of the build
 > Task :core:network:copyDebugJniLibsProjectAndLocalJars
 > Task :core:network:checkKotlinGradlePluginConfigurationErrors SKIPPED
 > Task :core:network:generateDebugResValues UP-TO-DATE
-> Task :core:designsystem:compileDebugKotlin UP-TO-DATE
 > Task :core:network:generateDebugResources UP-TO-DATE
-> Task :core:designsystem:javaPreCompileDebug UP-TO-DATE
-> Task :core:designsystem:compileDebugJavaWithJavac NO-SOURCE
 > Task :core:network:packageDebugResources UP-TO-DATE
-> Task :core:designsystem:bundleLibCompileToJarDebug UP-TO-DATE
 > Task :core:network:parseDebugLocalResources UP-TO-DATE
 > Task :core:network:generateDebugRFile UP-TO-DATE
 > Task :core:network:extractDeepLinksForAarDebug FROM-CACHE
 > Task :core:network:javaPreCompileDebug UP-TO-DATE
+> Task :core:network:mergeDebugShaders
+> Task :core:network:compileDebugShaders NO-SOURCE
+> Task :core:network:generateDebugAssets UP-TO-DATE
+> Task :core:network:packageDebugAssets
 
 ########## /tmp/lint-log.txt (last 80 lines) ##########
-> Task :feature:profile:writeDebugLintModelMetadata
-> Task :feature:property:createFullJarDebug
-> Task :feature:saved:createFullJarDebug
-> Task :feature:property:writeDebugLintModelMetadata
-> Task :feature:saved:writeDebugLintModelMetadata
-> Task :feature:search:createFullJarDebug
-> Task :feature:seller:writeDebugLintModelMetadata
-> Task :feature:search:writeDebugLintModelMetadata
-> Task :core:analytics:extractProguardFiles
-> Task :core:common:extractProguardFiles
-> Task :core:auth:extractProguardFiles
-> Task :core:environment:extractProguardFiles
-> Task :app:processDebugMainManifest UP-TO-DATE
-> Task :app:processDebugManifest UP-TO-DATE
-> Task :app:processDebugManifestForPackage UP-TO-DATE
-> Task :core:common:generateDebugLintModel
-> Task :core:environment:generateDebugLintModel
-> Task :core:network:extractProguardFiles
-> Task :core:analytics:generateDebugLintModel
-> Task :core:designsystem:extractProguardFiles
-> Task :app:processDebugResources UP-TO-DATE
-> Task :app:javaPreCompileDebug UP-TO-DATE
-> Task :app:preDebugAndroidTestBuild SKIPPED
-> Task :app:generateDebugAndroidTestResValues FROM-CACHE
-> Task :app:extractProguardFiles
-> Task :core:marketplace:extractProguardFiles
-> Task :core:navigation:extractProguardFiles
-> Task :core:network:generateDebugLintModel
-> Task :core:auth:generateDebugLintModel
-> Task :core:marketplace:generateDebugLintModel
-> Task :core:ui:extractProguardFiles
-> Task :feature:auth:extractProguardFiles
-> Task :feature:home:extractProguardFiles
-> Task :feature:profile:extractProguardFiles
-> Task :feature:property:extractProguardFiles
-> Task :feature:saved:extractProguardFiles
-> Task :feature:search:extractProguardFiles
-> Task :feature:seller:extractProguardFiles
-> Task :app:preDebugUnitTestBuild UP-TO-DATE
-> Task :core:navigation:generateDebugLintModel
-> Task :core:designsystem:generateDebugLintModel
-> Task :core:ui:generateDebugLintModel
-> Task :feature:auth:generateDebugLintModel
-> Task :feature:home:generateDebugLintModel
-> Task :feature:profile:generateDebugLintModel
-> Task :feature:property:generateDebugLintModel
-> Task :feature:saved:generateDebugLintModel
-> Task :feature:search:generateDebugLintModel
+> Task :feature:home:lintAnalyzeDebugUnitTest
+> Task :feature:search:preDebugAndroidTestBuild UP-TO-DATE
+> Task :feature:search:generateDebugAndroidTestResValues FROM-CACHE
+> Task :feature:saved:generateDebugAndroidTestLintModel
+> Task :feature:saved:preDebugUnitTestBuild UP-TO-DATE
+> Task :feature:search:generateDebugAndroidTestLintModel
+> Task :feature:search:preDebugUnitTestBuild UP-TO-DATE
+> Task :feature:saved:generateDebugUnitTestLintModel
+> Task :feature:search:generateDebugUnitTestLintModel
+> Task :feature:saved:lintAnalyzeDebugAndroidTest
+> Task :feature:property:lintAnalyzeDebugUnitTest
+> Task :feature:search:lintAnalyzeDebugAndroidTest
+> Task :feature:seller:preDebugAndroidTestBuild UP-TO-DATE
+> Task :feature:seller:generateDebugAndroidTestResValues FROM-CACHE
+> Task :feature:seller:generateDebugAndroidTestLintModel
+> Task :feature:seller:preDebugUnitTestBuild UP-TO-DATE
+> Task :feature:seller:generateDebugUnitTestLintModel
+> Task :feature:saved:lintAnalyzeDebugUnitTest
+> Task :feature:seller:lintAnalyzeDebugAndroidTest
+> Task :core:analytics:generateDebugLintReportModel
+> Task :core:analytics:lintReportDebug
+> Task :core:analytics:lintDebug
+> Task :core:auth:generateDebugLintReportModel
+> Task :core:auth:lintReportDebug
+> Task :core:auth:lintDebug
+> Task :core:common:generateDebugLintReportModel
+> Task :core:common:lintReportDebug
+> Task :core:common:lintDebug
+> Task :core:designsystem:generateDebugLintReportModel
+> Task :core:designsystem:lintReportDebug
+> Task :core:designsystem:lintDebug
+> Task :core:environment:generateDebugLintReportModel
+> Task :core:environment:lintReportDebug
+> Task :core:environment:lintDebug
+> Task :core:marketplace:generateDebugLintReportModel
+> Task :core:marketplace:lintReportDebug
+> Task :core:marketplace:lintDebug
+> Task :core:navigation:generateDebugLintReportModel
+> Task :feature:search:lintAnalyzeDebugUnitTest
+> Task :core:network:generateDebugLintReportModel
+> Task :core:navigation:lintReportDebug
+> Task :core:navigation:lintDebug
+> Task :core:network:lintReportDebug
+> Task :core:network:lintDebug
+> Task :core:ui:generateDebugLintReportModel
+> Task :feature:auth:generateDebugLintReportModel
+> Task :core:ui:lintReportDebug
+> Task :core:ui:lintDebug
+> Task :feature:home:generateDebugLintReportModel
+> Task :feature:auth:lintReportDebug
+> Task :feature:auth:lintDebug
+> Task :feature:profile:generateDebugLintReportModel
+> Task :feature:home:lintReportDebug
+> Task :feature:home:lintDebug
+> Task :feature:property:generateDebugLintReportModel
+> Task :feature:profile:lintReportDebug
+> Task :feature:profile:lintDebug
+> Task :feature:saved:generateDebugLintReportModel
+> Task :feature:property:lintReportDebug
+> Task :feature:property:lintDebug
+> Task :feature:search:generateDebugLintReportModel
+> Task :feature:saved:lintReportDebug
+> Task :feature:saved:lintDebug
+> Task :feature:seller:generateDebugLintReportModel
+> Task :feature:search:lintReportDebug
+> Task :feature:search:lintDebug
+> Task :feature:seller:lintAnalyzeDebug
+> Task :feature:seller:lintAnalyzeDebugUnitTest
+> Task :feature:seller:lintReportDebug
+> Task :feature:seller:lintDebug
+> Task :app:lintAnalyzeDebug
 
-> Task :feature:seller:compileDebugKotlin FAILED
-e: file:///home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerWizardViewModel.kt:183:53 No parameter with name 'publishError' found.
-e: file:///home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerWizardViewModel.kt:268:47 Cannot access class 'kotlinx.serialization.json.JsonObject'. Check your module classpath for missing or conflicting dependencies.
-e: file:///home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/WizardValidation.kt:6:16 Unresolved reference 'serialization'.
-e: file:///home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/WizardValidation.kt:88:45 Unresolved reference 'JsonObject'.
-e: file:///home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/WizardValidation.kt:90:12 Cannot access class 'kotlinx.serialization.json.JsonObject'. Check your module classpath for missing or conflicting dependencies.
-e: file:///home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/WizardValidation.kt:109:44 Unresolved reference 'JsonObject'.
-e: file:///home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/WizardValidation.kt:114:26 Cannot access class 'kotlinx.serialization.json.JsonObject'. Check your module classpath for missing or conflicting dependencies.
-e: file:///home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/WizardValidation.kt:121:26 Cannot access class 'kotlinx.serialization.json.JsonObject'. Check your module classpath for missing or conflicting dependencies.
-e: file:///home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/WizardValidation.kt:128:39 Cannot access class 'kotlinx.serialization.json.JsonObject'. Check your module classpath for missing or conflicting dependencies.
+> Task :app:lintReportDebug
+Wrote HTML report to file:///home/runner/work/4Divari/4Divari/app/build/reports/lint-results-debug.html
 
-> Task :core:environment:lintAnalyzeDebug
-> Task :core:common:lintAnalyzeDebug
-> Task :core:designsystem:lintAnalyzeDebug
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/lint-1790272266689.json
+> Task :app:lintDebug
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/lint-1790272791106.json
 
-FAILURE: Build failed with an exception.
-
-* What went wrong:
-Execution failed for task ':feature:seller:compileDebugKotlin'.
-> A failure occurred while executing org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction
-   > Compilation error. See log for more details
-
-* Try:
-> Run with --stacktrace option to get the stack trace.
-> Run with --info or --debug option to get more log output.
-> Run with --scan to get full insights.
-> Get more help at https://help.gradle.org.
-
-BUILD FAILED in 52s
-531 actionable tasks: 254 executed, 16 from cache, 261 up-to-date
+BUILD SUCCESSFUL in 1m 45s
+699 actionable tasks: 399 executed, 32 from cache, 268 up-to-date
