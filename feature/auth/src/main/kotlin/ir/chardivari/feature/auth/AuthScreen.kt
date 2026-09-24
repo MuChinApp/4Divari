@@ -26,24 +26,46 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
+import dagger.hilt.android.EntryPointAccessors
+import ir.chardivari.core.auth.AuthEntryPoint
 import ir.chardivari.core.common.AppError
 import ir.chardivari.core.designsystem.tokens.AppSpacing
 import ir.chardivari.core.ui.errorDescription
 import ir.chardivari.core.ui.errorTitle
 import kotlinx.coroutines.flow.collectLatest
 
+/**
+ * Auth entry — builds [AuthViewModel] through [AuthEntryPoint] so this
+ * module needs neither KSP nor the Hilt Gradle plugin (AGP task-cycle fix).
+ */
 @Composable
 fun AuthRoute(
     onLoggedIn: () -> Unit,
     modifier: Modifier = Modifier,
-    viewModel: AuthViewModel = hiltViewModel(),
 ) {
+    val context = LocalContext.current.applicationContext
+    val viewModel: AuthViewModel = viewModel(
+        factory = object : ViewModelProvider.Factory {
+            @Suppress("UNCHECKED_CAST")
+            override fun <T : ViewModel> create(modelClass: Class<T>): T {
+                val entry = EntryPointAccessors.fromApplication(context, AuthEntryPoint::class.java)
+                return AuthViewModel(
+                    repository = entry.authRepository(),
+                    analytics = entry.analyticsTracker(),
+                ) as T
+            }
+        },
+    )
+
     val state by viewModel.uiState.collectAsStateWithLifecycle()
     val error by viewModel.error.collectAsStateWithLifecycle()
 

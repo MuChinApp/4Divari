@@ -6,7 +6,6 @@ import ir.chardivari.core.auth.AuthRepository
 import ir.chardivari.core.auth.AuthSession
 import ir.chardivari.core.common.AppError
 import ir.chardivari.core.common.AppResult
-import dagger.hilt.android.lifecycle.HiltViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -24,6 +23,9 @@ import javax.inject.Inject
  * - Idle until the user acts
  * - OtpSent only after a real GoTrue 2xx
  * - Error surfaces the mapped [AppError]; no fake success
+ *
+ * Not a @HiltViewModel: feature:auth runs without KSP (AGP task cycle).
+ * [AuthEntryPoint] supplies dependencies from core:auth.
  */
 data class AuthUiModel(
     val step: AuthStep = AuthStep.Phone,
@@ -39,7 +41,6 @@ sealed interface AuthEvent {
     data class Verified(val session: AuthSession) : AuthEvent
 }
 
-@HiltViewModel
 class AuthViewModel @Inject constructor(
     private val repository: AuthRepository,
     private val analytics: AnalyticsTracker,

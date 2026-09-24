@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.hilt)
     alias(libs.plugins.ksp)
 }
 
@@ -23,8 +24,8 @@ android {
     }
 }
 
-// No Hilt Gradle plugin on library modules (see feature/auth) — KSP
-// hilt-compiler generates @Module/@Inject code; aggregation at :app only.
+// Hilt plugin + KSP required here for @Module/@Binds and AuthEntryPoint.
+// feature:auth consumes the graph via EntryPointAccessors (no KSP there).
 dependencies {
     implementation(project(":core:common"))
     implementation(project(":core:environment"))

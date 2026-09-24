@@ -2,7 +2,6 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
-    alias(libs.plugins.ksp)
 }
 
 android {
@@ -27,10 +26,10 @@ android {
     }
 }
 
-// No Hilt Gradle plugin here: library modules only need KSP codegen for
-// @HiltViewModel. The plugin's ASM transform creates a
-// bundleLibCompileToJarDebug ↔ transformDebugClassesWithAsm cycle with
-// this module's KSP graph. Aggregation runs once at :app.
+// No KSP and no Hilt Gradle plugin in this feature module.
+// @HiltViewModel + kspDebugKotlin formed a Gradle cycle with
+// bundleLibCompileToJarDebug under AGP 8.7. AuthViewModel is created
+// via AuthEntryPoint (processed in core:auth) instead.
 dependencies {
     implementation(project(":core:ui"))
     implementation(project(":core:designsystem"))
@@ -45,8 +44,6 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.hilt.android)
-    implementation(libs.hilt.navigation.compose)
-    ksp(libs.hilt.compiler)
 
     testImplementation(libs.junit)
     testImplementation(libs.truth)
