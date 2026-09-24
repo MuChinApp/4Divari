@@ -114,7 +114,10 @@ class SellerWizardViewModelTest {
         seller = FakeSeller()
         session = FakeSession()
         reader = FakeReader(
-            bytes = mapOf("content://photo1" to byteArrayOf(1, 2, 3)),
+            bytes = mapOf(
+                "content://photo1" to byteArrayOf(1, 2, 3),
+                "content://doc1" to byteArrayOf(4, 5, 6),
+            ),
             mimes = mapOf(
                 "content://photo1" to "image/jpeg",
                 "content://bad" to "application/pdf",
