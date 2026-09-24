@@ -37,6 +37,8 @@ dependencies {
 
     // WindowCompat (status/nav bar icons) used by Theme.kt
     implementation(libs.androidx.core.ktx)
+    // PropertyCard media loading
+    implementation(libs.coil.compose)
 
     debugImplementation(libs.compose.ui.tooling)
 }

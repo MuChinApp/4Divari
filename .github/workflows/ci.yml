@@ -7,6 +7,9 @@ on:
     branches: [main]
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true
@@ -34,42 +37,56 @@ jobs:
         run: chmod +x gradlew
 
       - name: Unit tests (all modules)
+        id: tests
         run: |
           set -o pipefail
           ./gradlew --no-daemon --stacktrace testDebugUnitTest 2>&1 | tee /tmp/test-log.txt
 
       - name: Static analysis (detekt)
+        id: detekt
         if: success() || failure()
         run: |
           set -o pipefail
           ./gradlew --no-daemon detekt 2>&1 | tee /tmp/detekt-log.txt
 
       - name: Android Lint
+        id: lint
         if: success() || failure()
         run: |
           set -o pipefail
           ./gradlew --no-daemon lintDebug 2>&1 | tee /tmp/lint-log.txt
 
       - name: Assemble Debug
+        id: assemble
         if: success()
         run: |
           set -o pipefail
           ./gradlew --no-daemon assembleDebug 2>&1 | tee /tmp/assemble-log.txt
 
-      - name: Publish failure log to step summary
+      - name: Capture failure log into workspace
         if: failure()
         run: |
           {
-            echo "## CI failure log (tail)"
+            echo "=== CI FAILURE CAPTURE $(date -u +%FT%TZ) ==="
             for f in /tmp/test-log.txt /tmp/detekt-log.txt /tmp/lint-log.txt /tmp/assemble-log.txt; do
               if [ -f "$f" ]; then
-                echo "### $f"
-                echo '```'
-                tail -n 120 "$f"
-                echo '```'
+                echo ""
+                echo "########## $f (last 200 lines) ##########"
+                tail -n 200 "$f"
               fi
             done
-          } >> "$GITHUB_STEP_SUMMARY"
+          } > ci-last-error.log || true
+
+      - name: Commit failure log (for sandbox visibility)
+        if: failure()
+        run: |
+          if [ -f ci-last-error.log ]; then
+            git config user.name "MuChinApp"
+            git config user.email "311970907+MuChinApp@users.noreply.github.com"
+            git add -f ci-last-error.log
+            git commit -m "ci: capture failure log [skip ci]" || true
+            git push origin HEAD || true
+          fi
 
       - name: Upload logs and reports
         if: always()
@@ -81,9 +98,9 @@ jobs:
             /tmp/detekt-log.txt
             /tmp/lint-log.txt
             /tmp/assemble-log.txt
+            ci-last-error.log
             **/build/reports/tests/**
             **/build/reports/lint-results*
-            **/build/reports/detekt**
           retention-days: 14
           if-no-files-found: ignore
 
