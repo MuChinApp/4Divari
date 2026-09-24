@@ -1,9 +1,9 @@
-=== CI FAILURE CAPTURE 2026-09-24T04:17:01Z ===
+=== CI FAILURE CAPTURE 2026-09-24T04:22:10Z ===
 
 ########## /tmp/test-log.txt : FAILURE HEADERS ##########
 17:FAILURE: Build failed with an exception.
 19:* What went wrong:
-175:BUILD FAILED in 1m 12s
+167:BUILD FAILED in 1m 19s
 
 ########## /tmp/test-log.txt (first 80 lines) ##########
 Downloading https://services.gradle.org/distributions/gradle-8.11.1-bin.zip
@@ -20,7 +20,7 @@ For more details see https://docs.gradle.org/8.11.1/release-notes.html
 
 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.11.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
 Daemon will be stopped at the end of the build 
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/tests-1790223323113.json
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/tests-1790223626385.json
 
 FAILURE: Build failed with an exception.
 
@@ -29,13 +29,9 @@ Circular dependency between the following tasks:
 :feature:auth:bundleLibCompileToJarDebug
 +--- :feature:auth:compileDebugJavaWithJavac
 |    +--- :feature:auth:bundleLibCompileToJarDebug (*)
-|    +--- :feature:auth:compileDebugKotlin
-|    |    +--- :feature:auth:bundleLibCompileToJarDebug (*)
-|    |    \--- :feature:auth:kspDebugKotlin
-|    |         \--- :feature:auth:bundleLibCompileToJarDebug (*)
-|    \--- :feature:auth:kspDebugKotlin (*)
-+--- :feature:auth:compileDebugKotlin (*)
-\--- :feature:auth:kspDebugKotlin (*)
+|    \--- :feature:auth:compileDebugKotlin
+|         \--- :feature:auth:bundleLibCompileToJarDebug (*)
+\--- :feature:auth:compileDebugKotlin (*)
 
 (*) - details omitted (listed previously)
 
@@ -50,13 +46,9 @@ org.gradle.api.CircularReferenceException: Circular dependency between the follo
 :feature:auth:bundleLibCompileToJarDebug
 +--- :feature:auth:compileDebugJavaWithJavac
 |    +--- :feature:auth:bundleLibCompileToJarDebug (*)
-|    +--- :feature:auth:compileDebugKotlin
-|    |    +--- :feature:auth:bundleLibCompileToJarDebug (*)
-|    |    \--- :feature:auth:kspDebugKotlin
-|    |         \--- :feature:auth:bundleLibCompileToJarDebug (*)
-|    \--- :feature:auth:kspDebugKotlin (*)
-+--- :feature:auth:compileDebugKotlin (*)
-\--- :feature:auth:kspDebugKotlin (*)
+|    \--- :feature:auth:compileDebugKotlin
+|         \--- :feature:auth:bundleLibCompileToJarDebug (*)
+\--- :feature:auth:compileDebugKotlin (*)
 
 (*) - details omitted (listed previously)
 
@@ -86,6 +78,14 @@ org.gradle.api.CircularReferenceException: Circular dependency between the follo
 	at org.gradle.composite.internal.DefaultBuildController.populateWorkGraph(DefaultBuildController.java:76)
 	at org.gradle.composite.internal.DefaultIncludedBuildTaskGraph$DefaultBuildTreeWorkGraphBuilder.withWorkGraph(DefaultIncludedBuildTaskGraph.java:153)
 	at org.gradle.internal.buildtree.DefaultBuildTreeWorkPreparer.lambda$scheduleRequestedTasks$1(DefaultBuildTreeWorkPreparer.java:41)
+	at org.gradle.composite.internal.DefaultIncludedBuildTaskGraph$DefaultBuildTreeWorkGraph$1.run(DefaultIncludedBuildTaskGraph.java:209)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOperationRunner.java:29)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOperationRunner.java:26)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:166)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:59)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.run(DefaultBuildOperationRunner.java:47)
 
 ########## /tmp/test-log.txt (last 80 lines) ##########
 	at org.gradle.internal.buildtree.DefaultBuildTreeLifecycleController.lambda$runBuild$4(DefaultBuildTreeLifecycleController.java:120)
@@ -167,10 +167,10 @@ org.gradle.api.CircularReferenceException: Circular dependency between the follo
 	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:48)
 
 
-BUILD FAILED in 1m 12s
+BUILD FAILED in 1m 19s
 
 ########## /tmp/detekt-log.txt : FAILURE HEADERS ##########
-10:/home/runner/work/4Divari/4Divari/feature/auth/src/main/kotlin/ir/chardivari/feature/auth/AuthScreen.kt:69:15: The function AuthScreen(state: AuthUiModel, error: AppError?, modifier: Modifier, onPhoneChange: (String) -> Unit, onSendOtp: () -> Unit, onVerify: (String) -> Unit, onResend: () -> Unit, onBack: () -> Unit) has too many parameters. The current threshold is set to 6. [LongParameterList]
+10:/home/runner/work/4Divari/4Divari/feature/auth/src/main/kotlin/ir/chardivari/feature/auth/AuthScreen.kt:91:15: The function AuthScreen(state: AuthUiModel, error: AppError?, modifier: Modifier, onPhoneChange: (String) -> Unit, onSendOtp: () -> Unit, onVerify: (String) -> Unit, onResend: () -> Unit, onBack: () -> Unit) has too many parameters. The current threshold is set to 6. [LongParameterList]
 
 ########## /tmp/detekt-log.txt (first 80 lines) ##########
 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.11.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
@@ -182,15 +182,15 @@ Daemon will be stopped at the end of the build
 /home/runner/work/4Divari/4Divari/core/designsystem/src/main/kotlin/ir/chardivari/core/designsystem/components/StateComponents.kt:111:15: The function ErrorState(title: String, modifier: Modifier, description: String?, canRetry: Boolean, onRetry: (() -> Unit)?, secondaryActionLabel: String?, onSecondaryAction: (() -> Unit)?) has too many parameters. The current threshold is set to 6. [LongParameterList]
 /home/runner/work/4Divari/4Divari/core/designsystem/src/main/kotlin/ir/chardivari/core/designsystem/components/PropertyCard.kt:90:17: The function PropertyCard(photoUrl: String?, priceLine: String, pricePerSqmLine: String, titleLine: String, locationLine: String, amenitiesLine: String?, verificationLabel: String?, updatedLabel: String, modifier: Modifier, isFixtureData: Boolean, onFavorite: () -> Unit, onShare: () -> Unit, onCompare: () -> Unit, onClick: () -> Unit) has too many parameters. The current threshold is set to 6. [LongParameterList]
 /home/runner/work/4Divari/4Divari/core/designsystem/src/main/kotlin/ir/chardivari/core/designsystem/components/PropertyCard.kt:90:5: The function PropertyCard is too long (103). The maximum length is 80. [LongMethod]
-/home/runner/work/4Divari/4Divari/feature/auth/src/main/kotlin/ir/chardivari/feature/auth/AuthScreen.kt:69:15: The function AuthScreen(state: AuthUiModel, error: AppError?, modifier: Modifier, onPhoneChange: (String) -> Unit, onSendOtp: () -> Unit, onVerify: (String) -> Unit, onResend: () -> Unit, onBack: () -> Unit) has too many parameters. The current threshold is set to 6. [LongParameterList]
+/home/runner/work/4Divari/4Divari/feature/auth/src/main/kotlin/ir/chardivari/feature/auth/AuthScreen.kt:91:15: The function AuthScreen(state: AuthUiModel, error: AppError?, modifier: Modifier, onPhoneChange: (String) -> Unit, onSendOtp: () -> Unit, onVerify: (String) -> Unit, onResend: () -> Unit, onBack: () -> Unit) has too many parameters. The current threshold is set to 6. [LongParameterList]
 /home/runner/work/4Divari/4Divari/core/network/src/main/kotlin/ir/chardivari/core/network/ErrorMapper.kt:54:17: Instead of catching for a general exception type and checking for a specific exception type, use multiple catch blocks. [InstanceOfCheckForException]
 /home/runner/work/4Divari/4Divari/core/network/src/main/kotlin/ir/chardivari/core/network/SafeApi.kt:23:21: Instead of catching for a general exception type and checking for a specific exception type, use multiple catch blocks. [InstanceOfCheckForException]
 /home/runner/work/4Divari/4Divari/core/auth/src/main/kotlin/ir/chardivari/core/auth/AuthRepository.kt:200:17: Instead of catching for a general exception type and checking for a specific exception type, use multiple catch blocks. [InstanceOfCheckForException]
 /home/runner/work/4Divari/4Divari/core/auth/src/main/kotlin/ir/chardivari/core/auth/SessionStore.kt:38:20: Use check() or error() instead of throwing an IllegalStateException. [UseCheckOrError]
 
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/detekt-1790223390278.json
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/detekt-1790223698902.json
 
-BUILD SUCCESSFUL in 19s
+BUILD SUCCESSFUL in 21s
 1 actionable task: 1 executed
 
 ########## /tmp/detekt-log.txt (last 80 lines) ##########
@@ -203,26 +203,26 @@ Daemon will be stopped at the end of the build
 /home/runner/work/4Divari/4Divari/core/designsystem/src/main/kotlin/ir/chardivari/core/designsystem/components/StateComponents.kt:111:15: The function ErrorState(title: String, modifier: Modifier, description: String?, canRetry: Boolean, onRetry: (() -> Unit)?, secondaryActionLabel: String?, onSecondaryAction: (() -> Unit)?) has too many parameters. The current threshold is set to 6. [LongParameterList]
 /home/runner/work/4Divari/4Divari/core/designsystem/src/main/kotlin/ir/chardivari/core/designsystem/components/PropertyCard.kt:90:17: The function PropertyCard(photoUrl: String?, priceLine: String, pricePerSqmLine: String, titleLine: String, locationLine: String, amenitiesLine: String?, verificationLabel: String?, updatedLabel: String, modifier: Modifier, isFixtureData: Boolean, onFavorite: () -> Unit, onShare: () -> Unit, onCompare: () -> Unit, onClick: () -> Unit) has too many parameters. The current threshold is set to 6. [LongParameterList]
 /home/runner/work/4Divari/4Divari/core/designsystem/src/main/kotlin/ir/chardivari/core/designsystem/components/PropertyCard.kt:90:5: The function PropertyCard is too long (103). The maximum length is 80. [LongMethod]
-/home/runner/work/4Divari/4Divari/feature/auth/src/main/kotlin/ir/chardivari/feature/auth/AuthScreen.kt:69:15: The function AuthScreen(state: AuthUiModel, error: AppError?, modifier: Modifier, onPhoneChange: (String) -> Unit, onSendOtp: () -> Unit, onVerify: (String) -> Unit, onResend: () -> Unit, onBack: () -> Unit) has too many parameters. The current threshold is set to 6. [LongParameterList]
+/home/runner/work/4Divari/4Divari/feature/auth/src/main/kotlin/ir/chardivari/feature/auth/AuthScreen.kt:91:15: The function AuthScreen(state: AuthUiModel, error: AppError?, modifier: Modifier, onPhoneChange: (String) -> Unit, onSendOtp: () -> Unit, onVerify: (String) -> Unit, onResend: () -> Unit, onBack: () -> Unit) has too many parameters. The current threshold is set to 6. [LongParameterList]
 /home/runner/work/4Divari/4Divari/core/network/src/main/kotlin/ir/chardivari/core/network/ErrorMapper.kt:54:17: Instead of catching for a general exception type and checking for a specific exception type, use multiple catch blocks. [InstanceOfCheckForException]
 /home/runner/work/4Divari/4Divari/core/network/src/main/kotlin/ir/chardivari/core/network/SafeApi.kt:23:21: Instead of catching for a general exception type and checking for a specific exception type, use multiple catch blocks. [InstanceOfCheckForException]
 /home/runner/work/4Divari/4Divari/core/auth/src/main/kotlin/ir/chardivari/core/auth/AuthRepository.kt:200:17: Instead of catching for a general exception type and checking for a specific exception type, use multiple catch blocks. [InstanceOfCheckForException]
 /home/runner/work/4Divari/4Divari/core/auth/src/main/kotlin/ir/chardivari/core/auth/SessionStore.kt:38:20: Use check() or error() instead of throwing an IllegalStateException. [UseCheckOrError]
 
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/detekt-1790223390278.json
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/detekt-1790223698902.json
 
-BUILD SUCCESSFUL in 19s
+BUILD SUCCESSFUL in 21s
 1 actionable task: 1 executed
 
 ########## /tmp/lint-log.txt : FAILURE HEADERS ##########
 5:FAILURE: Build failed with an exception.
 7:* What went wrong:
-29:BUILD FAILED in 13s
+25:BUILD FAILED in 13s
 
 ########## /tmp/lint-log.txt (first 80 lines) ##########
 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.11.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
 Daemon will be stopped at the end of the build 
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/lint-1790223410434.json
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/lint-1790223720594.json
 
 FAILURE: Build failed with an exception.
 
@@ -231,13 +231,9 @@ Circular dependency between the following tasks:
 :feature:auth:bundleLibCompileToJarDebug
 +--- :feature:auth:compileDebugJavaWithJavac
 |    +--- :feature:auth:bundleLibCompileToJarDebug (*)
-|    +--- :feature:auth:compileDebugKotlin
-|    |    +--- :feature:auth:bundleLibCompileToJarDebug (*)
-|    |    \--- :feature:auth:kspDebugKotlin
-|    |         \--- :feature:auth:bundleLibCompileToJarDebug (*)
-|    \--- :feature:auth:kspDebugKotlin (*)
-+--- :feature:auth:compileDebugKotlin (*)
-\--- :feature:auth:kspDebugKotlin (*)
+|    \--- :feature:auth:compileDebugKotlin
+|         \--- :feature:auth:bundleLibCompileToJarDebug (*)
+\--- :feature:auth:compileDebugKotlin (*)
 
 (*) - details omitted (listed previously)
 
@@ -253,7 +249,7 @@ BUILD FAILED in 13s
 ########## /tmp/lint-log.txt (last 80 lines) ##########
 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.11.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
 Daemon will be stopped at the end of the build 
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/lint-1790223410434.json
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/lint-1790223720594.json
 
 FAILURE: Build failed with an exception.
 
@@ -262,13 +258,9 @@ Circular dependency between the following tasks:
 :feature:auth:bundleLibCompileToJarDebug
 +--- :feature:auth:compileDebugJavaWithJavac
 |    +--- :feature:auth:bundleLibCompileToJarDebug (*)
-|    +--- :feature:auth:compileDebugKotlin
-|    |    +--- :feature:auth:bundleLibCompileToJarDebug (*)
-|    |    \--- :feature:auth:kspDebugKotlin
-|    |         \--- :feature:auth:bundleLibCompileToJarDebug (*)
-|    \--- :feature:auth:kspDebugKotlin (*)
-+--- :feature:auth:compileDebugKotlin (*)
-\--- :feature:auth:kspDebugKotlin (*)
+|    \--- :feature:auth:compileDebugKotlin
+|         \--- :feature:auth:bundleLibCompileToJarDebug (*)
+\--- :feature:auth:compileDebugKotlin (*)
 
 (*) - details omitted (listed previously)
 
