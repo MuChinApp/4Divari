@@ -172,8 +172,9 @@ fun PropertyDetailRoute(
                             style = MaterialTheme.typography.bodyLarge,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                         )
-                        if (detail.verificationLabel != null) {
-                            VerificationBadge(label = detail.verificationLabel)
+                        val vLabel = detail.verificationLabel
+                        if (vLabel != null) {
+                            VerificationBadge(label = vLabel)
                         }
                         Text(
                             text = detail.updatedLabel,

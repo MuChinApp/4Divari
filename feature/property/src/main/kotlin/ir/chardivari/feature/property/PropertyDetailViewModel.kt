@@ -41,7 +41,7 @@ class PropertyDetailViewModel @Inject constructor(
     private val analytics: AnalyticsTracker,
 ) : ViewModel() {
 
-    private val listingId: String = checkNotNull(savedStateHandle["listingId"])
+    private val listingId: String = checkNotNull(savedStateHandle["propertyId"])
 
     private val _uiState = MutableStateFlow<UiState<PropertyDetailModel>>(UiState.Loading)
     val uiState: StateFlow<UiState<PropertyDetailModel>> = _uiState.asStateFlow()
