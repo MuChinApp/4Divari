@@ -165,5 +165,6 @@ Principles: FK + indexes + unique constraints + timestamps + soft-delete where n
 | OFL license in `res/font` | ❌ | Android rejects non-font files in `res/font` |
 | compile rounds | ❌→✅ | Composable context, Int/Long, suspend type, Failure generics, retrofit package |
 | `35948318038` @ `abffaa6` | ✅ **GREEN** | test + detekt + lint + assembleDebug all pass |
+| `35950252454` @ `e456ecd` | ✅ **GREEN** | confirms detekt full-tree source config + docs update |
 
 *No fake polish. Every placeholder above is labeled as placeholder.*
