@@ -260,11 +260,4 @@ fun DevDataBadge(
     }
 }
 
-@Suppress("unused")
-private val unusedWidth = AppSpacing.None
 
-@Suppress("unused")
-private fun keepWidthImport() {
-    // width import reserved for future card layouts in design system
-    Spacer(Modifier.width(0.dp))
-}

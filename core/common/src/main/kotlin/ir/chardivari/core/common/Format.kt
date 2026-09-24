@@ -21,6 +21,8 @@ object Format {
 
     fun toPersianDigits(value: Long): String = value.toString().toPersianDigits()
 
+    fun toPersianDigits(value: Int): String = value.toString().toPersianDigits()
+
     /**
      * Group integer with thousands separators (Persian/ASCII), then Persian digits.
      * Example: 12_800_000_000 → «۱۲٬۸۰۰٬۰۰۰٬۰۰۰»
