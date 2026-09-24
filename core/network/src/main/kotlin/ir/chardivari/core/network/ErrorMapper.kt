@@ -48,14 +48,13 @@ object ErrorMapper {
         )
     }
 
-    fun <T> runCatchingApi(block: suspend () -> Response<T>): suspend -> AppResult<T> = {
+    suspend fun <T> runCatchingApi(block: suspend () -> Response<T>): AppResult<T> =
         try {
             responseToResult(block())
         } catch (t: Throwable) {
             if (t is kotlinx.coroutines.CancellationException) throw t
             AppResult.Failure(fromThrowable(t), t)
         }
-    }
 
     private fun ResponseBody?.safeMessage(): String? = try {
         this?.string()?.take(200)
