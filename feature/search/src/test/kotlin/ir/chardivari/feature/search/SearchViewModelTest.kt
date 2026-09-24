@@ -77,7 +77,7 @@ class SearchViewModelTest {
             return result
         }
 
-        override suspend fun byId(listingId: String) = result
+        override suspend fun byId(listingId: String): AppResult<Listing> = AppResult.Success(listing("a"))
 
         private companion object {
             fun listing(id: String) = Listing(
