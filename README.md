@@ -44,4 +44,4 @@ Environment overrides (gradle properties):
 
 ## License / brand
 
-Product name **4Divari / چاردیواری**. Font: Vazirmatn (OFL) — see `core/designsystem/src/main/res/font/OFL-Vazirmatn.txt`.
+Product name **4Divari / چاردیواری**. Font: Vazirmatn (OFL) — see `docs/licenses/OFL-Vazirmatn.txt`.
