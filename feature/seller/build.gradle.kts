@@ -46,6 +46,7 @@ dependencies {
     implementation(libs.coil.compose)
     implementation(libs.compose.material.icons)
     implementation(libs.androidx.activity.compose)
+    implementation(libs.kotlinx.serialization.json)
     ksp(libs.hilt.compiler)
 
     testImplementation(libs.junit)

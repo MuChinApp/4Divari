@@ -180,7 +180,9 @@ class SellerWizardViewModel @Inject constructor(
 
     fun toggleBalcony() = updateDraft { it.copy(hasBalcony = !it.hasBalcony) }
 
-    fun clearPublishError() = updateDraft { it.copy(publishError = null) }
+    fun clearPublishError() {
+        _uiState.value = _uiState.value.copy(publishError = null)
+    }
 
     /**
      * @return number of rejected entries (unsupported format or over limit).
