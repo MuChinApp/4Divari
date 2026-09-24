@@ -1,0 +1,134 @@
+=== BACKEND FAILURE CAPTURE 2026-09-24T13:05:24Z ==
+9:psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:97: NOTICE:  policy "users_self_read" for relation "users" does not exist, skipping
+10:psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:103: NOTICE:  policy "users_self_update" for relation "users" does not exist, skipping
+11:psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:110: NOTICE:  policy "users_admin_all" for relation "users" does not exist, skipping
+12:psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:114: NOTICE:  policy "profiles_public_read" for relation "profiles" does not exist, skipping
+13:psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:118: NOTICE:  policy "profiles_self_write" for relation "profiles" does not exist, skipping
+14:psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:123: NOTICE:  policy "profiles_self_insert" for relation "profiles" does not exist, skipping
+15:psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:128: NOTICE:  policy "roles_read" for relation "roles" does not exist, skipping
+16:psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:131: NOTICE:  policy "permissions_read" for relation "permissions" does not exist, skipping
+17:psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:134: NOTICE:  policy "role_permissions_read" for relation "role_permissions" does not exist, skipping
+18:psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:137: NOTICE:  policy "user_roles_self_read" for relation "user_roles" does not exist, skipping
+19:psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:144: NOTICE:  policy "user_roles_admin_write" for relation "user_roles" does not exist, skipping
+20:psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:150: NOTICE:  policy "agencies_public_read" for relation "agencies" does not exist, skipping
+21:psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:154: NOTICE:  policy "agencies_owner_write" for relation "agencies" does not exist, skipping
+22:psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:159: NOTICE:  policy "agencies_member_read" for relation "agency_members" does not exist, skipping
+23:psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:167: NOTICE:  policy "agencies_owner_manage_members" for relation "agency_members" does not exist, skipping
+24:psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:184: NOTICE:  policy "properties_public_read" for relation "properties" does not exist, skipping
+25:psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:197: NOTICE:  policy "properties_party_write" for relation "properties" does not exist, skipping
+26:psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:204: NOTICE:  policy "property_addresses_party_read" for relation "property_addresses" does not exist, skipping
+27:psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:219: NOTICE:  policy "property_media_public_read" for relation "property_media" does not exist, skipping
+28:psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:223: NOTICE:  policy "property_features_public_read" for relation "property_features" does not exist, skipping
+29:psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:227: NOTICE:  policy "listings_public_active_read" for relation "listings" does not exist, skipping
+30:psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:241: NOTICE:  policy "listings_party_insert" for relation "listings" does not exist, skipping
+31:psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:252: NOTICE:  policy "listings_party_update" for relation "listings" does not exist, skipping
+32:psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:257: NOTICE:  policy "listings_party_delete" for relation "listings" does not exist, skipping
+33:psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:265: NOTICE:  policy "status_history_party_read" for relation "listing_status_history" does not exist, skipping
+34:psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:269: NOTICE:  policy "verifications_party_read" for relation "property_verifications" does not exist, skipping
+35:psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:274: NOTICE:  policy "verifications_admin_write" for relation "property_verifications" does not exist, skipping
+36:psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:278: NOTICE:  policy "price_history_public_read" for relation "property_price_history" does not exist, skipping
+37:psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:284: NOTICE:  policy "favorites_self_all" for relation "favorites" does not exist, skipping
+38:psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:289: NOTICE:  policy "saved_searches_self_all" for relation "saved_searches" does not exist, skipping
+39:psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:294: NOTICE:  policy "search_events_self_insert" for relation "search_events" does not exist, skipping
+40:psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:300: NOTICE:  policy "search_events_self_read" for relation "search_events" does not exist, skipping
+41:psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:306: NOTICE:  policy "requirements_self_all" for relation "buyer_requirements" does not exist, skipping
+42:psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:311: NOTICE:  policy "matches_requirement_owner_read" for relation "matches" does not exist, skipping
+43:psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:322: NOTICE:  policy "matches_service_write" for relation "matches" does not exist, skipping
+44:psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:327: NOTICE:  policy "leads_agent_read" for relation "leads" does not exist, skipping
+45:psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:331: NOTICE:  policy "leads_agent_write" for relation "leads" does not exist, skipping
+46:psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:335: NOTICE:  policy "leads_agent_update" for relation "leads" does not exist, skipping
+47:psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:342: NOTICE:  policy "conversations_participant_read" for relation "conversations" does not exist, skipping
+48:psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:352: NOTICE:  policy "participants_self_read" for relation "conversation_participants" does not exist, skipping
+49:psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:364: NOTICE:  policy "participants_self_join" for relation "conversation_participants" does not exist, skipping
+50:psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:368: NOTICE:  policy "messages_participant_read" for relation "messages" does not exist, skipping
+51:psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:378: NOTICE:  policy "messages_participant_insert" for relation "messages" does not exist, skipping
+52:psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:391: NOTICE:  policy "visits_party_read" for relation "visits" does not exist, skipping
+53:psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:400: NOTICE:  policy "visits_buyer_insert" for relation "visits" does not exist, skipping
+54:psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:407: NOTICE:  policy "visits_party_update" for relation "visits" does not exist, skipping
+55:psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:417: NOTICE:  policy "offers_party_read" for relation "offers" does not exist, skipping
+56:psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:425: NOTICE:  policy "offers_buyer_insert" for relation "offers" does not exist, skipping
+57:psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:429: NOTICE:  policy "offers_party_update" for relation "offers" does not exist, skipping
+58:psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:438: NOTICE:  policy "offer_events_party_read" for relation "offer_events" does not exist, skipping
+59:psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:452: NOTICE:  policy "offer_events_party_insert" for relation "offer_events" does not exist, skipping
+60:psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:461: NOTICE:  policy "notifications_self_all" for relation "notifications" does not exist, skipping
+61:psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:466: NOTICE:  policy "reports_anyone_insert" for relation "reports" does not exist, skipping
+62:psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:472: NOTICE:  policy "reports_reporter_admin_read" for relation "reports" does not exist, skipping
+63:psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:478: NOTICE:  policy "reports_admin_update" for relation "reports" does not exist, skipping
+64:psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:482: NOTICE:  policy "reviews_public_read" for relation "reviews" does not exist, skipping
+65:psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:486: NOTICE:  policy "reviews_author_insert" for relation "reviews" does not exist, skipping
+66:psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:491: NOTICE:  policy "audit_admin_read" for relation "audit_logs" does not exist, skipping
+67:psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:495: NOTICE:  policy "audit_insert_service" for relation "audit_logs" does not exist, skipping
+72:psql:/home/runner/work/4Divari/4Divari/supabase/migrations/00092_auth_sync_and_contact.sql:72: ERROR:  role "anon" does not exist
+---- last 120 lines ----
+== Applying migrations from /home/runner/work/4Divari/4Divari/supabase/migrations ==
+  -> 0001_extensions_and_helpers.sql
+  -> 0002_identity.sql
+  -> 0003_property_listing.sql
+  -> 0004_marketplace.sql
+  -> 0005_communication.sql
+  -> 0006_trust_audit.sql
+  -> 0007_rls_policies.sql
+psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:97: NOTICE:  policy "users_self_read" for relation "users" does not exist, skipping
+psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:103: NOTICE:  policy "users_self_update" for relation "users" does not exist, skipping
+psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:110: NOTICE:  policy "users_admin_all" for relation "users" does not exist, skipping
+psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:114: NOTICE:  policy "profiles_public_read" for relation "profiles" does not exist, skipping
+psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:118: NOTICE:  policy "profiles_self_write" for relation "profiles" does not exist, skipping
+psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:123: NOTICE:  policy "profiles_self_insert" for relation "profiles" does not exist, skipping
+psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:128: NOTICE:  policy "roles_read" for relation "roles" does not exist, skipping
+psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:131: NOTICE:  policy "permissions_read" for relation "permissions" does not exist, skipping
+psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:134: NOTICE:  policy "role_permissions_read" for relation "role_permissions" does not exist, skipping
+psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:137: NOTICE:  policy "user_roles_self_read" for relation "user_roles" does not exist, skipping
+psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:144: NOTICE:  policy "user_roles_admin_write" for relation "user_roles" does not exist, skipping
+psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:150: NOTICE:  policy "agencies_public_read" for relation "agencies" does not exist, skipping
+psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:154: NOTICE:  policy "agencies_owner_write" for relation "agencies" does not exist, skipping
+psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:159: NOTICE:  policy "agencies_member_read" for relation "agency_members" does not exist, skipping
+psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:167: NOTICE:  policy "agencies_owner_manage_members" for relation "agency_members" does not exist, skipping
+psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:184: NOTICE:  policy "properties_public_read" for relation "properties" does not exist, skipping
+psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:197: NOTICE:  policy "properties_party_write" for relation "properties" does not exist, skipping
+psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:204: NOTICE:  policy "property_addresses_party_read" for relation "property_addresses" does not exist, skipping
+psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:219: NOTICE:  policy "property_media_public_read" for relation "property_media" does not exist, skipping
+psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:223: NOTICE:  policy "property_features_public_read" for relation "property_features" does not exist, skipping
+psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:227: NOTICE:  policy "listings_public_active_read" for relation "listings" does not exist, skipping
+psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:241: NOTICE:  policy "listings_party_insert" for relation "listings" does not exist, skipping
+psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:252: NOTICE:  policy "listings_party_update" for relation "listings" does not exist, skipping
+psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:257: NOTICE:  policy "listings_party_delete" for relation "listings" does not exist, skipping
+psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:265: NOTICE:  policy "status_history_party_read" for relation "listing_status_history" does not exist, skipping
+psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:269: NOTICE:  policy "verifications_party_read" for relation "property_verifications" does not exist, skipping
+psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:274: NOTICE:  policy "verifications_admin_write" for relation "property_verifications" does not exist, skipping
+psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:278: NOTICE:  policy "price_history_public_read" for relation "property_price_history" does not exist, skipping
+psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:284: NOTICE:  policy "favorites_self_all" for relation "favorites" does not exist, skipping
+psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:289: NOTICE:  policy "saved_searches_self_all" for relation "saved_searches" does not exist, skipping
+psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:294: NOTICE:  policy "search_events_self_insert" for relation "search_events" does not exist, skipping
+psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:300: NOTICE:  policy "search_events_self_read" for relation "search_events" does not exist, skipping
+psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:306: NOTICE:  policy "requirements_self_all" for relation "buyer_requirements" does not exist, skipping
+psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:311: NOTICE:  policy "matches_requirement_owner_read" for relation "matches" does not exist, skipping
+psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:322: NOTICE:  policy "matches_service_write" for relation "matches" does not exist, skipping
+psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:327: NOTICE:  policy "leads_agent_read" for relation "leads" does not exist, skipping
+psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:331: NOTICE:  policy "leads_agent_write" for relation "leads" does not exist, skipping
+psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:335: NOTICE:  policy "leads_agent_update" for relation "leads" does not exist, skipping
+psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:342: NOTICE:  policy "conversations_participant_read" for relation "conversations" does not exist, skipping
+psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:352: NOTICE:  policy "participants_self_read" for relation "conversation_participants" does not exist, skipping
+psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:364: NOTICE:  policy "participants_self_join" for relation "conversation_participants" does not exist, skipping
+psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:368: NOTICE:  policy "messages_participant_read" for relation "messages" does not exist, skipping
+psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:378: NOTICE:  policy "messages_participant_insert" for relation "messages" does not exist, skipping
+psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:391: NOTICE:  policy "visits_party_read" for relation "visits" does not exist, skipping
+psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:400: NOTICE:  policy "visits_buyer_insert" for relation "visits" does not exist, skipping
+psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:407: NOTICE:  policy "visits_party_update" for relation "visits" does not exist, skipping
+psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:417: NOTICE:  policy "offers_party_read" for relation "offers" does not exist, skipping
+psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:425: NOTICE:  policy "offers_buyer_insert" for relation "offers" does not exist, skipping
+psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:429: NOTICE:  policy "offers_party_update" for relation "offers" does not exist, skipping
+psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:438: NOTICE:  policy "offer_events_party_read" for relation "offer_events" does not exist, skipping
+psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:452: NOTICE:  policy "offer_events_party_insert" for relation "offer_events" does not exist, skipping
+psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:461: NOTICE:  policy "notifications_self_all" for relation "notifications" does not exist, skipping
+psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:466: NOTICE:  policy "reports_anyone_insert" for relation "reports" does not exist, skipping
+psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:472: NOTICE:  policy "reports_reporter_admin_read" for relation "reports" does not exist, skipping
+psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:478: NOTICE:  policy "reports_admin_update" for relation "reports" does not exist, skipping
+psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:482: NOTICE:  policy "reviews_public_read" for relation "reviews" does not exist, skipping
+psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:486: NOTICE:  policy "reviews_author_insert" for relation "reviews" does not exist, skipping
+psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:491: NOTICE:  policy "audit_admin_read" for relation "audit_logs" does not exist, skipping
+psql:/home/runner/work/4Divari/4Divari/supabase/migrations/0007_rls_policies.sql:495: NOTICE:  policy "audit_insert_service" for relation "audit_logs" does not exist, skipping
+  -> 0008_storage_and_functions.sql
+  -> 00090_seed_dev.sql
+  -> 00091_grants_ci_roles.sql
+  -> 00092_auth_sync_and_contact.sql
+psql:/home/runner/work/4Divari/4Divari/supabase/migrations/00092_auth_sync_and_contact.sql:72: ERROR:  role "anon" does not exist
