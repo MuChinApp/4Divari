@@ -1,17 +1,13 @@
-=== CI FAILURE CAPTURE 2026-09-24T13:15:55Z ===
+=== CI FAILURE CAPTURE 2026-09-24T13:21:05Z ===
 
 ########## /tmp/test-log.txt : FAILURE HEADERS ##########
-366:> Task :core:marketplace:compileDebugKotlin FAILED
-367:e: file:///home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/MarketplaceRepositories.kt:339:40 Unresolved reference 'firstOrNull'.
-368:e: file:///home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/MarketplaceRepositories.kt:339:55 Unresolved reference 'it'.
-369:e: file:///home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/MarketplaceRepositories.kt:346:41 Argument type mismatch: actual type is 'kotlin.Any', but 'kotlin.String' was expected.
-370:e: file:///home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/MarketplaceRepositories.kt:347:47 Unresolved reference 'displayName'.
-371:e: file:///home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/MarketplaceRepositories.kt:348:45 Unresolved reference 'partyRole'.
-376:FAILURE: Build failed with an exception.
-378:* What went wrong:
-421:Caused by: org.gradle.workers.internal.DefaultWorkerExecutor$WorkExecutionException: A failure occurred while executing org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction
-550:Caused by: org.jetbrains.kotlin.gradle.tasks.CompilationErrorException: Compilation error. See log for more details
-583:BUILD FAILED in 2m 14s
+389:> Task :feature:property:compileDebugKotlin FAILED
+390:e: file:///home/runner/work/4Divari/4Divari/feature/property/src/main/kotlin/ir/chardivari/feature/property/PropertyDetailScreen.kt:176:55 Smart cast to 'kotlin.String' is impossible, because 'verificationLabel' is a public API property declared in different module.
+397:FAILURE: Build failed with an exception.
+399:* What went wrong:
+442:Caused by: org.gradle.workers.internal.DefaultWorkerExecutor$WorkExecutionException: A failure occurred while executing org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction
+571:Caused by: org.jetbrains.kotlin.gradle.tasks.CompilationErrorException: Compilation error. See log for more details
+604:BUILD FAILED in 1m 48s
 
 ########## /tmp/test-log.txt (first 80 lines) ##########
 Downloading https://services.gradle.org/distributions/gradle-8.11.1-bin.zip
@@ -29,70 +25,70 @@ For more details see https://docs.gradle.org/8.11.1/release-notes.html
 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.11.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
 Daemon will be stopped at the end of the build 
 > Task :core:analytics:preBuild UP-TO-DATE
-> Task :core:auth:preBuild UP-TO-DATE
 > Task :core:common:preBuild UP-TO-DATE
 > Task :app:preBuild UP-TO-DATE
-> Task :app:preDebugBuild UP-TO-DATE
+> Task :core:auth:preBuild UP-TO-DATE
 > Task :core:auth:preDebugBuild UP-TO-DATE
 > Task :core:analytics:preDebugBuild UP-TO-DATE
+> Task :app:preDebugBuild UP-TO-DATE
 > Task :core:common:preDebugBuild UP-TO-DATE
 > Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
-> Task :core:common:writeDebugAarMetadata
 > Task :core:analytics:writeDebugAarMetadata
 > Task :core:auth:writeDebugAarMetadata
+> Task :core:common:writeDebugAarMetadata
 > Task :app:generateDebugBuildConfig
+> Task :core:environment:preBuild UP-TO-DATE
 > Task :core:designsystem:preBuild UP-TO-DATE
+> Task :core:environment:preDebugBuild UP-TO-DATE
+> Task :core:designsystem:preDebugBuild UP-TO-DATE
 > Task :core:marketplace:preBuild UP-TO-DATE
 > Task :core:navigation:preBuild UP-TO-DATE
 > Task :core:marketplace:preDebugBuild UP-TO-DATE
-> Task :core:designsystem:preDebugBuild UP-TO-DATE
 > Task :core:navigation:preDebugBuild UP-TO-DATE
-> Task :core:environment:preBuild UP-TO-DATE
-> Task :core:environment:preDebugBuild UP-TO-DATE
-> Task :core:designsystem:writeDebugAarMetadata
-> Task :core:network:preBuild UP-TO-DATE
 > Task :core:environment:writeDebugAarMetadata
+> Task :core:network:preBuild UP-TO-DATE
+> Task :core:designsystem:writeDebugAarMetadata
+> Task :core:network:preDebugBuild UP-TO-DATE
+> Task :core:marketplace:writeDebugAarMetadata
+> Task :core:navigation:writeDebugAarMetadata
 > Task :core:ui:preBuild UP-TO-DATE
 > Task :core:ui:preDebugBuild UP-TO-DATE
-> Task :core:marketplace:writeDebugAarMetadata
-> Task :core:network:preDebugBuild UP-TO-DATE
 > Task :feature:auth:preBuild UP-TO-DATE
-> Task :feature:auth:preDebugBuild UP-TO-DATE
-> Task :core:navigation:writeDebugAarMetadata
 > Task :feature:home:preBuild UP-TO-DATE
 > Task :feature:home:preDebugBuild UP-TO-DATE
-> Task :core:ui:writeDebugAarMetadata
-> Task :feature:home:writeDebugAarMetadata
+> Task :feature:auth:preDebugBuild UP-TO-DATE
 > Task :core:network:writeDebugAarMetadata
-> Task :feature:property:preBuild UP-TO-DATE
-> Task :feature:profile:preBuild UP-TO-DATE
-> Task :feature:property:preDebugBuild UP-TO-DATE
-> Task :feature:saved:preBuild UP-TO-DATE
+> Task :feature:home:writeDebugAarMetadata
 > Task :feature:auth:writeDebugAarMetadata
+> Task :core:ui:writeDebugAarMetadata
+> Task :feature:profile:preBuild UP-TO-DATE
+> Task :feature:saved:preBuild UP-TO-DATE
 > Task :feature:saved:preDebugBuild UP-TO-DATE
+> Task :feature:property:preBuild UP-TO-DATE
 > Task :feature:search:preBuild UP-TO-DATE
+> Task :feature:property:preDebugBuild UP-TO-DATE
 > Task :feature:profile:preDebugBuild UP-TO-DATE
 > Task :feature:search:preDebugBuild UP-TO-DATE
-> Task :feature:property:writeDebugAarMetadata
 > Task :feature:saved:writeDebugAarMetadata
-> Task :feature:profile:writeDebugAarMetadata
 > Task :feature:search:writeDebugAarMetadata
+> Task :feature:profile:writeDebugAarMetadata
+> Task :feature:property:writeDebugAarMetadata
 > Task :app:generateDebugResValues
-> Task :core:common:generateDebugResValues FROM-CACHE
-> Task :core:auth:generateDebugResValues
 > Task :core:analytics:generateDebugResValues
-> Task :core:analytics:generateDebugResources
+> Task :core:common:generateDebugResValues
+> Task :core:auth:generateDebugResValues
 > Task :core:common:generateDebugResources
 > Task :core:auth:generateDebugResources
+> Task :core:analytics:generateDebugResources
 > Task :core:analytics:packageDebugResources
-> Task :core:common:packageDebugResources
 > Task :core:auth:packageDebugResources
+> Task :core:common:packageDebugResources
 > Task :core:designsystem:generateDebugResValues FROM-CACHE
-> Task :core:environment:generateDebugResValues FROM-CACHE
 > Task :core:marketplace:generateDebugResValues FROM-CACHE
-> Task :core:designsystem:generateDebugResources
-> Task :core:marketplace:generateDebugResources FROM-CACHE
+> Task :core:environment:generateDebugResValues FROM-CACHE
 > Task :core:environment:generateDebugResources FROM-CACHE
+> Task :core:marketplace:generateDebugResources FROM-CACHE
+> Task :core:designsystem:generateDebugResources
 > Task :core:environment:packageDebugResources
 
 ########## /tmp/test-log.txt (last 80 lines) ##########
@@ -174,8 +170,8 @@ Caused by: org.jetbrains.kotlin.gradle.tasks.CompilationErrorException: Compilat
 	... 2 more
 
 
-BUILD FAILED in 2m 14s
-253 actionable tasks: 162 executed, 91 from cache
+BUILD FAILED in 1m 48s
+274 actionable tasks: 184 executed, 90 from cache
 
 ########## /tmp/detekt-log.txt : FAILURE HEADERS ##########
 13:/home/runner/work/4Divari/4Divari/feature/auth/src/main/kotlin/ir/chardivari/feature/auth/AuthScreen.kt:91:15: The function AuthScreen(state: AuthUiModel, error: AppError?, modifier: Modifier, onPhoneChange: (String) -> Unit, onSendOtp: () -> Unit, onVerify: (String) -> Unit, onResend: () -> Unit, onBack: () -> Unit) has too many parameters. The current threshold is set to 6. [LongParameterList]
@@ -205,11 +201,10 @@ Daemon will be stopped at the end of the build
 /home/runner/work/4Divari/4Divari/core/auth/src/main/kotlin/ir/chardivari/core/auth/AuthRepository.kt:199:17: Instead of catching for a general exception type and checking for a specific exception type, use multiple catch blocks. [InstanceOfCheckForException]
 /home/runner/work/4Divari/4Divari/app/src/main/kotlin/ir/chardivari/app/MainActivity.kt:153:1: Line detected, which is longer than the defined maximum line length in the code style. [MaxLineLength]
 /home/runner/work/4Divari/4Divari/core/auth/src/main/kotlin/ir/chardivari/core/auth/SessionStore.kt:39:20: Use check() or error() instead of throwing an IllegalStateException. [UseCheckOrError]
-/home/runner/work/4Divari/4Divari/feature/property/src/test/kotlin/ir/chardivari/feature/property/PropertyDetailViewModelTest.kt:50:17: Private property `sample` is unused. [UnusedPrivateProperty]
 
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/detekt-1790255690571.json
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/detekt-1790256022911.json
 
-BUILD SUCCESSFUL in 21s
+BUILD SUCCESSFUL in 15s
 1 actionable task: 1 executed
 
 ########## /tmp/detekt-log.txt (last 80 lines) ##########
@@ -237,89 +232,84 @@ Daemon will be stopped at the end of the build
 /home/runner/work/4Divari/4Divari/core/auth/src/main/kotlin/ir/chardivari/core/auth/AuthRepository.kt:199:17: Instead of catching for a general exception type and checking for a specific exception type, use multiple catch blocks. [InstanceOfCheckForException]
 /home/runner/work/4Divari/4Divari/app/src/main/kotlin/ir/chardivari/app/MainActivity.kt:153:1: Line detected, which is longer than the defined maximum line length in the code style. [MaxLineLength]
 /home/runner/work/4Divari/4Divari/core/auth/src/main/kotlin/ir/chardivari/core/auth/SessionStore.kt:39:20: Use check() or error() instead of throwing an IllegalStateException. [UseCheckOrError]
-/home/runner/work/4Divari/4Divari/feature/property/src/test/kotlin/ir/chardivari/feature/property/PropertyDetailViewModelTest.kt:50:17: Private property `sample` is unused. [UnusedPrivateProperty]
 
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/detekt-1790255690571.json
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/detekt-1790256022911.json
 
-BUILD SUCCESSFUL in 21s
+BUILD SUCCESSFUL in 15s
 1 actionable task: 1 executed
 
 ########## /tmp/lint-log.txt : FAILURE HEADERS ##########
-541:> Task :core:marketplace:compileDebugKotlin FAILED
-542:e: file:///home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/MarketplaceRepositories.kt:339:40 Unresolved reference 'firstOrNull'.
-543:e: file:///home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/MarketplaceRepositories.kt:339:55 Unresolved reference 'it'.
-544:e: file:///home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/MarketplaceRepositories.kt:346:41 Argument type mismatch: actual type is 'kotlin.Any', but 'kotlin.String' was expected.
-545:e: file:///home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/MarketplaceRepositories.kt:347:47 Unresolved reference 'displayName'.
-546:e: file:///home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/MarketplaceRepositories.kt:348:45 Unresolved reference 'partyRole'.
-553:FAILURE: Build failed with an exception.
-555:* What went wrong:
-566:BUILD FAILED in 46s
+575:> Task :feature:property:compileDebugKotlin FAILED
+576:e: file:///home/runner/work/4Divari/4Divari/feature/property/src/main/kotlin/ir/chardivari/feature/property/PropertyDetailScreen.kt:176:55 Smart cast to 'kotlin.String' is impossible, because 'verificationLabel' is a public API property declared in different module.
+583:FAILURE: Build failed with an exception.
+585:* What went wrong:
+596:BUILD FAILED in 28s
 
 ########## /tmp/lint-log.txt (first 80 lines) ##########
 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.11.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
 Daemon will be stopped at the end of the build 
-> Task :core:ui:preBuild UP-TO-DATE
-> Task :core:designsystem:checkKotlinGradlePluginConfigurationErrors SKIPPED
 > Task :core:environment:preBuild UP-TO-DATE
-> Task :core:ui:preDebugBuild UP-TO-DATE
+> Task :core:designsystem:checkKotlinGradlePluginConfigurationErrors SKIPPED
 > Task :core:common:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:ui:preBuild UP-TO-DATE
 > Task :core:common:preBuild UP-TO-DATE
+> Task :core:common:preDebugBuild UP-TO-DATE
 > Task :core:designsystem:preBuild UP-TO-DATE
 > Task :core:environment:preDebugBuild UP-TO-DATE
+> Task :core:ui:preDebugBuild UP-TO-DATE
 > Task :core:designsystem:preDebugBuild UP-TO-DATE
-> Task :core:common:preDebugBuild UP-TO-DATE
-> Task :core:common:generateDebugResValues UP-TO-DATE
 > Task :core:designsystem:generateDebugResValues UP-TO-DATE
+> Task :core:common:generateDebugResValues UP-TO-DATE
 > Task :core:common:generateDebugResources UP-TO-DATE
 > Task :core:designsystem:generateDebugResources UP-TO-DATE
-> Task :core:common:packageDebugResources UP-TO-DATE
 > Task :core:designsystem:packageDebugResources UP-TO-DATE
-> Task :core:designsystem:parseDebugLocalResources UP-TO-DATE
+> Task :core:common:packageDebugResources UP-TO-DATE
 > Task :core:common:parseDebugLocalResources UP-TO-DATE
-> Task :core:designsystem:generateDebugRFile UP-TO-DATE
+> Task :core:designsystem:parseDebugLocalResources UP-TO-DATE
 > Task :core:common:generateDebugRFile UP-TO-DATE
-> Task :core:environment:mergeDebugJniLibFolders
+> Task :core:designsystem:generateDebugRFile UP-TO-DATE
 > Task :core:ui:mergeDebugJniLibFolders
-> Task :core:environment:mergeDebugNativeLibs NO-SOURCE
+> Task :core:environment:mergeDebugJniLibFolders
 > Task :core:ui:mergeDebugNativeLibs NO-SOURCE
+> Task :core:environment:mergeDebugNativeLibs NO-SOURCE
 > Task :core:ui:stripDebugDebugSymbols NO-SOURCE
 > Task :core:environment:stripDebugDebugSymbols NO-SOURCE
-> Task :core:environment:copyDebugJniLibsProjectAndLocalJars
-> Task :core:ui:checkKotlinGradlePluginConfigurationErrors SKIPPED
 > Task :core:ui:copyDebugJniLibsProjectAndLocalJars
-> Task :core:environment:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:ui:checkKotlinGradlePluginConfigurationErrors SKIPPED
 > Task :core:ui:generateDebugResValues UP-TO-DATE
+> Task :core:environment:copyDebugJniLibsProjectAndLocalJars
+> Task :core:environment:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:ui:generateDebugResources UP-TO-DATE
 > Task :core:environment:generateDebugBuildConfig UP-TO-DATE
 > Task :core:environment:generateDebugResValues UP-TO-DATE
-> Task :core:ui:generateDebugResources UP-TO-DATE
-> Task :core:environment:generateDebugResources UP-TO-DATE
 > Task :core:ui:packageDebugResources UP-TO-DATE
-> Task :core:environment:packageDebugResources UP-TO-DATE
+> Task :core:environment:generateDebugResources UP-TO-DATE
 > Task :core:ui:parseDebugLocalResources UP-TO-DATE
-> Task :core:environment:parseDebugLocalResources UP-TO-DATE
 > Task :core:ui:generateDebugRFile UP-TO-DATE
+> Task :core:environment:packageDebugResources UP-TO-DATE
+> Task :core:environment:parseDebugLocalResources UP-TO-DATE
 > Task :core:environment:generateDebugRFile UP-TO-DATE
-> Task :core:ui:extractDeepLinksForAarDebug
-> Task :core:ui:javaPreCompileDebug UP-TO-DATE
-> Task :core:ui:mergeDebugShaders
-> Task :core:ui:compileDebugShaders NO-SOURCE
-> Task :core:ui:generateDebugAssets UP-TO-DATE
-> Task :core:ui:packageDebugAssets
-> Task :core:ui:prepareDebugArtProfile
 > Task :core:common:compileDebugKotlin UP-TO-DATE
-> Task :core:environment:compileDebugKotlin UP-TO-DATE
 > Task :core:common:javaPreCompileDebug UP-TO-DATE
 > Task :core:common:compileDebugJavaWithJavac NO-SOURCE
+> Task :core:ui:extractDeepLinksForAarDebug
+> Task :core:ui:javaPreCompileDebug UP-TO-DATE
 > Task :core:common:bundleLibCompileToJarDebug UP-TO-DATE
-> Task :core:ui:prepareLintJarForPublish
-> Task :core:ui:processDebugManifest UP-TO-DATE
+> Task :core:ui:mergeDebugShaders
 > Task :core:common:mergeDebugJniLibFolders
 > Task :core:common:mergeDebugNativeLibs NO-SOURCE
+> Task :core:ui:compileDebugShaders NO-SOURCE
+> Task :core:ui:generateDebugAssets UP-TO-DATE
+> Task :core:common:stripDebugDebugSymbols NO-SOURCE
+> Task :core:environment:compileDebugKotlin UP-TO-DATE
+> Task :core:common:copyDebugJniLibsProjectAndLocalJars
+> Task :core:ui:packageDebugAssets
+> Task :core:ui:prepareDebugArtProfile
+> Task :core:ui:prepareLintJarForPublish
+> Task :core:ui:processDebugManifest UP-TO-DATE
 > Task :core:ui:writeDebugAarMetadata UP-TO-DATE
 > Task :core:network:preBuild UP-TO-DATE
-> Task :core:common:stripDebugDebugSymbols NO-SOURCE
 > Task :core:network:preDebugBuild UP-TO-DATE
-> Task :core:common:copyDebugJniLibsProjectAndLocalJars
 > Task :core:network:mergeDebugJniLibFolders
 > Task :core:network:mergeDebugNativeLibs NO-SOURCE
 > Task :core:network:stripDebugDebugSymbols NO-SOURCE
@@ -328,85 +318,85 @@ Daemon will be stopped at the end of the build
 > Task :core:network:generateDebugResValues UP-TO-DATE
 > Task :core:network:generateDebugResources UP-TO-DATE
 > Task :core:network:packageDebugResources UP-TO-DATE
+> Task :core:designsystem:compileDebugKotlin UP-TO-DATE
+> Task :core:designsystem:javaPreCompileDebug UP-TO-DATE
 > Task :core:network:parseDebugLocalResources UP-TO-DATE
+> Task :core:designsystem:compileDebugJavaWithJavac NO-SOURCE
+> Task :core:designsystem:bundleLibCompileToJarDebug UP-TO-DATE
 > Task :core:network:generateDebugRFile UP-TO-DATE
 > Task :core:network:extractDeepLinksForAarDebug FROM-CACHE
 > Task :core:network:javaPreCompileDebug UP-TO-DATE
-> Task :core:network:mergeDebugShaders
-> Task :core:network:compileDebugShaders NO-SOURCE
-> Task :core:network:generateDebugAssets UP-TO-DATE
-> Task :core:network:packageDebugAssets
 
 ########## /tmp/lint-log.txt (last 80 lines) ##########
-> Task :core:ui:createFullJarDebug
-> Task :feature:auth:writeDebugLintModelMetadata
-> Task :core:ui:writeDebugLintModelMetadata
-> Task :feature:home:writeDebugLintModelMetadata
-> Task :feature:profile:createFullJarDebug
-> Task :feature:property:writeDebugLintModelMetadata
-> Task :feature:profile:writeDebugLintModelMetadata
-> Task :feature:search:writeDebugLintModelMetadata
-> Task :feature:saved:writeDebugLintModelMetadata
-> Task :app:extractProguardFiles
-> Task :core:analytics:extractProguardFiles
-> Task :core:environment:extractProguardFiles
-> Task :core:common:extractProguardFiles
-> Task :core:auth:transformDebugClassesWithAsm
-> Task :core:auth:mergeDebugGeneratedProguardFiles
-> Task :core:auth:mergeDebugConsumerProguardFiles
-> Task :core:auth:processDebugJavaRes
-> Task :core:auth:mergeDebugJavaResource
-> Task :core:auth:syncDebugLibJars
-> Task :core:auth:bundleDebugLocalLintAar
-> Task :core:auth:bundleLibCompileToJarDebug
-> Task :core:common:generateDebugLintModel
-> Task :core:environment:generateDebugLintModel
-> Task :core:auth:extractDeepLinksDebug UP-TO-DATE
-> Task :core:analytics:generateDebugLintModel
-> Task :core:auth:compileDebugLibraryResources UP-TO-DATE
-> Task :core:auth:bundleLibRuntimeToJarDebug
+> Task :feature:home:bundleLibCompileToJarDebug
+> Task :feature:profile:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :feature:saved:bundleLibCompileToJarDebug
+> Task :app:mapDebugSourceSetPaths UP-TO-DATE
+> Task :app:generateDebugResources UP-TO-DATE
+> Task :feature:auth:bundleLibRuntimeToJarDebug
+> Task :core:auth:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :feature:home:bundleLibRuntimeToJarDebug
+> Task :app:mergeDebugResources UP-TO-DATE
+> Task :feature:saved:bundleLibRuntimeToJarDebug
+> Task :app:packageDebugResources UP-TO-DATE
+> Task :app:parseDebugLocalResources UP-TO-DATE
+> Task :app:createDebugCompatibleScreenManifests UP-TO-DATE
+> Task :app:extractDeepLinksDebug UP-TO-DATE
+> Task :feature:profile:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :core:navigation:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :core:analytics:createFullJarDebug
+> Task :core:analytics:writeDebugLintModelMetadata
 > Task :core:auth:createFullJarDebug
 > Task :core:auth:writeDebugLintModelMetadata
-> Task :core:auth:extractProguardFiles
-> Task :core:network:extractProguardFiles
+> Task :core:common:createFullJarDebug
+> Task :core:common:writeDebugLintModelMetadata
+> Task :core:designsystem:createFullJarDebug
 > Task :app:processDebugMainManifest UP-TO-DATE
+> Task :core:designsystem:writeDebugLintModelMetadata
 > Task :app:processDebugManifest UP-TO-DATE
 > Task :app:processDebugManifestForPackage UP-TO-DATE
+> Task :core:environment:createFullJarDebug
+> Task :core:environment:writeDebugLintModelMetadata
+> Task :core:marketplace:createFullJarDebug
+> Task :core:marketplace:writeDebugLintModelMetadata
+> Task :core:navigation:createFullJarDebug
+> Task :core:navigation:writeDebugLintModelMetadata
+> Task :core:network:createFullJarDebug
+> Task :core:network:writeDebugLintModelMetadata
+> Task :core:ui:createFullJarDebug
+> Task :core:ui:writeDebugLintModelMetadata
+> Task :feature:auth:createFullJarDebug
+> Task :feature:auth:writeDebugLintModelMetadata
+> Task :feature:home:createFullJarDebug
+> Task :feature:home:writeDebugLintModelMetadata
+> Task :feature:profile:createFullJarDebug
+> Task :feature:profile:writeDebugLintModelMetadata
 > Task :app:processDebugResources UP-TO-DATE
-> Task :core:designsystem:extractProguardFiles
-> Task :core:network:generateDebugLintModel
-> Task :core:auth:generateDebugLintModel
-> Task :core:marketplace:extractProguardFiles
-> Task :core:navigation:extractProguardFiles
-> Task :core:navigation:generateDebugLintModel
-> Task :core:ui:extractProguardFiles
-> Task :feature:auth:extractProguardFiles
-> Task :feature:home:extractProguardFiles
-> Task :feature:profile:extractProguardFiles
-> Task :feature:property:extractProguardFiles
-> Task :feature:saved:extractProguardFiles
-> Task :feature:search:extractProguardFiles
-> Task :app:preDebugUnitTestBuild UP-TO-DATE
-> Task :core:designsystem:generateDebugLintModel
-> Task :core:ui:generateDebugLintModel
-> Task :feature:profile:generateDebugLintModel
+> Task :feature:property:writeDebugLintModelMetadata
+> Task :app:javaPreCompileDebug UP-TO-DATE
+> Task :app:preDebugAndroidTestBuild SKIPPED
+> Task :feature:saved:createFullJarDebug
+> Task :app:generateDebugAndroidTestResValues FROM-CACHE
+> Task :feature:saved:writeDebugLintModelMetadata
+> Task :feature:search:writeDebugLintModelMetadata
+> Task :app:extractProguardFiles
+> Task :core:analytics:extractProguardFiles
+> Task :core:common:extractProguardFiles
+> Task :core:auth:extractProguardFiles
+> Task :core:environment:extractProguardFiles
 
-> Task :core:marketplace:compileDebugKotlin FAILED
-e: file:///home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/MarketplaceRepositories.kt:339:40 Unresolved reference 'firstOrNull'.
-e: file:///home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/MarketplaceRepositories.kt:339:55 Unresolved reference 'it'.
-e: file:///home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/MarketplaceRepositories.kt:346:41 Argument type mismatch: actual type is 'kotlin.Any', but 'kotlin.String' was expected.
-e: file:///home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/MarketplaceRepositories.kt:347:47 Unresolved reference 'displayName'.
-e: file:///home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/MarketplaceRepositories.kt:348:45 Unresolved reference 'partyRole'.
+> Task :feature:property:compileDebugKotlin FAILED
+e: file:///home/runner/work/4Divari/4Divari/feature/property/src/main/kotlin/ir/chardivari/feature/property/PropertyDetailScreen.kt:176:55 Smart cast to 'kotlin.String' is impossible, because 'verificationLabel' is a public API property declared in different module.
 
-> Task :feature:auth:compileDebugKotlin
-> Task :core:environment:lintAnalyzeDebug
-> Task :core:common:lintAnalyzeDebug
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/lint-1790255712081.json
+> Task :core:common:generateDebugLintModel
+> Task :core:environment:generateDebugLintModel
+> Task :feature:search:compileDebugKotlin
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/lint-1790256038631.json
 
 FAILURE: Build failed with an exception.
 
 * What went wrong:
-Execution failed for task ':core:marketplace:compileDebugKotlin'.
+Execution failed for task ':feature:property:compileDebugKotlin'.
 > A failure occurred while executing org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction
    > Compilation error. See log for more details
 
@@ -416,5 +406,5 @@ Execution failed for task ':core:marketplace:compileDebugKotlin'.
 > Run with --scan to get full insights.
 > Get more help at https://help.gradle.org.
 
-BUILD FAILED in 46s
-425 actionable tasks: 203 executed, 15 from cache, 207 up-to-date
+BUILD FAILED in 28s
+459 actionable tasks: 218 executed, 15 from cache, 226 up-to-date
