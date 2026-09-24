@@ -1,5 +1,7 @@
 package ir.chardivari.feature.auth
 
+import ir.chardivari.core.analytics.AnalyticsEvent
+import ir.chardivari.core.analytics.AnalyticsTracker
 import ir.chardivari.core.auth.AuthRepository
 import ir.chardivari.core.auth.AuthSession
 import ir.chardivari.core.common.AppError
@@ -40,6 +42,7 @@ sealed interface AuthEvent {
 @HiltViewModel
 class AuthViewModel @Inject constructor(
     private val repository: AuthRepository,
+    private val analytics: AnalyticsTracker,
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(AuthUiModel())
@@ -77,14 +80,19 @@ class AuthViewModel @Inject constructor(
                     }
                     _error.value = null
                     _events.tryEmit(AuthEvent.OtpSent(e164))
+                    analytics.track(AnalyticsEvent.AuthOtpRequested)
                 }
                 is AppResult.Failure -> {
                     _uiState.update { it.copy(loading = false) }
                     _error.value = result.error
+                    analytics.track(
+                        AnalyticsEvent.AuthLoginFailed(result.error::class.simpleName ?: "unknown"),
+                    )
                 }
                 AppResult.Empty -> {
                     _uiState.update { it.copy(loading = false, step = AuthStep.Otp) }
                     _events.tryEmit(AuthEvent.OtpSent(e164))
+                    analytics.track(AnalyticsEvent.AuthOtpRequested)
                 }
             }
         }
@@ -105,14 +113,19 @@ class AuthViewModel @Inject constructor(
                     _uiState.update { it.copy(loading = false) }
                     _error.value = null
                     _events.tryEmit(AuthEvent.Verified(result.data))
+                    analytics.track(AnalyticsEvent.AuthLoginSucceeded)
                 }
                 is AppResult.Failure -> {
                     _uiState.update { it.copy(loading = false) }
                     _error.value = result.error
+                    analytics.track(
+                        AnalyticsEvent.AuthLoginFailed(result.error::class.simpleName ?: "unknown"),
+                    )
                 }
                 AppResult.Empty -> {
                     _uiState.update { it.copy(loading = false) }
                     _error.value = AppError.Serialization
+                    analytics.track(AnalyticsEvent.AuthLoginFailed("Serialization"))
                 }
             }
         }

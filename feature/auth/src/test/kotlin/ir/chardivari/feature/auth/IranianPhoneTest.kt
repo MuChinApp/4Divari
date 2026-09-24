@@ -30,6 +30,12 @@ class IranianPhoneTest {
     }
 
     @Test
+    fun `0098 international prefix normalizes`() {
+        assertThat(IranianPhone.normalizeToE164("00989123456789"))
+            .isEqualTo("+989123456789")
+    }
+
+    @Test
     fun `invalid numbers rejected`() {
         assertThat(IranianPhone.isValidIranMobile("12345")).isFalse()
         assertThat(IranianPhone.isValidIranMobile("")).isFalse()

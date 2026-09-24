@@ -4,7 +4,6 @@ import ir.chardivari.core.common.AppError
 import ir.chardivari.core.common.AppResult
 import ir.chardivari.core.environment.AppConfig
 import ir.chardivari.core.network.ErrorMapper
-import ir.chardivari.core.network.SessionTokenProvider
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
@@ -199,19 +198,7 @@ class SupabaseAuthRepository @Inject constructor(
             ErrorMapper.responseToResult(request(key))
         } catch (t: Throwable) {
             if (t is kotlinx.coroutines.CancellationException) throw t
-            // Prefer structured GoTrue error message when present.
             AppResult.Failure(ErrorMapper.fromThrowable(t), t)
         }
     }
-}
-
-/**
- * Binds the auth session into core:network's [SessionTokenProvider]
- * without a circular Gradle dependency (network only sees the interface).
- */
-@Singleton
-class AuthSessionTokenProvider @Inject constructor(
-    private val store: SessionStore,
-) : SessionTokenProvider {
-    override fun accessToken(): String? = store.currentBlocking()?.accessToken
 }

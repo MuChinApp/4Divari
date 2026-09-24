@@ -24,6 +24,7 @@ class AuthViewModelTest {
 
     private val dispatcher = StandardTestDispatcher()
     private val repository = mockk<AuthRepository>(relaxed = true)
+    private val analytics = mockk<ir.chardivari.core.analytics.AnalyticsTracker>(relaxed = true)
 
     @Before
     fun setUp() {
@@ -37,7 +38,7 @@ class AuthViewModelTest {
 
     @Test
     fun `invalid phone does not call repository`() = runTest {
-        val vm = AuthViewModel(repository)
+        val vm = AuthViewModel(repository, analytics)
         vm.onPhoneChanged("123")
         vm.sendOtp()
         dispatcher.scheduler.advanceUntilIdle()
@@ -47,7 +48,7 @@ class AuthViewModelTest {
     @Test
     fun `valid phone sendOtp success moves to otp step`() = runTest {
         coEvery { repository.sendOtp("+989123456789") } returns AppResult.Success(Unit)
-        val vm = AuthViewModel(repository)
+        val vm = AuthViewModel(repository, analytics)
         vm.uiState.test {
             val initial = awaitItem()
             assertThat(initial.step).isEqualTo(AuthStep.Phone)
@@ -68,7 +69,7 @@ class AuthViewModelTest {
     fun `sendOtp failure surfaces error and stays on phone step`() = runTest {
         coEvery { repository.sendOtp(any()) } returns
             AppResult.Failure(AppError.RateLimited)
-        val vm = AuthViewModel(repository)
+        val vm = AuthViewModel(repository, analytics)
         vm.onPhoneChanged("09123456789")
         vm.sendOtp()
         dispatcher.scheduler.advanceUntilIdle()
@@ -89,7 +90,7 @@ class AuthViewModelTest {
         coEvery { repository.sendOtp(any()) } returns AppResult.Success(Unit)
         coEvery { repository.verifyOtp(any(), any()) } returns AppResult.Success(session)
 
-        val vm = AuthViewModel(repository)
+        val vm = AuthViewModel(repository, analytics)
         vm.onPhoneChanged("09123456789")
         vm.sendOtp()
         dispatcher.scheduler.advanceUntilIdle()
@@ -105,7 +106,7 @@ class AuthViewModelTest {
 
     @Test
     fun `short otp rejected client side`() = runTest {
-        val vm = AuthViewModel(repository)
+        val vm = AuthViewModel(repository, analytics)
         vm.onPhoneChanged("09123456789")
         vm.verifyOtp("12")
         dispatcher.scheduler.advanceUntilIdle()
