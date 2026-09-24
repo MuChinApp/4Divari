@@ -35,7 +35,7 @@ dependencies {
     implementation(project(":core:designsystem"))
     implementation(project(":core:common"))
     implementation(project(":core:analytics"))
-    implementation(project(":core:auth"))
+    // TEMP EXPERIMENT: core:auth removed to isolate circular task graph
     implementation(project(":core:network"))
 
     implementation(libs.compose.ui)
