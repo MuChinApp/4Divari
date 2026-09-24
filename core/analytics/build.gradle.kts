@@ -24,6 +24,8 @@ android {
 dependencies {
     implementation(project(":core:common"))
     implementation(libs.kotlinx.coroutines.android)
+    // @Inject / @Singleton without pulling full Hilt into this leaf module
+    implementation(libs.javax.inject)
     testImplementation(libs.junit)
     testImplementation(libs.truth)
 }

@@ -35,5 +35,8 @@ dependencies {
     api(libs.compose.material.icons)
     api(libs.compose.runtime)
 
+    // WindowCompat (status/nav bar icons) used by Theme.kt
+    implementation(libs.androidx.core.ktx)
+
     debugImplementation(libs.compose.ui.tooling)
 }

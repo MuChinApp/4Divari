@@ -73,7 +73,8 @@ object Format {
         val s = if (rounded == Math.floor(rounded)) {
             rounded.toLong().toString()
         } else {
-            rounded.toString()
+            // Persian decimal separator «٫» for display
+            rounded.toString().replace('.', '٫')
         }
         return s.toPersianDigits()
     }

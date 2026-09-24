@@ -8,7 +8,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
-import kotlinx.coroutines.test.StandardTestDispatcher
+import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
@@ -22,7 +22,7 @@ import org.junit.Test
 @OptIn(ExperimentalCoroutinesApi::class)
 class HomeViewModelTest {
 
-    private val dispatcher = StandardTestDispatcher()
+    private val dispatcher = UnconfinedTestDispatcher()
 
     private class RecordingTracker : AnalyticsTracker {
         val recorded = mutableListOf<AnalyticsEvent>()
@@ -45,10 +45,9 @@ class HomeViewModelTest {
     }
 
     @Test
-    fun `load emits content where all sections are unimplemented`() = runTest {
+    fun loadEmitsContentWhereAllSectionsAreUnimplemented() = runTest(dispatcher.scheduler) {
         val tracker = RecordingTracker()
         val vm = HomeViewModel(tracker)
-        dispatcher.scheduler.advanceUntilIdle()
 
         vm.uiState.test {
             val loaded = expectMostRecentItem()
@@ -62,27 +61,22 @@ class HomeViewModelTest {
     }
 
     @Test
-    fun `blank search does not emit analytics`() = runTest {
+    fun blankSearchDoesNotEmitAnalytics() = runTest(dispatcher.scheduler) {
         val tracker = RecordingTracker()
         val vm = HomeViewModel(tracker)
-        dispatcher.scheduler.advanceUntilIdle()
         tracker.recorded.clear()
 
         vm.onSearchSubmitted("   ")
-        dispatcher.scheduler.advanceUntilIdle()
         assertFalse(tracker.recorded.any { it.name == "search_created" })
     }
 
     @Test
-    fun `non-blank search emits search_created`() = runTest {
+    fun nonBlankSearchEmitsSearchCreated() = runTest(dispatcher.scheduler) {
         val tracker = RecordingTracker()
         val vm = HomeViewModel(tracker)
-        dispatcher.scheduler.advanceUntilIdle()
         tracker.recorded.clear()
 
-        vm.onSearchSubmitSafe("آپارتمان دوخوابه")
+        vm.onSearchSubmitted("آپارتمان دوخوابه")
         assertTrue(tracker.recorded.any { it.name == "search_created" })
     }
-
-    private fun HomeViewModel.onSearchSubmitSafe(q: String) = onSearchSubmitted(q)
 }
