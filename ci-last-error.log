@@ -1,20 +1,27 @@
-=== CI FAILURE CAPTURE 2026-09-24T02:33:09Z ===
+=== CI FAILURE CAPTURE 2026-09-24T02:36:26Z ===
 
 ########## /tmp/test-log.txt : FAILURE HEADERS ##########
-150:e: file:///home/runner/work/4Divari/4Divari/core/common/src/main/kotlin/ir/chardivari/core/common/Format.kt:61:53 Argument type mismatch: actual type is 'kotlin.Int', but 'kotlin.Long' was expected.
-151:e: file:///home/runner/work/4Divari/4Divari/core/common/src/main/kotlin/ir/chardivari/core/common/Format.kt:68:36 Argument type mismatch: actual type is 'kotlin.Int', but 'kotlin.Long' was expected.
-153:> Task :core:common:compileDebugKotlin FAILED
-157:> Task :core:designsystem:compileDebugKotlin FAILED
-158:e: file:///home/runner/work/4Divari/4Divari/core/designsystem/src/main/kotlin/ir/chardivari/core/designsystem/components/StateComponents.kt:267:13 Functions which invoke @Composable functions must be marked with the @Composable annotation
-159:e: file:///home/runner/work/4Divari/4Divari/core/designsystem/src/main/kotlin/ir/chardivari/core/designsystem/components/StateComponents.kt:269:5 @Composable invocations can only happen from the context of a @Composable function
-162:FAILURE: Build completed with 2 failures.
-166:* What went wrong:
-209:Caused by: org.gradle.workers.internal.DefaultWorkerExecutor$WorkExecutionException: A failure occurred while executing org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction
-338:Caused by: org.jetbrains.kotlin.gradle.tasks.CompilationErrorException: Compilation error. See log for more details
-374:* What went wrong:
-420:Caused by: org.gradle.workers.internal.DefaultWorkerExecutor$WorkExecutionException: A failure occurred while executing org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction
-555:Caused by: org.jetbrains.kotlin.gradle.tasks.CompilationErrorException: Compilation error. See log for more details
-592:BUILD FAILED in 1m 36s
+209:> Task :core:ui:compileDebugKotlin FAILED
+210:e: file:///home/runner/work/4Divari/4Divari/core/ui/src/main/kotlin/ir/chardivari/core/ui/UiStateRenderer.kt:130:26 @Composable invocations can only happen from the context of a @Composable function
+211:e: file:///home/runner/work/4Divari/4Divari/core/ui/src/main/kotlin/ir/chardivari/core/ui/UiStateRenderer.kt:130:26 Function invocation 'CircularProgressIndicator(...)' expected.
+216:> Task :core:network:kspDebugKotlin FAILED
+217:e: [ksp] /home/runner/work/4Divari/4Divari/core/network/src/main/kotlin/ir/chardivari/core/network/ErrorMapper.kt: (51, 89): Function declaration must have a name
+218:e: Error occurred in KSP, check log for detail
+219:e: file:///home/runner/work/4Divari/4Divari/core/network/src/main/kotlin/ir/chardivari/core/network/ErrorMapper.kt:51:71 Type expected
+220:e: file:///home/runner/work/4Divari/4Divari/core/network/src/main/kotlin/ir/chardivari/core/network/ErrorMapper.kt:51:74 Expecting member declaration
+221:e: file:///home/runner/work/4Divari/4Divari/core/network/src/main/kotlin/ir/chardivari/core/network/ErrorMapper.kt:51:83 Expecting member declaration
+222:e: file:///home/runner/work/4Divari/4Divari/core/network/src/main/kotlin/ir/chardivari/core/network/ErrorMapper.kt:51:84 Expecting member declaration
+223:e: file:///home/runner/work/4Divari/4Divari/core/network/src/main/kotlin/ir/chardivari/core/network/ErrorMapper.kt:51:85 Expecting member declaration
+224:e: file:///home/runner/work/4Divari/4Divari/core/network/src/main/kotlin/ir/chardivari/core/network/ErrorMapper.kt:51:87 Expecting member declaration
+225:e: file:///home/runner/work/4Divari/4Divari/core/network/src/main/kotlin/ir/chardivari/core/network/ErrorMapper.kt:51:89 Expecting member declaration
+228:FAILURE: Build completed with 2 failures.
+232:* What went wrong:
+275:Caused by: org.gradle.workers.internal.DefaultWorkerExecutor$WorkExecutionException: A failure occurred while executing org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction
+404:Caused by: org.jetbrains.kotlin.gradle.tasks.CompilationErrorException: Compilation error. See log for more details
+440:* What went wrong:
+486:Caused by: org.gradle.workers.internal.DefaultWorkerExecutor$WorkExecutionException: A failure occurred while executing org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction
+621:Caused by: org.jetbrains.kotlin.gradle.tasks.CompilationErrorException: Compilation error. See log for more details
+658:BUILD FAILED in 1m 34s
 
 ########## /tmp/test-log.txt (first 80 lines) ##########
 Downloading https://services.gradle.org/distributions/gradle-8.11.1-bin.zip
@@ -31,72 +38,72 @@ For more details see https://docs.gradle.org/8.11.1/release-notes.html
 
 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.11.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
 Daemon will be stopped at the end of the build 
-> Task :app:preBuild UP-TO-DATE
+> Task :core:analytics:preBuild UP-TO-DATE
 > Task :core:designsystem:preBuild UP-TO-DATE
 > Task :core:common:preBuild UP-TO-DATE
-> Task :core:analytics:preBuild UP-TO-DATE
-> Task :core:common:preDebugBuild UP-TO-DATE
-> Task :core:analytics:preDebugBuild UP-TO-DATE
-> Task :app:preDebugBuild UP-TO-DATE
+> Task :app:preBuild UP-TO-DATE
 > Task :core:designsystem:preDebugBuild UP-TO-DATE
+> Task :core:common:preDebugBuild UP-TO-DATE
+> Task :app:preDebugBuild UP-TO-DATE
+> Task :core:analytics:preDebugBuild UP-TO-DATE
 > Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
-> Task :app:generateDebugBuildConfig
 > Task :core:designsystem:writeDebugAarMetadata
+> Task :app:generateDebugBuildConfig
 > Task :core:common:writeDebugAarMetadata
 > Task :core:analytics:writeDebugAarMetadata
 > Task :core:network:preBuild UP-TO-DATE
 > Task :core:network:preDebugBuild UP-TO-DATE
-> Task :core:navigation:preBuild UP-TO-DATE
-> Task :core:navigation:preDebugBuild UP-TO-DATE
-> Task :core:ui:preBuild UP-TO-DATE
 > Task :core:environment:preBuild UP-TO-DATE
-> Task :core:ui:preDebugBuild UP-TO-DATE
+> Task :core:ui:preBuild UP-TO-DATE
+> Task :core:navigation:preBuild UP-TO-DATE
 > Task :core:environment:preDebugBuild UP-TO-DATE
+> Task :core:ui:preDebugBuild UP-TO-DATE
+> Task :core:navigation:preDebugBuild UP-TO-DATE
 > Task :core:network:writeDebugAarMetadata
-> Task :feature:home:preBuild UP-TO-DATE
-> Task :feature:home:preDebugBuild UP-TO-DATE
 > Task :core:navigation:writeDebugAarMetadata
 > Task :core:ui:writeDebugAarMetadata
 > Task :core:environment:writeDebugAarMetadata
+> Task :feature:home:preBuild UP-TO-DATE
+> Task :feature:home:preDebugBuild UP-TO-DATE
 > Task :feature:profile:preBuild UP-TO-DATE
 > Task :feature:profile:preDebugBuild UP-TO-DATE
 > Task :feature:saved:preBuild UP-TO-DATE
 > Task :feature:saved:preDebugBuild UP-TO-DATE
 > Task :feature:search:preBuild UP-TO-DATE
 > Task :feature:search:preDebugBuild UP-TO-DATE
-> Task :feature:home:writeDebugAarMetadata
 > Task :feature:profile:writeDebugAarMetadata
 > Task :feature:search:writeDebugAarMetadata
+> Task :feature:home:writeDebugAarMetadata
 > Task :feature:saved:writeDebugAarMetadata
-> Task :app:generateDebugResValues
+> Task :core:common:generateDebugResValues
 > Task :core:analytics:generateDebugResValues
-> Task :core:common:generateDebugResValues FROM-CACHE
-> Task :core:designsystem:generateDebugResValues FROM-CACHE
 > Task :core:analytics:generateDebugResources
-> Task :core:common:generateDebugResources FROM-CACHE
+> Task :app:generateDebugResValues FROM-CACHE
+> Task :core:designsystem:generateDebugResValues FROM-CACHE
+> Task :core:common:generateDebugResources
 > Task :core:designsystem:generateDebugResources
 > Task :core:analytics:packageDebugResources
 > Task :core:common:packageDebugResources
 > Task :core:navigation:generateDebugResValues FROM-CACHE
 > Task :core:environment:generateDebugResValues FROM-CACHE
-> Task :core:navigation:generateDebugResources FROM-CACHE
 > Task :core:environment:generateDebugResources FROM-CACHE
+> Task :core:navigation:generateDebugResources FROM-CACHE
+> Task :core:designsystem:packageDebugResources
+> Task :core:network:generateDebugResValues FROM-CACHE
+> Task :core:network:generateDebugResources FROM-CACHE
 > Task :core:navigation:packageDebugResources
 > Task :core:environment:packageDebugResources
-> Task :core:ui:generateDebugResValues FROM-CACHE
-> Task :core:network:generateDebugResValues FROM-CACHE
-> Task :core:ui:generateDebugResources FROM-CACHE
-> Task :core:network:generateDebugResources FROM-CACHE
-> Task :core:designsystem:packageDebugResources
 > Task :feature:home:generateDebugResValues FROM-CACHE
-> Task :feature:home:generateDebugResources FROM-CACHE
-> Task :core:ui:packageDebugResources
+> Task :core:ui:generateDebugResValues FROM-CACHE
+> Task :core:ui:generateDebugResources FROM-CACHE
 > Task :core:network:packageDebugResources
+> Task :feature:home:generateDebugResources FROM-CACHE
 > Task :feature:profile:generateDebugResValues FROM-CACHE
-> Task :feature:saved:generateDebugResValues FROM-CACHE
-> Task :feature:saved:generateDebugResources FROM-CACHE
 > Task :feature:profile:generateDebugResources FROM-CACHE
 > Task :feature:home:packageDebugResources
+> Task :core:ui:packageDebugResources
+> Task :feature:profile:packageDebugResources
+> Task :feature:saved:generateDebugResValues FROM-CACHE
 
 ########## /tmp/test-log.txt (last 80 lines) ##########
 	at org.gradle.internal.execution.steps.ExecuteWorkBuildOperationFiringStep.lambda$execute$2(ExecuteWorkBuildOperationFiringStep.java:67)
@@ -177,8 +184,8 @@ Caused by: org.jetbrains.kotlin.gradle.tasks.CompilationErrorException: Compilat
 
 ==============================================================================
 
-BUILD FAILED in 1m 36s
-108 actionable tasks: 64 executed, 44 from cache
+BUILD FAILED in 1m 34s
+151 actionable tasks: 97 executed, 54 from cache
 
 ########## /tmp/detekt-log.txt : FAILURE HEADERS ##########
 
@@ -186,59 +193,55 @@ BUILD FAILED in 1m 36s
 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.11.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
 Daemon will be stopped at the end of the build 
 > Task :detekt NO-SOURCE
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/detekt-1790217151019.json
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/detekt-1790217358996.json
 
-BUILD SUCCESSFUL in 12s
+BUILD SUCCESSFUL in 8s
 
 ########## /tmp/detekt-log.txt (last 80 lines) ##########
 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.11.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
 Daemon will be stopped at the end of the build 
 > Task :detekt NO-SOURCE
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/detekt-1790217151019.json
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/detekt-1790217358996.json
 
-BUILD SUCCESSFUL in 12s
+BUILD SUCCESSFUL in 8s
 
 ########## /tmp/lint-log.txt : FAILURE HEADERS ##########
-119:e: file:///home/runner/work/4Divari/4Divari/core/common/src/main/kotlin/ir/chardivari/core/common/Format.kt:61:53 Argument type mismatch: actual type is 'kotlin.Int', but 'kotlin.Long' was expected.
-120:e: file:///home/runner/work/4Divari/4Divari/core/common/src/main/kotlin/ir/chardivari/core/common/Format.kt:68:36 Argument type mismatch: actual type is 'kotlin.Int', but 'kotlin.Long' was expected.
-122:> Task :core:common:compileDebugKotlin FAILED
-124:> Task :core:designsystem:compileDebugKotlin FAILED
-125:e: file:///home/runner/work/4Divari/4Divari/core/designsystem/src/main/kotlin/ir/chardivari/core/designsystem/components/StateComponents.kt:267:13 Functions which invoke @Composable functions must be marked with the @Composable annotation
-126:e: file:///home/runner/work/4Divari/4Divari/core/designsystem/src/main/kotlin/ir/chardivari/core/designsystem/components/StateComponents.kt:269:5 @Composable invocations can only happen from the context of a @Composable function
-132:FAILURE: Build completed with 2 failures.
-136:* What went wrong:
-150:* What went wrong:
-162:BUILD FAILED in 29s
+95:e: file:///home/runner/work/4Divari/4Divari/core/ui/src/main/kotlin/ir/chardivari/core/ui/UiStateRenderer.kt:130:26 @Composable invocations can only happen from the context of a @Composable function
+96:e: file:///home/runner/work/4Divari/4Divari/core/ui/src/main/kotlin/ir/chardivari/core/ui/UiStateRenderer.kt:130:26 Function invocation 'CircularProgressIndicator(...)' expected.
+98:> Task :core:ui:compileDebugKotlin FAILED
+104:FAILURE: Build failed with an exception.
+106:* What went wrong:
+117:BUILD FAILED in 20s
 
 ########## /tmp/lint-log.txt (first 80 lines) ##########
 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.11.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
 Daemon will be stopped at the end of the build 
-> Task :core:ui:preBuild UP-TO-DATE
+> Task :core:designsystem:checkKotlinGradlePluginConfigurationErrors SKIPPED
 > Task :core:common:checkKotlinGradlePluginConfigurationErrors SKIPPED
 > Task :core:environment:preBuild UP-TO-DATE
-> Task :core:designsystem:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:ui:preBuild UP-TO-DATE
+> Task :core:ui:preDebugBuild UP-TO-DATE
+> Task :core:environment:preDebugBuild UP-TO-DATE
 > Task :core:designsystem:preBuild UP-TO-DATE
 > Task :core:designsystem:preDebugBuild UP-TO-DATE
-> Task :core:environment:preDebugBuild UP-TO-DATE
-> Task :core:ui:preDebugBuild UP-TO-DATE
 > Task :core:common:preBuild UP-TO-DATE
 > Task :core:common:preDebugBuild UP-TO-DATE
-> Task :core:common:generateDebugResValues UP-TO-DATE
 > Task :core:designsystem:generateDebugResValues UP-TO-DATE
-> Task :core:designsystem:generateDebugResources UP-TO-DATE
+> Task :core:common:generateDebugResValues UP-TO-DATE
 > Task :core:common:generateDebugResources UP-TO-DATE
-> Task :core:common:packageDebugResources UP-TO-DATE
+> Task :core:designsystem:generateDebugResources UP-TO-DATE
 > Task :core:designsystem:packageDebugResources UP-TO-DATE
+> Task :core:common:packageDebugResources UP-TO-DATE
 > Task :core:designsystem:parseDebugLocalResources UP-TO-DATE
 > Task :core:common:parseDebugLocalResources UP-TO-DATE
 > Task :core:designsystem:generateDebugRFile UP-TO-DATE
 > Task :core:common:generateDebugRFile UP-TO-DATE
 > Task :core:environment:mergeDebugJniLibFolders
 > Task :core:ui:mergeDebugJniLibFolders
-> Task :core:environment:mergeDebugNativeLibs NO-SOURCE
 > Task :core:ui:mergeDebugNativeLibs NO-SOURCE
-> Task :core:ui:stripDebugDebugSymbols NO-SOURCE
+> Task :core:environment:mergeDebugNativeLibs NO-SOURCE
 > Task :core:environment:stripDebugDebugSymbols NO-SOURCE
+> Task :core:ui:stripDebugDebugSymbols NO-SOURCE
 > Task :core:environment:copyDebugJniLibsProjectAndLocalJars
 > Task :core:ui:checkKotlinGradlePluginConfigurationErrors SKIPPED
 > Task :core:ui:copyDebugJniLibsProjectAndLocalJars
@@ -249,22 +252,30 @@ Daemon will be stopped at the end of the build
 > Task :core:environment:generateDebugResValues UP-TO-DATE
 > Task :core:environment:generateDebugResources UP-TO-DATE
 > Task :core:ui:packageDebugResources UP-TO-DATE
-> Task :core:environment:packageDebugResources UP-TO-DATE
-> Task :core:environment:parseDebugLocalResources UP-TO-DATE
 > Task :core:ui:parseDebugLocalResources UP-TO-DATE
+> Task :core:environment:packageDebugResources UP-TO-DATE
 > Task :core:ui:generateDebugRFile UP-TO-DATE
+> Task :core:environment:parseDebugLocalResources UP-TO-DATE
 > Task :core:environment:generateDebugRFile UP-TO-DATE
 > Task :core:ui:extractDeepLinksForAarDebug
+> Task :core:ui:javaPreCompileDebug UP-TO-DATE
+> Task :core:common:compileDebugKotlin UP-TO-DATE
 > Task :core:environment:compileDebugKotlin UP-TO-DATE
-> Task :core:ui:javaPreCompileDebug FROM-CACHE
 > Task :core:ui:mergeDebugShaders
 > Task :core:ui:compileDebugShaders NO-SOURCE
 > Task :core:ui:generateDebugAssets UP-TO-DATE
+> Task :core:common:javaPreCompileDebug UP-TO-DATE
+> Task :core:common:compileDebugJavaWithJavac NO-SOURCE
 > Task :core:ui:packageDebugAssets
+> Task :core:common:bundleLibCompileToJarDebug UP-TO-DATE
 > Task :core:ui:prepareDebugArtProfile
+> Task :core:common:mergeDebugJniLibFolders
+> Task :core:common:mergeDebugNativeLibs NO-SOURCE
 > Task :core:ui:prepareLintJarForPublish
 > Task :core:ui:processDebugManifest UP-TO-DATE
+> Task :core:common:stripDebugDebugSymbols NO-SOURCE
 > Task :core:ui:writeDebugAarMetadata UP-TO-DATE
+> Task :core:common:copyDebugJniLibsProjectAndLocalJars
 > Task :core:network:preBuild UP-TO-DATE
 > Task :core:network:preDebugBuild UP-TO-DATE
 > Task :core:network:mergeDebugJniLibFolders
@@ -274,25 +285,59 @@ Daemon will be stopped at the end of the build
 > Task :core:network:checkKotlinGradlePluginConfigurationErrors SKIPPED
 > Task :core:network:generateDebugResValues UP-TO-DATE
 > Task :core:network:generateDebugResources UP-TO-DATE
+> Task :core:designsystem:compileDebugKotlin UP-TO-DATE
 > Task :core:network:packageDebugResources UP-TO-DATE
+> Task :core:designsystem:javaPreCompileDebug UP-TO-DATE
+> Task :core:designsystem:compileDebugJavaWithJavac NO-SOURCE
 > Task :core:network:parseDebugLocalResources UP-TO-DATE
+> Task :core:designsystem:bundleLibCompileToJarDebug UP-TO-DATE
 > Task :core:network:generateDebugRFile UP-TO-DATE
 > Task :core:network:extractDeepLinksForAarDebug FROM-CACHE
-> Task :core:network:javaPreCompileDebug
-> Task :core:common:javaPreCompileDebug FROM-CACHE
-> Task :core:designsystem:javaPreCompileDebug FROM-CACHE
-> Task :core:common:mergeDebugJniLibFolders
-> Task :core:common:mergeDebugNativeLibs NO-SOURCE
-> Task :core:common:stripDebugDebugSymbols NO-SOURCE
-> Task :core:common:copyDebugJniLibsProjectAndLocalJars
-> Task :core:common:extractDeepLinksForAarDebug FROM-CACHE
-> Task :core:common:mergeDebugShaders
-> Task :core:common:compileDebugShaders NO-SOURCE
-> Task :core:common:generateDebugAssets UP-TO-DATE
-> Task :core:common:packageDebugAssets
-> Task :core:common:prepareDebugArtProfile
+> Task :core:network:javaPreCompileDebug FROM-CACHE
 
 ########## /tmp/lint-log.txt (last 80 lines) ##########
+> Task :core:ui:parseDebugLocalResources UP-TO-DATE
+> Task :core:environment:packageDebugResources UP-TO-DATE
+> Task :core:ui:generateDebugRFile UP-TO-DATE
+> Task :core:environment:parseDebugLocalResources UP-TO-DATE
+> Task :core:environment:generateDebugRFile UP-TO-DATE
+> Task :core:ui:extractDeepLinksForAarDebug
+> Task :core:ui:javaPreCompileDebug UP-TO-DATE
+> Task :core:common:compileDebugKotlin UP-TO-DATE
+> Task :core:environment:compileDebugKotlin UP-TO-DATE
+> Task :core:ui:mergeDebugShaders
+> Task :core:ui:compileDebugShaders NO-SOURCE
+> Task :core:ui:generateDebugAssets UP-TO-DATE
+> Task :core:common:javaPreCompileDebug UP-TO-DATE
+> Task :core:common:compileDebugJavaWithJavac NO-SOURCE
+> Task :core:ui:packageDebugAssets
+> Task :core:common:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :core:ui:prepareDebugArtProfile
+> Task :core:common:mergeDebugJniLibFolders
+> Task :core:common:mergeDebugNativeLibs NO-SOURCE
+> Task :core:ui:prepareLintJarForPublish
+> Task :core:ui:processDebugManifest UP-TO-DATE
+> Task :core:common:stripDebugDebugSymbols NO-SOURCE
+> Task :core:ui:writeDebugAarMetadata UP-TO-DATE
+> Task :core:common:copyDebugJniLibsProjectAndLocalJars
+> Task :core:network:preBuild UP-TO-DATE
+> Task :core:network:preDebugBuild UP-TO-DATE
+> Task :core:network:mergeDebugJniLibFolders
+> Task :core:network:mergeDebugNativeLibs NO-SOURCE
+> Task :core:network:stripDebugDebugSymbols NO-SOURCE
+> Task :core:network:copyDebugJniLibsProjectAndLocalJars
+> Task :core:network:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:network:generateDebugResValues UP-TO-DATE
+> Task :core:network:generateDebugResources UP-TO-DATE
+> Task :core:designsystem:compileDebugKotlin UP-TO-DATE
+> Task :core:network:packageDebugResources UP-TO-DATE
+> Task :core:designsystem:javaPreCompileDebug UP-TO-DATE
+> Task :core:designsystem:compileDebugJavaWithJavac NO-SOURCE
+> Task :core:network:parseDebugLocalResources UP-TO-DATE
+> Task :core:designsystem:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :core:network:generateDebugRFile UP-TO-DATE
+> Task :core:network:extractDeepLinksForAarDebug FROM-CACHE
+> Task :core:network:javaPreCompileDebug FROM-CACHE
 > Task :core:network:mergeDebugShaders
 > Task :core:network:compileDebugShaders NO-SOURCE
 > Task :core:network:generateDebugAssets UP-TO-DATE
@@ -305,48 +350,21 @@ Daemon will be stopped at the end of the build
 > Task :core:designsystem:mergeDebugNativeLibs NO-SOURCE
 > Task :core:designsystem:stripDebugDebugSymbols NO-SOURCE
 > Task :core:designsystem:copyDebugJniLibsProjectAndLocalJars
-> Task :core:designsystem:extractDeepLinksForAarDebug FROM-CACHE
-> Task :core:designsystem:mergeDebugShaders
-> Task :core:designsystem:compileDebugShaders NO-SOURCE
-> Task :core:designsystem:generateDebugAssets UP-TO-DATE
-> Task :core:designsystem:packageDebugAssets
-> Task :core:designsystem:prepareDebugArtProfile
-> Task :core:designsystem:prepareLintJarForPublish
-> Task :core:designsystem:processDebugManifest UP-TO-DATE
-> Task :core:designsystem:writeDebugAarMetadata UP-TO-DATE
-> Task :core:navigation:preBuild UP-TO-DATE
-> Task :core:navigation:preDebugBuild UP-TO-DATE
-> Task :core:navigation:mergeDebugJniLibFolders
-> Task :core:navigation:mergeDebugNativeLibs NO-SOURCE
-> Task :core:navigation:stripDebugDebugSymbols NO-SOURCE
-> Task :core:navigation:copyDebugJniLibsProjectAndLocalJars
-> Task :core:navigation:checkKotlinGradlePluginConfigurationErrors SKIPPED
-> Task :core:navigation:generateDebugResValues UP-TO-DATE
-> Task :core:navigation:generateDebugResources UP-TO-DATE
-> Task :core:navigation:packageDebugResources UP-TO-DATE
-> Task :core:navigation:parseDebugLocalResources UP-TO-DATE
-> Task :core:navigation:generateDebugRFile UP-TO-DATE
 
-> Task :core:common:compileDebugKotlin
-e: file:///home/runner/work/4Divari/4Divari/core/common/src/main/kotlin/ir/chardivari/core/common/Format.kt:61:53 Argument type mismatch: actual type is 'kotlin.Int', but 'kotlin.Long' was expected.
-e: file:///home/runner/work/4Divari/4Divari/core/common/src/main/kotlin/ir/chardivari/core/common/Format.kt:68:36 Argument type mismatch: actual type is 'kotlin.Int', but 'kotlin.Long' was expected.
+> Task :core:ui:compileDebugKotlin
+e: file:///home/runner/work/4Divari/4Divari/core/ui/src/main/kotlin/ir/chardivari/core/ui/UiStateRenderer.kt:130:26 @Composable invocations can only happen from the context of a @Composable function
+e: file:///home/runner/work/4Divari/4Divari/core/ui/src/main/kotlin/ir/chardivari/core/ui/UiStateRenderer.kt:130:26 Function invocation 'CircularProgressIndicator(...)' expected.
 
-> Task :core:common:compileDebugKotlin FAILED
-
-> Task :core:designsystem:compileDebugKotlin FAILED
-e: file:///home/runner/work/4Divari/4Divari/core/designsystem/src/main/kotlin/ir/chardivari/core/designsystem/components/StateComponents.kt:267:13 Functions which invoke @Composable functions must be marked with the @Composable annotation
-e: file:///home/runner/work/4Divari/4Divari/core/designsystem/src/main/kotlin/ir/chardivari/core/designsystem/components/StateComponents.kt:269:5 @Composable invocations can only happen from the context of a @Composable function
-
+> Task :core:ui:compileDebugKotlin FAILED
 > Task :core:environment:extractDebugAnnotations
-> Task :core:navigation:compileDebugKotlin
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/lint-1790217163884.json
+> Task :core:common:extractDebugAnnotations
+> Task :core:designsystem:extractDebugAnnotations
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/lint-1790217367689.json
 
-FAILURE: Build completed with 2 failures.
+FAILURE: Build failed with an exception.
 
-1: Task failed with an exception.
------------
 * What went wrong:
-Execution failed for task ':core:common:compileDebugKotlin'.
+Execution failed for task ':core:ui:compileDebugKotlin'.
 > A failure occurred while executing org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction
    > Compilation error. See log for more details
 
@@ -355,21 +373,6 @@ Execution failed for task ':core:common:compileDebugKotlin'.
 > Run with --info or --debug option to get more log output.
 > Run with --scan to get full insights.
 > Get more help at https://help.gradle.org.
-==============================================================================
 
-2: Task failed with an exception.
------------
-* What went wrong:
-Execution failed for task ':core:designsystem:compileDebugKotlin'.
-> A failure occurred while executing org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction
-   > Compilation error. See log for more details
-
-* Try:
-> Run with --stacktrace option to get the stack trace.
-> Run with --info or --debug option to get more log output.
-> Run with --scan to get full insights.
-> Get more help at https://help.gradle.org.
-==============================================================================
-
-BUILD FAILED in 29s
-80 actionable tasks: 34 executed, 6 from cache, 40 up-to-date
+BUILD FAILED in 20s
+63 actionable tasks: 23 executed, 2 from cache, 38 up-to-date
