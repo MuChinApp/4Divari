@@ -1,37 +1,17 @@
-=== CI FAILURE CAPTURE 2026-09-24T04:34:49Z ===
+=== CI FAILURE CAPTURE 2026-09-24T13:15:55Z ===
 
 ########## /tmp/test-log.txt : FAILURE HEADERS ##########
-310:> Task :core:auth:compileDebugKotlin FAILED
-311:e: file:///home/runner/work/4Divari/4Divari/core/auth/src/main/kotlin/ir/chardivari/core/auth/AuthRepository.kt:172:5 'accessToken' overrides nothing.
-312:e: file:///home/runner/work/4Divari/4Divari/core/auth/src/main/kotlin/ir/chardivari/core/auth/SessionStore.kt:88:26 Return type of 'write' is not a subtype of the return type of the overridden member 'suspend fun write(session: AuthSession): Unit' defined in 'ir/chardivari/core/auth/SessionStore'.
-313:e: file:///home/runner/work/4Divari/4Divari/core/auth/src/main/kotlin/ir/chardivari/core/auth/SessionStore.kt:95:26 Return type of 'clear' is not a subtype of the return type of the overridden member 'suspend fun clear(): Unit' defined in 'ir/chardivari/core/auth/SessionStore'.
-314:e: file:///home/runner/work/4Divari/4Divari/core/auth/src/main/kotlin/ir/chardivari/core/auth/SessionStore.kt:103:16 Unresolved reference 'first'.
-318:> Task :feature:auth:compileDebugKotlin FAILED
-319:e: file:///home/runner/work/4Divari/4Divari/feature/auth/src/main/kotlin/ir/chardivari/feature/auth/AuthScreen.kt:39:27 Unresolved reference 'auth'.
-320:e: file:///home/runner/work/4Divari/4Divari/feature/auth/src/main/kotlin/ir/chardivari/feature/auth/AuthScreen.kt:60:49 Cannot infer type for this parameter. Please specify it explicitly.
-321:e: file:///home/runner/work/4Divari/4Divari/feature/auth/src/main/kotlin/ir/chardivari/feature/auth/AuthScreen.kt:60:65 Argument type mismatch: actual type is 'android.content.Context!', but 'android.content.Context' was expected.
-322:e: file:///home/runner/work/4Divari/4Divari/feature/auth/src/main/kotlin/ir/chardivari/feature/auth/AuthScreen.kt:60:74 Unresolved reference 'AuthEntryPoint'.
-323:e: file:///home/runner/work/4Divari/4Divari/feature/auth/src/main/kotlin/ir/chardivari/feature/auth/AuthScreen.kt:60:74 Argument type mismatch: actual type is 'java.lang.Class<T#2 (type parameter of val <T> KClass<T>.java: Class<T>)>', but 'java.lang.Class<T#1 (type parameter of fun <T> fromApplication(context: Context, entryPoint: Class<T>): T)>' was expected.
-324:e: file:///home/runner/work/4Divari/4Divari/feature/auth/src/main/kotlin/ir/chardivari/feature/auth/AuthScreen.kt:60:96 Cannot infer type for this parameter. Please specify it explicitly.
-325:e: file:///home/runner/work/4Divari/4Divari/feature/auth/src/main/kotlin/ir/chardivari/feature/auth/AuthScreen.kt:60:96 Unresolved reference. None of the following candidates is applicable because of a receiver type mismatch:
-327:e: file:///home/runner/work/4Divari/4Divari/feature/auth/src/main/kotlin/ir/chardivari/feature/auth/AuthScreen.kt:62:40 Unresolved reference 'authRepository'.
-328:e: file:///home/runner/work/4Divari/4Divari/feature/auth/src/main/kotlin/ir/chardivari/feature/auth/AuthScreen.kt:63:39 Unresolved reference 'analyticsTracker'.
-329:e: file:///home/runner/work/4Divari/4Divari/feature/auth/src/main/kotlin/ir/chardivari/feature/auth/AuthViewModel.kt:5:27 Unresolved reference 'auth'.
-330:e: file:///home/runner/work/4Divari/4Divari/feature/auth/src/main/kotlin/ir/chardivari/feature/auth/AuthViewModel.kt:6:27 Unresolved reference 'auth'.
-331:e: file:///home/runner/work/4Divari/4Divari/feature/auth/src/main/kotlin/ir/chardivari/feature/auth/AuthViewModel.kt:41:38 Unresolved reference 'AuthSession'.
-332:e: file:///home/runner/work/4Divari/4Divari/feature/auth/src/main/kotlin/ir/chardivari/feature/auth/AuthViewModel.kt:45:29 Unresolved reference 'AuthRepository'.
-333:e: file:///home/runner/work/4Divari/4Divari/feature/auth/src/main/kotlin/ir/chardivari/feature/auth/AuthViewModel.kt:77:43 Unresolved reference 'sendOtp'.
-334:e: file:///home/runner/work/4Divari/4Divari/feature/auth/src/main/kotlin/ir/chardivari/feature/auth/AuthViewModel.kt:78:20 One type argument expected. Use class 'Success' if you don't intend to pass type arguments.
-335:e: file:///home/runner/work/4Divari/4Divari/feature/auth/src/main/kotlin/ir/chardivari/feature/auth/AuthViewModel.kt:112:43 Unresolved reference 'verifyOtp'.
-336:e: file:///home/runner/work/4Divari/4Divari/feature/auth/src/main/kotlin/ir/chardivari/feature/auth/AuthViewModel.kt:113:20 One type argument expected. Use class 'Success' if you don't intend to pass type arguments.
-341:FAILURE: Build completed with 2 failures.
-345:* What went wrong:
-417:Caused by: org.gradle.workers.internal.DefaultWorkerExecutor$WorkExecutionException: A failure occurred while executing org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction
-575:Caused by: org.jetbrains.kotlin.gradle.tasks.CompilationErrorException: Compilation error. See log for more details
-611:* What went wrong:
-657:Caused by: org.gradle.workers.internal.DefaultWorkerExecutor$WorkExecutionException: A failure occurred while executing org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction
-792:Caused by: org.jetbrains.kotlin.gradle.tasks.CompilationErrorException: Compilation error. See log for more details
-829:BUILD FAILED in 2m 7s
+366:> Task :core:marketplace:compileDebugKotlin FAILED
+367:e: file:///home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/MarketplaceRepositories.kt:339:40 Unresolved reference 'firstOrNull'.
+368:e: file:///home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/MarketplaceRepositories.kt:339:55 Unresolved reference 'it'.
+369:e: file:///home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/MarketplaceRepositories.kt:346:41 Argument type mismatch: actual type is 'kotlin.Any', but 'kotlin.String' was expected.
+370:e: file:///home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/MarketplaceRepositories.kt:347:47 Unresolved reference 'displayName'.
+371:e: file:///home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/MarketplaceRepositories.kt:348:45 Unresolved reference 'partyRole'.
+376:FAILURE: Build failed with an exception.
+378:* What went wrong:
+421:Caused by: org.gradle.workers.internal.DefaultWorkerExecutor$WorkExecutionException: A failure occurred while executing org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction
+550:Caused by: org.jetbrains.kotlin.gradle.tasks.CompilationErrorException: Compilation error. See log for more details
+583:BUILD FAILED in 2m 14s
 
 ########## /tmp/test-log.txt (first 80 lines) ##########
 Downloading https://services.gradle.org/distributions/gradle-8.11.1-bin.zip
@@ -48,76 +28,83 @@ For more details see https://docs.gradle.org/8.11.1/release-notes.html
 
 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.11.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
 Daemon will be stopped at the end of the build 
-> Task :core:common:preBuild UP-TO-DATE
-> Task :core:auth:preBuild UP-TO-DATE
 > Task :core:analytics:preBuild UP-TO-DATE
-> Task :core:analytics:preDebugBuild UP-TO-DATE
+> Task :core:auth:preBuild UP-TO-DATE
+> Task :core:common:preBuild UP-TO-DATE
 > Task :app:preBuild UP-TO-DATE
-> Task :core:common:preDebugBuild UP-TO-DATE
 > Task :app:preDebugBuild UP-TO-DATE
 > Task :core:auth:preDebugBuild UP-TO-DATE
+> Task :core:analytics:preDebugBuild UP-TO-DATE
+> Task :core:common:preDebugBuild UP-TO-DATE
 > Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:common:writeDebugAarMetadata
+> Task :core:analytics:writeDebugAarMetadata
+> Task :core:auth:writeDebugAarMetadata
 > Task :app:generateDebugBuildConfig
 > Task :core:designsystem:preBuild UP-TO-DATE
-> Task :core:designsystem:preDebugBuild UP-TO-DATE
-> Task :core:analytics:writeDebugAarMetadata
-> Task :core:common:writeDebugAarMetadata
+> Task :core:marketplace:preBuild UP-TO-DATE
 > Task :core:navigation:preBuild UP-TO-DATE
+> Task :core:marketplace:preDebugBuild UP-TO-DATE
+> Task :core:designsystem:preDebugBuild UP-TO-DATE
 > Task :core:navigation:preDebugBuild UP-TO-DATE
 > Task :core:environment:preBuild UP-TO-DATE
 > Task :core:environment:preDebugBuild UP-TO-DATE
-> Task :core:auth:writeDebugAarMetadata
+> Task :core:designsystem:writeDebugAarMetadata
 > Task :core:network:preBuild UP-TO-DATE
+> Task :core:environment:writeDebugAarMetadata
+> Task :core:ui:preBuild UP-TO-DATE
+> Task :core:ui:preDebugBuild UP-TO-DATE
+> Task :core:marketplace:writeDebugAarMetadata
 > Task :core:network:preDebugBuild UP-TO-DATE
+> Task :feature:auth:preBuild UP-TO-DATE
+> Task :feature:auth:preDebugBuild UP-TO-DATE
 > Task :core:navigation:writeDebugAarMetadata
-> Task :core:network:writeDebugAarMetadata
 > Task :feature:home:preBuild UP-TO-DATE
 > Task :feature:home:preDebugBuild UP-TO-DATE
-> Task :core:ui:preBuild UP-TO-DATE
-> Task :core:designsystem:writeDebugAarMetadata
-> Task :feature:profile:preBuild UP-TO-DATE
-> Task :feature:profile:preDebugBuild UP-TO-DATE
-> Task :core:ui:preDebugBuild UP-TO-DATE
-> Task :core:environment:writeDebugAarMetadata
-> Task :feature:saved:preBuild UP-TO-DATE
-> Task :feature:saved:preDebugBuild UP-TO-DATE
-> Task :feature:saved:writeDebugAarMetadata
-> Task :feature:home:writeDebugAarMetadata
-> Task :feature:profile:writeDebugAarMetadata
-> Task :feature:search:preBuild UP-TO-DATE
-> Task :feature:search:preDebugBuild UP-TO-DATE
 > Task :core:ui:writeDebugAarMetadata
+> Task :feature:home:writeDebugAarMetadata
+> Task :core:network:writeDebugAarMetadata
+> Task :feature:property:preBuild UP-TO-DATE
+> Task :feature:profile:preBuild UP-TO-DATE
+> Task :feature:property:preDebugBuild UP-TO-DATE
+> Task :feature:saved:preBuild UP-TO-DATE
+> Task :feature:auth:writeDebugAarMetadata
+> Task :feature:saved:preDebugBuild UP-TO-DATE
+> Task :feature:search:preBuild UP-TO-DATE
+> Task :feature:profile:preDebugBuild UP-TO-DATE
+> Task :feature:search:preDebugBuild UP-TO-DATE
+> Task :feature:property:writeDebugAarMetadata
+> Task :feature:saved:writeDebugAarMetadata
+> Task :feature:profile:writeDebugAarMetadata
 > Task :feature:search:writeDebugAarMetadata
+> Task :app:generateDebugResValues
+> Task :core:common:generateDebugResValues FROM-CACHE
 > Task :core:auth:generateDebugResValues
 > Task :core:analytics:generateDebugResValues
-> Task :app:generateDebugResValues
 > Task :core:analytics:generateDebugResources
-> Task :core:common:generateDebugResValues FROM-CACHE
+> Task :core:common:generateDebugResources
 > Task :core:auth:generateDebugResources
-> Task :core:common:generateDebugResources FROM-CACHE
-> Task :core:common:packageDebugResources
 > Task :core:analytics:packageDebugResources
+> Task :core:common:packageDebugResources
 > Task :core:auth:packageDebugResources
 > Task :core:designsystem:generateDebugResValues FROM-CACHE
-> Task :core:navigation:generateDebugResValues FROM-CACHE
 > Task :core:environment:generateDebugResValues FROM-CACHE
+> Task :core:marketplace:generateDebugResValues FROM-CACHE
 > Task :core:designsystem:generateDebugResources
+> Task :core:marketplace:generateDebugResources FROM-CACHE
 > Task :core:environment:generateDebugResources FROM-CACHE
-> Task :core:navigation:generateDebugResources FROM-CACHE
 > Task :core:environment:packageDebugResources
-> Task :core:network:generateDebugResValues FROM-CACHE
-> Task :core:navigation:packageDebugResources
-> Task :core:network:generateDebugResources FROM-CACHE
-> Task :core:ui:generateDebugResValues FROM-CACHE
-> Task :core:ui:generateDebugResources FROM-CACHE
-> Task :core:network:packageDebugResources
-> Task :feature:home:generateDebugResValues FROM-CACHE
-> Task :feature:home:generateDebugResources FROM-CACHE
-> Task :core:ui:packageDebugResources
 
 ########## /tmp/test-log.txt (last 80 lines) ##########
+	at org.gradle.internal.execution.steps.HandleStaleOutputsStep.execute(HandleStaleOutputsStep.java:75)
+	at org.gradle.internal.execution.steps.HandleStaleOutputsStep.execute(HandleStaleOutputsStep.java:41)
+	at org.gradle.internal.execution.steps.AssignMutableWorkspaceStep.lambda$execute$0(AssignMutableWorkspaceStep.java:35)
+	at org.gradle.api.internal.tasks.execution.TaskExecution$4.withWorkspace(TaskExecution.java:289)
+	at org.gradle.internal.execution.steps.AssignMutableWorkspaceStep.execute(AssignMutableWorkspaceStep.java:31)
+	at org.gradle.internal.execution.steps.AssignMutableWorkspaceStep.execute(AssignMutableWorkspaceStep.java:22)
+	at org.gradle.internal.execution.steps.ChoosePipelineStep.execute(ChoosePipelineStep.java:40)
+	at org.gradle.internal.execution.steps.ChoosePipelineStep.execute(ChoosePipelineStep.java:23)
 	at org.gradle.internal.execution.steps.ExecuteWorkBuildOperationFiringStep.lambda$execute$2(ExecuteWorkBuildOperationFiringStep.java:67)
-	at java.base/java.util.Optional.orElseGet(Optional.java:364)
 	at org.gradle.internal.execution.steps.ExecuteWorkBuildOperationFiringStep.execute(ExecuteWorkBuildOperationFiringStep.java:67)
 	at org.gradle.internal.execution.steps.ExecuteWorkBuildOperationFiringStep.execute(ExecuteWorkBuildOperationFiringStep.java:39)
 	at org.gradle.internal.execution.steps.IdentityCacheStep.execute(IdentityCacheStep.java:46)
@@ -154,9 +141,6 @@ Daemon will be stopped at the end of the build
 	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.run(DefaultPlanExecutor.java:376)
 	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
 	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:48)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
-	at java.base/java.lang.Thread.run(Thread.java:840)
 Caused by: org.jetbrains.kotlin.gradle.tasks.CompilationErrorException: Compilation error. See log for more details
 	at org.jetbrains.kotlin.gradle.tasks.TasksUtilsKt.throwExceptionIfCompilationFailed(tasksUtils.kt:21)
 	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.run(GradleKotlinCompilerWork.kt:119)
@@ -178,7 +162,6 @@ Caused by: org.jetbrains.kotlin.gradle.tasks.CompilationErrorException: Compilat
 	at org.gradle.workers.internal.AbstractWorker.executeWrappedInBuildOperation(AbstractWorker.java:41)
 	at org.gradle.workers.internal.NoIsolationWorkerFactory$1.execute(NoIsolationWorkerFactory.java:59)
 	at org.gradle.workers.internal.DefaultWorkerExecutor.lambda$submitWork$0(DefaultWorkerExecutor.java:174)
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
 	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.runExecution(DefaultConditionalExecutionQueue.java:194)
 	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.access$700(DefaultConditionalExecutionQueue.java:127)
 	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner$1.run(DefaultConditionalExecutionQueue.java:169)
@@ -188,37 +171,45 @@ Caused by: org.jetbrains.kotlin.gradle.tasks.CompilationErrorException: Compilat
 	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:132)
 	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.runBatch(DefaultConditionalExecutionQueue.java:164)
 	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.run(DefaultConditionalExecutionQueue.java:133)
-	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
-	... 5 more
+	... 2 more
 
-==============================================================================
 
-BUILD FAILED in 2m 7s
-218 actionable tasks: 149 executed, 69 from cache
+BUILD FAILED in 2m 14s
+253 actionable tasks: 162 executed, 91 from cache
 
 ########## /tmp/detekt-log.txt : FAILURE HEADERS ##########
-10:/home/runner/work/4Divari/4Divari/feature/auth/src/main/kotlin/ir/chardivari/feature/auth/AuthScreen.kt:91:15: The function AuthScreen(state: AuthUiModel, error: AppError?, modifier: Modifier, onPhoneChange: (String) -> Unit, onSendOtp: () -> Unit, onVerify: (String) -> Unit, onResend: () -> Unit, onBack: () -> Unit) has too many parameters. The current threshold is set to 6. [LongParameterList]
+13:/home/runner/work/4Divari/4Divari/feature/auth/src/main/kotlin/ir/chardivari/feature/auth/AuthScreen.kt:91:15: The function AuthScreen(state: AuthUiModel, error: AppError?, modifier: Modifier, onPhoneChange: (String) -> Unit, onSendOtp: () -> Unit, onVerify: (String) -> Unit, onResend: () -> Unit, onBack: () -> Unit) has too many parameters. The current threshold is set to 6. [LongParameterList]
 
 ########## /tmp/detekt-log.txt (first 80 lines) ##########
 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.11.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
 Daemon will be stopped at the end of the build 
 
 > Task :detekt
+/home/runner/work/4Divari/4Divari/app/src/main/kotlin/ir/chardivari/app/MainActivity.kt:68:13: The function ChardivariRoot is too long (128). The maximum length is 80. [LongMethod]
 /home/runner/work/4Divari/4Divari/core/designsystem/src/main/kotlin/ir/chardivari/core/designsystem/components/StateComponents.kt:64:15: The function EmptyState(title: String, modifier: Modifier, description: String?, actionLabel: String?, onAction: (() -> Unit)?, icon: ImageVector) has too many parameters. The current threshold is set to 6. [LongParameterList]
 /home/runner/work/4Divari/4Divari/core/designsystem/src/main/kotlin/ir/chardivari/core/designsystem/components/StateComponents.kt:111:15: The function ErrorState(title: String, modifier: Modifier, description: String?, canRetry: Boolean, onRetry: (() -> Unit)?, secondaryActionLabel: String?, onSecondaryAction: (() -> Unit)?) has too many parameters. The current threshold is set to 6. [LongParameterList]
 /home/runner/work/4Divari/4Divari/core/designsystem/src/main/kotlin/ir/chardivari/core/designsystem/components/PropertyCard.kt:90:17: The function PropertyCard(photoUrl: String?, priceLine: String, pricePerSqmLine: String, titleLine: String, locationLine: String, amenitiesLine: String?, verificationLabel: String?, updatedLabel: String, modifier: Modifier, isFixtureData: Boolean, onFavorite: () -> Unit, onShare: () -> Unit, onCompare: () -> Unit, onClick: () -> Unit) has too many parameters. The current threshold is set to 6. [LongParameterList]
 /home/runner/work/4Divari/4Divari/core/designsystem/src/main/kotlin/ir/chardivari/core/designsystem/components/PropertyCard.kt:90:5: The function PropertyCard is too long (103). The maximum length is 80. [LongMethod]
 /home/runner/work/4Divari/4Divari/core/ui/src/main/kotlin/ir/chardivari/core/ui/UiStateRenderer.kt:24:24: The function UiStateRenderer(state: UiState<T>, modifier: Modifier, onRetry: () -> Unit, emptyTitle: String, emptyDescription: String?, loadingLabel: String, content: @Composable (T) -> Unit) has too many parameters. The current threshold is set to 6. [LongParameterList]
+/home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/ListingPresenter.kt:88:9: The function detail appears to be too complex based on Cyclomatic Complexity (complexity: 15). Defined complexity threshold for methods is set to '15' [CyclomaticComplexMethod]
+/home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/MarketplaceApi.kt:63:35: The function fetchSavedSearches(url: String, apiKey: String, authorization: String, select: String, userId: String, order: String) has too many parameters. The current threshold is set to 6. [LongParameterList]
 /home/runner/work/4Divari/4Divari/feature/auth/src/main/kotlin/ir/chardivari/feature/auth/AuthScreen.kt:91:15: The function AuthScreen(state: AuthUiModel, error: AppError?, modifier: Modifier, onPhoneChange: (String) -> Unit, onSendOtp: () -> Unit, onVerify: (String) -> Unit, onResend: () -> Unit, onBack: () -> Unit) has too many parameters. The current threshold is set to 6. [LongParameterList]
+/home/runner/work/4Divari/4Divari/feature/search/src/main/kotlin/ir/chardivari/feature/search/SearchScreen.kt:107:26: The function SearchContent(model: SearchUiModel, onQueryChange: (String) -> Unit, onDealType: (DealType?) -> Unit, onCityChange: (String) -> Unit, onClear: () -> Unit, onSave: () -> Unit, onListingClick: (String) -> Unit) has too many parameters. The current threshold is set to 6. [LongParameterList]
+/home/runner/work/4Divari/4Divari/feature/search/src/main/kotlin/ir/chardivari/feature/search/SearchScreen.kt:107:13: The function SearchContent is too long (134). The maximum length is 80. [LongMethod]
+/home/runner/work/4Divari/4Divari/feature/saved/src/main/kotlin/ir/chardivari/feature/saved/SavedScreen.kt:99:25: The function SavedContent(model: SavedUiModel, onTab: (SavedTab) -> Unit, onRemoveSearch: (String) -> Unit, onRemoveFavorite: (String) -> Unit, onListingClick: (String) -> Unit, onOpenSearch: (String?) -> Unit) has too many parameters. The current threshold is set to 6. [LongParameterList]
+/home/runner/work/4Divari/4Divari/feature/saved/src/main/kotlin/ir/chardivari/feature/saved/SavedScreen.kt:99:13: The function SavedContent is too long (80). The maximum length is 80. [LongMethod]
+/home/runner/work/4Divari/4Divari/feature/property/src/main/kotlin/ir/chardivari/feature/property/PropertyDetailScreen.kt:47:5: The function PropertyDetailRoute is too long (261). The maximum length is 80. [LongMethod]
+/home/runner/work/4Divari/4Divari/feature/property/src/main/kotlin/ir/chardivari/feature/property/PropertyDetailScreen.kt:47:5: The function PropertyDetailRoute appears to be too complex based on Cyclomatic Complexity (complexity: 19). Defined complexity threshold for methods is set to '15' [CyclomaticComplexMethod]
 /home/runner/work/4Divari/4Divari/core/network/src/main/kotlin/ir/chardivari/core/network/ErrorMapper.kt:54:17: Instead of catching for a general exception type and checking for a specific exception type, use multiple catch blocks. [InstanceOfCheckForException]
 /home/runner/work/4Divari/4Divari/core/network/src/main/kotlin/ir/chardivari/core/network/SafeApi.kt:23:21: Instead of catching for a general exception type and checking for a specific exception type, use multiple catch blocks. [InstanceOfCheckForException]
-/home/runner/work/4Divari/4Divari/core/auth/src/main/kotlin/ir/chardivari/core/auth/AuthRepository.kt:200:17: Instead of catching for a general exception type and checking for a specific exception type, use multiple catch blocks. [InstanceOfCheckForException]
-/home/runner/work/4Divari/4Divari/core/auth/src/main/kotlin/ir/chardivari/core/auth/SessionStore.kt:38:20: Use check() or error() instead of throwing an IllegalStateException. [UseCheckOrError]
+/home/runner/work/4Divari/4Divari/core/auth/src/main/kotlin/ir/chardivari/core/auth/AuthRepository.kt:199:17: Instead of catching for a general exception type and checking for a specific exception type, use multiple catch blocks. [InstanceOfCheckForException]
+/home/runner/work/4Divari/4Divari/app/src/main/kotlin/ir/chardivari/app/MainActivity.kt:153:1: Line detected, which is longer than the defined maximum line length in the code style. [MaxLineLength]
+/home/runner/work/4Divari/4Divari/core/auth/src/main/kotlin/ir/chardivari/core/auth/SessionStore.kt:39:20: Use check() or error() instead of throwing an IllegalStateException. [UseCheckOrError]
+/home/runner/work/4Divari/4Divari/feature/property/src/test/kotlin/ir/chardivari/feature/property/PropertyDetailViewModelTest.kt:50:17: Private property `sample` is unused. [UnusedPrivateProperty]
 
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/detekt-1790224427416.json
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/detekt-1790255690571.json
 
-BUILD SUCCESSFUL in 20s
+BUILD SUCCESSFUL in 21s
 1 actionable task: 1 executed
 
 ########## /tmp/detekt-log.txt (last 80 lines) ##########
@@ -226,102 +217,110 @@ To honour the JVM settings for this build a single-use Daemon process will be fo
 Daemon will be stopped at the end of the build 
 
 > Task :detekt
+/home/runner/work/4Divari/4Divari/app/src/main/kotlin/ir/chardivari/app/MainActivity.kt:68:13: The function ChardivariRoot is too long (128). The maximum length is 80. [LongMethod]
 /home/runner/work/4Divari/4Divari/core/designsystem/src/main/kotlin/ir/chardivari/core/designsystem/components/StateComponents.kt:64:15: The function EmptyState(title: String, modifier: Modifier, description: String?, actionLabel: String?, onAction: (() -> Unit)?, icon: ImageVector) has too many parameters. The current threshold is set to 6. [LongParameterList]
 /home/runner/work/4Divari/4Divari/core/designsystem/src/main/kotlin/ir/chardivari/core/designsystem/components/StateComponents.kt:111:15: The function ErrorState(title: String, modifier: Modifier, description: String?, canRetry: Boolean, onRetry: (() -> Unit)?, secondaryActionLabel: String?, onSecondaryAction: (() -> Unit)?) has too many parameters. The current threshold is set to 6. [LongParameterList]
 /home/runner/work/4Divari/4Divari/core/designsystem/src/main/kotlin/ir/chardivari/core/designsystem/components/PropertyCard.kt:90:17: The function PropertyCard(photoUrl: String?, priceLine: String, pricePerSqmLine: String, titleLine: String, locationLine: String, amenitiesLine: String?, verificationLabel: String?, updatedLabel: String, modifier: Modifier, isFixtureData: Boolean, onFavorite: () -> Unit, onShare: () -> Unit, onCompare: () -> Unit, onClick: () -> Unit) has too many parameters. The current threshold is set to 6. [LongParameterList]
 /home/runner/work/4Divari/4Divari/core/designsystem/src/main/kotlin/ir/chardivari/core/designsystem/components/PropertyCard.kt:90:5: The function PropertyCard is too long (103). The maximum length is 80. [LongMethod]
 /home/runner/work/4Divari/4Divari/core/ui/src/main/kotlin/ir/chardivari/core/ui/UiStateRenderer.kt:24:24: The function UiStateRenderer(state: UiState<T>, modifier: Modifier, onRetry: () -> Unit, emptyTitle: String, emptyDescription: String?, loadingLabel: String, content: @Composable (T) -> Unit) has too many parameters. The current threshold is set to 6. [LongParameterList]
+/home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/ListingPresenter.kt:88:9: The function detail appears to be too complex based on Cyclomatic Complexity (complexity: 15). Defined complexity threshold for methods is set to '15' [CyclomaticComplexMethod]
+/home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/MarketplaceApi.kt:63:35: The function fetchSavedSearches(url: String, apiKey: String, authorization: String, select: String, userId: String, order: String) has too many parameters. The current threshold is set to 6. [LongParameterList]
 /home/runner/work/4Divari/4Divari/feature/auth/src/main/kotlin/ir/chardivari/feature/auth/AuthScreen.kt:91:15: The function AuthScreen(state: AuthUiModel, error: AppError?, modifier: Modifier, onPhoneChange: (String) -> Unit, onSendOtp: () -> Unit, onVerify: (String) -> Unit, onResend: () -> Unit, onBack: () -> Unit) has too many parameters. The current threshold is set to 6. [LongParameterList]
+/home/runner/work/4Divari/4Divari/feature/search/src/main/kotlin/ir/chardivari/feature/search/SearchScreen.kt:107:26: The function SearchContent(model: SearchUiModel, onQueryChange: (String) -> Unit, onDealType: (DealType?) -> Unit, onCityChange: (String) -> Unit, onClear: () -> Unit, onSave: () -> Unit, onListingClick: (String) -> Unit) has too many parameters. The current threshold is set to 6. [LongParameterList]
+/home/runner/work/4Divari/4Divari/feature/search/src/main/kotlin/ir/chardivari/feature/search/SearchScreen.kt:107:13: The function SearchContent is too long (134). The maximum length is 80. [LongMethod]
+/home/runner/work/4Divari/4Divari/feature/saved/src/main/kotlin/ir/chardivari/feature/saved/SavedScreen.kt:99:25: The function SavedContent(model: SavedUiModel, onTab: (SavedTab) -> Unit, onRemoveSearch: (String) -> Unit, onRemoveFavorite: (String) -> Unit, onListingClick: (String) -> Unit, onOpenSearch: (String?) -> Unit) has too many parameters. The current threshold is set to 6. [LongParameterList]
+/home/runner/work/4Divari/4Divari/feature/saved/src/main/kotlin/ir/chardivari/feature/saved/SavedScreen.kt:99:13: The function SavedContent is too long (80). The maximum length is 80. [LongMethod]
+/home/runner/work/4Divari/4Divari/feature/property/src/main/kotlin/ir/chardivari/feature/property/PropertyDetailScreen.kt:47:5: The function PropertyDetailRoute is too long (261). The maximum length is 80. [LongMethod]
+/home/runner/work/4Divari/4Divari/feature/property/src/main/kotlin/ir/chardivari/feature/property/PropertyDetailScreen.kt:47:5: The function PropertyDetailRoute appears to be too complex based on Cyclomatic Complexity (complexity: 19). Defined complexity threshold for methods is set to '15' [CyclomaticComplexMethod]
 /home/runner/work/4Divari/4Divari/core/network/src/main/kotlin/ir/chardivari/core/network/ErrorMapper.kt:54:17: Instead of catching for a general exception type and checking for a specific exception type, use multiple catch blocks. [InstanceOfCheckForException]
 /home/runner/work/4Divari/4Divari/core/network/src/main/kotlin/ir/chardivari/core/network/SafeApi.kt:23:21: Instead of catching for a general exception type and checking for a specific exception type, use multiple catch blocks. [InstanceOfCheckForException]
-/home/runner/work/4Divari/4Divari/core/auth/src/main/kotlin/ir/chardivari/core/auth/AuthRepository.kt:200:17: Instead of catching for a general exception type and checking for a specific exception type, use multiple catch blocks. [InstanceOfCheckForException]
-/home/runner/work/4Divari/4Divari/core/auth/src/main/kotlin/ir/chardivari/core/auth/SessionStore.kt:38:20: Use check() or error() instead of throwing an IllegalStateException. [UseCheckOrError]
+/home/runner/work/4Divari/4Divari/core/auth/src/main/kotlin/ir/chardivari/core/auth/AuthRepository.kt:199:17: Instead of catching for a general exception type and checking for a specific exception type, use multiple catch blocks. [InstanceOfCheckForException]
+/home/runner/work/4Divari/4Divari/app/src/main/kotlin/ir/chardivari/app/MainActivity.kt:153:1: Line detected, which is longer than the defined maximum line length in the code style. [MaxLineLength]
+/home/runner/work/4Divari/4Divari/core/auth/src/main/kotlin/ir/chardivari/core/auth/SessionStore.kt:39:20: Use check() or error() instead of throwing an IllegalStateException. [UseCheckOrError]
+/home/runner/work/4Divari/4Divari/feature/property/src/test/kotlin/ir/chardivari/feature/property/PropertyDetailViewModelTest.kt:50:17: Private property `sample` is unused. [UnusedPrivateProperty]
 
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/detekt-1790224427416.json
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/detekt-1790255690571.json
 
-BUILD SUCCESSFUL in 20s
+BUILD SUCCESSFUL in 21s
 1 actionable task: 1 executed
 
 ########## /tmp/lint-log.txt : FAILURE HEADERS ##########
-476:> Task :core:auth:compileDebugKotlin FAILED
-477:e: file:///home/runner/work/4Divari/4Divari/core/auth/src/main/kotlin/ir/chardivari/core/auth/AuthRepository.kt:172:5 'accessToken' overrides nothing.
-478:e: file:///home/runner/work/4Divari/4Divari/core/auth/src/main/kotlin/ir/chardivari/core/auth/SessionStore.kt:88:26 Return type of 'write' is not a subtype of the return type of the overridden member 'suspend fun write(session: AuthSession): Unit' defined in 'ir/chardivari/core/auth/SessionStore'.
-479:e: file:///home/runner/work/4Divari/4Divari/core/auth/src/main/kotlin/ir/chardivari/core/auth/SessionStore.kt:95:26 Return type of 'clear' is not a subtype of the return type of the overridden member 'suspend fun clear(): Unit' defined in 'ir/chardivari/core/auth/SessionStore'.
-480:e: file:///home/runner/work/4Divari/4Divari/core/auth/src/main/kotlin/ir/chardivari/core/auth/SessionStore.kt:103:16 Unresolved reference 'first'.
-487:FAILURE: Build failed with an exception.
-489:* What went wrong:
-500:BUILD FAILED in 44s
+541:> Task :core:marketplace:compileDebugKotlin FAILED
+542:e: file:///home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/MarketplaceRepositories.kt:339:40 Unresolved reference 'firstOrNull'.
+543:e: file:///home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/MarketplaceRepositories.kt:339:55 Unresolved reference 'it'.
+544:e: file:///home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/MarketplaceRepositories.kt:346:41 Argument type mismatch: actual type is 'kotlin.Any', but 'kotlin.String' was expected.
+545:e: file:///home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/MarketplaceRepositories.kt:347:47 Unresolved reference 'displayName'.
+546:e: file:///home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/MarketplaceRepositories.kt:348:45 Unresolved reference 'partyRole'.
+553:FAILURE: Build failed with an exception.
+555:* What went wrong:
+566:BUILD FAILED in 46s
 
 ########## /tmp/lint-log.txt (first 80 lines) ##########
 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.11.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
 Daemon will be stopped at the end of the build 
+> Task :core:ui:preBuild UP-TO-DATE
 > Task :core:designsystem:checkKotlinGradlePluginConfigurationErrors SKIPPED
 > Task :core:environment:preBuild UP-TO-DATE
-> Task :core:common:checkKotlinGradlePluginConfigurationErrors SKIPPED
-> Task :core:ui:preBuild UP-TO-DATE
 > Task :core:ui:preDebugBuild UP-TO-DATE
-> Task :core:designsystem:preBuild UP-TO-DATE
-> Task :core:designsystem:preDebugBuild UP-TO-DATE
+> Task :core:common:checkKotlinGradlePluginConfigurationErrors SKIPPED
 > Task :core:common:preBuild UP-TO-DATE
-> Task :core:common:preDebugBuild UP-TO-DATE
+> Task :core:designsystem:preBuild UP-TO-DATE
 > Task :core:environment:preDebugBuild UP-TO-DATE
+> Task :core:designsystem:preDebugBuild UP-TO-DATE
+> Task :core:common:preDebugBuild UP-TO-DATE
 > Task :core:common:generateDebugResValues UP-TO-DATE
 > Task :core:designsystem:generateDebugResValues UP-TO-DATE
 > Task :core:common:generateDebugResources UP-TO-DATE
 > Task :core:designsystem:generateDebugResources UP-TO-DATE
 > Task :core:common:packageDebugResources UP-TO-DATE
 > Task :core:designsystem:packageDebugResources UP-TO-DATE
-> Task :core:common:parseDebugLocalResources UP-TO-DATE
-> Task :core:common:generateDebugRFile UP-TO-DATE
 > Task :core:designsystem:parseDebugLocalResources UP-TO-DATE
+> Task :core:common:parseDebugLocalResources UP-TO-DATE
 > Task :core:designsystem:generateDebugRFile UP-TO-DATE
+> Task :core:common:generateDebugRFile UP-TO-DATE
 > Task :core:environment:mergeDebugJniLibFolders
 > Task :core:ui:mergeDebugJniLibFolders
-> Task :core:ui:mergeDebugNativeLibs NO-SOURCE
 > Task :core:environment:mergeDebugNativeLibs NO-SOURCE
+> Task :core:ui:mergeDebugNativeLibs NO-SOURCE
 > Task :core:ui:stripDebugDebugSymbols NO-SOURCE
 > Task :core:environment:stripDebugDebugSymbols NO-SOURCE
 > Task :core:environment:copyDebugJniLibsProjectAndLocalJars
-> Task :core:ui:copyDebugJniLibsProjectAndLocalJars
 > Task :core:ui:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:ui:copyDebugJniLibsProjectAndLocalJars
 > Task :core:environment:checkKotlinGradlePluginConfigurationErrors SKIPPED
 > Task :core:ui:generateDebugResValues UP-TO-DATE
 > Task :core:environment:generateDebugBuildConfig UP-TO-DATE
-> Task :core:ui:generateDebugResources UP-TO-DATE
 > Task :core:environment:generateDebugResValues UP-TO-DATE
+> Task :core:ui:generateDebugResources UP-TO-DATE
 > Task :core:environment:generateDebugResources UP-TO-DATE
 > Task :core:ui:packageDebugResources UP-TO-DATE
-> Task :core:ui:parseDebugLocalResources UP-TO-DATE
 > Task :core:environment:packageDebugResources UP-TO-DATE
-> Task :core:ui:generateDebugRFile UP-TO-DATE
+> Task :core:ui:parseDebugLocalResources UP-TO-DATE
 > Task :core:environment:parseDebugLocalResources UP-TO-DATE
+> Task :core:ui:generateDebugRFile UP-TO-DATE
 > Task :core:environment:generateDebugRFile UP-TO-DATE
-> Task :core:common:compileDebugKotlin UP-TO-DATE
 > Task :core:ui:extractDeepLinksForAarDebug
-> Task :core:common:javaPreCompileDebug UP-TO-DATE
 > Task :core:ui:javaPreCompileDebug UP-TO-DATE
-> Task :core:environment:compileDebugKotlin UP-TO-DATE
-> Task :core:common:compileDebugJavaWithJavac NO-SOURCE
-> Task :core:common:bundleLibCompileToJarDebug UP-TO-DATE
 > Task :core:ui:mergeDebugShaders
 > Task :core:ui:compileDebugShaders NO-SOURCE
 > Task :core:ui:generateDebugAssets UP-TO-DATE
-> Task :core:common:mergeDebugJniLibFolders
-> Task :core:common:mergeDebugNativeLibs NO-SOURCE
-> Task :core:common:stripDebugDebugSymbols NO-SOURCE
-> Task :core:common:copyDebugJniLibsProjectAndLocalJars
 > Task :core:ui:packageDebugAssets
 > Task :core:ui:prepareDebugArtProfile
+> Task :core:common:compileDebugKotlin UP-TO-DATE
+> Task :core:environment:compileDebugKotlin UP-TO-DATE
+> Task :core:common:javaPreCompileDebug UP-TO-DATE
+> Task :core:common:compileDebugJavaWithJavac NO-SOURCE
+> Task :core:common:bundleLibCompileToJarDebug UP-TO-DATE
 > Task :core:ui:prepareLintJarForPublish
 > Task :core:ui:processDebugManifest UP-TO-DATE
+> Task :core:common:mergeDebugJniLibFolders
+> Task :core:common:mergeDebugNativeLibs NO-SOURCE
 > Task :core:ui:writeDebugAarMetadata UP-TO-DATE
 > Task :core:network:preBuild UP-TO-DATE
+> Task :core:common:stripDebugDebugSymbols NO-SOURCE
 > Task :core:network:preDebugBuild UP-TO-DATE
-> Task :core:designsystem:compileDebugKotlin UP-TO-DATE
-> Task :core:designsystem:javaPreCompileDebug UP-TO-DATE
-> Task :core:designsystem:compileDebugJavaWithJavac NO-SOURCE
+> Task :core:common:copyDebugJniLibsProjectAndLocalJars
 > Task :core:network:mergeDebugJniLibFolders
-> Task :core:designsystem:bundleLibCompileToJarDebug UP-TO-DATE
 > Task :core:network:mergeDebugNativeLibs NO-SOURCE
 > Task :core:network:stripDebugDebugSymbols NO-SOURCE
 > Task :core:network:copyDebugJniLibsProjectAndLocalJars
@@ -333,77 +332,81 @@ Daemon will be stopped at the end of the build
 > Task :core:network:generateDebugRFile UP-TO-DATE
 > Task :core:network:extractDeepLinksForAarDebug FROM-CACHE
 > Task :core:network:javaPreCompileDebug UP-TO-DATE
+> Task :core:network:mergeDebugShaders
+> Task :core:network:compileDebugShaders NO-SOURCE
+> Task :core:network:generateDebugAssets UP-TO-DATE
+> Task :core:network:packageDebugAssets
 
 ########## /tmp/lint-log.txt (last 80 lines) ##########
-> Task :feature:profile:extractDeepLinksDebug UP-TO-DATE
-> Task :feature:profile:compileDebugLibraryResources UP-TO-DATE
-> Task :feature:profile:bundleLibCompileToJarDebug UP-TO-DATE
-> Task :feature:profile:bundleLibRuntimeToJarDebug UP-TO-DATE
-> Task :core:analytics:createFullJarDebug
-> Task :core:analytics:writeDebugLintModelMetadata
-> Task :core:auth:writeDebugLintModelMetadata
-> Task :core:common:createFullJarDebug
-> Task :core:common:writeDebugLintModelMetadata
-> Task :core:designsystem:createFullJarDebug
-> Task :core:designsystem:writeDebugLintModelMetadata
-> Task :core:environment:createFullJarDebug
-> Task :core:environment:writeDebugLintModelMetadata
-> Task :core:navigation:createFullJarDebug
-> Task :core:navigation:writeDebugLintModelMetadata
-> Task :core:network:createFullJarDebug
-> Task :core:network:writeDebugLintModelMetadata
 > Task :core:ui:createFullJarDebug
+> Task :feature:auth:writeDebugLintModelMetadata
 > Task :core:ui:writeDebugLintModelMetadata
 > Task :feature:home:writeDebugLintModelMetadata
 > Task :feature:profile:createFullJarDebug
+> Task :feature:property:writeDebugLintModelMetadata
 > Task :feature:profile:writeDebugLintModelMetadata
-> Task :feature:saved:createFullJarDebug
-> Task :feature:saved:writeDebugLintModelMetadata
-> Task :feature:search:createFullJarDebug
 > Task :feature:search:writeDebugLintModelMetadata
-> Task :app:processDebugMainManifest UP-TO-DATE
+> Task :feature:saved:writeDebugLintModelMetadata
+> Task :app:extractProguardFiles
 > Task :core:analytics:extractProguardFiles
-> Task :app:processDebugManifest UP-TO-DATE
+> Task :core:environment:extractProguardFiles
 > Task :core:common:extractProguardFiles
+> Task :core:auth:transformDebugClassesWithAsm
+> Task :core:auth:mergeDebugGeneratedProguardFiles
+> Task :core:auth:mergeDebugConsumerProguardFiles
+> Task :core:auth:processDebugJavaRes
+> Task :core:auth:mergeDebugJavaResource
+> Task :core:auth:syncDebugLibJars
+> Task :core:auth:bundleDebugLocalLintAar
+> Task :core:auth:bundleLibCompileToJarDebug
+> Task :core:common:generateDebugLintModel
+> Task :core:environment:generateDebugLintModel
+> Task :core:auth:extractDeepLinksDebug UP-TO-DATE
+> Task :core:analytics:generateDebugLintModel
+> Task :core:auth:compileDebugLibraryResources UP-TO-DATE
+> Task :core:auth:bundleLibRuntimeToJarDebug
+> Task :core:auth:createFullJarDebug
+> Task :core:auth:writeDebugLintModelMetadata
+> Task :core:auth:extractProguardFiles
+> Task :core:network:extractProguardFiles
+> Task :app:processDebugMainManifest UP-TO-DATE
+> Task :app:processDebugManifest UP-TO-DATE
 > Task :app:processDebugManifestForPackage UP-TO-DATE
 > Task :app:processDebugResources UP-TO-DATE
-> Task :app:preDebugAndroidTestBuild SKIPPED
-> Task :app:generateDebugAndroidTestResValues FROM-CACHE
-> Task :app:extractProguardFiles
-> Task :core:auth:extractProguardFiles
-> Task :core:environment:extractProguardFiles
-> Task :core:environment:generateDebugLintModel
-> Task :core:common:generateDebugLintModel
-> Task :core:network:extractProguardFiles
-> Task :core:analytics:generateDebugLintModel
 > Task :core:designsystem:extractProguardFiles
 > Task :core:network:generateDebugLintModel
+> Task :core:auth:generateDebugLintModel
+> Task :core:marketplace:extractProguardFiles
 > Task :core:navigation:extractProguardFiles
 > Task :core:navigation:generateDebugLintModel
 > Task :core:ui:extractProguardFiles
+> Task :feature:auth:extractProguardFiles
 > Task :feature:home:extractProguardFiles
 > Task :feature:profile:extractProguardFiles
+> Task :feature:property:extractProguardFiles
 > Task :feature:saved:extractProguardFiles
 > Task :feature:search:extractProguardFiles
 > Task :app:preDebugUnitTestBuild UP-TO-DATE
 > Task :core:designsystem:generateDebugLintModel
 > Task :core:ui:generateDebugLintModel
-
-> Task :core:auth:compileDebugKotlin FAILED
-e: file:///home/runner/work/4Divari/4Divari/core/auth/src/main/kotlin/ir/chardivari/core/auth/AuthRepository.kt:172:5 'accessToken' overrides nothing.
-e: file:///home/runner/work/4Divari/4Divari/core/auth/src/main/kotlin/ir/chardivari/core/auth/SessionStore.kt:88:26 Return type of 'write' is not a subtype of the return type of the overridden member 'suspend fun write(session: AuthSession): Unit' defined in 'ir/chardivari/core/auth/SessionStore'.
-e: file:///home/runner/work/4Divari/4Divari/core/auth/src/main/kotlin/ir/chardivari/core/auth/SessionStore.kt:95:26 Return type of 'clear' is not a subtype of the return type of the overridden member 'suspend fun clear(): Unit' defined in 'ir/chardivari/core/auth/SessionStore'.
-e: file:///home/runner/work/4Divari/4Divari/core/auth/src/main/kotlin/ir/chardivari/core/auth/SessionStore.kt:103:16 Unresolved reference 'first'.
-
 > Task :feature:profile:generateDebugLintModel
-> Task :feature:home:compileDebugKotlin
+
+> Task :core:marketplace:compileDebugKotlin FAILED
+e: file:///home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/MarketplaceRepositories.kt:339:40 Unresolved reference 'firstOrNull'.
+e: file:///home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/MarketplaceRepositories.kt:339:55 Unresolved reference 'it'.
+e: file:///home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/MarketplaceRepositories.kt:346:41 Argument type mismatch: actual type is 'kotlin.Any', but 'kotlin.String' was expected.
+e: file:///home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/MarketplaceRepositories.kt:347:47 Unresolved reference 'displayName'.
+e: file:///home/runner/work/4Divari/4Divari/core/marketplace/src/main/kotlin/ir/chardivari/core/marketplace/MarketplaceRepositories.kt:348:45 Unresolved reference 'partyRole'.
+
+> Task :feature:auth:compileDebugKotlin
+> Task :core:environment:lintAnalyzeDebug
 > Task :core:common:lintAnalyzeDebug
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/lint-1790224448255.json
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/lint-1790255712081.json
 
 FAILURE: Build failed with an exception.
 
 * What went wrong:
-Execution failed for task ':core:auth:compileDebugKotlin'.
+Execution failed for task ':core:marketplace:compileDebugKotlin'.
 > A failure occurred while executing org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction
    > Compilation error. See log for more details
 
@@ -413,5 +416,5 @@ Execution failed for task ':core:auth:compileDebugKotlin'.
 > Run with --scan to get full insights.
 > Get more help at https://help.gradle.org.
 
-BUILD FAILED in 44s
-379 actionable tasks: 179 executed, 12 from cache, 188 up-to-date
+BUILD FAILED in 46s
+425 actionable tasks: 203 executed, 15 from cache, 207 up-to-date
