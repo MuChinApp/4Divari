@@ -22,6 +22,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import ir.chardivari.core.common.Format
+import ir.chardivari.core.common.toPersianDigits
 import ir.chardivari.core.common.UiState
 import ir.chardivari.core.designsystem.tokens.AppSpacing
 import ir.chardivari.core.ui.UiStateRenderer
@@ -149,5 +150,5 @@ internal fun slotLabel(startIso: String, endIso: String): String {
         startTime.isEmpty() -> date
         endTime.isEmpty() -> "$date، $startTime"
         else -> "$date، $startTime–$endTime"
-    }.let { Format.toPersianDigits(it) }
+    }.toPersianDigits()
 }

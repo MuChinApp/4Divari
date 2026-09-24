@@ -40,7 +40,7 @@ internal fun visitStatusLabel(status: String): String = when (status) {
     else -> status
 }
 
-internal data class AgentVisitsUi(
+data class AgentVisitsUi(
     val visits: List<AgentVisit> = emptyList(),
     val busyIds: Set<String> = emptySet(),
     val message: String? = null,

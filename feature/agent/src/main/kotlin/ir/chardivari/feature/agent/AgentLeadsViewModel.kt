@@ -51,7 +51,7 @@ internal fun stageLabel(stage: String): String = when (stage) {
 }
 
 /** Requirement form — screen state; parsing happens in the ViewModel. */
-internal data class RequirementFormUi(
+data class RequirementFormUi(
     val leadId: String,
     val dealType: DealType,
     val budgetMin: String = "",
@@ -65,13 +65,14 @@ internal data class RequirementFormUi(
     val error: String? = null,
 )
 
-internal data class NotesEditorUi(
+data class NotesEditorUi(
     val leadId: String,
     val text: String,
     val busy: Boolean = false,
+    val error: String? = null,
 )
 
-internal data class AgentLeadsUi(
+data class AgentLeadsUi(
     val leads: List<AgentLead> = emptyList(),
     val expandedId: String? = null,
     val busyIds: Set<String> = emptySet(),

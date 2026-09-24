@@ -75,7 +75,9 @@ private fun DashboardGrid(stats: AgentDashboard) {
                 )
                 val (rightValue, rightLabel) = rightPair
                 if (rightLabel.isEmpty()) {
-                    SpacerWeight()
+                    androidx.compose.foundation.layout.Spacer(
+                        modifier = Modifier.weight(1f),
+                    )
                 } else {
                     MetricCell(
                         value = rightValue,
@@ -87,11 +89,6 @@ private fun DashboardGrid(stats: AgentDashboard) {
             HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant)
         }
     }
-}
-
-@Composable
-private fun SpacerWeight() {
-    androidx.compose.foundation.layout.Spacer(modifier = Modifier.weight(1f))
 }
 
 @Composable
