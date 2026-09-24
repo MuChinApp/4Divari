@@ -169,7 +169,6 @@ class SupabaseAuthRepository @Inject constructor(
         AppResult.Success(Unit)
     }
 
-    override fun accessToken(): String? = store.currentBlocking()?.accessToken
 
     private fun requireAnonKey(): String? =
         config.supabaseAnonKey?.takeIf { it.isNotBlank() }

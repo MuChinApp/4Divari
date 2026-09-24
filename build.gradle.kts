@@ -19,7 +19,12 @@ extra["minSdk"] = 24
 extra["targetSdk"] = 35
 
 allprojects {
-    group = "ir.chardivari"
+    // Unique GAV/capability per module. Project names alone collide
+    // (e.g. :core:auth and :feature:auth are both name "auth" with the
+    // same group), which made feature:auth resolve a self-capability
+    // and form a circular task graph on bundleLibCompileToJarDebug.
+    val pathSuffix = project.path.trim(':').replace(':', '.')
+    group = if (pathSuffix.isEmpty()) "ir.chardivari" else "ir.chardivari.$pathSuffix"
     version = "0.1.0"
 }
 

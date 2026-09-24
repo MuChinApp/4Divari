@@ -26,16 +26,16 @@ android {
     }
 }
 
-// No KSP and no Hilt Gradle plugin in this feature module.
-// @HiltViewModel + kspDebugKotlin formed a Gradle cycle with
-// bundleLibCompileToJarDebug under AGP 8.7. AuthViewModel is created
-// via AuthEntryPoint (processed in core:auth) instead.
+// No KSP / Hilt Gradle plugin here: AuthViewModel is built via
+// AuthEntryPoint (processed in core:auth). Root cause of the former
+// task cycle was duplicate project capability (ir.chardivari:auth),
+// fixed by unique per-path groups in the root build file.
 dependencies {
     implementation(project(":core:ui"))
     implementation(project(":core:designsystem"))
     implementation(project(":core:common"))
     implementation(project(":core:analytics"))
-    // TEMP EXPERIMENT: core:auth removed to isolate circular task graph
+    implementation(project(":core:auth"))
     implementation(project(":core:network"))
 
     implementation(libs.compose.ui)

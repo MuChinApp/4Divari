@@ -4,6 +4,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
@@ -85,16 +86,20 @@ class DataStoreSessionStore @Inject constructor(
 
     override val session: Flow<AuthSession?> = _session.asStateFlow()
 
-    override suspend fun write(session: AuthSession) = withContext(Dispatchers.IO) {
-        _session.value = session
-        context.authDataStore.edit { prefs ->
-            prefs[keySession] = json.encodeToString(session)
+    override suspend fun write(session: AuthSession) {
+        withContext(Dispatchers.IO) {
+            _session.value = session
+            context.authDataStore.edit { prefs ->
+                prefs[keySession] = json.encodeToString(session)
+            }
         }
     }
 
-    override suspend fun clear() = withContext(Dispatchers.IO) {
-        _session.value = null
-        context.authDataStore.edit { it.remove(keySession) }
+    override suspend fun clear() {
+        withContext(Dispatchers.IO) {
+            _session.value = null
+            context.authDataStore.edit { it.remove(keySession) }
+        }
     }
 
     override fun currentBlocking(): AuthSession? = _session.value
