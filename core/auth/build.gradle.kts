@@ -24,6 +24,11 @@ android {
     }
 }
 
+// See feature/auth — avoid Hilt ASM transform cycle on library modules.
+hilt {
+    enableAggregatingTask = false
+}
+
 dependencies {
     implementation(project(":core:common"))
     implementation(project(":core:environment"))

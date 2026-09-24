@@ -2,8 +2,8 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
-    alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -26,6 +26,13 @@ android {
     buildFeatures {
         compose = true
     }
+}
+
+// Library modules only need Hilt codegen for @HiltViewModel; module
+// aggregation runs once at :app. Disabling here breaks the known
+// bundleLibCompileToJarDebug ↔ transformDebugClassesWithAsm cycle.
+hilt {
+    enableAggregatingTask = false
 }
 
 dependencies {
