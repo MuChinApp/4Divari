@@ -50,7 +50,11 @@ class AgentDashboardViewModelTest {
         assertEquals(3, data.filesActive)
         assertEquals(2, data.leadsNew)
         assertEquals(1, data.visitsPending)
-        assertTrue(tracker.recorded.any { it.name == "agent_dashboard" })
+        assertTrue(
+            tracker.recorded.any {
+                it.name == "screen_view" && it.params["screen"] == "agent_dashboard"
+            },
+        )
     }
 
     @Test

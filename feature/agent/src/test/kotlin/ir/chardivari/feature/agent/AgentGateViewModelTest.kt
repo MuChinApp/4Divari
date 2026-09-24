@@ -50,7 +50,11 @@ class AgentGateViewModelTest {
             AgentGate.Ready(displayName = "سارا رضایی"),
             (state as UiState.Content).data,
         )
-        assertTrue(tracker.recorded.any { it.name == "agent" })
+        assertTrue(
+            tracker.recorded.any {
+                it.name == "screen_view" && it.params["screen"] == "agent"
+            },
+        )
     }
 
     @Test

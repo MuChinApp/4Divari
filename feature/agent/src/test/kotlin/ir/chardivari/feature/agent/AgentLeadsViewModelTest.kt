@@ -51,7 +51,11 @@ class AgentLeadsViewModelTest {
         val vm = viewModel()
 
         assertEquals(listOf("L1"), content(vm).leads.map { it.id })
-        assertTrue(tracker.recorded.any { it.name == "agent_leads" })
+        assertTrue(
+            tracker.recorded.any {
+                it.name == "screen_view" && it.params["screen"] == "agent_leads"
+            },
+        )
     }
 
     @Test

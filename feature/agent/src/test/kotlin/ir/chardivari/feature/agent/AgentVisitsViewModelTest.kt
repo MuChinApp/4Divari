@@ -87,7 +87,11 @@ class AgentVisitsViewModelTest {
         val state = vm.uiState.value
         assertTrue(state is UiState.Content)
         assertTrue(content(vm).visits.isEmpty())
-        assertTrue(tracker.recorded.any { it.name == "agent_visits" })
+        assertTrue(
+            tracker.recorded.any {
+                it.name == "screen_view" && it.params["screen"] == "agent_visits"
+            },
+        )
     }
 
     @Test
