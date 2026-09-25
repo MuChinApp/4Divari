@@ -125,6 +125,7 @@ class CommunicationPayloadTest {
                 "id": "l1",
                 "deal_type": "SALE",
                 "price_rial": 100,
+                "status": "ACTIVE",
                 "property": {
                   "property_type": "APARTMENT",
                   "area_sqm": 90,
