@@ -86,7 +86,8 @@ object PhoenixCodec {
         )
 
     /** Parse one inbound frame; returns null for anything we don't care about. */
-    fun decode(text: String): RealtimeFrame? = try {
+    fun decode(text: String): RealtimeFrame? {
+        return try {
         val arr = json.parseToJsonElement(text).jsonArray
         if (arr.size < 5) return null
         val topic = (arr[2] as? JsonPrimitive)?.content ?: return null
@@ -110,8 +111,9 @@ object PhoenixCodec {
             }
             else -> null
         }
-    } catch (_: Exception) {
-        null
+        } catch (_: Exception) {
+            null
+        }
     }
 }
 
