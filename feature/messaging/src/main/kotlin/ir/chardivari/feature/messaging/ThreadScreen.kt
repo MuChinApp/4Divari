@@ -147,7 +147,7 @@ private fun MessageBubble(message: ChatMessage) {
                     } else {
                         MaterialTheme.colorScheme.surfaceVariant
                     },
-                    shape = MaterialTheme.shapes.Medium,
+                    shape = MaterialTheme.shapes.medium,
                 )
                 .padding(horizontal = AppSpacing.Md, vertical = AppSpacing.Sm),
         ) {

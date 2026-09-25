@@ -123,7 +123,7 @@ private fun NotificationRow(
                 MaterialTheme.colorScheme.surfaceContainer
             },
         ),
-        shape = MaterialTheme.shapes.Medium,
+        shape = MaterialTheme.shapes.medium,
     ) {
         Row(
             modifier = Modifier
@@ -158,10 +158,11 @@ private fun NotificationRow(
                         )
                     }
                 }
-                if (!item.body.isNullOrBlank()) {
+                val body = item.body
+                if (!body.isNullOrBlank()) {
                     Spacer(Modifier.height(AppSpacing.Xxs))
                     Text(
-                        text = item.body,
+                        text = body,
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         maxLines = 2,

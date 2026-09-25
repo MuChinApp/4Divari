@@ -100,7 +100,7 @@ private fun ConversationRow(
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surface,
         ),
-        shape = MaterialTheme.shapes.Medium,
+        shape = MaterialTheme.shapes.medium,
     ) {
         Row(
             modifier = Modifier
