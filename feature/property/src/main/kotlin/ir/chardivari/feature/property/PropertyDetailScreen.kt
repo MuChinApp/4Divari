@@ -432,17 +432,17 @@ private fun VisitPickerDialog(
                 Spacer(Modifier.height(AppSpacing.Md))
                 Row(horizontalArrangement = Arrangement.spacedBy(AppSpacing.Sm)) {
                     TimeMenu(
-                        label = "ساعت: " + dialog.hour.toPersianDigits().padStart(2, '\u200c'),
+                        label = "ساعت: " + dialog.hour.toString().toPersianDigits().padStart(2, '\u200c'),
                         options = (8..21).toList(),
                         selected = dialog.hour,
-                        format = { it.toPersianDigits() },
+                        format = { it.toString().toPersianDigits() },
                         onSelect = { hour -> onTime(hour, dialog.minute) },
                     )
                     TimeMenu(
-                        label = "دقیقه: " + dialog.minute.toPersianDigits(),
+                        label = "دقیقه: " + dialog.minute.toString().toPersianDigits(),
                         options = listOf(0, 15, 30, 45),
                         selected = dialog.minute,
-                        format = { it.toPersianDigits().padStart(2, '\u200c') },
+                        format = { it.toString().toPersianDigits().padStart(2, '\u200c') },
                         onSelect = { minute -> onTime(dialog.hour, minute) },
                     )
                 }

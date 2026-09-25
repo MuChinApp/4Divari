@@ -145,7 +145,7 @@ private fun ConversationRow(
                         .padding(horizontal = AppSpacing.Sm, vertical = AppSpacing.Xxs),
                 ) {
                     Text(
-                        text = item.unreadCount.toPersianDigits(),
+                        text = item.unreadCount.toString().toPersianDigits(),
                         style = MaterialTheme.typography.labelSmall,
                         color = MaterialTheme.colorScheme.onPrimary,
                         textAlign = TextAlign.Center,
