@@ -37,6 +37,12 @@ object Routes {
      */
     const val AGENT = "agent"
 
+    const val MESSAGES = "messages"
+    const val MESSAGE_THREAD = "messages/thread/{conversationId}"
+    fun messageThread(conversationId: String) = "messages/thread/$conversationId"
+
+    const val NOTIFICATIONS = "notifications"
+
     fun searchWithQuery(query: String): String {
         val encoded = URLEncoder.encode(query, "UTF-8")
         return "search?query=$encoded"

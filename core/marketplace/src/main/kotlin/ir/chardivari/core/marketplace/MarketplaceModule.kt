@@ -51,6 +51,30 @@ abstract class MarketplaceBindModule {
     abstract fun bindAgentRepository(
         impl: SupabaseAgentRepository,
     ): AgentRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindChatRepository(
+        impl: SupabaseChatRepository,
+    ): ChatRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindNotificationsRepository(
+        impl: SupabaseNotificationsRepository,
+    ): NotificationsRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindVisitsRepository(
+        impl: SupabaseVisitsRepository,
+    ): VisitsRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindRealtimeClient(
+        impl: SupabaseRealtimeClient,
+    ): RealtimeClient
 }
 
 /**

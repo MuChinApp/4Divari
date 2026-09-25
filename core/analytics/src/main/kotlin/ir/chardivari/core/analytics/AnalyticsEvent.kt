@@ -51,6 +51,13 @@ sealed interface AnalyticsEvent {
         override val params: Map<String, String> = mapOf("kind" to kind)
     }
 
+    data class MessageSent(val conversationId: String) : AnalyticsEvent {
+        override val name: String
+            get() = "message_sent"
+        override val params: Map<String, String>
+            get() = mapOf("conversation_id" to conversationId)
+    }
+
     data class ContactAgent(val propertyId: String, val channel: String) : AnalyticsEvent {
         override val name: String = "contact_agent"
         override val params: Map<String, String> = mapOf(

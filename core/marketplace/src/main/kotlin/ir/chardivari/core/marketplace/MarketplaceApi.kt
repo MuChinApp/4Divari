@@ -14,6 +14,13 @@ import retrofit2.http.Query
 import retrofit2.http.Url
 
 /**
+ * Body for zero-argument PostgREST RPCs — PostgREST rejects bodyless POSTs
+ * (PostgREST/postgrest#777), so `{}` is always sent.
+ */
+@Serializable
+data object EmptyRpcRequest
+
+/**
  * Supabase PostgREST surface for marketplace tables.
  *
  * Absolute [Url] values keep base-url coupling out of Retrofit (same pattern
@@ -151,6 +158,7 @@ interface MarketplaceApi {
     @POST("rpc/agent_dashboard_stats")
     suspend fun agentDashboardStats(
         @Header("apikey") apiKey: String,
+        @Body body: EmptyRpcRequest,
     ): Response<AgentDashboardDto>
 
     /** Agent's own files (ACTIVE + PAUSED). Same row shape as the seller manage screen. */
@@ -259,6 +267,90 @@ interface MarketplaceApi {
         @Query("select") select: String,
         @Query("id") id: String,
     ): Response<List<ProfileDto>>
+
+    // ---- Communication (Phase 6 — 00095_communication_tooling.sql) ----
+
+    @POST("rpc/start_conversation")
+    suspend fun startConversation(
+        @Header("apikey") apiKey: String,
+        @Header("Authorization") authorization: String,
+        @Body body: StartConversationRequestDto,
+    ): Response<String>
+
+    @GET("rpc/my_conversations")
+    suspend fun myConversations(
+        @Header("apikey") apiKey: String,
+        @Header("Authorization") authorization: String,
+    ): Response<List<ConversationRowDto>>
+
+    @POST("rpc/mark_conversation_read")
+    suspend fun markConversationRead(
+        @Header("apikey") apiKey: String,
+        @Header("Authorization") authorization: String,
+        @Body body: MarkConversationReadRequestDto,
+    ): Response<Void>
+
+    @GET
+    suspend fun fetchMessages(
+        @Url url: String,
+        @Header("apikey") apiKey: String,
+        @Header("Authorization") authorization: String,
+        @Query("conversation_id") conversationId: String,
+        @Query("order") order: String,
+    ): Response<List<MessageDto>>
+
+    @Headers("Prefer: return=representation")
+    @POST("messages")
+    suspend fun insertMessage(
+        @Header("apikey") apiKey: String,
+        @Header("Authorization") authorization: String,
+        @Body body: MessageWriteDto,
+    ): Response<List<MessageDto>>
+
+    @Headers("Prefer: return=representation")
+    @POST("visits")
+    suspend fun insertVisit(
+        @Header("apikey") apiKey: String,
+        @Header("Authorization") authorization: String,
+        @Body body: VisitWriteDto,
+    ): Response<List<VisitWriteRowDto>>
+
+    @GET
+    suspend fun fetchMyVisits(
+        @Url url: String,
+        @Header("apikey") apiKey: String,
+        @Header("Authorization") authorization: String,
+        @Query("select") select: String,
+        @Query("buyer_id") buyerId: String,
+        @Query("order") order: String,
+    ): Response<List<MyVisitDto>>
+
+    @HTTP(method = "PATCH", path = "visits", hasBody = true)
+    @Headers("Prefer: return=minimal")
+    suspend fun updateMyVisit(
+        @Query("id") id: String,
+        @Header("apikey") apiKey: String,
+        @Header("Authorization") authorization: String,
+        @Body body: VisitPatchDto,
+    ): Response<Void>
+
+    @GET
+    suspend fun fetchNotifications(
+        @Url url: String,
+        @Header("apikey") apiKey: String,
+        @Header("Authorization") authorization: String,
+        @Query("select") select: String,
+        @Query("user_id") userId: String,
+        @Query("order") order: String,
+        @Query("limit") limit: Int,
+    ): Response<List<NotificationDto>>
+
+    @POST("rpc/mark_notification_read")
+    suspend fun markNotificationRead(
+        @Header("apikey") apiKey: String,
+        @Header("Authorization") authorization: String,
+        @Body body: MarkNotificationReadRequestDto,
+    ): Response<Void>
 }
 
 @Serializable

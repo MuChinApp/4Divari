@@ -35,6 +35,9 @@ import ir.chardivari.core.ui.PlaceholderScreen
 import ir.chardivari.feature.agent.AgentRoute
 import ir.chardivari.feature.auth.AuthRoute
 import ir.chardivari.feature.home.HomeRoute
+import ir.chardivari.feature.messaging.ConversationsRoute
+import ir.chardivari.feature.messaging.NotificationsRoute
+import ir.chardivari.feature.messaging.ThreadRoute
 import ir.chardivari.feature.profile.ProfileRoute
 import ir.chardivari.feature.property.PropertyDetailRoute
 import ir.chardivari.feature.saved.SavedRoute
@@ -182,6 +185,9 @@ private fun ChardivariRoot() {
                 PropertyDetailRoute(
                     onBack = { navController.popBackStack() },
                     onLogin = { navController.navigate(Routes.AUTH) },
+                    onOpenThread = { conversationId ->
+                        navController.navigate(Routes.messageThread(conversationId))
+                    },
                 )
             }
             composable(Routes.PROFILE) {
@@ -189,6 +195,34 @@ private fun ChardivariRoot() {
                     onLogin = { navController.navigate(Routes.AUTH) },
                     onOpenSeller = { navController.navigate(Routes.SELLER) },
                     onOpenAgent = { navController.navigate(Routes.AGENT) },
+                    onOpenMessages = { navController.navigate(Routes.MESSAGES) },
+                    onOpenNotifications = {
+                        navController.navigate(Routes.NOTIFICATIONS)
+                    },
+                )
+            }
+            composable(Routes.MESSAGES) {
+                ConversationsRoute(
+                    onBack = { navController.popBackStack() },
+                    onOpenThread = { conversationId ->
+                        navController.navigate(Routes.messageThread(conversationId))
+                    },
+                )
+            }
+            composable(
+                route = Routes.MESSAGE_THREAD,
+                arguments = listOf(
+                    navArgument("conversationId") { type = NavType.StringType },
+                ),
+            ) {
+                ThreadRoute(
+                    onBack = { navController.popBackStack() },
+                    onLogin = { navController.navigate(Routes.AUTH) },
+                )
+            }
+            composable(Routes.NOTIFICATIONS) {
+                NotificationsRoute(
+                    onBack = { navController.popBackStack() },
                 )
             }
             composable(Routes.AGENT) {

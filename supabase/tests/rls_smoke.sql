@@ -469,6 +469,185 @@ begin
 end;
 $$;
 
+-- ---- Phase 6: conversation entry, read receipts, message notifications ----
+set role app_user;
+
+create temp table p6 (conv uuid, conv_agent_seller uuid, visit1 uuid);
+
+select set_config('request.jwt.claim.sub', '20000000-0000-0000-0000-00000000000b', false);
+
+do $$
+declare
+  v1 uuid;
+  v2 uuid;
+  v_n int;
+  v_agent uuid := '50000000-0000-0000-0000-00000000000e';
+  v_list jsonb;
+  v_item jsonb;
+begin
+  -- buyer starts (or finds) the conversation with the listing's agent
+  v1 := public.start_conversation('52000000-0000-0000-0000-000000000001');
+  if v1 is null then
+    raise exception 'start_conversation returned null';
+  end if;
+  v2 := public.start_conversation('52000000-0000-0000-0000-000000000001');
+  if v2 is distinct from v1 then
+    raise exception 'start_conversation not idempotent (% vs %)', v1, v2;
+  end if;
+  insert into p6 (conv) values (v1);
+
+  -- participant can read the conversation row (no policy recursion)
+  select count(*) into v_n from conversations where id = v1;
+  if v_n <> 1 then
+    raise exception 'participant cannot read own conversation (got %)', v_n;
+  end if;
+
+  -- stranger cannot see the conversation rows
+  perform set_config('request.jwt.claim.sub', '60000000-0000-0000-0000-00000000000c', false);
+  select count(*) into v_n from conversations where id = v1;
+  if v_n <> 0 then
+    raise exception 'RLS leak: stranger read conversation';
+  end if;
+  select count(*) into v_n from messages where conversation_id = v1;
+  if v_n <> 0 then
+    raise exception 'RLS leak: stranger read messages';
+  end if;
+
+  -- stranger cannot post into the conversation
+  begin
+    insert into messages (conversation_id, sender_id, body)
+    values (v1, '60000000-0000-0000-0000-00000000000c', 'spam');
+    raise exception 'non-participant message insert allowed';
+  exception
+    when insufficient_privilege then
+      null;
+    when raise_exception then
+      if sqlerrm = 'non-participant message insert allowed' then
+        raise;
+      else
+        raise;
+      end if;
+  end;
+
+  -- my_conversations(): buyer sees the conversation with unread + counterpart
+  perform set_config('request.jwt.claim.sub', '20000000-0000-0000-0000-00000000000b', false);
+  v_list := public.my_conversations();
+  if jsonb_typeof(v_list) <> 'array' or jsonb_array_length(v_list) < 1 then
+    raise exception 'my_conversations empty for buyer';
+  end if;
+  select elem into v_item from jsonb_array_elements(v_list) elem
+  where elem->>'conversation_id' = v1::text;
+  if v_item is null then
+    raise exception 'my_conversations missing the conversation';
+  end if;
+  if v_item->>'counterpart_id' <> '50000000-0000-0000-0000-00000000000e' then
+    raise exception 'my_conversations counterpart wrong: %', v_item->>'counterpart_id';
+  end if;
+
+  -- back to the buyer: message + read receipt
+  perform set_config('request.jwt.claim.sub', '20000000-0000-0000-0000-00000000000b', false);
+  insert into messages (conversation_id, sender_id, body)
+  values (v1, '20000000-0000-0000-0000-00000000000b', 'سلام، آپارتمان موجود است؟');
+
+  update conversation_participants
+    set last_read_at = now()
+    where conversation_id = v1 and user_id = '20000000-0000-0000-0000-00000000000b';
+  if not exists (
+    select 1 from conversation_participants
+    where conversation_id = v1
+      and user_id = '20000000-0000-0000-0000-00000000000b'
+      and last_read_at is not null
+  ) then
+    raise exception 'own last_read_at update failed';
+  end if;
+
+  -- updating ANOTHER participant row must affect 0 rows
+  update conversation_participants
+    set last_read_at = now()
+    where conversation_id = v1 and user_id = v_agent;
+  get diagnostics v_n = row_count;
+  if v_n <> 0 then
+    raise exception 'RLS leak: buyer updated agent participant row';
+  end if;
+
+  -- agent sees the notification created by the message trigger
+  perform set_config('request.jwt.claim.sub', '50000000-0000-0000-0000-00000000000e', false);
+  select count(*) into v_n
+  from notifications
+  where user_id = v_agent and type = 'message';
+  if v_n < 1 then
+    raise exception 'message notification for agent missing';
+  end if;
+
+  -- agent starts a conversation on own listing -> pair (agent, seller), distinct conv
+  v2 := public.start_conversation('52000000-0000-0000-0000-000000000001');
+  if v2 is null or v2 = v1 then
+    raise exception 'agent-side start_conversation wrong (%, %)', v2, v1;
+  end if;
+  update p6 set conv_agent_seller = v2;
+end;
+$$;
+
+-- ---- Phase 6: visit double-book guard + visit notifications ----
+select set_config('request.jwt.claim.sub', '20000000-0000-0000-0000-00000000000b', false);
+
+do $$
+declare
+  v_slot timestamptz := now() + interval '5 day';
+  v_visit uuid;
+  v_n int;
+begin
+  insert into visits (listing_id, buyer_id, slot_start, slot_end)
+  values ('52000000-0000-0000-0000-000000000001', '20000000-0000-0000-0000-00000000000b',
+          v_slot, v_slot + interval '1 hour')
+  returning id into v_visit;
+  update p6 set visit1 = v_visit;
+
+  -- insert trigger notified the listing's agent
+  perform set_config('request.jwt.claim.sub', '50000000-0000-0000-0000-00000000000e', false);
+  select count(*) into v_n
+  from notifications
+  where user_id = '50000000-0000-0000-0000-00000000000e'
+    and type = 'visit_requested';
+  if v_n < 1 then
+    raise exception 'visit_requested notification missing';
+  end if;
+  perform set_config('request.jwt.claim.sub', '20000000-0000-0000-0000-00000000000b', false);
+
+  -- double book on the same slot must hit the unique guard
+  begin
+    insert into visits (listing_id, buyer_id, slot_start, slot_end)
+    values ('52000000-0000-0000-0000-000000000001', '20000000-0000-0000-0000-00000000000b',
+            v_slot, v_slot + interval '1 hour');
+    raise exception 'double book allowed';
+  exception
+    when unique_violation then
+      null;
+    when raise_exception then
+      if sqlerrm = 'double book allowed' then
+        raise;
+      else
+        raise;
+      end if;
+  end;
+
+  -- cancelling releases the slot; buyer notification for the status change
+  update visits set status = 'CANCELLED' where id = v_visit;
+  select count(*) into v_n
+  from notifications
+  where user_id = '20000000-0000-0000-0000-00000000000b'
+    and type = 'visit_status';
+  if v_n < 1 then
+    raise exception 'visit_status notification for buyer missing';
+  end if;
+
+  insert into visits (listing_id, buyer_id, slot_start, slot_end)
+  values ('52000000-0000-0000-0000-000000000001', '20000000-0000-0000-0000-00000000000b',
+          v_slot, v_slot + interval '1 hour');
+end;
+$$;
+
+reset role;
 rollback;
 
 select 'RLS_SMOKE_OK' as result;

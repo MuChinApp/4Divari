@@ -35,6 +35,8 @@ fun ProfileRoute(
     onLogin: () -> Unit = {},
     onOpenSeller: () -> Unit = {},
     onOpenAgent: () -> Unit = {},
+    onOpenMessages: () -> Unit = {},
+    onOpenNotifications: () -> Unit = {},
 ) {
     Scaffold(
         modifier = modifier.fillMaxSize(),
@@ -87,6 +89,20 @@ fun ProfileRoute(
                 modifier = Modifier.fillMaxWidth(),
             ) {
                 Text("داشبورد مشاور")
+            }
+            Spacer(Modifier.height(AppSpacing.Md))
+            OutlinedButton(
+                onClick = onOpenMessages,
+                modifier = Modifier.fillMaxWidth(),
+            ) {
+                Text("گفتگوها")
+            }
+            Spacer(Modifier.height(AppSpacing.Md))
+            OutlinedButton(
+                onClick = onOpenNotifications,
+                modifier = Modifier.fillMaxWidth(),
+            ) {
+                Text("اعلان‌ها")
             }
         }
     }

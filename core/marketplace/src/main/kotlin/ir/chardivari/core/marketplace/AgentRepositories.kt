@@ -491,7 +491,7 @@ class SupabaseAgentRepository @Inject constructor(
             ?: return AppResult.Failure(AppError.Unauthorized)
         return when (
             val result = safeApi.call {
-                api.agentDashboardStats(apiKey = key)
+                api.agentDashboardStats(apiKey = key, body = EmptyRpcRequest)
             }
         ) {
             is AppResult.Success -> {

@@ -19,7 +19,13 @@ import androidx.compose.material.icons.outlined.Favorite
 import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material.icons.outlined.Phone
 import androidx.compose.material.icons.outlined.Share
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
+import androidx.compose.material3.DatePicker
+import androidx.compose.material3.DatePickerDialog
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -27,9 +33,14 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
+import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -39,9 +50,11 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
+import ir.chardivari.core.common.toPersianDigits
 import ir.chardivari.core.designsystem.tokens.AppSpacing
 import ir.chardivari.core.designsystem.components.VerificationBadge
 import ir.chardivari.core.ui.UiStateRenderer
+import kotlinx.coroutines.flow.collectLatest
 
 @Composable
 fun PropertyDetailRoute(
@@ -49,6 +62,7 @@ fun PropertyDetailRoute(
     viewModel: PropertyDetailViewModel = hiltViewModel(),
     onBack: () -> Unit = {},
     onLogin: () -> Unit = {},
+    onOpenThread: (conversationId: String) -> Unit = {},
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
     val context = LocalContext.current
@@ -58,6 +72,27 @@ fun PropertyDetailRoute(
         if (content.data.favoriteError == "برای ذخیره ملک وارد حساب خود شوید") {
             onLogin()
         }
+    }
+
+    LaunchedEffect(Unit) {
+        viewModel.events.collectLatest { event ->
+            when (event) {
+                is PropertyDetailEvent.OpenThread -> onOpenThread(event.conversationId)
+                PropertyDetailEvent.LoginRequired -> onLogin()
+            }
+        }
+    }
+
+    val visitDialog =
+        (state as? ir.chardivari.core.common.UiState.Content)?.data?.visitDialog
+    if (visitDialog != null) {
+        VisitPickerDialog(
+            dialog = visitDialog,
+            onDate = viewModel::setVisitDate,
+            onTime = viewModel::setVisitTime,
+            onDismiss = viewModel::closeVisitDialog,
+            onSubmit = viewModel::submitVisit,
+        )
     }
 
     Scaffold(
@@ -268,6 +303,50 @@ fun PropertyDetailRoute(
                 }
 
                 item {
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = AppSpacing.Lg),
+                        horizontalArrangement = Arrangement.spacedBy(AppSpacing.Sm),
+                    ) {
+                        OutlinedButton(
+                            onClick = { viewModel.openVisitDialog() },
+                            modifier = Modifier.weight(1f),
+                        ) {
+                            Text("درخواست بازدید")
+                        }
+                        OutlinedButton(
+                            onClick = { viewModel.openConversation() },
+                            modifier = Modifier.weight(1f),
+                        ) {
+                            Text("پیام")
+                        }
+                    }
+                    model.visitMessage?.let { msg ->
+                        Text(
+                            text = msg,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(horizontal = AppSpacing.Lg),
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.primary,
+                            textAlign = TextAlign.Center,
+                        )
+                    }
+                    model.conversationError?.let { msg ->
+                        Text(
+                            text = msg,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(horizontal = AppSpacing.Lg),
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.error,
+                            textAlign = TextAlign.Center,
+                        )
+                    }
+                }
+
+                item {
                     HorizontalDivider(
                         modifier = Modifier.padding(
                             horizontal = AppSpacing.Lg,
@@ -313,6 +392,137 @@ fun PropertyDetailRoute(
                         )
                     }
                 }
+            }
+        }
+    }
+}
+
+/**
+ * Visit-slot picker — ISO slot + fixed +03:30 (no Jalali module yet; same
+ * honest date approach as the rest of the app).
+ */
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun VisitPickerDialog(
+    dialog: VisitDialogUi,
+    onDate: (Long?) -> Unit,
+    onTime: (Int, Int) -> Unit,
+    onDismiss: () -> Unit,
+    onSubmit: () -> Unit,
+) {
+    var showDatePicker by remember { mutableStateOf(false) }
+
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text("درخواست بازدید") },
+        text = {
+            Column {
+                OutlinedButton(
+                    onClick = { showDatePicker = true },
+                    modifier = Modifier.fillMaxWidth(),
+                ) {
+                    val dateLabel = dialog.dateMillis?.let {
+                        buildSlotIso(it, hour = 0, minute = 0, plusHours = 0)
+                            .take(10)
+                            .replace('-', '/')
+                            .toPersianDigits()
+                    } ?: "انتخاب تاریخ"
+                    Text(dateLabel)
+                }
+                Spacer(Modifier.height(AppSpacing.Md))
+                Row(horizontalArrangement = Arrangement.spacedBy(AppSpacing.Sm)) {
+                    TimeMenu(
+                        label = "ساعت: " + dialog.hour.toPersianDigits().padStart(2, '\u200c'),
+                        options = (8..21).toList(),
+                        selected = dialog.hour,
+                        format = { it.toPersianDigits() },
+                        onSelect = { hour -> onTime(hour, dialog.minute) },
+                    )
+                    TimeMenu(
+                        label = "دقیقه: " + dialog.minute.toPersianDigits(),
+                        options = listOf(0, 15, 30, 45),
+                        selected = dialog.minute,
+                        format = { it.toPersianDigits().padStart(2, '\u200c') },
+                        onSelect = { minute -> onTime(dialog.hour, minute) },
+                    )
+                }
+                dialog.error?.let { msg ->
+                    Spacer(Modifier.height(AppSpacing.Sm))
+                    Text(
+                        text = msg,
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.error,
+                    )
+                }
+            }
+        },
+        confirmButton = {
+            TextButton(
+                onClick = onSubmit,
+                enabled = !dialog.busy,
+            ) {
+                Text(if (dialog.busy) "در حال ثبت…" else "ارسال درخواست")
+            }
+        },
+        dismissButton = {
+            TextButton(
+                onClick = onDismiss,
+                enabled = !dialog.busy,
+            ) {
+                Text("انصراف")
+            }
+        },
+    )
+
+    if (showDatePicker) {
+        val datePickerState = rememberDatePickerState(
+            initialSelectedDateMillis = dialog.dateMillis ?: System.currentTimeMillis(),
+        )
+        DatePickerDialog(
+            onDismissRequest = { showDatePicker = false },
+            confirmButton = {
+                TextButton(
+                    onClick = {
+                        onDate(datePickerState.selectedDateMillis)
+                        showDatePicker = false
+                    },
+                ) {
+                    Text("تأیید")
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { showDatePicker = false }) {
+                    Text("انصراف")
+                }
+            },
+        ) {
+            DatePicker(state = datePickerState)
+        }
+    }
+}
+
+@Composable
+private fun TimeMenu(
+    label: String,
+    options: List<Int>,
+    selected: Int,
+    format: (Int) -> String,
+    onSelect: (Int) -> Unit,
+) {
+    var expanded by remember { mutableStateOf(false) }
+    androidx.compose.foundation.layout.Box {
+        OutlinedButton(onClick = { expanded = true }) {
+            Text(if (options.contains(selected)) label else label.substringBefore(':'))
+        }
+        DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
+            options.forEach { option ->
+                DropdownMenuItem(
+                    text = { Text(format(option)) },
+                    onClick = {
+                        onSelect(option)
+                        expanded = false
+                    },
+                )
             }
         }
     }
