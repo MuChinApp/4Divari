@@ -16,6 +16,7 @@ import ir.chardivari.core.marketplace.MessageDto
 import ir.chardivari.core.marketplace.RealtimeEvent
 import ir.chardivari.core.marketplace.RealtimeSubscription
 import ir.chardivari.core.marketplace.RealtimeClient
+import ir.chardivari.core.marketplace.toChatMessage
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -212,7 +213,7 @@ class MessagingViewModelsTest {
         )
         val chat = FakeChat(
             messagesResult = AppResult.Success(
-                listOf(message.toChatMessageForTest("user-1")),
+                listOf(message.toChatMessage("user-1")),
             ),
         )
         val vm = threadVm(chat)
@@ -240,7 +241,7 @@ class MessagingViewModelsTest {
             attachmentPath = null,
             sentAt = "2026-01-01T11:00:00+00:00",
             deletedAt = null,
-        ).toChatMessageForTest("user-1")
+        ).toChatMessage("user-1")
         val chat = FakeChat(sendResult = AppResult.Success(sent))
         val vm = threadVm(chat)
 
@@ -343,6 +344,3 @@ class MessagingViewModelsTest {
         analytics = RecordingTracker(),
     )
 }
-
-private fun MessageDto.toChatMessageForTest(uid: String): ChatMessage =
-    ir.chardivari.core.marketplace.toChatMessage(this, uid)
