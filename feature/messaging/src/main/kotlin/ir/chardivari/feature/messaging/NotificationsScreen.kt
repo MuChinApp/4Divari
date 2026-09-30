@@ -18,6 +18,8 @@ import androidx.compose.material.icons.automirrored.outlined.ArrowBack
 import androidx.compose.material.icons.outlined.Chat
 import androidx.compose.material.icons.outlined.EventAvailable
 import androidx.compose.material.icons.outlined.Notifications
+import androidx.compose.material.icons.outlined.OutlinedFlag
+import androidx.compose.material.icons.outlined.Verified
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -98,12 +100,17 @@ internal fun notificationTitle(item: AppNotification): String = when (item.type)
     "visit_requested" -> "درخواست بازدید"
     "visit_status" -> "به‌روزرسانی بازدید"
     "lead_created" -> "سرنخ جدید"
+    "report_filed" -> "گزارش جدید کاربران"
+    "report_status" -> "نتیجهٔ گزارش شما"
+    "verification_status" -> "نتیجهٔ تأیید ملک"
     else -> item.type
 }
 
 internal fun notificationIcon(item: AppNotification): ImageVector = when (item.type) {
     "new_message", "lead_created" -> Icons.Outlined.Chat
     "visit_requested", "visit_status" -> Icons.Outlined.EventAvailable
+    "report_filed", "report_status" -> Icons.Outlined.OutlinedFlag
+    "verification_status" -> Icons.Outlined.Verified
     else -> Icons.Outlined.Notifications
 }
 

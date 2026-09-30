@@ -14,6 +14,7 @@ import ir.chardivari.core.marketplace.SellerAction
 import ir.chardivari.core.marketplace.SellerListingItem
 import ir.chardivari.core.marketplace.SellerRepository
 import ir.chardivari.core.marketplace.StorageBaseUrl
+import ir.chardivari.core.marketplace.TrustRepository
 import ir.chardivari.core.ui.errorDescription
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -46,6 +47,7 @@ data class SellerManageUi(
 class SellerManageViewModel @Inject constructor(
     private val sellerRepository: SellerRepository,
     private val agentRepository: AgentRepository,
+    private val trustRepository: TrustRepository,
     val storage: StorageBaseUrl,
     private val analytics: AnalyticsTracker,
 ) : ViewModel() {
@@ -202,6 +204,89 @@ class SellerManageViewModel @Inject constructor(
                 }
             }
         }
+    }
+
+    // ---- Phase 7: freshness confirmation + verification request ----
+
+    fun confirmFreshness(listingId: String) {
+        val state = (_uiState.value as? UiState.Content)?.data ?: return
+        if (listingId in state.busyIds) return
+        _uiState.value = UiState.Content(
+            state.copy(busyIds = state.busyIds + listingId, message = null),
+        )
+        viewModelScope.launch {
+            when (val result = trustRepository.confirmListing(listingId)) {
+                is AppResult.Success, AppResult.Empty -> {
+                    analytics.track(AnalyticsEvent.ListingConfirmed(listingId = listingId))
+                    updateRow(listingId, fresh = true) {
+                        it.copy(message = "آگهی به‌روز شد؛ خریداران آخرین وضعیت را می‌بینند")
+                    }
+                }
+                is AppResult.Failure -> {
+                    val message = if (result.error == AppError.Unauthorized) {
+                        "برای این عملیات وارد شوید"
+                    } else {
+                        "تأیید صحت انجام نشد؛ دوباره تلاش کنید"
+                    }
+                    updateRow(listingId) { it.copy(message = message) }
+                }
+            }
+        }
+    }
+
+    fun requestVerification(listingId: String) {
+        val state = (_uiState.value as? UiState.Content)?.data ?: return
+        if (listingId in state.busyIds) return
+        _uiState.value = UiState.Content(
+            state.copy(busyIds = state.busyIds + listingId, message = null),
+        )
+        viewModelScope.launch {
+            when (val result = trustRepository.requestVerification(listingId)) {
+                is AppResult.Success, AppResult.Empty -> {
+                    analytics.track(
+                        AnalyticsEvent.VerificationRequested(listingId = listingId),
+                    )
+                    updateRow(listingId, pendingVerification = true) {
+                        it.copy(message = "درخواست تأیید ثبت شد؛ نتیجه اطلاع داده می‌شود")
+                    }
+                }
+                is AppResult.Failure -> {
+                    val message = if (result.error == AppError.Unauthorized) {
+                        "برای این عملیات وارد شوید"
+                    } else {
+                        "درخواست تأیید انجام نشد؛ دوباره تلاش کنید"
+                    }
+                    updateRow(listingId) { it.copy(message = message) }
+                }
+            }
+        }
+    }
+
+    private fun updateRow(
+        listingId: String,
+        fresh: Boolean = false,
+        pendingVerification: Boolean = false,
+        extra: (SellerManageUi) -> SellerManageUi = { it },
+    ) {
+        val current = (_uiState.value as? UiState.Content)?.data ?: SellerManageUi()
+        val updated = current.copy(
+            items = current.items.map { item ->
+                if (item.id != listingId) {
+                    item
+                } else {
+                    item.copy(
+                        freshness = if (fresh) "fresh" else item.freshness,
+                        verificationStatus = if (pendingVerification) {
+                            "pending"
+                        } else {
+                            item.verificationStatus
+                        },
+                    )
+                }
+            },
+            busyIds = current.busyIds - listingId,
+        )
+        _uiState.value = UiState.Content(extra(updated))
     }
 
     private fun updatedWithAssignError(message: String): SellerManageUi {

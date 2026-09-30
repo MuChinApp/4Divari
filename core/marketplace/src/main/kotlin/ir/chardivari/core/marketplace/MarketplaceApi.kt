@@ -351,6 +351,52 @@ interface MarketplaceApi {
         @Header("Authorization") authorization: String,
         @Body body: MarkNotificationReadRequestDto,
     ): Response<Void>
+
+    // ---- Trust (Phase 7 — 00096_trust_tooling.sql) ----
+
+    @POST("rpc/report_listing")
+    suspend fun reportListing(
+        @Header("apikey") apiKey: String,
+        @Header("Authorization") authorization: String,
+        @Body body: ReportListingRequestDto,
+    ): Response<String>
+
+    @POST("rpc/confirm_listing")
+    suspend fun confirmListing(
+        @Header("apikey") apiKey: String,
+        @Header("Authorization") authorization: String,
+        @Body body: ListingIdRequestDto,
+    ): Response<String>
+
+    @POST("rpc/request_listing_verification")
+    suspend fun requestListingVerification(
+        @Header("apikey") apiKey: String,
+        @Header("Authorization") authorization: String,
+        @Body body: ListingIdRequestDto,
+    ): Response<String>
+
+    @POST("rpc/admin_set_listing_verification")
+    suspend fun adminSetListingVerification(
+        @Header("apikey") apiKey: String,
+        @Header("Authorization") authorization: String,
+        @Body body: VerificationDecisionRequestDto,
+    ): Response<String>
+
+    /** STABLE function — GET keeps the zero-argument body problem away. */
+    @GET("rpc/moderation_queue")
+    suspend fun moderationQueue(
+        @Header("apikey") apiKey: String,
+        @Header("Authorization") authorization: String,
+    ): Response<ModerationQueueDto>
+
+    @HTTP(method = "PATCH", path = "reports", hasBody = true)
+    @Headers("Prefer: return=minimal")
+    suspend fun updateReportStatus(
+        @Query("id") id: String,
+        @Header("apikey") apiKey: String,
+        @Header("Authorization") authorization: String,
+        @Body body: ReportStatusPatchDto,
+    ): Response<Void>
 }
 
 @Serializable

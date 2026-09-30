@@ -43,6 +43,8 @@ object Routes {
 
     const val NOTIFICATIONS = "notifications"
 
+    const val ADMIN = "admin"
+
     fun searchWithQuery(query: String): String {
         val encoded = URLEncoder.encode(query, "UTF-8")
         return "search?query=$encoded"

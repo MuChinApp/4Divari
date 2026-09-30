@@ -36,6 +36,7 @@ include(":core:marketplace")
 // Features — customer-facing
 include(":feature:home")
 include(":feature:messaging")
+include(":feature:admin")
 include(":feature:search")
 include(":feature:saved")
 include(":feature:profile")

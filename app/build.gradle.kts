@@ -107,6 +107,7 @@ dependencies {
     implementation(project(":feature:seller"))
     implementation(project(":feature:agent"))
     implementation(project(":feature:messaging"))
+    implementation(project(":feature:admin"))
 
     // Compose
     implementation(platform(libs.compose.bom))

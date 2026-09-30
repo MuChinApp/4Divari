@@ -34,6 +34,7 @@ import ir.chardivari.core.navigation.Routes
 import ir.chardivari.core.ui.PlaceholderScreen
 import ir.chardivari.feature.agent.AgentRoute
 import ir.chardivari.feature.auth.AuthRoute
+import ir.chardivari.feature.admin.AdminRoute
 import ir.chardivari.feature.home.HomeRoute
 import ir.chardivari.feature.messaging.ConversationsRoute
 import ir.chardivari.feature.messaging.NotificationsRoute
@@ -199,6 +200,7 @@ private fun ChardivariRoot() {
                     onOpenNotifications = {
                         navController.navigate(Routes.NOTIFICATIONS)
                     },
+                    onOpenAdmin = { navController.navigate(Routes.ADMIN) },
                 )
             }
             composable(Routes.MESSAGES) {
@@ -223,6 +225,12 @@ private fun ChardivariRoot() {
             composable(Routes.NOTIFICATIONS) {
                 NotificationsRoute(
                     onBack = { navController.popBackStack() },
+                )
+            }
+            composable(Routes.ADMIN) {
+                AdminRoute(
+                    onBack = { navController.popBackStack() },
+                    onLogin = { navController.navigate(Routes.AUTH) },
                 )
             }
             composable(Routes.AGENT) {

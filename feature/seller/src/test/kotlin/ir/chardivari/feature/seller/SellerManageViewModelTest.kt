@@ -12,6 +12,7 @@ import ir.chardivari.core.marketplace.SellerDraftCreated
 import ir.chardivari.core.marketplace.SellerListingItem
 import ir.chardivari.core.marketplace.SellerRepository
 import ir.chardivari.core.marketplace.StorageBaseUrl
+import ir.chardivari.core.marketplace.TrustRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -151,13 +152,39 @@ class SellerManageViewModelTest {
         ): AppResult<Unit> = AppResult.Failure(AppError.Unexpected)
     }
 
+    private class FakeTrust(
+        var confirmResult: AppResult<String> = AppResult.Success("fresh"),
+        var requestResult: AppResult<String> = AppResult.Success("pending"),
+    ) : TrustRepository {
+        val confirms = mutableListOf<String>()
+        val requests = mutableListOf<String>()
+
+        override suspend fun reportListing(
+            listingId: String,
+            reason: String,
+            detail: String?,
+        ): AppResult<String> = AppResult.Failure(AppError.Unexpected)
+
+        override suspend fun confirmListing(listingId: String): AppResult<String> {
+            confirms += listingId
+            return confirmResult
+        }
+
+        override suspend fun requestVerification(listingId: String): AppResult<String> {
+            requests += listingId
+            return requestResult
+        }
+    }
+
     private lateinit var seller: FakeSeller
     private lateinit var agent: FakeAgent
     private lateinit var tracker: RecordingTracker
+    private lateinit var trust: FakeTrust
 
     private fun viewModel() = SellerManageViewModel(
         sellerRepository = seller,
         agentRepository = agent,
+        trustRepository = trust,
         storage = StorageBaseUrl(null),
         analytics = tracker,
     )
@@ -168,6 +195,7 @@ class SellerManageViewModelTest {
         seller = FakeSeller()
         agent = FakeAgent()
         tracker = RecordingTracker()
+        trust = FakeTrust()
     }
 
     @After
@@ -302,4 +330,73 @@ class SellerManageViewModelTest {
         val state = (vm.uiState.value as UiState.Content).data
         assertTrue(state.assign?.error != null)
     }
+
+    @Test
+    fun confirmFreshness_success_marksFreshAndTracks() = runTest(dispatcher.scheduler) {
+        seller.listResult = AppResult.Success(
+            listOf(item("L1", "ACTIVE").copy(freshness = "stale")),
+        )
+        val vm = viewModel()
+        val deadline = System.currentTimeMillis() + 2000
+        while (vm.uiState.value !is UiState.Content && System.currentTimeMillis() < deadline) {
+            kotlinx.coroutines.delay(10)
+        }
+
+        vm.confirmFreshness("L1")
+        val join = System.currentTimeMillis() + 2000
+        while (trust.confirms.isEmpty() && System.currentTimeMillis() < join) {
+            kotlinx.coroutines.delay(10)
+        }
+        assertEquals(listOf("L1"), trust.confirms)
+
+        val content = vm.uiState.value as UiState.Content
+        assertEquals("fresh", content.data.items.first().freshness)
+        assertNotNull(content.data.message)
+        assertTrue(tracker.recorded.any { it.name == "listing_confirmed" })
+    }
+
+    @Test
+    fun requestVerification_success_marksPendingAndTracks() = runTest(dispatcher.scheduler) {
+        seller.listResult = AppResult.Success(listOf(item("L1", "ACTIVE")))
+        val vm = viewModel()
+        val deadline = System.currentTimeMillis() + 2000
+        while (vm.uiState.value !is UiState.Content && System.currentTimeMillis() < deadline) {
+            kotlinx.coroutines.delay(10)
+        }
+
+        vm.requestVerification("L1")
+        val join = System.currentTimeMillis() + 2000
+        while (trust.requests.isEmpty() && System.currentTimeMillis() < join) {
+            kotlinx.coroutines.delay(10)
+        }
+        assertEquals(listOf("L1"), trust.requests)
+
+        val content = vm.uiState.value as UiState.Content
+        assertEquals("pending", content.data.items.first().verificationStatus)
+        assertTrue(tracker.recorded.any { it.name == "verification_requested" })
+    }
+
+    @Test
+    fun confirmFreshness_failure_setsMessage() = runTest(dispatcher.scheduler) {
+        trust.confirmResult = AppResult.Failure(AppError.Server)
+        seller.listResult = AppResult.Success(listOf(item("L1", "ACTIVE")))
+        val vm = viewModel()
+        val deadline = System.currentTimeMillis() + 2000
+        while (vm.uiState.value !is UiState.Content && System.currentTimeMillis() < deadline) {
+            kotlinx.coroutines.delay(10)
+        }
+
+        vm.confirmFreshness("L1")
+        val join = System.currentTimeMillis() + 2000
+        while ((vm.uiState.value as? UiState.Content)?.data?.message == null &&
+            System.currentTimeMillis() < join
+        ) {
+            kotlinx.coroutines.delay(10)
+        }
+        val content = vm.uiState.value as UiState.Content
+        assertNotNull(content.data.message)
+        assertEquals("fresh", content.data.items.first().freshness)
+        assertTrue(content.data.busyIds.isEmpty())
+    }
 }
+

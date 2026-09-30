@@ -37,6 +37,7 @@ fun ProfileRoute(
     onOpenAgent: () -> Unit = {},
     onOpenMessages: () -> Unit = {},
     onOpenNotifications: () -> Unit = {},
+    onOpenAdmin: () -> Unit = {},
 ) {
     Scaffold(
         modifier = modifier.fillMaxSize(),
@@ -103,6 +104,13 @@ fun ProfileRoute(
                 modifier = Modifier.fillMaxWidth(),
             ) {
                 Text("اعلان‌ها")
+            }
+            Spacer(Modifier.height(AppSpacing.Md))
+            OutlinedButton(
+                onClick = onOpenAdmin,
+                modifier = Modifier.fillMaxWidth(),
+            ) {
+                Text("مدیریت محتوا")
             }
         }
     }

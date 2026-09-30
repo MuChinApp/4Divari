@@ -13,6 +13,7 @@ import ir.chardivari.core.marketplace.ConversationItem
 import ir.chardivari.core.marketplace.DealType
 import ir.chardivari.core.marketplace.FavoritesRepository
 import ir.chardivari.core.marketplace.MyVisit
+import ir.chardivari.core.marketplace.TrustRepository
 import ir.chardivari.core.marketplace.VisitsRepository
 import ir.chardivari.core.marketplace.Listing
 import ir.chardivari.core.marketplace.ListingContact
@@ -118,6 +119,24 @@ class PropertyDetailViewModelTest {
         override suspend fun markRead(conversationId: String) = AppResult.Success(Unit)
     }
 
+    private class FakeTrust(
+        var reportResult: AppResult<String> = AppResult.Success("r1"),
+    ) : TrustRepository {
+        var lastReport: Triple<String, String, String?>? = null
+        override suspend fun reportListing(
+            listingId: String,
+            reason: String,
+            detail: String?,
+        ): AppResult<String> {
+            lastReport = Triple(listingId, reason, detail)
+            return reportResult
+        }
+        override suspend fun confirmListing(listingId: String): AppResult<String> =
+            AppResult.Success("fresh")
+        override suspend fun requestVerification(listingId: String): AppResult<String> =
+            AppResult.Success("pending")
+    }
+
     private class FakeVisits(
         var requestResult: AppResult<Unit> = AppResult.Success(Unit),
     ) : VisitsRepository {
@@ -150,6 +169,7 @@ class PropertyDetailViewModelTest {
         contacts: FakeContacts = FakeContacts(),
         chat: FakeChat = FakeChat(),
         visits: FakeVisits = FakeVisits(),
+        trust: FakeTrust = FakeTrust(),
         tracker: RecordingTracker = RecordingTracker(),
     ) = PropertyDetailViewModel(
         savedStateHandle = SavedStateHandle(mapOf("propertyId" to "l1")),
@@ -158,6 +178,7 @@ class PropertyDetailViewModelTest {
         contacts = contacts,
         chat = chat,
         visits = visits,
+        trust = trust,
         storage = StorageBaseUrl("https://x.supabase.co"),
         analytics = tracker,
     )
@@ -340,4 +361,93 @@ class PropertyDetailViewModelTest {
         assertEquals("2023-11-14T10:30:00+03:30", start)
         assertEquals("2023-11-14T11:30:00+03:30", end)
     }
+
+    @Test
+    fun submitReport_success_tracksAndCloses() = runTest(dispatcher.scheduler) {
+        val tracker = RecordingTracker()
+        val trust = FakeTrust()
+        val viewModel = vm(trust = trust, tracker = tracker)
+
+        val deadline = System.currentTimeMillis() + 2000
+        while (viewModel.uiState.value !is UiState.Content && System.currentTimeMillis() < deadline) {
+            kotlinx.coroutines.delay(10)
+        }
+
+        viewModel.openReportDialog()
+        viewModel.setReportReason("قیمت نامعتبر")
+        viewModel.setReportDetail("توضیح تست")
+        viewModel.submitReport()
+
+        val join = System.currentTimeMillis() + 2000
+        while (tracker.recorded.none { it.name == "report_submitted" } &&
+            System.currentTimeMillis() < join
+        ) {
+            kotlinx.coroutines.delay(10)
+        }
+        assertTrue(tracker.recorded.any { it.name == "report_submitted" })
+        assertEquals("l1", trust.lastReport?.first)
+        assertEquals("price_invalid", trust.lastReport?.second)
+        val content = viewModel.uiState.value as UiState.Content
+        assertNotNull(content.data.reportMessage)
+        assertNull(content.data.reportDialog)
+    }
+
+    @Test
+    fun submitReport_withoutReason_setsError() = runTest(dispatcher.scheduler) {
+        val trust = FakeTrust()
+        val viewModel = vm(trust = trust)
+
+        val deadline = System.currentTimeMillis() + 2000
+        while (viewModel.uiState.value !is UiState.Content && System.currentTimeMillis() < deadline) {
+            kotlinx.coroutines.delay(10)
+        }
+
+        viewModel.openReportDialog()
+        viewModel.submitReport()
+
+        val content = viewModel.uiState.value as UiState.Content
+        assertNotNull(content.data.reportDialog?.error)
+        assertNull(trust.lastReport)
+    }
+
+    @Test
+    fun submitReport_unauthorized_emitsLogin() = runTest(dispatcher.scheduler) {
+        val trust = FakeTrust(reportResult = AppResult.Failure(AppError.Unauthorized))
+        val viewModel = vm(trust = trust)
+
+        val deadline = System.currentTimeMillis() + 2000
+        while (viewModel.uiState.value !is UiState.Content && System.currentTimeMillis() < deadline) {
+            kotlinx.coroutines.delay(10)
+        }
+
+        viewModel.openReportDialog()
+        viewModel.setReportReason("سایر")
+        viewModel.setReportDetail("توضیح")
+
+        viewModel.events.test {
+            viewModel.submitReport()
+            assertEquals(PropertyDetailEvent.LoginRequired, expectMostRecentItem())
+            cancel()
+        }
+    }
+
+    @Test
+    fun submitReport_otherReason_requiresDetail() = runTest(dispatcher.scheduler) {
+        val trust = FakeTrust()
+        val viewModel = vm(trust = trust)
+
+        val deadline = System.currentTimeMillis() + 2000
+        while (viewModel.uiState.value !is UiState.Content && System.currentTimeMillis() < deadline) {
+            kotlinx.coroutines.delay(10)
+        }
+
+        viewModel.openReportDialog()
+        viewModel.setReportReason("سایر")
+        viewModel.submitReport()
+
+        val content = viewModel.uiState.value as UiState.Content
+        assertNotNull(content.data.reportDialog?.error)
+        assertNull(trust.lastReport)
+    }
 }
+

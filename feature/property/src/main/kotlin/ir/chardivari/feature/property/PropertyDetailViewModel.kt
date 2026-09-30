@@ -18,6 +18,7 @@ import ir.chardivari.core.marketplace.ListingPresenter
 import ir.chardivari.core.marketplace.ListingRepository
 import ir.chardivari.core.marketplace.PropertyDetailUi
 import ir.chardivari.core.marketplace.StorageBaseUrl
+import ir.chardivari.core.marketplace.TrustRepository
 import ir.chardivari.core.marketplace.VisitsRepository
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -30,6 +31,30 @@ import java.util.Calendar
 import java.util.Locale
 import java.util.TimeZone
 import javax.inject.Inject
+
+/** Report dialog state — presets map to stable reason codes in analytics. */
+data class ReportDialogUi(
+    val reason: String? = null,
+    val detail: String = "",
+    val busy: Boolean = false,
+    val error: String? = null,
+)
+
+internal fun reportReasonCode(reason: String): String = when (reason) {
+    "قیمت نامعتبر" -> "price_invalid"
+    "ملک موجود نیست" -> "not_available"
+    "اطلاعات گمراه‌کننده" -> "misleading"
+    "احتمال کلاهبرداری" -> "suspected_fraud"
+    else -> "other"
+}
+
+internal val REPORT_REASONS = listOf(
+    "قیمت نامعتبر",
+    "ملک موجود نیست",
+    "اطلاعات گمراه‌کننده",
+    "احتمال کلاهبرداری",
+    "سایر",
+)
 
 /** Visit-slot picker dialog state — ISO slot pickers, Jalali module comes later. */
 data class VisitDialogUi(
@@ -49,6 +74,8 @@ data class PropertyDetailModel(
     val visitDialog: VisitDialogUi? = null,
     val visitMessage: String? = null,
     val conversationError: String? = null,
+    val reportDialog: ReportDialogUi? = null,
+    val reportMessage: String? = null,
 )
 
 /** One-shot events (navigation / login) emitted by [PropertyDetailViewModel]. */
@@ -98,6 +125,7 @@ class PropertyDetailViewModel @Inject constructor(
     private val contacts: ListingContactRepository,
     private val chat: ChatRepository,
     private val visits: VisitsRepository,
+    private val trust: TrustRepository,
     private val storage: StorageBaseUrl,
     private val analytics: AnalyticsTracker,
 ) : ViewModel() {
@@ -337,4 +365,92 @@ class PropertyDetailViewModel @Inject constructor(
             current.copy(visitDialog = transform(dialog)),
         )
     }
+
+    // ---- Phase 7: report a listing ----
+
+    fun openReportDialog() {
+        val current = (_uiState.value as? UiState.Content)?.data ?: return
+        _uiState.value = UiState.Content(
+            current.copy(reportDialog = ReportDialogUi(), reportMessage = null),
+        )
+    }
+
+    fun closeReportDialog() {
+        val current = (_uiState.value as? UiState.Content)?.data ?: return
+        if (current.reportDialog?.busy == true) return
+        _uiState.value = UiState.Content(current.copy(reportDialog = null))
+    }
+
+    fun setReportReason(reason: String) {
+        updateReportDialog { it.copy(reason = reason, error = null) }
+    }
+
+    fun setReportDetail(detail: String) {
+        updateReportDialog { it.copy(detail = detail, error = null) }
+    }
+
+    fun submitReport() {
+        val current = (_uiState.value as? UiState.Content)?.data ?: return
+        val dialog = current.reportDialog ?: return
+        val reason = dialog.reason
+        if (reason == null) {
+            updateReportDialog { it.copy(error = "دلیل گزارش را انتخاب کنید") }
+            return
+        }
+        val detail = dialog.detail.trim()
+        if (reason == "سایر" && detail.isEmpty()) {
+            updateReportDialog { it.copy(error = "توضیح کوتاهی بنویسید") }
+            return
+        }
+        if (dialog.busy) return
+        updateReportDialog { it.copy(busy = true, error = null) }
+        viewModelScope.launch {
+            when (
+                val result = trust.reportListing(
+                    listingId = listingId,
+                    reason = reason,
+                    detail = detail.ifEmpty { null },
+                )
+            ) {
+                is AppResult.Success, AppResult.Empty -> {
+                    analytics.track(
+                        AnalyticsEvent.ReportSubmitted(
+                            listingId = listingId,
+                            reason = reportReasonCode(reason),
+                        ),
+                    )
+                    _uiState.value = UiState.Content(
+                        (_uiState.value as? UiState.Content)?.data
+                            ?.copy(
+                                reportDialog = null,
+                                reportMessage = "گزارش شما ثبت شد؛ کارشناسان ما بررسی می‌کنند",
+                            )
+                            ?: current,
+                    )
+                }
+                is AppResult.Failure -> {
+                    if (result.error == AppError.Unauthorized) {
+                        _events.emit(PropertyDetailEvent.LoginRequired)
+                        updateReportDialogInternal { it.copy(busy = false) }
+                    } else {
+                        updateReportDialog {
+                            it.copy(
+                                busy = false,
+                                error = "ثبت گزارش انجام نشد؛ دوباره تلاش کنید",
+                            )
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private fun updateReportDialog(transform: (ReportDialogUi) -> ReportDialogUi) {
+        val current = (_uiState.value as? UiState.Content)?.data ?: return
+        val dialog = current.reportDialog ?: return
+        _uiState.value = UiState.Content(current.copy(reportDialog = transform(dialog)))
+    }
+
+    private fun updateReportDialogInternal(transform: (ReportDialogUi) -> ReportDialogUi) =
+        updateReportDialog(transform)
 }

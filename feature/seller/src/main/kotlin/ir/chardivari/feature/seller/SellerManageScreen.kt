@@ -153,6 +153,19 @@ fun SellerRoute(
                             } else {
                                 null
                             },
+                            onConfirm = if (item.freshness != "fresh") {
+                                { viewModel.confirmFreshness(item.id) }
+                            } else {
+                                null
+                            },
+                            onRequestVerification = if (
+                                item.verificationStatus == "unverified" ||
+                                item.verificationStatus == "rejected"
+                            ) {
+                                { viewModel.requestVerification(item.id) }
+                            } else {
+                                null
+                            },
                         )
                         HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant)
                     }
@@ -265,6 +278,8 @@ private fun SellerRow(
     busy: Boolean,
     onAction: (SellerAction) -> Unit,
     onAssign: (() -> Unit)? = null,
+    onConfirm: (() -> Unit)? = null,
+    onRequestVerification: (() -> Unit)? = null,
 ) {
     Row(
         modifier = Modifier
@@ -325,8 +340,36 @@ private fun SellerRow(
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
+            if (item.freshness != "fresh" || item.verificationStatus != "verified") {
+                Spacer(Modifier.height(AppSpacing.Xxs))
+                Text(
+                    text = buildList {
+                        if (item.freshness != "fresh") {
+                            add(sellerFreshnessLabel(item.freshness))
+                        }
+                        if (item.verificationStatus != "verified") {
+                            add(sellerVerificationLabel(item.verificationStatus))
+                        }
+                    }.joinToString(" · "),
+                    style = MaterialTheme.typography.labelSmall,
+                    color = if (
+                        item.freshness == "stale" || item.verificationStatus == "rejected"
+                    ) {
+                        MaterialTheme.colorScheme.error
+                    } else if (item.verificationStatus == "pending") {
+                        MaterialTheme.colorScheme.tertiary
+                    } else {
+                        MaterialTheme.colorScheme.onSurfaceVariant
+                    },
+                )
+            }
             val actions = allowedActions(item.status)
-            if (actions.isNotEmpty() || onAssign != null) {
+            if (
+                actions.isNotEmpty() ||
+                onAssign != null ||
+                onConfirm != null ||
+                onRequestVerification != null
+            ) {
                 Spacer(Modifier.height(AppSpacing.Xs))
                 Row(horizontalArrangement = Arrangement.spacedBy(AppSpacing.Sm)) {
                     actions.forEach { action ->
@@ -352,8 +395,31 @@ private fun SellerRow(
                             Text("واگذاری به مشاور")
                         }
                     }
+                    if (onConfirm != null && !busy) {
+                        TextButton(onClick = onConfirm) {
+                            Text("تأیید صحت")
+                        }
+                    }
+                    if (onRequestVerification != null && !busy) {
+                        TextButton(onClick = onRequestVerification) {
+                            Text("درخواست تأیید")
+                        }
+                    }
                 }
             }
         }
     }
+}
+
+internal fun sellerFreshnessLabel(freshness: String): String = when (freshness) {
+    "aging" -> "در حال قدیمی‌شدن"
+    "stale" -> "داده قدیمی"
+    else -> freshness
+}
+
+internal fun sellerVerificationLabel(status: String): String = when (status) {
+    "unverified" -> "بدون تأیید"
+    "pending" -> "در انتظار تأیید"
+    "rejected" -> "رد شده"
+    else -> status
 }

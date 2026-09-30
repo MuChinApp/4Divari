@@ -73,6 +73,9 @@ data class SellerListingDto(
     val publishedAt: String? = null,
     @SerialName("created_at")
     val createdAt: String? = null,
+    @SerialName("verification_status")
+    val verificationStatus: String = "unverified",
+    val freshness: String = "fresh",
     val property: SellerPropertyRefDto? = null,
 )
 
@@ -101,6 +104,8 @@ data class SellerListingItem(
     val areaSqm: Int?,
     val propertyType: PropertyType?,
     val coverPath: String?,
+    val verificationStatus: String = "unverified",
+    val freshness: String = "fresh",
 ) {
     val isFixture: Boolean get() = false
 }
@@ -123,5 +128,7 @@ fun SellerListingDto.toSellerItem(): SellerListingItem {
         areaSqm = property?.areaSqm,
         propertyType = property?.propertyType,
         coverPath = cover,
+        verificationStatus = verificationStatus,
+        freshness = freshness,
     )
 }

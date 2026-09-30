@@ -57,7 +57,7 @@ data class SellerDraftCreated(val listingId: String, val propertyId: String)
 
 internal val SELLER_LISTING_SELECT =
     "id,property_id,deal_type,price_rial,deposit_rial,rent_rial,status," +
-        "published_at,created_at," +
+        "published_at,created_at,verification_status,freshness," +
         "property:properties(id,property_type,area_sqm,city,neighborhood," +
         "media:property_media(id,storage_path,media_type,sort_order,is_cover))"
 

@@ -75,6 +75,18 @@ abstract class MarketplaceBindModule {
     abstract fun bindRealtimeClient(
         impl: SupabaseRealtimeClient,
     ): RealtimeClient
+
+    @Binds
+    @Singleton
+    abstract fun bindTrustRepository(
+        impl: SupabaseTrustRepository,
+    ): TrustRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindAdminRepository(
+        impl: SupabaseAdminRepository,
+    ): AdminRepository
 }
 
 /**

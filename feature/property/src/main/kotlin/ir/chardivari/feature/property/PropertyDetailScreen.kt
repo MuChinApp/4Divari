@@ -2,6 +2,7 @@ package ir.chardivari.feature.property
 
 import android.content.Intent
 import android.net.Uri
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -31,6 +32,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -92,6 +94,18 @@ fun PropertyDetailRoute(
             onTime = viewModel::setVisitTime,
             onDismiss = viewModel::closeVisitDialog,
             onSubmit = viewModel::submitVisit,
+        )
+    }
+
+    val reportDialog =
+        (state as? ir.chardivari.core.common.UiState.Content)?.data?.reportDialog
+    if (reportDialog != null) {
+        ReportDialog(
+            dialog = reportDialog,
+            onReason = viewModel::setReportReason,
+            onDetail = viewModel::setReportDetail,
+            onDismiss = viewModel::closeReportDialog,
+            onSubmit = viewModel::submitReport,
         )
     }
 
@@ -347,6 +361,32 @@ fun PropertyDetailRoute(
                 }
 
                 item {
+                    androidx.compose.foundation.layout.Box(
+                        modifier = Modifier.fillMaxWidth(),
+                        contentAlignment = Alignment.Center,
+                    ) {
+                        TextButton(onClick = { viewModel.openReportDialog() }) {
+                            Text(
+                                text = "گزارش مغایرت آگهی",
+                                style = MaterialTheme.typography.bodySmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            )
+                        }
+                    }
+                    model.reportMessage?.let { msg ->
+                        Text(
+                            text = msg,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(horizontal = AppSpacing.Lg),
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.primary,
+                            textAlign = TextAlign.Center,
+                        )
+                    }
+                }
+
+                item {
                     HorizontalDivider(
                         modifier = Modifier.padding(
                             horizontal = AppSpacing.Lg,
@@ -526,4 +566,84 @@ private fun TimeMenu(
             }
         }
     }
+}
+
+@Composable
+private fun ReportDialog(
+    dialog: ReportDialogUi,
+    onReason: (String) -> Unit,
+    onDetail: (String) -> Unit,
+    onDismiss: () -> Unit,
+    onSubmit: () -> Unit,
+) {
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text("گزارش مغایرت") },
+        text = {
+            Column {
+                Text(
+                    text = "چه مشکلی دیده‌اید؟",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+                Spacer(Modifier.height(AppSpacing.Xs))
+                REPORT_REASONS.forEach { reason ->
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clickable { onReason(reason) },
+                    ) {
+                        RadioButton(
+                            selected = dialog.reason == reason,
+                            onClick = { onReason(reason) },
+                        )
+                        Text(
+                            text = reason,
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = MaterialTheme.colorScheme.onSurface,
+                        )
+                    }
+                }
+                if (dialog.reason != null) {
+                    Spacer(Modifier.height(AppSpacing.Sm))
+                    OutlinedTextField(
+                        value = dialog.detail,
+                        onValueChange = onDetail,
+                        modifier = Modifier.fillMaxWidth(),
+                        placeholder = {
+                            Text("توضیح (اختیاری؛ برای «سایر» لازم است)")
+                        },
+                        minLines = 2,
+                        maxLines = 4,
+                        enabled = !dialog.busy,
+                    )
+                }
+                dialog.error?.let { msg ->
+                    Spacer(Modifier.height(AppSpacing.Sm))
+                    Text(
+                        text = msg,
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.error,
+                    )
+                }
+            }
+        },
+        confirmButton = {
+            TextButton(
+                onClick = onSubmit,
+                enabled = !dialog.busy,
+            ) {
+                Text(if (dialog.busy) "در حال ثبت…" else "ثبت گزارش")
+            }
+        },
+        dismissButton = {
+            TextButton(
+                onClick = onDismiss,
+                enabled = !dialog.busy,
+            ) {
+                Text("انصراف")
+            }
+        },
+    )
 }

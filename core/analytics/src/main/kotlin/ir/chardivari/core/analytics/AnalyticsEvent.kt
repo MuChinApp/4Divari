@@ -58,6 +58,35 @@ sealed interface AnalyticsEvent {
             get() = mapOf("conversation_id" to conversationId)
     }
 
+    data class ReportSubmitted(val listingId: String, val reason: String) : AnalyticsEvent {
+        override val name: String
+            get() = "report_submitted"
+        override val params: Map<String, String>
+            get() = mapOf("listing_id" to listingId, "reason" to reason)
+    }
+
+    data class ListingConfirmed(val listingId: String) : AnalyticsEvent {
+        override val name: String
+            get() = "listing_confirmed"
+        override val params: Map<String, String>
+            get() = mapOf("listing_id" to listingId)
+    }
+
+    data class VerificationRequested(val listingId: String) : AnalyticsEvent {
+        override val name: String
+            get() = "verification_requested"
+        override val params: Map<String, String>
+            get() = mapOf("listing_id" to listingId)
+    }
+
+    data class ModerationAction(val kind: String, val targetId: String, val action: String) :
+        AnalyticsEvent {
+        override val name: String
+            get() = "moderation_action"
+        override val params: Map<String, String>
+            get() = mapOf("kind" to kind, "target_id" to targetId, "action" to action)
+    }
+
     data class ContactAgent(val propertyId: String, val channel: String) : AnalyticsEvent {
         override val name: String = "contact_agent"
         override val params: Map<String, String> = mapOf(

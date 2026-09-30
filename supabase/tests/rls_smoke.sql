@@ -648,6 +648,222 @@ end;
 $$;
 
 reset role;
+-- ---- Phase 7: reports, freshness, verification, moderation, fraud signals ----
+reset role;
+
+insert into users (id, phone_e164, phone_verified_at, status)
+values ('70000000-0000-0000-0000-0000000000aa', '+9893111111115', now(), 'active')
+on conflict (id) do nothing;
+
+insert into user_roles (user_id, role)
+values ('70000000-0000-0000-0000-0000000000aa', 'ADMIN')
+on conflict do nothing;
+
+update listings
+  set last_verified_at = now() - interval '60 days',
+      freshness = 'stale'
+where id = 'bbbbbbbb-0000-0000-0000-000000000001';
+
+set role app_user;
+
+create temp table p7 (report1 uuid);
+
+do $$
+declare
+  v_l uuid := 'bbbbbbbb-0000-0000-0000-000000000001';
+  v_seller uuid := '11111111-1111-1111-1111-111111111111';
+  v_buyer uuid := '20000000-0000-0000-0000-00000000000b';
+  v_admin uuid := '70000000-0000-0000-0000-0000000000aa';
+  v_agent uuid := '50000000-0000-0000-0000-00000000000e';
+  v_report uuid;
+  v_f text;
+  v_status text;
+  v_n int;
+  v_q jsonb;
+  v_flags jsonb;
+begin
+  -- 1) buyer files a report (session required)
+  perform set_config('request.jwt.claim.sub', v_buyer::text, false);
+  v_report := public.report_listing(v_l, 'قیمت بازار نیست', 'گزارش تست فاز ۷');
+  insert into p7 values (v_report);
+  if v_report is null then
+    raise exception 'report_listing returned null';
+  end if;
+
+  -- admin gets the queue feed notification (read with the admin session:
+  -- notifications RLS is self-only)
+  perform set_config('request.jwt.claim.sub', v_admin::text, false);
+  select count(*) into v_n from notifications
+  where user_id = v_admin and title = 'report_filed';
+  if v_n < 1 then
+    raise exception 'report_filed admin notification missing';
+  end if;
+
+  -- 2) open duplicate rejected
+  perform set_config('request.jwt.claim.sub', v_buyer::text, false);
+  begin
+    perform public.report_listing(v_l, 'قیمت بازار نیست', null);
+    raise exception 'P7_FAIL: duplicate report accepted';
+  exception when raise_exception then
+    if sqlerrm like 'P7_FAIL:%' then raise; end if;
+  end;
+
+  -- 3) seller cannot report own listing
+  perform set_config('request.jwt.claim.sub', v_seller::text, false);
+  begin
+    perform public.report_listing(v_l, 'دلیل نامعتبر', null);
+    raise exception 'P7_FAIL: own-listing report accepted';
+  exception when raise_exception then
+    if sqlerrm like 'P7_FAIL:%' then raise; end if;
+  end;
+
+  -- 4) freshness confirmation is party-only; seller resets staleness
+  perform set_config('request.jwt.claim.sub', v_buyer::text, false);
+  begin
+    perform public.confirm_listing(v_l);
+    raise exception 'P7_FAIL: non-party confirm accepted';
+  exception when raise_exception then
+    if sqlerrm like 'P7_FAIL:%' then raise; end if;
+  end;
+
+  perform set_config('request.jwt.claim.sub', v_seller::text, false);
+  select public.confirm_listing(v_l) into v_f;
+  if v_f <> 'fresh' then
+    raise exception 'confirm_listing did not reset freshness (got %)', v_f;
+  end if;
+
+  -- 5) verification lifecycle: unverified -> pending (party) ...
+  select public.request_listing_verification(v_l) into v_status;
+  if v_status <> 'pending' then
+    raise exception 'expected pending, got %', v_status;
+  end if;
+
+  -- non-party request rejected
+  perform set_config('request.jwt.claim.sub', v_buyer::text, false);
+  begin
+    perform public.request_listing_verification(v_l);
+    raise exception 'P7_FAIL: non-party verification request accepted';
+  exception when raise_exception then
+    if sqlerrm like 'P7_FAIL:%' then raise; end if;
+  end;
+
+  -- 6) moderation queue: admin sees report + pending verification, buyer cannot
+  perform set_config('request.jwt.claim.sub', v_admin::text, false);
+  select public.moderation_queue() into v_q;
+  if (v_q->'counts'->>'open_reports')::int < 1 then
+    raise exception 'queue open_reports < 1';
+  end if;
+  if (v_q->'counts'->>'pending_verifications')::int < 1 then
+    raise exception 'queue pending_verifications < 1';
+  end if;
+  if jsonb_array_length(v_q->'reports') < 1 then
+    raise exception 'queue reports array empty';
+  end if;
+  if jsonb_array_length(v_q->'verifications') < 1 then
+    raise exception 'queue verifications array empty';
+  end if;
+  if not exists (
+    select 1 from jsonb_array_elements(v_q->'reports') e
+    where e->>'id' = (select report1 from p7)::text
+  ) then
+    raise exception 'queue missing the filed report';
+  end if;
+
+  perform set_config('request.jwt.claim.sub', v_buyer::text, false);
+  begin
+    select public.moderation_queue() into v_q;
+    raise exception 'P7_FAIL: non-admin queue access';
+  exception when raise_exception then
+    if sqlerrm like 'P7_FAIL:%' then raise; end if;
+  end;
+
+  -- non-admin verification decision rejected
+  perform set_config('request.jwt.claim.sub', v_buyer::text, false);
+  begin
+    perform public.admin_set_listing_verification(v_l, 'rejected');
+    raise exception 'P7_FAIL: non-admin decision accepted';
+  exception when raise_exception then
+    if sqlerrm like 'P7_FAIL:%' then raise; end if;
+  end;
+
+  -- 7) fraud flags: open report is visible with evidence; no invented price call
+  select public.listing_risk_signals(v_l) into v_flags;
+  if jsonb_typeof(v_flags->'flags') <> 'array' then
+    raise exception 'risk flags not an array';
+  end if;
+  if not (v_flags->'flags') @> '[{"code": "OPEN_REPORTS"}]'::jsonb then
+    raise exception 'OPEN_REPORTS flag missing: %', v_flags;
+  end if;
+  if not (v_flags->'flags') @> '[{"code": "PRICE_UNKNOWN"}]'::jsonb
+     and not (v_flags->'flags') @> '[{"code": "PRICE_OUTLIER_HIGH"}]'::jsonb
+     and not (v_flags->'flags') @> '[{"code": "PRICE_OUTLIER_LOW"}]'::jsonb
+  then
+    raise exception 'price assessed without any price flag: %', v_flags;
+  end if;
+
+  -- 8) admin decides verification -> verified + owner notified
+  perform set_config('request.jwt.claim.sub', v_admin::text, false);
+  select public.admin_set_listing_verification(v_l, 'verified') into v_status;
+  if v_status <> 'verified' then
+    raise exception 'admin decision failed: %', v_status;
+  end if;
+
+  -- seller reads own notification (self-only RLS) and re-requests idempotently
+  perform set_config('request.jwt.claim.sub', v_seller::text, false);
+  select count(*) into v_n from notifications
+  where user_id = v_seller and title = 'verification_status';
+  if v_n < 1 then
+    raise exception 'verification_status notification for seller missing';
+  end if;
+
+  select public.request_listing_verification(v_l) into v_status;
+  if v_status <> 'verified' then
+    raise exception 'verification request after verified should stay verified, got %', v_status;
+  end if;
+
+  -- 9) admin resolves the report -> reporter notified; readers scoped by RLS
+  perform set_config('request.jwt.claim.sub', v_admin::text, false);
+  update reports set status = 'actioned' where id = (select report1 from p7);
+
+  perform set_config('request.jwt.claim.sub', v_buyer::text, false);
+  select count(*) into v_n from notifications
+  where user_id = v_buyer and title = 'report_status';
+  if v_n < 1 then
+    raise exception 'report_status notification for reporter missing';
+  end if;
+
+  select count(*) into v_n from reports where id = (select report1 from p7);
+  if v_n <> 1 then
+    raise exception 'reporter cannot read own report (got %)', v_n;
+  end if;
+
+  perform set_config('request.jwt.claim.sub', v_agent::text, false);
+  select count(*) into v_n from reports where id = (select report1 from p7);
+  if v_n <> 0 then
+    raise exception 'stranger leak on reports (got %)', v_n;
+  end if;
+end;
+$$;
+
+-- verification artifacts: assert as superuser (table has no client read policy)
+reset role;
+do $$
+declare v_n int;
+begin
+  select count(*) into v_n
+  from property_verifications
+  where listing_id = 'bbbbbbbb-0000-0000-0000-000000000001'
+    and kind = 'completeness'
+    and status = 'passed';
+  if v_n < 1 then
+    raise exception 'passed property_verifications row missing (got %)', v_n;
+  end if;
+end;
+$$;
+
+set role app_user;
+select set_config('request.jwt.claim.sub', '', false);
+
 rollback;
 
 select 'RLS_SMOKE_OK' as result;
