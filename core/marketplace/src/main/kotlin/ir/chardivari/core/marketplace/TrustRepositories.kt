@@ -269,20 +269,20 @@ class SupabaseTrustRepository @Inject constructor(
     }
 
     override suspend fun confirmListing(listingId: String): AppResult<String> =
-        trustStringRpc { confirm, key, auth ->
-            confirm(
-                key,
-                "Bearer $auth",
-                ListingIdRequestDto(listingId = listingId),
+        trustStringRpc { api, key, auth ->
+            api.confirmListing(
+                apiKey = key,
+                authorization = "Bearer $auth",
+                body = ListingIdRequestDto(listingId = listingId),
             )
         }
 
     override suspend fun requestVerification(listingId: String): AppResult<String> =
-        trustStringRpc { request, key, auth ->
-            request(
-                key,
-                "Bearer $auth",
-                ListingIdRequestDto(listingId = listingId),
+        trustStringRpc { api, key, auth ->
+            api.requestListingVerification(
+                apiKey = key,
+                authorization = "Bearer $auth",
+                body = ListingIdRequestDto(listingId = listingId),
             )
         }
 
