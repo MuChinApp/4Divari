@@ -408,7 +408,7 @@ class PropertyDetailViewModel @Inject constructor(
             when (
                 val result = trust.reportListing(
                     listingId = listingId,
-                    reason = reason,
+                    reason = reportReasonCode(reason),
                     detail = detail.ifEmpty { null },
                 )
             ) {

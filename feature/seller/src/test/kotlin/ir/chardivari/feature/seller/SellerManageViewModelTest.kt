@@ -379,7 +379,9 @@ class SellerManageViewModelTest {
     @Test
     fun confirmFreshness_failure_setsMessage() = runTest(dispatcher.scheduler) {
         trust.confirmResult = AppResult.Failure(AppError.Server)
-        seller.listResult = AppResult.Success(listOf(item("L1", "ACTIVE")))
+        seller.listResult = AppResult.Success(
+            listOf(item("L1", "ACTIVE").copy(freshness = "stale")),
+        )
         val vm = viewModel()
         val deadline = System.currentTimeMillis() + 2000
         while (vm.uiState.value !is UiState.Content && System.currentTimeMillis() < deadline) {
@@ -395,7 +397,7 @@ class SellerManageViewModelTest {
         }
         val content = vm.uiState.value as UiState.Content
         assertNotNull(content.data.message)
-        assertEquals("fresh", content.data.items.first().freshness)
+        assertEquals("stale", content.data.items.first().freshness)
         assertTrue(content.data.busyIds.isEmpty())
     }
 }
