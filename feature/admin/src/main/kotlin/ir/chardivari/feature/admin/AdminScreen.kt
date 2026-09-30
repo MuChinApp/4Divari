@@ -73,7 +73,10 @@ fun AdminRoute(
     val gateState by gateViewModel.uiState.collectAsStateWithLifecycle()
 
     when (val gate = gateState) {
-        UiState.Idle -> Unit
+        UiState.Idle, UiState.Loading, UiState.Empty -> LoadingState(
+            modifier = Modifier.fillMaxSize(),
+            label = "در حال بررسی دسترسی…",
+        )
         is UiState.Error -> ErrorState(
             modifier = Modifier.fillMaxSize(),
             title = errorTitle(gate.error),
