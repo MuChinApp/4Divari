@@ -1,4 +1,4 @@
-=== CI FAILURE CAPTURE 2026-10-01T02:44:57Z ===
+=== CI FAILURE CAPTURE 2026-10-01T03:21:24Z ===
 
 ########## /tmp/test-log.txt : FAILURE HEADERS ##########
 
@@ -17,132 +17,145 @@ For more details see https://docs.gradle.org/8.11.1/release-notes.html
 
 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.11.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
 Daemon will be stopped at the end of the build 
-> Task :core:common:preBuild UP-TO-DATE
 > Task :core:auth:preBuild UP-TO-DATE
+> Task :core:common:preBuild UP-TO-DATE
 > Task :core:analytics:preBuild UP-TO-DATE
 > Task :app:preBuild UP-TO-DATE
-> Task :core:analytics:preDebugBuild UP-TO-DATE
-> Task :app:preDebugBuild UP-TO-DATE
-> Task :core:common:preDebugBuild UP-TO-DATE
 > Task :core:auth:preDebugBuild UP-TO-DATE
+> Task :app:preDebugBuild UP-TO-DATE
+> Task :core:analytics:preDebugBuild UP-TO-DATE
+> Task :core:common:preDebugBuild UP-TO-DATE
 > Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:common:writeDebugAarMetadata
+> Task :app:generateDebugBuildConfig
 > Task :core:auth:writeDebugAarMetadata
 > Task :core:analytics:writeDebugAarMetadata
-> Task :core:common:writeDebugAarMetadata
-> Task :core:designsystem:preBuild UP-TO-DATE
-> Task :core:designsystem:preDebugBuild UP-TO-DATE
 > Task :core:marketplace:preBuild UP-TO-DATE
-> Task :core:environment:preBuild UP-TO-DATE
 > Task :core:marketplace:preDebugBuild UP-TO-DATE
+> Task :core:designsystem:preBuild UP-TO-DATE
+> Task :core:environment:preBuild UP-TO-DATE
 > Task :core:environment:preDebugBuild UP-TO-DATE
-> Task :core:designsystem:writeDebugAarMetadata
+> Task :core:designsystem:preDebugBuild UP-TO-DATE
 > Task :core:navigation:preBuild UP-TO-DATE
 > Task :core:navigation:preDebugBuild UP-TO-DATE
-> Task :core:marketplace:writeDebugAarMetadata
+> Task :core:environment:writeDebugAarMetadata
 > Task :core:network:preBuild UP-TO-DATE
 > Task :core:network:preDebugBuild UP-TO-DATE
-> Task :core:environment:writeDebugAarMetadata
-> Task :core:ui:preBuild UP-TO-DATE
-> Task :core:network:writeDebugAarMetadata
+> Task :core:navigation:writeDebugAarMetadata
+> Task :core:marketplace:writeDebugAarMetadata
 > Task :feature:admin:preBuild UP-TO-DATE
 > Task :feature:admin:preDebugBuild UP-TO-DATE
+> Task :core:ui:preBuild UP-TO-DATE
+> Task :core:designsystem:writeDebugAarMetadata
 > Task :core:ui:preDebugBuild UP-TO-DATE
-> Task :feature:admin:writeDebugAarMetadata
-> Task :core:navigation:writeDebugAarMetadata
 > Task :feature:agent:preBuild UP-TO-DATE
+> Task :feature:agent:preDebugBuild UP-TO-DATE
+> Task :core:network:writeDebugAarMetadata
 > Task :feature:auth:preBuild UP-TO-DATE
 > Task :feature:auth:preDebugBuild UP-TO-DATE
-> Task :feature:agent:preDebugBuild UP-TO-DATE
 > Task :core:ui:writeDebugAarMetadata
 > Task :feature:home:preBuild UP-TO-DATE
-> Task :feature:home:preDebugBuild UP-TO-DATE
 > Task :feature:agent:writeDebugAarMetadata
 > Task :feature:messaging:preBuild UP-TO-DATE
 > Task :feature:messaging:preDebugBuild UP-TO-DATE
+> Task :feature:home:preDebugBuild UP-TO-DATE
+> Task :feature:admin:writeDebugAarMetadata
 > Task :feature:auth:writeDebugAarMetadata
-> Task :app:generateDebugBuildConfig
+> Task :feature:property:preBuild UP-TO-DATE
 > Task :feature:profile:preBuild UP-TO-DATE
 > Task :feature:profile:preDebugBuild UP-TO-DATE
-> Task :feature:property:preBuild UP-TO-DATE
 > Task :feature:property:preDebugBuild UP-TO-DATE
 > Task :feature:home:writeDebugAarMetadata
 > Task :feature:saved:preBuild UP-TO-DATE
+> Task :feature:property:writeDebugAarMetadata
 > Task :feature:saved:preDebugBuild UP-TO-DATE
-> Task :feature:messaging:writeDebugAarMetadata
 > Task :feature:search:preBuild UP-TO-DATE
 > Task :feature:search:preDebugBuild UP-TO-DATE
-> Task :feature:profile:writeDebugAarMetadata
+> Task :feature:messaging:writeDebugAarMetadata
 > Task :feature:seller:preBuild UP-TO-DATE
 > Task :feature:seller:preDebugBuild UP-TO-DATE
-> Task :feature:property:writeDebugAarMetadata
-> Task :feature:saved:writeDebugAarMetadata
+> Task :feature:profile:writeDebugAarMetadata
 > Task :feature:search:writeDebugAarMetadata
-> Task :feature:seller:writeDebugAarMetadata
+> Task :feature:saved:writeDebugAarMetadata
 > Task :core:analytics:generateDebugResValues
 > Task :app:generateDebugResValues
+> Task :feature:seller:writeDebugAarMetadata
 > Task :core:auth:generateDebugResValues
-> Task :core:common:generateDebugResValues
 > Task :core:analytics:generateDebugResources
+> Task :core:auth:generateDebugResources
 
 ########## /tmp/test-log.txt (last 80 lines) ##########
-> Task :feature:seller:compileDebugKotlin
-> Task :feature:seller:compileDebugJavaWithJavac
-> Task :feature:seller:transformDebugClassesWithAsm
-> Task :feature:seller:bundleLibCompileToJarDebug
-> Task :core:marketplace:testDebugUnitTest
-> Task :feature:seller:bundleLibRuntimeToJarDebug
-> Task :feature:seller:processDebugJavaRes
-> Task :feature:admin:testDebugUnitTest
-> Task :feature:agent:compileDebugUnitTestKotlin
-> Task :feature:agent:compileDebugUnitTestJavaWithJavac NO-SOURCE
-> Task :feature:agent:hiltAggregateDepsDebugUnitTest
-> Task :feature:agent:hiltJavaCompileDebugUnitTest NO-SOURCE
-> Task :feature:agent:processDebugUnitTestJavaRes
-> Task :feature:agent:transformDebugUnitTestClassesWithAsm
+> Task :feature:profile:hiltAggregateDepsDebugUnitTest
+> Task :feature:profile:hiltJavaCompileDebugUnitTest NO-SOURCE
+> Task :feature:profile:processDebugUnitTestJavaRes NO-SOURCE
+> Task :feature:profile:transformDebugUnitTestClassesWithAsm
+> Task :feature:profile:testDebugUnitTest NO-SOURCE
+> Task :feature:property:preDebugUnitTestBuild UP-TO-DATE
+> Task :app:compileDebugJavaWithJavac
+> Task :feature:property:generateDebugUnitTestStubRFile
+> Task :app:hiltAggregateDepsDebug
 > Task :feature:home:kspDebugUnitTestKotlin
 > Task :feature:messaging:kspDebugUnitTestKotlin
-> Task :feature:agent:testDebugUnitTest
+> Task :feature:property:kspDebugUnitTestKotlin
 > Task :feature:home:compileDebugUnitTestKotlin
 > Task :feature:home:compileDebugUnitTestJavaWithJavac NO-SOURCE
 > Task :feature:home:hiltAggregateDepsDebugUnitTest
 > Task :feature:home:hiltJavaCompileDebugUnitTest NO-SOURCE
 > Task :feature:home:processDebugUnitTestJavaRes
-> Task :feature:home:transformDebugUnitTestClassesWithAsm
 > Task :feature:messaging:compileDebugUnitTestKotlin
+> Task :feature:home:transformDebugUnitTestClassesWithAsm
 > Task :feature:messaging:compileDebugUnitTestJavaWithJavac NO-SOURCE
-> Task :app:kspDebugKotlin
 > Task :feature:messaging:hiltAggregateDepsDebugUnitTest
 > Task :feature:messaging:hiltJavaCompileDebugUnitTest NO-SOURCE
 > Task :feature:messaging:processDebugUnitTestJavaRes
 > Task :feature:messaging:transformDebugUnitTestClassesWithAsm
-> Task :feature:property:kspDebugUnitTestKotlin
-> Task :feature:home:testDebugUnitTest
 > Task :feature:property:compileDebugUnitTestKotlin
+> Task :feature:property:javaPreCompileDebugUnitTest FROM-CACHE
 > Task :feature:property:compileDebugUnitTestJavaWithJavac NO-SOURCE
-> Task :feature:saved:kspDebugUnitTestKotlin
 > Task :feature:property:hiltAggregateDepsDebugUnitTest
 > Task :feature:property:hiltJavaCompileDebugUnitTest NO-SOURCE
 > Task :feature:property:processDebugUnitTestJavaRes
 > Task :feature:property:transformDebugUnitTestClassesWithAsm
+> Task :feature:home:testDebugUnitTest
+> Task :feature:saved:preDebugUnitTestBuild UP-TO-DATE
+> Task :feature:saved:generateDebugUnitTestStubRFile
+> Task :feature:property:testDebugUnitTest
+> Task :feature:saved:javaPreCompileDebugUnitTest FROM-CACHE
+> Task :feature:search:preDebugUnitTestBuild UP-TO-DATE
+> Task :feature:search:generateDebugUnitTestStubRFile
+> Task :feature:saved:kspDebugUnitTestKotlin
+> Task :feature:search:kspDebugUnitTestKotlin
 > Task :feature:saved:compileDebugUnitTestKotlin
 > Task :feature:saved:compileDebugUnitTestJavaWithJavac NO-SOURCE
 > Task :feature:saved:hiltAggregateDepsDebugUnitTest
 > Task :feature:saved:hiltJavaCompileDebugUnitTest NO-SOURCE
 > Task :feature:saved:processDebugUnitTestJavaRes
 > Task :feature:saved:transformDebugUnitTestClassesWithAsm
-> Task :app:compileDebugKotlin
-> Task :feature:property:testDebugUnitTest
-> Task :app:compileDebugJavaWithJavac
-> Task :app:hiltAggregateDepsDebug
-> Task :feature:saved:testDebugUnitTest
-> Task :feature:search:kspDebugUnitTestKotlin
-> Task :feature:seller:kspDebugUnitTestKotlin
+> Task :app:hiltJavaCompileDebug
+> Task :app:transformDebugClassesWithAsm
+> Task :app:bundleDebugClassesToRuntimeJar
+> Task :app:processDebugJavaRes
+> Task :app:bundleDebugClassesToCompileJar
+> Task :app:kspDebugUnitTestKotlin NO-SOURCE
+> Task :app:compileDebugUnitTestKotlin NO-SOURCE
+> Task :app:compileDebugUnitTestJavaWithJavac NO-SOURCE
+> Task :app:hiltAggregateDepsDebugUnitTest
+> Task :app:hiltJavaCompileDebugUnitTest NO-SOURCE
+> Task :app:processDebugUnitTestJavaRes NO-SOURCE
+> Task :app:transformDebugUnitTestClassesWithAsm
+> Task :app:testDebugUnitTest NO-SOURCE
+> Task :feature:search:javaPreCompileDebugUnitTest FROM-CACHE
+> Task :feature:seller:preDebugUnitTestBuild UP-TO-DATE
+> Task :feature:seller:generateDebugUnitTestStubRFile
 > Task :feature:search:compileDebugUnitTestKotlin
 > Task :feature:search:compileDebugUnitTestJavaWithJavac NO-SOURCE
 > Task :feature:search:hiltAggregateDepsDebugUnitTest
 > Task :feature:search:hiltJavaCompileDebugUnitTest NO-SOURCE
 > Task :feature:search:processDebugUnitTestJavaRes
 > Task :feature:search:transformDebugUnitTestClassesWithAsm
+> Task :feature:saved:testDebugUnitTest
+> Task :feature:seller:javaPreCompileDebugUnitTest FROM-CACHE
+> Task :feature:seller:kspDebugUnitTestKotlin
 > Task :feature:search:testDebugUnitTest
 > Task :feature:seller:compileDebugUnitTestKotlin
 > Task :feature:seller:compileDebugUnitTestJavaWithJavac NO-SOURCE
@@ -150,19 +163,6 @@ Daemon will be stopped at the end of the build
 > Task :feature:seller:hiltJavaCompileDebugUnitTest NO-SOURCE
 > Task :feature:seller:processDebugUnitTestJavaRes
 > Task :feature:seller:transformDebugUnitTestClassesWithAsm
-> Task :app:hiltJavaCompileDebug
-> Task :app:processDebugJavaRes
-> Task :app:bundleDebugClassesToCompileJar
-> Task :app:kspDebugUnitTestKotlin NO-SOURCE
-> Task :app:compileDebugUnitTestKotlin NO-SOURCE
-> Task :app:compileDebugUnitTestJavaWithJavac NO-SOURCE
-> Task :app:transformDebugClassesWithAsm
-> Task :app:bundleDebugClassesToRuntimeJar
-> Task :app:hiltAggregateDepsDebugUnitTest
-> Task :app:hiltJavaCompileDebugUnitTest NO-SOURCE
-> Task :app:processDebugUnitTestJavaRes NO-SOURCE
-> Task :app:transformDebugUnitTestClassesWithAsm
-> Task :app:testDebugUnitTest NO-SOURCE
 > Task :feature:seller:testDebugUnitTest
 > Task :feature:messaging:testDebugUnitTest
 
@@ -206,8 +206,8 @@ Daemon will be stopped at the end of the build
 /home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerWizardViewModel.kt:243:9: The function publish appears to be too complex based on Cyclomatic Complexity (complexity: 26). Defined complexity threshold for methods is set to '15' [CyclomaticComplexMethod]
 /home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerWizardViewModel.kt:80:7: Class 'SellerWizardViewModel' with '32' functions detected. Defined threshold inside classes is set to '20' [TooManyFunctions]
 /home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerManageScreen.kt:275:22: The function SellerRow(item: SellerListingItem, coverUrl: String?, busy: Boolean, onAction: (SellerAction) -> Unit, onAssign: (() -> Unit)?, onConfirm: (() -> Unit)?, onRequestVerification: (() -> Unit)?) has too many parameters. The current threshold is set to 6. [LongParameterList]
-/home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerManageScreen.kt:60:5: The function SellerRoute is too long (113). The maximum length is 80. [LongMethod]
 /home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerManageScreen.kt:275:13: The function SellerRow is too long (130). The maximum length is 80. [LongMethod]
+/home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerManageScreen.kt:60:5: The function SellerRoute is too long (113). The maximum length is 80. [LongMethod]
 /home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerManageScreen.kt:60:5: The function SellerRoute appears to be too complex based on Cyclomatic Complexity (complexity: 15). Defined complexity threshold for methods is set to '15' [CyclomaticComplexMethod]
 /home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerManageScreen.kt:275:13: The function SellerRow appears to be too complex based on Cyclomatic Complexity (complexity: 34). Defined complexity threshold for methods is set to '15' [CyclomaticComplexMethod]
 /home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerManageScreen.kt:368:17: This condition is too complex (4). Defined complexity threshold for conditions is set to '4' [ComplexCondition]
@@ -228,8 +228,8 @@ Daemon will be stopped at the end of the build
 /home/runner/work/4Divari/4Divari/feature/property/src/test/kotlin/ir/chardivari/feature/property/PropertyDetailViewModelTest.kt:166:19: The function vm(listings: FakeListings, favorites: FakeFavorites, contacts: FakeContacts, chat: FakeChat, visits: FakeVisits, trust: FakeTrust, tracker: RecordingTracker) has too many parameters. The current threshold is set to 6. [LongParameterList]
 /home/runner/work/4Divari/4Divari/feature/property/src/main/kotlin/ir/chardivari/feature/property/PropertyDetailViewModel.kt:121:50: The constructor(savedStateHandle: SavedStateHandle, listings: ListingRepository, favorites: FavoritesRepository, contacts: ListingContactRepository, chat: ChatRepository, visits: VisitsRepository, trust: TrustRepository, storage: StorageBaseUrl, analytics: AnalyticsTracker) has too many parameters. The current threshold is set to 7. [LongParameterList]
 /home/runner/work/4Divari/4Divari/feature/property/src/main/kotlin/ir/chardivari/feature/property/PropertyDetailViewModel.kt:121:7: Class 'PropertyDetailViewModel' with '21' functions detected. Defined threshold inside classes is set to '20' [TooManyFunctions]
-/home/runner/work/4Divari/4Divari/feature/property/src/main/kotlin/ir/chardivari/feature/property/PropertyDetailScreen.kt:63:5: The function PropertyDetailRoute is too long (360). The maximum length is 80. [LongMethod]
 /home/runner/work/4Divari/4Divari/feature/property/src/main/kotlin/ir/chardivari/feature/property/PropertyDetailScreen.kt:447:13: The function VisitPickerDialog is too long (89). The maximum length is 80. [LongMethod]
+/home/runner/work/4Divari/4Divari/feature/property/src/main/kotlin/ir/chardivari/feature/property/PropertyDetailScreen.kt:63:5: The function PropertyDetailRoute is too long (360). The maximum length is 80. [LongMethod]
 /home/runner/work/4Divari/4Divari/feature/property/src/main/kotlin/ir/chardivari/feature/property/PropertyDetailScreen.kt:63:5: The function PropertyDetailRoute appears to be too complex based on Cyclomatic Complexity (complexity: 26). Defined complexity threshold for methods is set to '15' [CyclomaticComplexMethod]
 /home/runner/work/4Divari/4Divari/core/network/src/main/kotlin/ir/chardivari/core/network/ErrorMapper.kt:54:17: Instead of catching for a general exception type and checking for a specific exception type, use multiple catch blocks. [InstanceOfCheckForException]
 /home/runner/work/4Divari/4Divari/core/network/src/main/kotlin/ir/chardivari/core/network/SafeApi.kt:23:21: Instead of catching for a general exception type and checking for a specific exception type, use multiple catch blocks. [InstanceOfCheckForException]
@@ -244,9 +244,9 @@ Daemon will be stopped at the end of the build
 /home/runner/work/4Divari/4Divari/feature/agent/src/main/kotlin/ir/chardivari/feature/agent/AgentRoute.kt:67:1: Line detected, which is longer than the defined maximum line length in the code style. [MaxLineLength]
 /home/runner/work/4Divari/4Divari/feature/agent/src/main/kotlin/ir/chardivari/feature/agent/AgentRoute.kt:78:1: Line detected, which is longer than the defined maximum line length in the code style. [MaxLineLength]
 
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/detekt-1790822545669.json
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/detekt-1790824736673.json
 
-BUILD SUCCESSFUL in 26s
+BUILD SUCCESSFUL in 28s
 1 actionable task: 1 executed
 
 ########## /tmp/detekt-log.txt (last 80 lines) ##########
@@ -286,8 +286,8 @@ Daemon will be stopped at the end of the build
 /home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerWizardViewModel.kt:243:9: The function publish appears to be too complex based on Cyclomatic Complexity (complexity: 26). Defined complexity threshold for methods is set to '15' [CyclomaticComplexMethod]
 /home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerWizardViewModel.kt:80:7: Class 'SellerWizardViewModel' with '32' functions detected. Defined threshold inside classes is set to '20' [TooManyFunctions]
 /home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerManageScreen.kt:275:22: The function SellerRow(item: SellerListingItem, coverUrl: String?, busy: Boolean, onAction: (SellerAction) -> Unit, onAssign: (() -> Unit)?, onConfirm: (() -> Unit)?, onRequestVerification: (() -> Unit)?) has too many parameters. The current threshold is set to 6. [LongParameterList]
-/home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerManageScreen.kt:60:5: The function SellerRoute is too long (113). The maximum length is 80. [LongMethod]
 /home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerManageScreen.kt:275:13: The function SellerRow is too long (130). The maximum length is 80. [LongMethod]
+/home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerManageScreen.kt:60:5: The function SellerRoute is too long (113). The maximum length is 80. [LongMethod]
 /home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerManageScreen.kt:60:5: The function SellerRoute appears to be too complex based on Cyclomatic Complexity (complexity: 15). Defined complexity threshold for methods is set to '15' [CyclomaticComplexMethod]
 /home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerManageScreen.kt:275:13: The function SellerRow appears to be too complex based on Cyclomatic Complexity (complexity: 34). Defined complexity threshold for methods is set to '15' [CyclomaticComplexMethod]
 /home/runner/work/4Divari/4Divari/feature/seller/src/main/kotlin/ir/chardivari/feature/seller/SellerManageScreen.kt:368:17: This condition is too complex (4). Defined complexity threshold for conditions is set to '4' [ComplexCondition]
@@ -308,8 +308,8 @@ Daemon will be stopped at the end of the build
 /home/runner/work/4Divari/4Divari/feature/property/src/test/kotlin/ir/chardivari/feature/property/PropertyDetailViewModelTest.kt:166:19: The function vm(listings: FakeListings, favorites: FakeFavorites, contacts: FakeContacts, chat: FakeChat, visits: FakeVisits, trust: FakeTrust, tracker: RecordingTracker) has too many parameters. The current threshold is set to 6. [LongParameterList]
 /home/runner/work/4Divari/4Divari/feature/property/src/main/kotlin/ir/chardivari/feature/property/PropertyDetailViewModel.kt:121:50: The constructor(savedStateHandle: SavedStateHandle, listings: ListingRepository, favorites: FavoritesRepository, contacts: ListingContactRepository, chat: ChatRepository, visits: VisitsRepository, trust: TrustRepository, storage: StorageBaseUrl, analytics: AnalyticsTracker) has too many parameters. The current threshold is set to 7. [LongParameterList]
 /home/runner/work/4Divari/4Divari/feature/property/src/main/kotlin/ir/chardivari/feature/property/PropertyDetailViewModel.kt:121:7: Class 'PropertyDetailViewModel' with '21' functions detected. Defined threshold inside classes is set to '20' [TooManyFunctions]
-/home/runner/work/4Divari/4Divari/feature/property/src/main/kotlin/ir/chardivari/feature/property/PropertyDetailScreen.kt:63:5: The function PropertyDetailRoute is too long (360). The maximum length is 80. [LongMethod]
 /home/runner/work/4Divari/4Divari/feature/property/src/main/kotlin/ir/chardivari/feature/property/PropertyDetailScreen.kt:447:13: The function VisitPickerDialog is too long (89). The maximum length is 80. [LongMethod]
+/home/runner/work/4Divari/4Divari/feature/property/src/main/kotlin/ir/chardivari/feature/property/PropertyDetailScreen.kt:63:5: The function PropertyDetailRoute is too long (360). The maximum length is 80. [LongMethod]
 /home/runner/work/4Divari/4Divari/feature/property/src/main/kotlin/ir/chardivari/feature/property/PropertyDetailScreen.kt:63:5: The function PropertyDetailRoute appears to be too complex based on Cyclomatic Complexity (complexity: 26). Defined complexity threshold for methods is set to '15' [CyclomaticComplexMethod]
 /home/runner/work/4Divari/4Divari/core/network/src/main/kotlin/ir/chardivari/core/network/ErrorMapper.kt:54:17: Instead of catching for a general exception type and checking for a specific exception type, use multiple catch blocks. [InstanceOfCheckForException]
 /home/runner/work/4Divari/4Divari/core/network/src/main/kotlin/ir/chardivari/core/network/SafeApi.kt:23:21: Instead of catching for a general exception type and checking for a specific exception type, use multiple catch blocks. [InstanceOfCheckForException]
@@ -324,9 +324,9 @@ Daemon will be stopped at the end of the build
 /home/runner/work/4Divari/4Divari/feature/agent/src/main/kotlin/ir/chardivari/feature/agent/AgentRoute.kt:67:1: Line detected, which is longer than the defined maximum line length in the code style. [MaxLineLength]
 /home/runner/work/4Divari/4Divari/feature/agent/src/main/kotlin/ir/chardivari/feature/agent/AgentRoute.kt:78:1: Line detected, which is longer than the defined maximum line length in the code style. [MaxLineLength]
 
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/detekt-1790822545669.json
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/detekt-1790824736673.json
 
-BUILD SUCCESSFUL in 26s
+BUILD SUCCESSFUL in 28s
 1 actionable task: 1 executed
 
 ########## /tmp/lint-log.txt : FAILURE HEADERS ##########
@@ -334,16 +334,16 @@ BUILD SUCCESSFUL in 26s
 ########## /tmp/lint-log.txt (first 80 lines) ##########
 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.11.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
 Daemon will be stopped at the end of the build 
-> Task :core:environment:preBuild UP-TO-DATE
+> Task :core:ui:preBuild UP-TO-DATE
 > Task :core:common:checkKotlinGradlePluginConfigurationErrors SKIPPED
 > Task :core:designsystem:checkKotlinGradlePluginConfigurationErrors SKIPPED
-> Task :core:designsystem:preBuild UP-TO-DATE
+> Task :core:environment:preBuild UP-TO-DATE
 > Task :core:common:preBuild UP-TO-DATE
-> Task :core:designsystem:preDebugBuild UP-TO-DATE
-> Task :core:common:preDebugBuild UP-TO-DATE
-> Task :core:ui:preBuild UP-TO-DATE
 > Task :core:ui:preDebugBuild UP-TO-DATE
 > Task :core:environment:preDebugBuild UP-TO-DATE
+> Task :core:designsystem:preBuild UP-TO-DATE
+> Task :core:common:preDebugBuild UP-TO-DATE
+> Task :core:designsystem:preDebugBuild UP-TO-DATE
 > Task :core:common:generateDebugResValues UP-TO-DATE
 > Task :core:designsystem:generateDebugResValues UP-TO-DATE
 > Task :core:common:generateDebugResources UP-TO-DATE
@@ -352,14 +352,14 @@ Daemon will be stopped at the end of the build
 > Task :core:designsystem:packageDebugResources UP-TO-DATE
 > Task :core:designsystem:parseDebugLocalResources UP-TO-DATE
 > Task :core:common:parseDebugLocalResources UP-TO-DATE
-> Task :core:designsystem:generateDebugRFile UP-TO-DATE
 > Task :core:common:generateDebugRFile UP-TO-DATE
+> Task :core:designsystem:generateDebugRFile UP-TO-DATE
 > Task :core:environment:mergeDebugJniLibFolders
 > Task :core:ui:mergeDebugJniLibFolders
 > Task :core:environment:mergeDebugNativeLibs NO-SOURCE
 > Task :core:ui:mergeDebugNativeLibs NO-SOURCE
-> Task :core:ui:stripDebugDebugSymbols NO-SOURCE
 > Task :core:environment:stripDebugDebugSymbols NO-SOURCE
+> Task :core:ui:stripDebugDebugSymbols NO-SOURCE
 > Task :core:ui:copyDebugJniLibsProjectAndLocalJars
 > Task :core:ui:checkKotlinGradlePluginConfigurationErrors SKIPPED
 > Task :core:environment:copyDebugJniLibsProjectAndLocalJars
@@ -368,32 +368,32 @@ Daemon will be stopped at the end of the build
 > Task :core:environment:generateDebugBuildConfig UP-TO-DATE
 > Task :core:ui:generateDebugResources UP-TO-DATE
 > Task :core:environment:generateDebugResValues UP-TO-DATE
-> Task :core:environment:generateDebugResources UP-TO-DATE
 > Task :core:ui:packageDebugResources UP-TO-DATE
-> Task :core:environment:packageDebugResources UP-TO-DATE
+> Task :core:environment:generateDebugResources UP-TO-DATE
 > Task :core:ui:parseDebugLocalResources UP-TO-DATE
-> Task :core:environment:parseDebugLocalResources UP-TO-DATE
-> Task :core:common:compileDebugKotlin UP-TO-DATE
 > Task :core:ui:generateDebugRFile UP-TO-DATE
-> Task :core:common:javaPreCompileDebug UP-TO-DATE
+> Task :core:environment:packageDebugResources UP-TO-DATE
+> Task :core:environment:parseDebugLocalResources UP-TO-DATE
 > Task :core:environment:generateDebugRFile UP-TO-DATE
-> Task :core:common:compileDebugJavaWithJavac NO-SOURCE
-> Task :core:common:bundleLibCompileToJarDebug UP-TO-DATE
-> Task :core:common:mergeDebugJniLibFolders
-> Task :core:common:mergeDebugNativeLibs NO-SOURCE
-> Task :core:common:stripDebugDebugSymbols NO-SOURCE
-> Task :core:common:copyDebugJniLibsProjectAndLocalJars
 > Task :core:ui:extractDeepLinksForAarDebug
 > Task :core:ui:javaPreCompileDebug UP-TO-DATE
-> Task :core:environment:compileDebugKotlin UP-TO-DATE
+> Task :core:common:compileDebugKotlin UP-TO-DATE
 > Task :core:ui:mergeDebugShaders
+> Task :core:common:javaPreCompileDebug UP-TO-DATE
 > Task :core:ui:compileDebugShaders NO-SOURCE
 > Task :core:ui:generateDebugAssets UP-TO-DATE
+> Task :core:common:compileDebugJavaWithJavac NO-SOURCE
+> Task :core:environment:compileDebugKotlin UP-TO-DATE
+> Task :core:common:bundleLibCompileToJarDebug UP-TO-DATE
 > Task :core:ui:packageDebugAssets
 > Task :core:ui:prepareDebugArtProfile
+> Task :core:common:mergeDebugJniLibFolders
+> Task :core:common:mergeDebugNativeLibs NO-SOURCE
 > Task :core:ui:prepareLintJarForPublish
+> Task :core:common:stripDebugDebugSymbols NO-SOURCE
 > Task :core:ui:processDebugManifest UP-TO-DATE
 > Task :core:ui:writeDebugAarMetadata UP-TO-DATE
+> Task :core:common:copyDebugJniLibsProjectAndLocalJars
 > Task :core:network:preBuild UP-TO-DATE
 > Task :core:network:preDebugBuild UP-TO-DATE
 > Task :core:network:mergeDebugJniLibFolders
@@ -414,27 +414,26 @@ Daemon will be stopped at the end of the build
 > Task :core:designsystem:compileDebugKotlin UP-TO-DATE
 
 ########## /tmp/lint-log.txt (last 80 lines) ##########
-> Task :feature:seller:generateDebugUnitTestLintModel
 > Task :feature:property:lintAnalyzeDebugUnitTest
-> Task :feature:search:lintAnalyzeDebugUnitTest
-> Task :core:analytics:generateDebugLintReportModel
 > Task :feature:seller:lintAnalyzeDebugAndroidTest
+> Task :core:analytics:generateDebugLintReportModel
 > Task :core:analytics:lintReportDebug
 > Task :core:analytics:lintDebug
-> Task :core:common:generateDebugLintReportModel
 > Task :core:auth:generateDebugLintReportModel
+> Task :core:auth:lintReportDebug
+> Task :core:auth:lintDebug
+> Task :core:common:generateDebugLintReportModel
 > Task :core:common:lintReportDebug
 > Task :core:common:lintDebug
 > Task :core:designsystem:generateDebugLintReportModel
-> Task :core:auth:lintReportDebug
-> Task :core:auth:lintDebug
+> Task :feature:search:lintAnalyzeDebugUnitTest
 > Task :core:environment:generateDebugLintReportModel
 > Task :core:designsystem:lintReportDebug
 > Task :core:designsystem:lintDebug
 > Task :core:marketplace:generateDebugLintReportModel
-> Task :core:navigation:generateDebugLintReportModel
 > Task :core:environment:lintReportDebug
 > Task :core:environment:lintDebug
+> Task :core:navigation:generateDebugLintReportModel
 > Task :core:network:generateDebugLintReportModel
 > Task :core:navigation:lintReportDebug
 > Task :core:navigation:lintDebug
@@ -442,9 +441,9 @@ Daemon will be stopped at the end of the build
 > Task :core:network:lintReportDebug
 > Task :core:network:lintDebug
 > Task :feature:admin:generateDebugLintReportModel
+> Task :feature:agent:generateDebugLintReportModel
 > Task :core:ui:lintReportDebug
 > Task :core:ui:lintDebug
-> Task :feature:agent:generateDebugLintReportModel
 > Task :feature:auth:generateDebugLintReportModel
 > Task :feature:home:generateDebugLintReportModel
 > Task :feature:messaging:generateDebugLintReportModel
@@ -452,11 +451,12 @@ Daemon will be stopped at the end of the build
 > Task :feature:auth:lintReportDebug
 > Task :feature:auth:lintDebug
 > Task :feature:property:generateDebugLintReportModel
-> Task :feature:saved:generateDebugLintReportModel
 > Task :feature:profile:lintReportDebug
 > Task :feature:profile:lintDebug
+> Task :feature:saved:generateDebugLintReportModel
 > Task :feature:search:generateDebugLintReportModel
 > Task :feature:seller:generateDebugLintReportModel
+> Task :core:marketplace:lintAnalyzeDebug
 > Task :feature:seller:lintAnalyzeDebugUnitTest
 > Task :feature:home:lintAnalyzeDebug
 > Task :feature:admin:lintAnalyzeDebug
@@ -473,14 +473,14 @@ Daemon will be stopped at the end of the build
 > Task :feature:home:lintDebug
 > Task :feature:messaging:lintReportDebug
 > Task :feature:messaging:lintDebug
-> Task :feature:property:lintAnalyzeDebug
 > Task :feature:saved:lintReportDebug
 > Task :feature:saved:lintDebug
-> Task :feature:property:lintReportDebug
-> Task :feature:property:lintDebug
 > Task :feature:search:lintAnalyzeDebug
 > Task :feature:search:lintReportDebug
 > Task :feature:search:lintDebug
+> Task :feature:property:lintAnalyzeDebug
+> Task :feature:property:lintReportDebug
+> Task :feature:property:lintDebug
 > Task :feature:seller:lintAnalyzeDebug
 > Task :feature:seller:lintReportDebug
 > Task :feature:seller:lintDebug
@@ -490,7 +490,7 @@ Daemon will be stopped at the end of the build
 Wrote HTML report to file:///home/runner/work/4Divari/4Divari/app/build/reports/lint-results-debug.html
 
 > Task :app:lintDebug
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/lint-1790822572906.json
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/lint-1790824764710.json
 
-BUILD SUCCESSFUL in 2m 7s
+BUILD SUCCESSFUL in 2m 2s
 828 actionable tasks: 466 executed, 38 from cache, 324 up-to-date
