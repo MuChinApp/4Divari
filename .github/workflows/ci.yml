@@ -38,6 +38,7 @@ jobs:
 
       - name: Unit tests (all modules)
         id: tests
+        timeout-minutes: 15
         run: |
           set -o pipefail
           ./gradlew --no-daemon --stacktrace testDebugUnitTest 2>&1 | tee /tmp/test-log.txt
