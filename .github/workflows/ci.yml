@@ -84,6 +84,16 @@ jobs:
                 tail -n 80 "$f"
               fi
             done
+            echo ""
+            echo "########## messaging test-results inventory ##########"
+            ls -la feature/messaging/build/test-results/testDebugUnitTest/ 2>/dev/null || echo "(no results dir)"
+            for f in feature/messaging/build/test-results/testDebugUnitTest/*.xml; do
+              if [ -f "$f" ]; then
+                echo "-- $f"
+                grep -o 'testsuite name="[^"]*" tests="[0-9]*" skipped="[0-9]*" failures="[0-9]*" errors="[0-9]*"' "$f" | head -3
+                grep -o 'testcase name="[^"]*"' "$f" | head -20
+              fi
+            done
           } > ci-last-error.log || true
 
       - name: Commit failure log (for sandbox visibility)
