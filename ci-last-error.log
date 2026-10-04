@@ -1,19 +1,19 @@
-=== CI FAILURE CAPTURE 2026-10-04T02:04:37Z ===
+=== CI FAILURE CAPTURE 2026-10-04T02:13:34Z ===
 
 ########## /tmp/test-log.txt : FAILURE HEADERS ##########
 590:MessagingViewModelsTest > thread_send_failure_setsErrorAndKeepsInput FAILED
 593:MessagingViewModelsTest > thread_realtimeEvent_appendsDeduplicated FAILED
-596:MessagingViewModelsTest > thread_send_emptyInput_doesNothing FAILED
-599:MessagingViewModelsTest > conversations_failure_emitsError FAILED
-601:        Caused by: java.lang.IllegalStateException at MessagingViewModelsTest.kt:181
-602:            Caused by: java.lang.IllegalStateException at MessagingViewModelsTest.kt:181
-603:                Caused by: java.lang.RuntimeException at MessagingViewModelsTest.kt:181
+596:MessagingViewModelsTest > notifications_markRead_flipsLocalAndCallsServer FAILED
+598:        Caused by: java.lang.IllegalStateException at MessagingViewModelsTest.kt:194
+599:            Caused by: java.lang.IllegalStateException at MessagingViewModelsTest.kt:194
+600:                Caused by: java.lang.RuntimeException at MessagingViewModelsTest.kt:194
+602:MessagingViewModelsTest > thread_send_success_appendsAndClearsInput FAILED
 605:MessagingViewModelsTest > thread_init_loadsMessagesAndMarksRead FAILED
 610:> Task :feature:messaging:testDebugUnitTest FAILED
 613:FAILURE: Build failed with an exception.
 615:* What went wrong:
-684:Caused by: org.gradle.api.internal.exceptions.MarkedVerificationException: There were failing tests. See the report at: file:///home/runner/work/4Divari/4Divari/feature/messaging/build/reports/tests/testDebugUnitTest/index.html
-847:BUILD FAILED in 1m 52s
+655:Caused by: org.gradle.api.internal.exceptions.MarkedVerificationException: There were failing tests. See the report at: file:///home/runner/work/4Divari/4Divari/feature/messaging/build/reports/tests/testDebugUnitTest/index.html
+789:BUILD FAILED in 1m 47s
 
 ########## /tmp/test-log.txt : FAILED CONTEXT (30 lines each) ##########
 588-> Task :feature:messaging:testDebugUnitTest
@@ -24,14 +24,14 @@
 593:MessagingViewModelsTest > thread_realtimeEvent_appendsDeduplicated FAILED
 594-    org.junit.runners.model.TestTimedOutException at MessagingViewModelsTest.kt:302
 595-
-596:MessagingViewModelsTest > thread_send_emptyInput_doesNothing FAILED
-597-    org.junit.runners.model.TestTimedOutException at MessagingViewModelsTest.kt:328
-598-
-599:MessagingViewModelsTest > conversations_failure_emitsError FAILED
-600-    kotlinx.coroutines.DispatchException at MessagingViewModelsTest.kt:181
-601-        Caused by: java.lang.IllegalStateException at MessagingViewModelsTest.kt:181
-602-            Caused by: java.lang.IllegalStateException at MessagingViewModelsTest.kt:181
-603-                Caused by: java.lang.RuntimeException at MessagingViewModelsTest.kt:181
+596:MessagingViewModelsTest > notifications_markRead_flipsLocalAndCallsServer FAILED
+597-    kotlinx.coroutines.DispatchException at MessagingViewModelsTest.kt:194
+598-        Caused by: java.lang.IllegalStateException at MessagingViewModelsTest.kt:194
+599-            Caused by: java.lang.IllegalStateException at MessagingViewModelsTest.kt:194
+600-                Caused by: java.lang.RuntimeException at MessagingViewModelsTest.kt:194
+601-
+602:MessagingViewModelsTest > thread_send_success_appendsAndClearsInput FAILED
+603-    org.junit.runners.model.TestTimedOutException at MessagingViewModelsTest.kt:245
 604-
 605:MessagingViewModelsTest > thread_init_loadsMessagesAndMarksRead FAILED
 606-    org.junit.runners.model.TestTimedOutException at MessagingViewModelsTest.kt:214
@@ -39,7 +39,7 @@
 608-9 tests completed, 5 failed
 609-
 610:> Task :feature:messaging:testDebugUnitTest FAILED
-611-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/tests-1791079330610.json
+611-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/tests-1791079870021.json
 612-
 613-FAILURE: Build failed with an exception.
 614-
@@ -70,94 +70,123 @@
 639-	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
 640-	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:166)
 --
-845-
-846-
-847:BUILD FAILED in 1m 52s
-848-445 actionable tasks: 97 executed, 348 from cache
+787-
+788-
+789:BUILD FAILED in 1m 47s
+790-445 actionable tasks: 97 executed, 348 from cache
 
 ########## /tmp/test-log.txt (first 80 lines) ##########
 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.11.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
 Daemon will be stopped at the end of the build 
 > Task :core:analytics:preBuild UP-TO-DATE
-> Task :core:common:preBuild UP-TO-DATE
 > Task :core:auth:preBuild UP-TO-DATE
-> Task :core:auth:preDebugBuild UP-TO-DATE
-> Task :core:common:preDebugBuild UP-TO-DATE
-> Task :core:analytics:preDebugBuild UP-TO-DATE
+> Task :core:common:preBuild UP-TO-DATE
 > Task :app:preBuild UP-TO-DATE
 > Task :app:preDebugBuild UP-TO-DATE
+> Task :core:common:preDebugBuild UP-TO-DATE
+> Task :core:auth:preDebugBuild UP-TO-DATE
+> Task :core:analytics:preDebugBuild UP-TO-DATE
 > Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
 > Task :app:generateDebugBuildConfig FROM-CACHE
 > Task :core:designsystem:preBuild UP-TO-DATE
 > Task :core:designsystem:preDebugBuild UP-TO-DATE
-> Task :core:analytics:writeDebugAarMetadata
 > Task :core:common:writeDebugAarMetadata
-> Task :core:marketplace:preBuild UP-TO-DATE
-> Task :core:designsystem:writeDebugAarMetadata
+> Task :core:analytics:writeDebugAarMetadata
+> Task :core:environment:preBuild UP-TO-DATE
+> Task :core:environment:preDebugBuild UP-TO-DATE
 > Task :core:auth:writeDebugAarMetadata
+> Task :core:navigation:preBuild UP-TO-DATE
+> Task :core:navigation:preDebugBuild UP-TO-DATE
+> Task :core:marketplace:preBuild UP-TO-DATE
+> Task :core:marketplace:preDebugBuild UP-TO-DATE
+> Task :core:designsystem:writeDebugAarMetadata
 > Task :core:network:preBuild UP-TO-DATE
 > Task :core:network:preDebugBuild UP-TO-DATE
-> Task :core:navigation:preBuild UP-TO-DATE
-> Task :core:environment:preBuild UP-TO-DATE
-> Task :core:navigation:preDebugBuild UP-TO-DATE
-> Task :core:environment:preDebugBuild UP-TO-DATE
-> Task :core:marketplace:preDebugBuild UP-TO-DATE
+> Task :core:network:writeDebugAarMetadata
 > Task :core:navigation:writeDebugAarMetadata
-> Task :core:environment:writeDebugAarMetadata
-> Task :feature:admin:preBuild UP-TO-DATE
 > Task :core:ui:preBuild UP-TO-DATE
 > Task :core:ui:preDebugBuild UP-TO-DATE
+> Task :feature:admin:preBuild UP-TO-DATE
 > Task :feature:admin:preDebugBuild UP-TO-DATE
-> Task :core:marketplace:writeDebugAarMetadata
+> Task :core:environment:writeDebugAarMetadata
 > Task :feature:agent:preBuild UP-TO-DATE
 > Task :feature:agent:preDebugBuild UP-TO-DATE
-> Task :core:network:writeDebugAarMetadata
+> Task :core:marketplace:writeDebugAarMetadata
 > Task :feature:auth:preBuild UP-TO-DATE
 > Task :feature:auth:preDebugBuild UP-TO-DATE
-> Task :feature:admin:writeDebugAarMetadata
+> Task :feature:agent:writeDebugAarMetadata
 > Task :feature:home:preBuild UP-TO-DATE
-> Task :feature:home:preDebugBuild UP-TO-DATE
 > Task :core:ui:writeDebugAarMetadata
+> Task :feature:home:preDebugBuild UP-TO-DATE
 > Task :feature:messaging:preBuild UP-TO-DATE
 > Task :feature:messaging:preDebugBuild UP-TO-DATE
 > Task :feature:auth:writeDebugAarMetadata
 > Task :feature:profile:preBuild UP-TO-DATE
-> Task :feature:agent:writeDebugAarMetadata
+> Task :feature:profile:preDebugBuild UP-TO-DATE
+> Task :feature:admin:writeDebugAarMetadata
 > Task :feature:property:preBuild UP-TO-DATE
 > Task :feature:property:preDebugBuild UP-TO-DATE
-> Task :feature:profile:preDebugBuild UP-TO-DATE
 > Task :feature:messaging:writeDebugAarMetadata
-> Task :feature:home:writeDebugAarMetadata
-> Task :feature:search:preBuild UP-TO-DATE
-> Task :feature:search:preDebugBuild UP-TO-DATE
-> Task :feature:property:writeDebugAarMetadata
-> Task :feature:seller:preBuild UP-TO-DATE
-> Task :feature:seller:preDebugBuild UP-TO-DATE
 > Task :feature:profile:writeDebugAarMetadata
 > Task :feature:saved:preBuild UP-TO-DATE
 > Task :feature:saved:preDebugBuild UP-TO-DATE
-> Task :feature:search:writeDebugAarMetadata
+> Task :feature:property:writeDebugAarMetadata
+> Task :feature:search:preBuild UP-TO-DATE
+> Task :feature:home:writeDebugAarMetadata
+> Task :feature:seller:preBuild UP-TO-DATE
+> Task :feature:search:preDebugBuild UP-TO-DATE
+> Task :feature:seller:preDebugBuild UP-TO-DATE
 > Task :feature:seller:writeDebugAarMetadata
+> Task :feature:search:writeDebugAarMetadata
 > Task :app:generateDebugResValues FROM-CACHE
 > Task :feature:saved:writeDebugAarMetadata
 > Task :core:common:generateDebugResValues FROM-CACHE
 > Task :core:analytics:generateDebugResValues FROM-CACHE
 > Task :core:auth:generateDebugResValues FROM-CACHE
-> Task :core:auth:generateDebugResources FROM-CACHE
 > Task :core:common:generateDebugResources FROM-CACHE
 > Task :core:analytics:generateDebugResources FROM-CACHE
-> Task :core:auth:packageDebugResources FROM-CACHE
+> Task :core:auth:generateDebugResources FROM-CACHE
 > Task :core:analytics:packageDebugResources FROM-CACHE
-> Task :core:designsystem:generateDebugResValues FROM-CACHE
 > Task :core:common:packageDebugResources FROM-CACHE
+> Task :core:designsystem:generateDebugResValues FROM-CACHE
 > Task :core:environment:generateDebugResValues FROM-CACHE
+> Task :core:auth:packageDebugResources FROM-CACHE
 > Task :core:designsystem:generateDebugResources FROM-CACHE
+> Task :core:environment:generateDebugResources FROM-CACHE
 > Task :core:marketplace:generateDebugResValues FROM-CACHE
 > Task :core:marketplace:generateDebugResources FROM-CACHE
-> Task :core:environment:generateDebugResources FROM-CACHE
-> Task :core:designsystem:packageDebugResources FROM-CACHE
+> Task :core:environment:packageDebugResources FROM-CACHE
 
 ########## /tmp/test-log.txt (last 80 lines) ##########
+	at org.gradle.internal.Try$Success.map(Try.java:175)
+	at org.gradle.internal.execution.steps.BuildCacheStep.executeWithCache(BuildCacheStep.java:85)
+	at org.gradle.internal.execution.steps.BuildCacheStep.lambda$execute$0(BuildCacheStep.java:74)
+	at org.gradle.internal.Either$Left.fold(Either.java:115)
+	at org.gradle.internal.execution.caching.CachingState.fold(CachingState.java:62)
+	at org.gradle.internal.execution.steps.BuildCacheStep.execute(BuildCacheStep.java:73)
+	at org.gradle.internal.execution.steps.BuildCacheStep.execute(BuildCacheStep.java:48)
+	at org.gradle.internal.execution.steps.StoreExecutionStateStep.execute(StoreExecutionStateStep.java:46)
+	at org.gradle.internal.execution.steps.StoreExecutionStateStep.execute(StoreExecutionStateStep.java:35)
+	at org.gradle.internal.execution.steps.SkipUpToDateStep.executeBecause(SkipUpToDateStep.java:75)
+	at org.gradle.internal.execution.steps.SkipUpToDateStep.lambda$execute$2(SkipUpToDateStep.java:53)
+	at org.gradle.internal.execution.steps.SkipUpToDateStep.execute(SkipUpToDateStep.java:53)
+	at org.gradle.internal.execution.steps.SkipUpToDateStep.execute(SkipUpToDateStep.java:35)
+	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsFinishedStep.execute(MarkSnapshottingInputsFinishedStep.java:37)
+	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsFinishedStep.execute(MarkSnapshottingInputsFinishedStep.java:27)
+	at org.gradle.internal.execution.steps.ResolveIncrementalCachingStateStep.executeDelegate(ResolveIncrementalCachingStateStep.java:49)
+	at org.gradle.internal.execution.steps.ResolveIncrementalCachingStateStep.executeDelegate(ResolveIncrementalCachingStateStep.java:27)
+	at org.gradle.internal.execution.steps.AbstractResolveCachingStateStep.execute(AbstractResolveCachingStateStep.java:71)
+	at org.gradle.internal.execution.steps.AbstractResolveCachingStateStep.execute(AbstractResolveCachingStateStep.java:39)
+	at org.gradle.internal.execution.steps.ResolveChangesStep.execute(ResolveChangesStep.java:65)
+	at org.gradle.internal.execution.steps.ResolveChangesStep.execute(ResolveChangesStep.java:36)
+	at org.gradle.internal.execution.steps.ValidateStep.execute(ValidateStep.java:107)
+	at org.gradle.internal.execution.steps.ValidateStep.execute(ValidateStep.java:56)
+	at org.gradle.internal.execution.steps.AbstractCaptureStateBeforeExecutionStep.execute(AbstractCaptureStateBeforeExecutionStep.java:64)
+	at org.gradle.internal.execution.steps.AbstractCaptureStateBeforeExecutionStep.execute(AbstractCaptureStateBeforeExecutionStep.java:43)
+	at org.gradle.internal.execution.steps.AbstractSkipEmptyWorkStep.executeWithNonEmptySources(AbstractSkipEmptyWorkStep.java:125)
+	at org.gradle.internal.execution.steps.AbstractSkipEmptyWorkStep.execute(AbstractSkipEmptyWorkStep.java:61)
+	at org.gradle.internal.execution.steps.AbstractSkipEmptyWorkStep.execute(AbstractSkipEmptyWorkStep.java:36)
+	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsStartedStep.execute(MarkSnapshottingInputsStartedStep.java:38)
 	at org.gradle.internal.execution.steps.LoadPreviousExecutionStateStep.execute(LoadPreviousExecutionStateStep.java:36)
 	at org.gradle.internal.execution.steps.LoadPreviousExecutionStateStep.execute(LoadPreviousExecutionStateStep.java:23)
 	at org.gradle.internal.execution.steps.HandleStaleOutputsStep.execute(HandleStaleOutputsStep.java:75)
@@ -203,40 +232,11 @@ Daemon will be stopped at the end of the build
 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.execute(DefaultTaskExecutionGraph.java:303)
 	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.execute(DefaultPlanExecutor.java:459)
 	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.run(DefaultPlanExecutor.java:376)
-	at org.gradle.execution.plan.DefaultPlanExecutor.process(DefaultPlanExecutor.java:111)
-	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph.executeWithServices(DefaultTaskExecutionGraph.java:138)
-	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph.execute(DefaultTaskExecutionGraph.java:123)
-	at org.gradle.execution.SelectedTaskExecutionAction.execute(SelectedTaskExecutionAction.java:35)
-	at org.gradle.execution.DryRunBuildExecutionAction.execute(DryRunBuildExecutionAction.java:51)
-	at org.gradle.execution.BuildOperationFiringBuildWorkerExecutor$ExecuteTasks.call(BuildOperationFiringBuildWorkerExecutor.java:54)
-	at org.gradle.execution.BuildOperationFiringBuildWorkerExecutor$ExecuteTasks.call(BuildOperationFiringBuildWorkerExecutor.java:43)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:209)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:204)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:166)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:59)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:53)
-	at org.gradle.execution.BuildOperationFiringBuildWorkerExecutor.execute(BuildOperationFiringBuildWorkerExecutor.java:40)
-	at org.gradle.internal.build.DefaultBuildLifecycleController.lambda$executeTasks$10(DefaultBuildLifecycleController.java:313)
-	at org.gradle.internal.model.StateTransitionController.doTransition(StateTransitionController.java:266)
-	at org.gradle.internal.model.StateTransitionController.lambda$tryTransition$8(StateTransitionController.java:177)
-	at org.gradle.internal.work.DefaultSynchronizer.withLock(DefaultSynchronizer.java:46)
-	at org.gradle.internal.model.StateTransitionController.tryTransition(StateTransitionController.java:177)
-	at org.gradle.internal.build.DefaultBuildLifecycleController.executeTasks(DefaultBuildLifecycleController.java:304)
-	at org.gradle.internal.build.DefaultBuildWorkGraphController$DefaultBuildWorkGraph.runWork(DefaultBuildWorkGraphController.java:220)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocks(DefaultWorkerLeaseService.java:263)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:127)
-	at org.gradle.composite.internal.DefaultBuildController.doRun(DefaultBuildController.java:181)
-	at org.gradle.composite.internal.DefaultBuildController.access$000(DefaultBuildController.java:50)
-	at org.gradle.composite.internal.DefaultBuildController$BuildOpRunnable.lambda$run$0(DefaultBuildController.java:198)
-	at org.gradle.internal.operations.CurrentBuildOperationRef.with(CurrentBuildOperationRef.java:85)
-	at org.gradle.composite.internal.DefaultBuildController$BuildOpRunnable.run(DefaultBuildController.java:198)
 	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
 	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:48)
 
 
-BUILD FAILED in 1m 52s
+BUILD FAILED in 1m 47s
 445 actionable tasks: 97 executed, 348 from cache
 
 ########## /tmp/detekt-log.txt : FAILURE HEADERS ##########
@@ -247,7 +247,7 @@ BUILD FAILED in 1m 52s
 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.11.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
 Daemon will be stopped at the end of the build 
 > Task :detekt FROM-CACHE
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/detekt-1791079438902.json
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/detekt-1791079975550.json
 
 BUILD SUCCESSFUL in 13s
 1 actionable task: 1 from cache
@@ -256,7 +256,7 @@ BUILD SUCCESSFUL in 13s
 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.11.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
 Daemon will be stopped at the end of the build 
 > Task :detekt FROM-CACHE
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/detekt-1791079438902.json
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/detekt-1791079975550.json
 
 BUILD SUCCESSFUL in 13s
 1 actionable task: 1 from cache
@@ -268,68 +268,68 @@ BUILD SUCCESSFUL in 13s
 ########## /tmp/lint-log.txt (first 80 lines) ##########
 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.11.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
 Daemon will be stopped at the end of the build 
-> Task :core:ui:preBuild UP-TO-DATE
-> Task :core:designsystem:checkKotlinGradlePluginConfigurationErrors SKIPPED
-> Task :core:ui:preDebugBuild UP-TO-DATE
-> Task :core:common:checkKotlinGradlePluginConfigurationErrors SKIPPED
 > Task :core:environment:preBuild UP-TO-DATE
+> Task :core:designsystem:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:ui:preBuild UP-TO-DATE
+> Task :core:common:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:ui:preDebugBuild UP-TO-DATE
 > Task :core:designsystem:preBuild UP-TO-DATE
 > Task :core:common:preBuild UP-TO-DATE
+> Task :core:environment:preDebugBuild UP-TO-DATE
 > Task :core:common:preDebugBuild UP-TO-DATE
 > Task :core:designsystem:preDebugBuild UP-TO-DATE
-> Task :core:environment:preDebugBuild UP-TO-DATE
 > Task :core:common:generateDebugResValues UP-TO-DATE
 > Task :core:designsystem:generateDebugResValues UP-TO-DATE
-> Task :core:designsystem:generateDebugResources UP-TO-DATE
 > Task :core:common:generateDebugResources UP-TO-DATE
+> Task :core:designsystem:generateDebugResources UP-TO-DATE
 > Task :core:common:packageDebugResources UP-TO-DATE
 > Task :core:designsystem:packageDebugResources UP-TO-DATE
-> Task :core:designsystem:parseDebugLocalResources UP-TO-DATE
 > Task :core:common:parseDebugLocalResources UP-TO-DATE
-> Task :core:common:generateDebugRFile UP-TO-DATE
+> Task :core:designsystem:parseDebugLocalResources UP-TO-DATE
 > Task :core:designsystem:generateDebugRFile UP-TO-DATE
-> Task :core:environment:mergeDebugJniLibFolders
+> Task :core:common:generateDebugRFile UP-TO-DATE
 > Task :core:ui:mergeDebugJniLibFolders
-> Task :core:ui:mergeDebugNativeLibs NO-SOURCE
+> Task :core:environment:mergeDebugJniLibFolders
 > Task :core:environment:mergeDebugNativeLibs NO-SOURCE
-> Task :core:ui:stripDebugDebugSymbols NO-SOURCE
+> Task :core:ui:mergeDebugNativeLibs NO-SOURCE
 > Task :core:environment:stripDebugDebugSymbols NO-SOURCE
+> Task :core:ui:stripDebugDebugSymbols NO-SOURCE
 > Task :core:ui:copyDebugJniLibsProjectAndLocalJars
 > Task :core:ui:checkKotlinGradlePluginConfigurationErrors SKIPPED
 > Task :core:environment:copyDebugJniLibsProjectAndLocalJars
 > Task :core:environment:checkKotlinGradlePluginConfigurationErrors SKIPPED
 > Task :core:ui:generateDebugResValues UP-TO-DATE
-> Task :core:ui:generateDebugResources UP-TO-DATE
 > Task :core:environment:generateDebugBuildConfig UP-TO-DATE
-> Task :core:common:compileDebugKotlin UP-TO-DATE
+> Task :core:ui:generateDebugResources UP-TO-DATE
 > Task :core:environment:generateDebugResValues UP-TO-DATE
-> Task :core:common:javaPreCompileDebug UP-TO-DATE
-> Task :core:common:compileDebugJavaWithJavac NO-SOURCE
 > Task :core:environment:generateDebugResources UP-TO-DATE
 > Task :core:ui:packageDebugResources UP-TO-DATE
-> Task :core:common:bundleLibCompileToJarDebug UP-TO-DATE
 > Task :core:ui:parseDebugLocalResources UP-TO-DATE
-> Task :core:ui:generateDebugRFile UP-TO-DATE
 > Task :core:environment:packageDebugResources UP-TO-DATE
-> Task :core:common:mergeDebugJniLibFolders
-> Task :core:common:mergeDebugNativeLibs NO-SOURCE
+> Task :core:ui:generateDebugRFile UP-TO-DATE
 > Task :core:environment:parseDebugLocalResources UP-TO-DATE
-> Task :core:common:stripDebugDebugSymbols NO-SOURCE
-> Task :core:common:copyDebugJniLibsProjectAndLocalJars
 > Task :core:environment:generateDebugRFile UP-TO-DATE
 > Task :core:ui:extractDeepLinksForAarDebug FROM-CACHE
 > Task :core:ui:javaPreCompileDebug UP-TO-DATE
 > Task :core:ui:mergeDebugShaders
 > Task :core:ui:compileDebugShaders NO-SOURCE
 > Task :core:ui:generateDebugAssets UP-TO-DATE
+> Task :core:common:compileDebugKotlin UP-TO-DATE
 > Task :core:ui:packageDebugAssets
+> Task :core:common:javaPreCompileDebug UP-TO-DATE
 > Task :core:ui:prepareDebugArtProfile
+> Task :core:common:compileDebugJavaWithJavac NO-SOURCE
+> Task :core:common:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :core:environment:compileDebugKotlin UP-TO-DATE
 > Task :core:ui:prepareLintJarForPublish
+> Task :core:common:mergeDebugJniLibFolders
+> Task :core:common:mergeDebugNativeLibs NO-SOURCE
 > Task :core:ui:processDebugManifest UP-TO-DATE
+> Task :core:common:stripDebugDebugSymbols NO-SOURCE
 > Task :core:ui:writeDebugAarMetadata UP-TO-DATE
 > Task :core:network:preBuild UP-TO-DATE
 > Task :core:network:preDebugBuild UP-TO-DATE
-> Task :core:environment:compileDebugKotlin UP-TO-DATE
+> Task :core:common:copyDebugJniLibsProjectAndLocalJars
 > Task :core:network:mergeDebugJniLibFolders
 > Task :core:network:mergeDebugNativeLibs NO-SOURCE
 > Task :core:network:stripDebugDebugSymbols NO-SOURCE
@@ -339,38 +339,38 @@ Daemon will be stopped at the end of the build
 > Task :core:network:generateDebugResources UP-TO-DATE
 > Task :core:network:packageDebugResources UP-TO-DATE
 > Task :core:network:parseDebugLocalResources UP-TO-DATE
-> Task :core:network:generateDebugRFile UP-TO-DATE
-> Task :core:network:extractDeepLinksForAarDebug FROM-CACHE
 > Task :core:environment:extractDebugAnnotations FROM-CACHE
 > Task :core:environment:extractDeepLinksForAarDebug FROM-CACHE
-> Task :core:common:extractDebugAnnotations FROM-CACHE
+> Task :core:network:generateDebugRFile UP-TO-DATE
 > Task :core:environment:javaPreCompileDebug UP-TO-DATE
-> Task :core:network:javaPreCompileDebug UP-TO-DATE
+> Task :core:network:extractDeepLinksForAarDebug FROM-CACHE
+> Task :core:common:extractDebugAnnotations FROM-CACHE
+> Task :core:environment:compileDebugJavaWithJavac UP-TO-DATE
 
 ########## /tmp/lint-log.txt (last 80 lines) ##########
-> Task :feature:search:preDebugUnitTestBuild UP-TO-DATE
-> Task :feature:property:lintAnalyzeDebugAndroidTest FROM-CACHE
 > Task :feature:seller:generateDebugAndroidTestLintModel
 > Task :feature:seller:preDebugUnitTestBuild UP-TO-DATE
-> Task :feature:saved:generateDebugUnitTestLintModel
+> Task :feature:search:generateDebugAndroidTestLintModel
+> Task :feature:search:preDebugUnitTestBuild UP-TO-DATE
 > Task :feature:property:lintAnalyzeDebugUnitTest FROM-CACHE
-> Task :feature:saved:lintAnalyzeDebugAndroidTest FROM-CACHE
 > Task :core:analytics:generateDebugLintReportModel
-> Task :feature:saved:lintAnalyzeDebugUnitTest FROM-CACHE
-> Task :core:auth:generateDebugLintReportModel
+> Task :feature:saved:generateDebugUnitTestLintModel
+> Task :feature:saved:lintAnalyzeDebugAndroidTest FROM-CACHE
 > Task :feature:search:generateDebugUnitTestLintModel
-> Task :feature:search:lintAnalyzeDebugAndroidTest FROM-CACHE
-> Task :feature:search:lintAnalyzeDebugUnitTest FROM-CACHE
-> Task :core:common:generateDebugLintReportModel
+> Task :feature:saved:lintAnalyzeDebugUnitTest FROM-CACHE
 > Task :feature:seller:generateDebugUnitTestLintModel
+> Task :feature:search:lintAnalyzeDebugAndroidTest FROM-CACHE
+> Task :core:auth:generateDebugLintReportModel
+> Task :feature:search:lintAnalyzeDebugUnitTest FROM-CACHE
 > Task :feature:seller:lintAnalyzeDebugAndroidTest FROM-CACHE
+> Task :core:common:generateDebugLintReportModel
 > Task :feature:seller:lintAnalyzeDebugUnitTest FROM-CACHE
 > Task :core:analytics:lintReportDebug
 > Task :core:analytics:lintDebug
-> Task :core:designsystem:generateDebugLintReportModel
 > Task :core:auth:lintReportDebug
 > Task :core:auth:lintDebug
 > Task :core:environment:generateDebugLintReportModel
+> Task :core:designsystem:generateDebugLintReportModel
 > Task :core:common:lintReportDebug
 > Task :core:common:lintDebug
 > Task :core:marketplace:generateDebugLintReportModel
@@ -382,67 +382,217 @@ Daemon will be stopped at the end of the build
 > Task :core:network:generateDebugLintReportModel
 > Task :core:navigation:lintReportDebug
 > Task :core:navigation:lintDebug
+> Task :core:ui:generateDebugLintReportModel
 > Task :core:designsystem:lintReportDebug
 > Task :core:designsystem:lintDebug
-> Task :core:ui:generateDebugLintReportModel
-> Task :feature:admin:generateDebugLintReportModel
 > Task :core:network:lintReportDebug
 > Task :core:network:lintDebug
+> Task :feature:admin:generateDebugLintReportModel
 > Task :feature:agent:generateDebugLintReportModel
 > Task :core:ui:lintReportDebug
 > Task :core:ui:lintDebug
 > Task :feature:auth:generateDebugLintReportModel
+> Task :feature:admin:lintReportDebug
+> Task :feature:admin:lintDebug
+> Task :feature:home:generateDebugLintReportModel
 
 > Task :app:lintReportDebug
 Wrote HTML report to file:///home/runner/work/4Divari/4Divari/app/build/reports/lint-results-debug.html
 
 > Task :app:lintDebug
-> Task :feature:home:generateDebugLintReportModel
+> Task :feature:messaging:generateDebugLintReportModel
 > Task :feature:agent:lintReportDebug
 > Task :feature:agent:lintDebug
-> Task :feature:messaging:generateDebugLintReportModel
-> Task :feature:admin:lintReportDebug
-> Task :feature:admin:lintDebug
 > Task :feature:profile:generateDebugLintReportModel
-> Task :feature:home:lintReportDebug
-> Task :feature:home:lintDebug
 > Task :feature:auth:lintReportDebug
 > Task :feature:auth:lintDebug
+> Task :feature:property:generateDebugLintReportModel
+> Task :feature:home:lintReportDebug
+> Task :feature:home:lintDebug
+> Task :feature:saved:generateDebugLintReportModel
 > Task :feature:messaging:lintReportDebug
 > Task :feature:messaging:lintDebug
-> Task :feature:saved:generateDebugLintReportModel
-> Task :feature:property:generateDebugLintReportModel
 > Task :feature:search:generateDebugLintReportModel
 > Task :feature:profile:lintReportDebug
 > Task :feature:profile:lintDebug
-> Task :feature:seller:generateDebugLintReportModel
 > Task :feature:property:lintReportDebug
 > Task :feature:property:lintDebug
+> Task :feature:seller:generateDebugLintReportModel
 > Task :feature:saved:lintReportDebug
 > Task :feature:saved:lintDebug
 > Task :feature:search:lintReportDebug
 > Task :feature:search:lintDebug
 > Task :feature:seller:lintReportDebug
 > Task :feature:seller:lintDebug
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/lint-1791079452514.json
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/lint-1791079988907.json
 
 BUILD SUCCESSFUL in 28s
 828 actionable tasks: 367 executed, 137 from cache, 324 up-to-date
 
 ########## messaging test-results inventory ##########
 total 44
-drwxr-xr-x 3 runner runner  4096 Oct  4 02:03 .
-drwxr-xr-x 3 runner runner  4096 Oct  4 02:02 ..
--rw-r--r-- 1 runner runner 29591 Oct  4 02:03 TEST-ir.chardivari.feature.messaging.MessagingViewModelsTest.xml
-drwxr-xr-x 2 runner runner  4096 Oct  4 02:03 binary
+drwxr-xr-x 3 runner runner  4096 Oct  4 02:12 .
+drwxr-xr-x 3 runner runner  4096 Oct  4 02:11 ..
+-rw-r--r-- 1 runner runner 29612 Oct  4 02:12 TEST-ir.chardivari.feature.messaging.MessagingViewModelsTest.xml
+drwxr-xr-x 2 runner runner  4096 Oct  4 02:12 binary
 -- feature/messaging/build/test-results/testDebugUnitTest/TEST-ir.chardivari.feature.messaging.MessagingViewModelsTest.xml
-testsuite name="ir.chardivari.feature.messaging.MessagingViewModelsTest" tests="9" skipped="0" failures="5" errors="0"
-testcase name="thread_send_failure_setsErrorAndKeepsInput"
-testcase name="conversations_success_emitsContent"
-testcase name="thread_realtimeEvent_appendsDeduplicated"
-testcase name="notifications_markRead_flipsLocalAndCallsServer"
-testcase name="thread_send_success_appendsAndClearsInput"
-testcase name="conversations_empty_emitsEmpty"
-testcase name="thread_send_emptyInput_doesNothing"
-testcase name="conversations_failure_emitsError"
-testcase name="thread_init_loadsMessagesAndMarksRead"
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ir.chardivari.feature.messaging.MessagingViewModelsTest" tests="9" skipped="0" failures="5" errors="0" timestamp="2026-10-04T02:11:31" hostname="runnervm8df0l" time="80.11">
+  <properties/>
+  <testcase name="thread_send_failure_setsErrorAndKeepsInput" classname="ir.chardivari.feature.messaging.MessagingViewModelsTest" time="20.053">
+    <failure message="org.junit.runners.model.TestTimedOutException: test timed out after 20 seconds" type="org.junit.runners.model.TestTimedOutException">org.junit.runners.model.TestTimedOutException: test timed out after 20 seconds
+	at java.base@17.0.20.1/java.lang.Throwable.fillInStackTrace(Native Method)
+	at java.base@17.0.20.1/java.lang.Throwable.fillInStackTrace(Throwable.java:798)
+	at java.base@17.0.20.1/java.lang.Throwable.&lt;init&gt;(Throwable.java:271)
+	at app//kotlinx.coroutines.test.internal.TestMainDispatcher$NonConcurrentlyModifiable.getValue(TestMainDispatcher.kt:76)
+	at app//kotlinx.coroutines.test.internal.TestMainDispatcher.getDispatcher(TestMainDispatcher.kt:22)
+	at app//kotlinx.coroutines.test.internal.TestMainDispatcher.isDispatchNeeded(TestMainDispatcher.kt:32)
+	at app//kotlinx.coroutines.internal.DispatchedContinuationKt.safeIsDispatchNeeded(DispatchedContinuation.kt:262)
+	at app//kotlinx.coroutines.DispatchedTaskKt.dispatch(DispatchedTask.kt:144)
+	at app//kotlinx.coroutines.CancellableContinuationImpl.dispatchResume(CancellableContinuationImpl.kt:470)
+	at app//kotlinx.coroutines.CancellableContinuationImpl.resumeImpl$kotlinx_coroutines_core(CancellableContinuationImpl.kt:504)
+	at app//kotlinx.coroutines.CancellableContinuationImpl.resumeImpl$kotlinx_coroutines_core$default(CancellableContinuationImpl.kt:493)
+	at app//kotlinx.coroutines.CancellableContinuationImpl.resumeUndispatched(CancellableContinuationImpl.kt:596)
+	at app//kotlinx.coroutines.test.CancellableContinuationRunnable.run(TestDispatcher.kt:60)
+	at app//kotlinx.coroutines.test.TestDispatcher.processEvent$kotlinx_coroutines_test(TestDispatcher.kt:24)
+	at app//kotlinx.coroutines.test.TestCoroutineScheduler.tryRunNextTaskUnless$kotlinx_coroutines_test(TestCoroutineScheduler.kt:99)
+	at app//kotlinx.coroutines.test.TestCoroutineScheduler.advanceUntilIdleOr$kotlinx_coroutines_test(TestCoroutineScheduler.kt:118)
+	at app//kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt$runTest$2$1.invokeSuspend(TestBuilders.kt:370)
+	at app//kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at app//kotlinx.coroutines.internal.ScopeCoroutine.afterResume(Scopes.kt:35)
+	at app//kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at app//kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
+	at app//kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at app//kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at app//kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:95)
+	at app//kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:69)
+	at app//kotlinx.coroutines.BuildersKt.runBlocking(Unknown Source)
+	at app//kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:47)
+	at app//kotlinx.coroutines.BuildersKt.runBlocking$default(Unknown Source)
+	at app//kotlinx.coroutines.test.TestBuildersJvmKt.createTestResult(TestBuildersJvm.kt:10)
+	at app//kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt.runTest-8Mi8wO0(TestBuilders.kt:309)
+	at app//kotlinx.coroutines.test.TestBuildersKt.runTest-8Mi8wO0(Unknown Source)
+	at app//kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt.runTest-8Mi8wO0(TestBuilders.kt:167)
+	at app//kotlinx.coroutines.test.TestBuildersKt.runTest-8Mi8wO0(Unknown Source)
+	at app//kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt.runTest-8Mi8wO0$default(TestBuilders.kt:159)
+	at app//kotlinx.coroutines.test.TestBuildersKt.runTest-8Mi8wO0$default(Unknown Source)
+	at app//ir.chardivari.feature.messaging.MessagingViewModelsTest.thread_send_failure_setsErrorAndKeepsInput(MessagingViewModelsTest.kt:279)
+	at java.base@17.0.20.1/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base@17.0.20.1/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base@17.0.20.1/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base@17.0.20.1/java.lang.reflect.Method.invoke(Method.java:569)
+	at app//org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+	at app//org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at app//org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+	at app//org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at app//org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at app//org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
+	at app//org.junit.internal.runners.statements.FailOnTimeout$CallableStatement.call(FailOnTimeout.java:299)
+	at app//org.junit.internal.runners.statements.FailOnTimeout$CallableStatement.call(FailOnTimeout.java:293)
+	at java.base@17.0.20.1/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base@17.0.20.1/java.lang.Thread.run(Thread.java:840)
+</failure>
+  </testcase>
+  <testcase name="conversations_success_emitsContent" classname="ir.chardivari.feature.messaging.MessagingViewModelsTest" time="0.018"/>
+  <testcase name="thread_realtimeEvent_appendsDeduplicated" classname="ir.chardivari.feature.messaging.MessagingViewModelsTest" time="20.003">
+    <failure message="org.junit.runners.model.TestTimedOutException: test timed out after 20 seconds" type="org.junit.runners.model.TestTimedOutException">org.junit.runners.model.TestTimedOutException: test timed out after 20 seconds
+	at java.base@17.0.20.1/java.lang.Throwable.fillInStackTrace(Native Method)
+	at java.base@17.0.20.1/java.lang.Throwable.fillInStackTrace(Throwable.java:798)
+	at java.base@17.0.20.1/java.lang.Throwable.&lt;init&gt;(Throwable.java:271)
+	at app//kotlinx.coroutines.test.internal.TestMainDispatcher$NonConcurrentlyModifiable.getValue(TestMainDispatcher.kt:76)
+	at app//kotlinx.coroutines.test.internal.TestMainDispatcher.getDispatcher(TestMainDispatcher.kt:22)
+	at app//kotlinx.coroutines.test.internal.TestMainDispatcher.isDispatchNeeded(TestMainDispatcher.kt:32)
+	at app//kotlinx.coroutines.internal.DispatchedContinuationKt.safeIsDispatchNeeded(DispatchedContinuation.kt:262)
+	at app//kotlinx.coroutines.DispatchedTaskKt.dispatch(DispatchedTask.kt:144)
+	at app//kotlinx.coroutines.CancellableContinuationImpl.dispatchResume(CancellableContinuationImpl.kt:470)
+	at app//kotlinx.coroutines.CancellableContinuationImpl.resumeImpl$kotlinx_coroutines_core(CancellableContinuationImpl.kt:504)
+	at app//kotlinx.coroutines.CancellableContinuationImpl.resumeImpl$kotlinx_coroutines_core$default(CancellableContinuationImpl.kt:493)
+	at app//kotlinx.coroutines.CancellableContinuationImpl.resumeUndispatched(CancellableContinuationImpl.kt:596)
+	at app//kotlinx.coroutines.test.CancellableContinuationRunnable.run(TestDispatcher.kt:60)
+	at app//kotlinx.coroutines.test.TestDispatcher.processEvent$kotlinx_coroutines_test(TestDispatcher.kt:24)
+	at app//kotlinx.coroutines.test.TestCoroutineScheduler.tryRunNextTaskUnless$kotlinx_coroutines_test(TestCoroutineScheduler.kt:99)
+	at app//kotlinx.coroutines.test.TestCoroutineScheduler.advanceUntilIdleOr$kotlinx_coroutines_test(TestCoroutineScheduler.kt:118)
+	at app//kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt$runTest$2$1.invokeSuspend(TestBuilders.kt:370)
+	at app//kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at app//kotlinx.coroutines.internal.ScopeCoroutine.afterResume(Scopes.kt:35)
+	at app//kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at app//kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
+	at app//kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at app//kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at app//kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:95)
+	at app//kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:69)
+	at app//kotlinx.coroutines.BuildersKt.runBlocking(Unknown Source)
+	at app//kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:47)
+	at app//kotlinx.coroutines.BuildersKt.runBlocking$default(Unknown Source)
+	at app//kotlinx.coroutines.test.TestBuildersJvmKt.createTestResult(TestBuildersJvm.kt:10)
+	at app//kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt.runTest-8Mi8wO0(TestBuilders.kt:309)
+	at app//kotlinx.coroutines.test.TestBuildersKt.runTest-8Mi8wO0(Unknown Source)
+	at app//kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt.runTest-8Mi8wO0(TestBuilders.kt:167)
+	at app//kotlinx.coroutines.test.TestBuildersKt.runTest-8Mi8wO0(Unknown Source)
+	at app//kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt.runTest-8Mi8wO0$default(TestBuilders.kt:159)
+	at app//kotlinx.coroutines.test.TestBuildersKt.runTest-8Mi8wO0$default(Unknown Source)
+	at app//ir.chardivari.feature.messaging.MessagingViewModelsTest.thread_realtimeEvent_appendsDeduplicated(MessagingViewModelsTest.kt:302)
+	at java.base@17.0.20.1/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base@17.0.20.1/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base@17.0.20.1/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base@17.0.20.1/java.lang.reflect.Method.invoke(Method.java:569)
+	at app//org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+	at app//org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at app//org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+	at app//org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at app//org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at app//org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
+	at app//org.junit.internal.runners.statements.FailOnTimeout$CallableStatement.call(FailOnTimeout.java:299)
+	at app//org.junit.internal.runners.statements.FailOnTimeout$CallableStatement.call(FailOnTimeout.java:293)
+	at java.base@17.0.20.1/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base@17.0.20.1/java.lang.Thread.run(Thread.java:840)
+</failure>
+  </testcase>
+  <testcase name="notifications_markRead_flipsLocalAndCallsServer" classname="ir.chardivari.feature.messaging.MessagingViewModelsTest" time="0.01">
+    <failure message="kotlinx.coroutines.DispatchException: Coroutine dispatcher Dispatchers.Main threw an exception, context = [CoroutineId(13), &quot;coroutine#13&quot;:StandaloneCoroutine{Active}@23939131, Dispatchers.Main]" type="kotlinx.coroutines.DispatchException">kotlinx.coroutines.DispatchException: Coroutine dispatcher Dispatchers.Main threw an exception, context = [CoroutineId(13), &quot;coroutine#13&quot;:StandaloneCoroutine{Active}@23939131, Dispatchers.Main]
+	at app//kotlinx.coroutines.internal.DispatchedContinuationKt.safeIsDispatchNeeded(DispatchedContinuation.kt:264)
+	at app//kotlinx.coroutines.DispatchedTaskKt.dispatch(DispatchedTask.kt:144)
+	at app//kotlinx.coroutines.CancellableContinuationImpl.dispatchResume(CancellableContinuationImpl.kt:470)
+	at app//kotlinx.coroutines.CancellableContinuationImpl.resumeImpl$kotlinx_coroutines_core(CancellableContinuationImpl.kt:504)
+	at app//kotlinx.coroutines.CancellableContinuationImpl.resumeImpl$kotlinx_coroutines_core$default(CancellableContinuationImpl.kt:493)
+	at app//kotlinx.coroutines.CancellableContinuationImpl.resumeUndispatched(CancellableContinuationImpl.kt:596)
+	at app//kotlinx.coroutines.test.CancellableContinuationRunnable.run(TestDispatcher.kt:60)
+	at app//kotlinx.coroutines.test.TestDispatcher.processEvent$kotlinx_coroutines_test(TestDispatcher.kt:24)
+	at app//kotlinx.coroutines.test.TestCoroutineScheduler.tryRunNextTaskUnless$kotlinx_coroutines_test(TestCoroutineScheduler.kt:99)
+	at app//kotlinx.coroutines.test.TestCoroutineScheduler.advanceUntilIdleOr$kotlinx_coroutines_test(TestCoroutineScheduler.kt:118)
+	at app//kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt$runTest$2$1.invokeSuspend(TestBuilders.kt:370)
+	at app//kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at app//kotlinx.coroutines.internal.ScopeCoroutine.afterResume(Scopes.kt:35)
+	at app//kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at app//kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
+	at app//kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at app//kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at app//kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:95)
+	at app//kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:69)
+	at app//kotlinx.coroutines.BuildersKt.runBlocking(Unknown Source)
+	at app//kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:47)
+	at app//kotlinx.coroutines.BuildersKt.runBlocking$default(Unknown Source)
+	at app//kotlinx.coroutines.test.TestBuildersJvmKt.createTestResult(TestBuildersJvm.kt:10)
+	at app//kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt.runTest-8Mi8wO0(TestBuilders.kt:309)
+	at app//kotlinx.coroutines.test.TestBuildersKt.runTest-8Mi8wO0(Unknown Source)
+	at app//kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt.runTest-8Mi8wO0(TestBuilders.kt:167)
+	at app//kotlinx.coroutines.test.TestBuildersKt.runTest-8Mi8wO0(Unknown Source)
+	at app//kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt.runTest-8Mi8wO0$default(TestBuilders.kt:159)
+	at app//kotlinx.coroutines.test.TestBuildersKt.runTest-8Mi8wO0$default(Unknown Source)
+	at app//ir.chardivari.feature.messaging.MessagingViewModelsTest.notifications_markRead_flipsLocalAndCallsServer(MessagingViewModelsTest.kt:194)
+	at java.base@17.0.20.1/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base@17.0.20.1/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base@17.0.20.1/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base@17.0.20.1/java.lang.reflect.Method.invoke(Method.java:569)
+	at app//org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+	at app//org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at app//org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+	at app//org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at app//org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at app//org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
+	at app//org.junit.internal.runners.statements.FailOnTimeout$CallableStatement.call(FailOnTimeout.java:299)
+	at app//org.junit.internal.runners.statements.FailOnTimeout$CallableStatement.call(FailOnTimeout.java:293)
+	at java.base@17.0.20.1/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base@17.0.20.1/java.lang.Thread.run(Thread.java:840)
+Caused by: java.lang.IllegalStateException: Dispatchers.Main was accessed when the platform dispatcher was absent and the test dispatcher was unset. Please make sure that Dispatchers.setMain() is called before accessing Dispatchers.Main and that Dispatchers.Main is not accessed after Dispatchers.resetMain().
+	at kotlinx.coroutines.test.internal.TestMainDispatcherJvmKt.reportMissingMainCoroutineDispatcher(TestMainDispatcherJvm.kt:45)
