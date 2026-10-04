@@ -77,6 +77,9 @@ jobs:
                 echo "########## $f : FAILURE HEADERS ##########"
                 grep -n -E "What went wrong|Script compilation|FAILURE:|Caused by:|^e: |error:|FAILED" "$f" | head -80 || true
                 echo ""
+                echo "########## $f : FAILED CONTEXT (30 lines each) ##########"
+                grep -n -B 2 -A 30 "FAILED" "$f" | head -300 || true
+                echo ""
                 echo "########## $f (first 80 lines) ##########"
                 head -n 80 "$f"
                 echo ""
