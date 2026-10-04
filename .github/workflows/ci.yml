@@ -93,7 +93,7 @@ jobs:
             for f in feature/messaging/build/test-results/testDebugUnitTest/*.xml; do
               if [ -f "$f" ]; then
                 echo "-- $f"
-                sed -n '1,160p' "$f"
+                sed -n '1,1400p' "$f"
               fi
             done
           } > ci-last-error.log || true

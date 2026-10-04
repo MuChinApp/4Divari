@@ -33,6 +33,8 @@ import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Before
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.cancel
 import org.junit.Test
 
 @OptIn(ExperimentalCoroutinesApi::class)
@@ -163,6 +165,9 @@ class MessagingViewModelsTest {
             cancel()
         }
         assertTrue(tracker.recorded.any { it.name == "screen_view" })
+        // Kill viewModelScope so ThreadViewModel's virtual-time polling
+        // loop dies and runTest's shared scheduler can go idle.
+        vm.viewModelScope.cancel()
     }
 
     @Test
@@ -175,6 +180,9 @@ class MessagingViewModelsTest {
             assertEquals(UiState.Empty, expectMostRecentItem())
             cancel()
         }
+        // Kill viewModelScope so ThreadViewModel's virtual-time polling
+        // loop dies and runTest's shared scheduler can go idle.
+        vm.viewModelScope.cancel()
     }
 
     @Test
@@ -188,6 +196,9 @@ class MessagingViewModelsTest {
             assertTrue(state is UiState.Error)
             cancel()
         }
+        // Kill viewModelScope so ThreadViewModel's virtual-time polling
+        // loop dies and runTest's shared scheduler can go idle.
+        vm.viewModelScope.cancel()
     }
 
     @Test
@@ -208,6 +219,9 @@ class MessagingViewModelsTest {
             kotlinx.coroutines.delay(10)
         }
         assertEquals(listOf("n1"), notifications.markReadIds)
+        // Kill viewModelScope so ThreadViewModel's virtual-time polling
+        // loop dies and runTest's shared scheduler can go idle.
+        vm.viewModelScope.cancel()
     }
 
     @Test
@@ -239,6 +253,9 @@ class MessagingViewModelsTest {
             kotlinx.coroutines.delay(10)
         }
         assertTrue(chat.markReadCount > 0)
+        // Kill viewModelScope so ThreadViewModel's virtual-time polling
+        // loop dies and runTest's shared scheduler can go idle.
+        vm.viewModelScope.cancel()
     }
 
     @Test
@@ -273,6 +290,9 @@ class MessagingViewModelsTest {
         assertEquals("c1", chat.lastSended?.first)
         assertTrue(content.data.messages.any { it.id == "m9" })
         assertFalse(content.data.sending)
+        // Kill viewModelScope so ThreadViewModel's virtual-time polling
+        // loop dies and runTest's shared scheduler can go idle.
+        vm.viewModelScope.cancel()
     }
 
     @Test
@@ -296,6 +316,9 @@ class MessagingViewModelsTest {
         val content = vm.uiState.value as UiState.Content
         assertEquals("متن", content.data.input)
         assertNotNullSendError(content.data.sendError)
+        // Kill viewModelScope so ThreadViewModel's virtual-time polling
+        // loop dies and runTest's shared scheduler can go idle.
+        vm.viewModelScope.cancel()
     }
 
     @Test
@@ -322,6 +345,9 @@ class MessagingViewModelsTest {
         val content = vm.uiState.value as UiState.Content
         assertEquals(1, content.data.messages.count { it.id == "m5" })
         assertEquals(1, realtime.subscribeCount)
+        // Kill viewModelScope so ThreadViewModel's virtual-time polling
+        // loop dies and runTest's shared scheduler can go idle.
+        vm.viewModelScope.cancel()
     }
 
     @Test
@@ -335,6 +361,9 @@ class MessagingViewModelsTest {
         vm.setInput("   ")
         vm.send()
         assertNull(chat.lastSended)
+        // Kill viewModelScope so ThreadViewModel's virtual-time polling
+        // loop dies and runTest's shared scheduler can go idle.
+        vm.viewModelScope.cancel()
     }
 
     private fun assertNotNullSendError(error: String?) {
