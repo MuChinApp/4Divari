@@ -53,15 +53,3 @@ dependencies {
     testImplementation(libs.turbine)
     testImplementation(libs.mockk)
 }
-
-// CI probe: print each test method as it starts so a task-timeout kill
-// still identifies the wedging method in the captured log. Wrapped in
-// afterEvaluate so it wins over any AGP reconfiguration of testLogging.
-afterEvaluate {
-    tasks.withType<Test>().configureEach {
-        testLogging {
-            events("started", "failed")
-            showExceptions = true
-        }
-    }
-}

@@ -26,6 +26,8 @@ import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 import org.junit.After
+import org.junit.Rule
+import org.junit.rules.Timeout
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNull
@@ -35,6 +37,14 @@ import org.junit.Test
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class MessagingViewModelsTest {
+
+    /**
+     * CI hang insurance: a wedged method fails by name (with the stuck
+     * stack) in 20s instead of stalling the suite until task timeout.
+     */
+    @Rule
+    @JvmField
+    val methodTimeout: Timeout = Timeout.seconds(20)
 
     private val dispatcher = UnconfinedTestDispatcher()
 
