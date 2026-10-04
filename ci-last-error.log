@@ -1,95 +1,124 @@
-=== CI FAILURE CAPTURE 2026-10-04T01:26:25Z ===
+=== CI FAILURE CAPTURE 2026-10-04T01:48:23Z ===
 
 ########## /tmp/test-log.txt : FAILURE HEADERS ##########
 593:> Task :feature:messaging:testDebugUnitTest FAILED
 596:FAILURE: Build failed with an exception.
 598:* What went wrong:
-661:Caused by: org.gradle.api.GradleException: Timeout has been exceeded
-785:BUILD FAILED in 15m 29s
+632:Caused by: org.gradle.api.GradleException: Timeout has been exceeded
+727:BUILD FAILED in 15m 23s
 
 ########## /tmp/test-log.txt (first 80 lines) ##########
 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.11.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
 Daemon will be stopped at the end of the build 
-> Task :core:analytics:preBuild UP-TO-DATE
-> Task :app:preBuild UP-TO-DATE
 > Task :core:common:preBuild UP-TO-DATE
 > Task :core:auth:preBuild UP-TO-DATE
-> Task :core:common:preDebugBuild UP-TO-DATE
-> Task :core:auth:preDebugBuild UP-TO-DATE
+> Task :core:analytics:preBuild UP-TO-DATE
+> Task :app:preBuild UP-TO-DATE
 > Task :app:preDebugBuild UP-TO-DATE
 > Task :core:analytics:preDebugBuild UP-TO-DATE
+> Task :core:auth:preDebugBuild UP-TO-DATE
+> Task :core:common:preDebugBuild UP-TO-DATE
 > Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
 > Task :app:generateDebugBuildConfig FROM-CACHE
 > Task :core:designsystem:preBuild UP-TO-DATE
 > Task :core:designsystem:preDebugBuild UP-TO-DATE
-> Task :core:analytics:writeDebugAarMetadata
-> Task :core:common:writeDebugAarMetadata
-> Task :core:auth:writeDebugAarMetadata
-> Task :core:marketplace:preBuild UP-TO-DATE
-> Task :core:marketplace:preDebugBuild UP-TO-DATE
-> Task :core:navigation:preBuild UP-TO-DATE
 > Task :core:designsystem:writeDebugAarMetadata
-> Task :core:navigation:preDebugBuild UP-TO-DATE
 > Task :core:environment:preBuild UP-TO-DATE
 > Task :core:environment:preDebugBuild UP-TO-DATE
+> Task :core:common:writeDebugAarMetadata
+> Task :core:marketplace:preBuild UP-TO-DATE
+> Task :core:marketplace:preDebugBuild UP-TO-DATE
+> Task :core:analytics:writeDebugAarMetadata
+> Task :core:auth:writeDebugAarMetadata
+> Task :core:navigation:preBuild UP-TO-DATE
 > Task :core:network:preBuild UP-TO-DATE
+> Task :core:navigation:preDebugBuild UP-TO-DATE
 > Task :core:network:preDebugBuild UP-TO-DATE
+> Task :core:environment:writeDebugAarMetadata
+> Task :core:ui:preBuild UP-TO-DATE
+> Task :core:ui:preDebugBuild UP-TO-DATE
+> Task :core:marketplace:writeDebugAarMetadata
+> Task :feature:admin:preBuild UP-TO-DATE
+> Task :feature:admin:preDebugBuild UP-TO-DATE
 > Task :core:navigation:writeDebugAarMetadata
 > Task :core:network:writeDebugAarMetadata
-> Task :core:environment:writeDebugAarMetadata
-> Task :feature:admin:preBuild UP-TO-DATE
 > Task :feature:agent:preBuild UP-TO-DATE
 > Task :feature:agent:preDebugBuild UP-TO-DATE
-> Task :core:ui:preBuild UP-TO-DATE
-> Task :feature:admin:preDebugBuild UP-TO-DATE
-> Task :core:marketplace:writeDebugAarMetadata
-> Task :core:ui:preDebugBuild UP-TO-DATE
 > Task :feature:auth:preBuild UP-TO-DATE
 > Task :feature:auth:preDebugBuild UP-TO-DATE
-> Task :feature:admin:writeDebugAarMetadata
+> Task :core:ui:writeDebugAarMetadata
 > Task :feature:home:preBuild UP-TO-DATE
 > Task :feature:home:preDebugBuild UP-TO-DATE
-> Task :feature:agent:writeDebugAarMetadata
+> Task :feature:admin:writeDebugAarMetadata
 > Task :feature:messaging:preBuild UP-TO-DATE
+> Task :feature:auth:writeDebugAarMetadata
 > Task :feature:messaging:preDebugBuild UP-TO-DATE
-> Task :core:ui:writeDebugAarMetadata
 > Task :feature:profile:preBuild UP-TO-DATE
 > Task :feature:profile:preDebugBuild UP-TO-DATE
-> Task :feature:auth:writeDebugAarMetadata
+> Task :feature:agent:writeDebugAarMetadata
 > Task :feature:property:preBuild UP-TO-DATE
 > Task :feature:property:preDebugBuild UP-TO-DATE
-> Task :feature:messaging:writeDebugAarMetadata
-> Task :feature:saved:preBuild UP-TO-DATE
-> Task :feature:profile:writeDebugAarMetadata
-> Task :feature:search:preBuild UP-TO-DATE
-> Task :feature:search:preDebugBuild UP-TO-DATE
-> Task :feature:saved:preDebugBuild UP-TO-DATE
 > Task :feature:home:writeDebugAarMetadata
-> Task :feature:property:writeDebugAarMetadata
+> Task :feature:saved:preBuild UP-TO-DATE
+> Task :feature:saved:preDebugBuild UP-TO-DATE
+> Task :feature:profile:writeDebugAarMetadata
+> Task :feature:messaging:writeDebugAarMetadata
 > Task :feature:seller:preBuild UP-TO-DATE
+> Task :feature:search:preBuild UP-TO-DATE
 > Task :feature:seller:preDebugBuild UP-TO-DATE
+> Task :feature:search:preDebugBuild UP-TO-DATE
+> Task :feature:property:writeDebugAarMetadata
 > Task :feature:saved:writeDebugAarMetadata
+> Task :feature:seller:writeDebugAarMetadata
 > Task :feature:search:writeDebugAarMetadata
 > Task :app:generateDebugResValues FROM-CACHE
-> Task :core:auth:generateDebugResValues FROM-CACHE
-> Task :feature:seller:writeDebugAarMetadata
 > Task :core:analytics:generateDebugResValues FROM-CACHE
 > Task :core:common:generateDebugResValues FROM-CACHE
+> Task :core:auth:generateDebugResValues FROM-CACHE
 > Task :core:analytics:generateDebugResources FROM-CACHE
 > Task :core:auth:generateDebugResources FROM-CACHE
 > Task :core:common:generateDebugResources FROM-CACHE
-> Task :core:analytics:packageDebugResources FROM-CACHE
-> Task :core:common:packageDebugResources FROM-CACHE
 > Task :core:auth:packageDebugResources FROM-CACHE
-> Task :core:designsystem:generateDebugResValues FROM-CACHE
+> Task :core:analytics:packageDebugResources FROM-CACHE
 > Task :core:environment:generateDebugResValues FROM-CACHE
+> Task :core:designsystem:generateDebugResValues FROM-CACHE
+> Task :core:common:packageDebugResources FROM-CACHE
+> Task :core:environment:generateDebugResources FROM-CACHE
 > Task :core:marketplace:generateDebugResValues FROM-CACHE
 > Task :core:designsystem:generateDebugResources FROM-CACHE
 > Task :core:marketplace:generateDebugResources FROM-CACHE
-> Task :core:environment:generateDebugResources FROM-CACHE
-> Task :core:designsystem:packageDebugResources FROM-CACHE
+> Task :core:environment:packageDebugResources FROM-CACHE
 
 ########## /tmp/test-log.txt (last 80 lines) ##########
+	at org.gradle.internal.Try$Success.map(Try.java:175)
+	at org.gradle.internal.execution.steps.BuildCacheStep.executeWithCache(BuildCacheStep.java:85)
+	at org.gradle.internal.execution.steps.BuildCacheStep.lambda$execute$0(BuildCacheStep.java:74)
+	at org.gradle.internal.Either$Left.fold(Either.java:115)
+	at org.gradle.internal.execution.caching.CachingState.fold(CachingState.java:62)
+	at org.gradle.internal.execution.steps.BuildCacheStep.execute(BuildCacheStep.java:73)
+	at org.gradle.internal.execution.steps.BuildCacheStep.execute(BuildCacheStep.java:48)
+	at org.gradle.internal.execution.steps.StoreExecutionStateStep.execute(StoreExecutionStateStep.java:46)
+	at org.gradle.internal.execution.steps.StoreExecutionStateStep.execute(StoreExecutionStateStep.java:35)
+	at org.gradle.internal.execution.steps.SkipUpToDateStep.executeBecause(SkipUpToDateStep.java:75)
+	at org.gradle.internal.execution.steps.SkipUpToDateStep.lambda$execute$2(SkipUpToDateStep.java:53)
+	at org.gradle.internal.execution.steps.SkipUpToDateStep.execute(SkipUpToDateStep.java:53)
+	at org.gradle.internal.execution.steps.SkipUpToDateStep.execute(SkipUpToDateStep.java:35)
+	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsFinishedStep.execute(MarkSnapshottingInputsFinishedStep.java:37)
+	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsFinishedStep.execute(MarkSnapshottingInputsFinishedStep.java:27)
+	at org.gradle.internal.execution.steps.ResolveIncrementalCachingStateStep.executeDelegate(ResolveIncrementalCachingStateStep.java:49)
+	at org.gradle.internal.execution.steps.ResolveIncrementalCachingStateStep.executeDelegate(ResolveIncrementalCachingStateStep.java:27)
+	at org.gradle.internal.execution.steps.AbstractResolveCachingStateStep.execute(AbstractResolveCachingStateStep.java:71)
+	at org.gradle.internal.execution.steps.AbstractResolveCachingStateStep.execute(AbstractResolveCachingStateStep.java:39)
+	at org.gradle.internal.execution.steps.ResolveChangesStep.execute(ResolveChangesStep.java:65)
+	at org.gradle.internal.execution.steps.ResolveChangesStep.execute(ResolveChangesStep.java:36)
+	at org.gradle.internal.execution.steps.ValidateStep.execute(ValidateStep.java:107)
+	at org.gradle.internal.execution.steps.ValidateStep.execute(ValidateStep.java:56)
+	at org.gradle.internal.execution.steps.AbstractCaptureStateBeforeExecutionStep.execute(AbstractCaptureStateBeforeExecutionStep.java:64)
+	at org.gradle.internal.execution.steps.AbstractCaptureStateBeforeExecutionStep.execute(AbstractCaptureStateBeforeExecutionStep.java:43)
+	at org.gradle.internal.execution.steps.AbstractSkipEmptyWorkStep.executeWithNonEmptySources(AbstractSkipEmptyWorkStep.java:125)
+	at org.gradle.internal.execution.steps.AbstractSkipEmptyWorkStep.execute(AbstractSkipEmptyWorkStep.java:61)
+	at org.gradle.internal.execution.steps.AbstractSkipEmptyWorkStep.execute(AbstractSkipEmptyWorkStep.java:36)
+	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsStartedStep.execute(MarkSnapshottingInputsStartedStep.java:38)
 	at org.gradle.internal.execution.steps.LoadPreviousExecutionStateStep.execute(LoadPreviousExecutionStateStep.java:36)
 	at org.gradle.internal.execution.steps.LoadPreviousExecutionStateStep.execute(LoadPreviousExecutionStateStep.java:23)
 	at org.gradle.internal.execution.steps.HandleStaleOutputsStep.execute(HandleStaleOutputsStep.java:75)
@@ -135,40 +164,11 @@ Daemon will be stopped at the end of the build
 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.execute(DefaultTaskExecutionGraph.java:303)
 	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.execute(DefaultPlanExecutor.java:459)
 	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.run(DefaultPlanExecutor.java:376)
-	at org.gradle.execution.plan.DefaultPlanExecutor.process(DefaultPlanExecutor.java:111)
-	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph.executeWithServices(DefaultTaskExecutionGraph.java:138)
-	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph.execute(DefaultTaskExecutionGraph.java:123)
-	at org.gradle.execution.SelectedTaskExecutionAction.execute(SelectedTaskExecutionAction.java:35)
-	at org.gradle.execution.DryRunBuildExecutionAction.execute(DryRunBuildExecutionAction.java:51)
-	at org.gradle.execution.BuildOperationFiringBuildWorkerExecutor$ExecuteTasks.call(BuildOperationFiringBuildWorkerExecutor.java:54)
-	at org.gradle.execution.BuildOperationFiringBuildWorkerExecutor$ExecuteTasks.call(BuildOperationFiringBuildWorkerExecutor.java:43)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:209)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:204)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:166)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:59)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:53)
-	at org.gradle.execution.BuildOperationFiringBuildWorkerExecutor.execute(BuildOperationFiringBuildWorkerExecutor.java:40)
-	at org.gradle.internal.build.DefaultBuildLifecycleController.lambda$executeTasks$10(DefaultBuildLifecycleController.java:313)
-	at org.gradle.internal.model.StateTransitionController.doTransition(StateTransitionController.java:266)
-	at org.gradle.internal.model.StateTransitionController.lambda$tryTransition$8(StateTransitionController.java:177)
-	at org.gradle.internal.work.DefaultSynchronizer.withLock(DefaultSynchronizer.java:46)
-	at org.gradle.internal.model.StateTransitionController.tryTransition(StateTransitionController.java:177)
-	at org.gradle.internal.build.DefaultBuildLifecycleController.executeTasks(DefaultBuildLifecycleController.java:304)
-	at org.gradle.internal.build.DefaultBuildWorkGraphController$DefaultBuildWorkGraph.runWork(DefaultBuildWorkGraphController.java:220)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocks(DefaultWorkerLeaseService.java:263)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:127)
-	at org.gradle.composite.internal.DefaultBuildController.doRun(DefaultBuildController.java:181)
-	at org.gradle.composite.internal.DefaultBuildController.access$000(DefaultBuildController.java:50)
-	at org.gradle.composite.internal.DefaultBuildController$BuildOpRunnable.lambda$run$0(DefaultBuildController.java:198)
-	at org.gradle.internal.operations.CurrentBuildOperationRef.with(CurrentBuildOperationRef.java:85)
-	at org.gradle.composite.internal.DefaultBuildController$BuildOpRunnable.run(DefaultBuildController.java:198)
 	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
 	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:48)
 
 
-BUILD FAILED in 15m 29s
+BUILD FAILED in 15m 23s
 445 actionable tasks: 97 executed, 348 from cache
 
 ########## /tmp/detekt-log.txt : FAILURE HEADERS ##########
@@ -177,18 +177,18 @@ BUILD FAILED in 15m 29s
 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.11.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
 Daemon will be stopped at the end of the build 
 > Task :detekt FROM-CACHE
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/detekt-1791077132411.json
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/detekt-1791078461518.json
 
-BUILD SUCCESSFUL in 12s
+BUILD SUCCESSFUL in 9s
 1 actionable task: 1 from cache
 
 ########## /tmp/detekt-log.txt (last 80 lines) ##########
 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.11.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
 Daemon will be stopped at the end of the build 
 > Task :detekt FROM-CACHE
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/detekt-1791077132411.json
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/detekt-1791078461518.json
 
-BUILD SUCCESSFUL in 12s
+BUILD SUCCESSFUL in 9s
 1 actionable task: 1 from cache
 
 ########## /tmp/lint-log.txt : FAILURE HEADERS ##########
@@ -196,39 +196,39 @@ BUILD SUCCESSFUL in 12s
 ########## /tmp/lint-log.txt (first 80 lines) ##########
 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.11.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
 Daemon will be stopped at the end of the build 
-> Task :core:ui:preBuild UP-TO-DATE
 > Task :core:designsystem:checkKotlinGradlePluginConfigurationErrors SKIPPED
 > Task :core:environment:preBuild UP-TO-DATE
+> Task :core:ui:preBuild UP-TO-DATE
+> Task :core:designsystem:preBuild UP-TO-DATE
+> Task :core:ui:preDebugBuild UP-TO-DATE
+> Task :core:designsystem:preDebugBuild UP-TO-DATE
+> Task :core:environment:preDebugBuild UP-TO-DATE
 > Task :core:common:checkKotlinGradlePluginConfigurationErrors SKIPPED
 > Task :core:common:preBuild UP-TO-DATE
-> Task :core:designsystem:preBuild UP-TO-DATE
 > Task :core:common:preDebugBuild UP-TO-DATE
-> Task :core:ui:preDebugBuild UP-TO-DATE
-> Task :core:environment:preDebugBuild UP-TO-DATE
-> Task :core:designsystem:preDebugBuild UP-TO-DATE
-> Task :core:designsystem:generateDebugResValues UP-TO-DATE
 > Task :core:common:generateDebugResValues UP-TO-DATE
+> Task :core:designsystem:generateDebugResValues UP-TO-DATE
 > Task :core:common:generateDebugResources UP-TO-DATE
 > Task :core:designsystem:generateDebugResources UP-TO-DATE
 > Task :core:designsystem:packageDebugResources UP-TO-DATE
 > Task :core:common:packageDebugResources UP-TO-DATE
-> Task :core:designsystem:parseDebugLocalResources UP-TO-DATE
 > Task :core:common:parseDebugLocalResources UP-TO-DATE
+> Task :core:designsystem:parseDebugLocalResources UP-TO-DATE
 > Task :core:common:generateDebugRFile UP-TO-DATE
 > Task :core:designsystem:generateDebugRFile UP-TO-DATE
-> Task :core:environment:mergeDebugJniLibFolders
 > Task :core:ui:mergeDebugJniLibFolders
+> Task :core:environment:mergeDebugJniLibFolders
 > Task :core:environment:mergeDebugNativeLibs NO-SOURCE
 > Task :core:ui:mergeDebugNativeLibs NO-SOURCE
 > Task :core:environment:stripDebugDebugSymbols NO-SOURCE
 > Task :core:ui:stripDebugDebugSymbols NO-SOURCE
+> Task :core:ui:copyDebugJniLibsProjectAndLocalJars
 > Task :core:environment:copyDebugJniLibsProjectAndLocalJars
 > Task :core:ui:checkKotlinGradlePluginConfigurationErrors SKIPPED
-> Task :core:ui:copyDebugJniLibsProjectAndLocalJars
 > Task :core:environment:checkKotlinGradlePluginConfigurationErrors SKIPPED
 > Task :core:ui:generateDebugResValues UP-TO-DATE
-> Task :core:environment:generateDebugBuildConfig UP-TO-DATE
 > Task :core:ui:generateDebugResources UP-TO-DATE
+> Task :core:environment:generateDebugBuildConfig UP-TO-DATE
 > Task :core:environment:generateDebugResValues UP-TO-DATE
 > Task :core:environment:generateDebugResources UP-TO-DATE
 > Task :core:ui:packageDebugResources UP-TO-DATE
@@ -242,38 +242,38 @@ Daemon will be stopped at the end of the build
 > Task :core:ui:mergeDebugShaders
 > Task :core:ui:compileDebugShaders NO-SOURCE
 > Task :core:ui:generateDebugAssets UP-TO-DATE
-> Task :core:ui:packageDebugAssets
-> Task :core:ui:prepareDebugArtProfile
 > Task :core:common:compileDebugKotlin UP-TO-DATE
 > Task :core:common:javaPreCompileDebug UP-TO-DATE
-> Task :core:environment:compileDebugKotlin UP-TO-DATE
+> Task :core:ui:packageDebugAssets
 > Task :core:common:compileDebugJavaWithJavac NO-SOURCE
-> Task :core:ui:prepareLintJarForPublish
+> Task :core:environment:compileDebugKotlin UP-TO-DATE
 > Task :core:common:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :core:ui:prepareDebugArtProfile
+> Task :core:common:mergeDebugJniLibFolders
 > Task :core:ui:processDebugManifest UP-TO-DATE
 > Task :core:ui:writeDebugAarMetadata UP-TO-DATE
-> Task :core:network:preBuild UP-TO-DATE
-> Task :core:network:preDebugBuild UP-TO-DATE
-> Task :core:common:mergeDebugJniLibFolders
-> Task :core:network:mergeDebugJniLibFolders
 > Task :core:common:mergeDebugNativeLibs NO-SOURCE
 > Task :core:common:stripDebugDebugSymbols NO-SOURCE
-> Task :core:network:mergeDebugNativeLibs NO-SOURCE
-> Task :core:network:stripDebugDebugSymbols NO-SOURCE
+> Task :core:ui:prepareLintJarForPublish
 > Task :core:common:copyDebugJniLibsProjectAndLocalJars
-> Task :core:network:copyDebugJniLibsProjectAndLocalJars
-> Task :core:network:checkKotlinGradlePluginConfigurationErrors SKIPPED
-> Task :core:network:generateDebugResValues UP-TO-DATE
-> Task :core:network:generateDebugResources UP-TO-DATE
-> Task :core:network:packageDebugResources UP-TO-DATE
-> Task :core:network:parseDebugLocalResources UP-TO-DATE
-> Task :core:network:generateDebugRFile UP-TO-DATE
-> Task :core:network:extractDeepLinksForAarDebug FROM-CACHE
+> Task :core:network:preBuild UP-TO-DATE
+> Task :core:network:preDebugBuild UP-TO-DATE
 > Task :core:environment:extractDebugAnnotations FROM-CACHE
 > Task :core:environment:extractDeepLinksForAarDebug FROM-CACHE
 > Task :core:environment:javaPreCompileDebug UP-TO-DATE
-> Task :core:common:extractDebugAnnotations FROM-CACHE
-> Task :core:common:extractDeepLinksForAarDebug FROM-CACHE
+> Task :core:network:mergeDebugJniLibFolders
+> Task :core:network:mergeDebugNativeLibs NO-SOURCE
+> Task :core:network:stripDebugDebugSymbols NO-SOURCE
+> Task :core:network:copyDebugJniLibsProjectAndLocalJars
+> Task :core:environment:compileDebugJavaWithJavac UP-TO-DATE
+> Task :core:network:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:environment:mergeDebugGeneratedProguardFiles
+> Task :core:network:generateDebugResValues UP-TO-DATE
+> Task :core:network:generateDebugResources UP-TO-DATE
+> Task :core:environment:mergeDebugConsumerProguardFiles
+> Task :core:designsystem:compileDebugKotlin UP-TO-DATE
+> Task :core:network:packageDebugResources UP-TO-DATE
+> Task :core:designsystem:javaPreCompileDebug UP-TO-DATE
 
 ########## /tmp/lint-log.txt (last 80 lines) ##########
 > Task :feature:search:generateDebugUnitTestLintModel
@@ -330,18 +330,18 @@ Daemon will be stopped at the end of the build
 > Task :feature:profile:lintReportDebug
 > Task :feature:profile:lintDebug
 > Task :feature:property:generateDebugLintReportModel
-> Task :feature:messaging:lintAnalyzeDebugAndroidTest
-> Task :feature:saved:generateDebugLintReportModel
 > Task :feature:property:lintReportDebug
 > Task :feature:property:lintDebug
-> Task :feature:search:generateDebugLintReportModel
+> Task :feature:saved:generateDebugLintReportModel
 > Task :feature:saved:lintReportDebug
 > Task :feature:saved:lintDebug
-> Task :feature:seller:generateDebugLintReportModel
+> Task :feature:search:generateDebugLintReportModel
 > Task :feature:search:lintReportDebug
 > Task :feature:search:lintDebug
+> Task :feature:seller:generateDebugLintReportModel
 > Task :feature:seller:lintReportDebug
 > Task :feature:seller:lintDebug
+> Task :feature:messaging:lintAnalyzeDebugAndroidTest
 > Task :feature:messaging:lintAnalyzeDebugUnitTest
 > Task :feature:messaging:lintAnalyzeDebug
 > Task :app:lintAnalyzeDebug FROM-CACHE
@@ -352,7 +352,13 @@ Daemon will be stopped at the end of the build
 Wrote HTML report to file:///home/runner/work/4Divari/4Divari/app/build/reports/lint-results-debug.html
 
 > Task :app:lintDebug
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/lint-1791077145154.json
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/lint-1791078471207.json
 
-BUILD SUCCESSFUL in 43s
+BUILD SUCCESSFUL in 34s
 828 actionable tasks: 370 executed, 134 from cache, 324 up-to-date
+
+########## messaging test-results inventory ##########
+total 12
+drwxr-xr-x 3 runner runner 4096 Oct  4 01:32 .
+drwxr-xr-x 3 runner runner 4096 Oct  4 01:32 ..
+drwxr-xr-x 2 runner runner 4096 Oct  4 01:47 binary
