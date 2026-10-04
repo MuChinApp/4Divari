@@ -43,7 +43,7 @@ jobs:
         timeout-minutes: 75
         run: |
           set -o pipefail
-          ./gradlew --no-daemon --stacktrace testDebugUnitTest 2>&1 | tee /tmp/test-log.txt
+          ./gradlew --no-daemon --stacktrace --continue testDebugUnitTest 2>&1 | tee /tmp/test-log.txt
 
       - name: Static analysis (detekt)
         id: detekt

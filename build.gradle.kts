@@ -26,6 +26,12 @@ allprojects {
     val pathSuffix = project.path.trim(':').replace(':', '.')
     group = if (pathSuffix.isEmpty()) "ir.chardivari" else "ir.chardivari.$pathSuffix"
     version = "0.1.0"
+
+    // CI hang insurance: a wedged test suite fails ITS OWN task (named in
+    // the captured log) instead of silently stalling the whole test step.
+    tasks.withType<Test>().configureEach {
+        timeout.set(java.time.Duration.ofMinutes(15))
+    }
 }
 
 // Root Detekt scans all Kotlin sources (main + test) across modules.
