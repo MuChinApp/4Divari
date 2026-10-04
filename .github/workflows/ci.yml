@@ -93,8 +93,7 @@ jobs:
             for f in feature/messaging/build/test-results/testDebugUnitTest/*.xml; do
               if [ -f "$f" ]; then
                 echo "-- $f"
-                grep -o 'testsuite name="[^"]*" tests="[0-9]*" skipped="[0-9]*" failures="[0-9]*" errors="[0-9]*"' "$f" | head -3
-                grep -o 'testcase name="[^"]*"' "$f" | head -20
+                sed -n '1,160p' "$f"
               fi
             done
           } > ci-last-error.log || true
