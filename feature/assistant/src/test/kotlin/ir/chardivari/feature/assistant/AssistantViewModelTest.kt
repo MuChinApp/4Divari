@@ -12,6 +12,8 @@ import ir.chardivari.core.common.AppError
 import ir.chardivari.core.common.AppResult
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
@@ -45,9 +47,13 @@ class AssistantViewModelTest {
     }
 
     private class RecordingTracker : AnalyticsTracker {
-        val events = mutableListOf<AnalyticsEvent>()
+        val recorded = mutableListOf<AnalyticsEvent>()
+        override val events: SharedFlow<AnalyticsEvent> =
+            MutableSharedFlow(extraBufferCapacity = 16)
+
         override fun track(event: AnalyticsEvent) {
-            events += event
+            recorded += event
+            events.tryEmit(event)
         }
     }
 
@@ -202,7 +208,7 @@ class AssistantViewModelTest {
         vm.onDraftChange("فقط به زنان")
         vm.send()
 
-        val names = tracker.events.map { it.name }
+        val names = tracker.recorded.map { it.name }
         assertThat(names).contains("screen_view")
         assertThat(names).contains("assistant_question_asked")
         assertThat(names).containsExactly(
@@ -223,7 +229,7 @@ class AssistantViewModelTest {
         vm.onDraftChange("تست")
         vm.send()
 
-        val failed = tracker.events.filterIsInstance<AnalyticsEvent.AssistantFailed>()
+        val failed = tracker.recorded.filterIsInstance<AnalyticsEvent.AssistantFailed>()
         assertThat(failed).hasSize(1)
         assertThat(failed.single().reason).isEqualTo("Offline")
     }

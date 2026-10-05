@@ -26,7 +26,7 @@ class MarketplaceToolRegistryTest {
 
     private class FakeListingRepository(
         var searchResult: AppResult<List<Listing>> = AppResult.Empty,
-        var byIdResults: Map<String, AppResult<List<Listing>>> = emptyMap(),
+        var byIdResults: Map<String, AppResult<Listing>> = emptyMap(),
     ) : ListingRepository {
         var lastFilters: SearchFilters? = null
         var lastLimit: Int? = null
@@ -43,7 +43,7 @@ class MarketplaceToolRegistryTest {
             return searchResult
         }
 
-        override suspend fun byId(listingId: String): AppResult<List<Listing>> =
+        override suspend fun byId(listingId: String): AppResult<Listing> =
             byIdResults[listingId] ?: AppResult.Empty
     }
 
@@ -238,10 +238,8 @@ class MarketplaceToolRegistryTest {
     fun `compare builds rows for found listings and records missing ids`() = runBlocking {
         val repo = FakeListingRepository(
             byIdResults = mapOf(
-                "a" to AppResult.Success(listOf(listing("a", priceRial = 5_000_000_000))),
-                "b" to AppResult.Success(
-                    listOf(listing("b", priceRial = 8_000_000_000, areaSqm = 110)),
-                ),
+                "a" to AppResult.Success(listing("a", priceRial = 5_000_000_000)),
+                "b" to AppResult.Success(listing("b", priceRial = 8_000_000_000, areaSqm = 110)),
                 "c" to AppResult.Empty,
             ),
         )
