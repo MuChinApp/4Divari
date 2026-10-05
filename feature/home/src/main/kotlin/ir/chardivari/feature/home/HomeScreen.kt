@@ -10,11 +10,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Assistant
 import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -28,6 +30,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextAlign
@@ -46,6 +49,7 @@ fun HomeRoute(
     viewModel: HomeViewModel = hiltViewModel(),
     onListingClick: (String) -> Unit = {},
     onSearchNavigate: (String) -> Unit = {},
+    onOpenAssistant: () -> Unit = {},
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
 
@@ -68,6 +72,7 @@ fun HomeRoute(
                     onSearchNavigate(query)
                 },
                 onListingClick = onListingClick,
+                onOpenAssistant = onOpenAssistant,
             )
         }
     }
@@ -78,6 +83,7 @@ private fun HomeContent(
     model: HomeUiModel,
     onSearchSubmit: (String) -> Unit,
     onListingClick: (String) -> Unit,
+    onOpenAssistant: () -> Unit,
 ) {
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
@@ -101,6 +107,8 @@ private fun HomeContent(
                     hint = model.searchHint,
                     onSubmit = onSearchSubmit,
                 )
+                Spacer(Modifier.height(AppSpacing.Md))
+                AssistantEntry(onClick = onOpenAssistant)
                 Spacer(Modifier.height(AppSpacing.Lg))
                 TransactionActions()
             }
@@ -227,6 +235,40 @@ private fun SectionRail(section: HomeSection) {
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 textAlign = TextAlign.Center,
             )
+        }
+    }
+}
+
+@Composable
+private fun AssistantEntry(onClick: () -> Unit) {
+    Surface(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable(onClick = onClick),
+        shape = AppShapes.Medium,
+        color = MaterialTheme.colorScheme.surfaceVariant,
+    ) {
+        Row(
+            modifier = Modifier.padding(AppSpacing.Lg),
+            horizontalArrangement = Arrangement.spacedBy(AppSpacing.Md),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Icon(
+                imageVector = Icons.Outlined.Assistant,
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.primary,
+            )
+            Column {
+                Text(
+                    text = "دستیار چاردیواری",
+                    style = MaterialTheme.typography.titleSmall,
+                )
+                Text(
+                    text = "جست‌وجوی زبانی، مقایسه و تخمین قیمت",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            }
         }
     }
 }

@@ -98,6 +98,7 @@ dependencies {
     implementation(project(":core:analytics"))
     implementation(project(":core:auth"))
     implementation(project(":core:marketplace"))
+    implementation(project(":core:ai"))
     implementation(project(":feature:home"))
     implementation(project(":feature:search"))
     implementation(project(":feature:saved"))
@@ -108,6 +109,7 @@ dependencies {
     implementation(project(":feature:agent"))
     implementation(project(":feature:messaging"))
     implementation(project(":feature:admin"))
+    implementation(project(":feature:assistant"))
 
     // Compose
     implementation(platform(libs.compose.bom))

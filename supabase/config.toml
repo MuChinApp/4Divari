@@ -34,3 +34,6 @@ file_size_limit = "50MiB"
 [inbucket]
 # Local email testing — unused for phone-first auth.
 enabled = false
+
+[functions.assistant]
+verify_jwt = true

@@ -25,6 +25,21 @@ Plain PostgreSQL (CI) does not include Supabase `auth`/`storage` schemas:
 - `postgres` — migration owner (superuser; bypasses RLS).
 - `app_user` — stand-in for Supabase `authenticated`; created in `00091`, FORCE RLS on.
 
+## Functions
+
+- `functions/assistant/index.ts` — Phase 8 AI proxy (OpenAI-compatible).
+  Requires an authenticated session; holds the provider key as a secret and
+  fails closed (503) when unset. It never executes tools — the client runs
+  them against real repositories under the caller's RLS.
+
+Deploy + configure (never commit keys):
+
+```bash
+supabase functions deploy assistant
+supabase secrets set AI_PROVIDER_URL=https://…/v1/chat/completions \
+  AI_PROVIDER_KEY=… AI_MODEL=…
+```
+
 ## Seed
 
 `00090_seed_dev.sql` — fixtures only, every row `data_source='DEV_FIXTURE'`,

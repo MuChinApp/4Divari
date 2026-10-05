@@ -18,6 +18,19 @@ class AnalyticsEventTest {
         assertEquals("auth_otp_requested", AnalyticsEvent.AuthOtpRequested.name)
         assertEquals("auth_login_succeeded", AnalyticsEvent.AuthLoginSucceeded.name)
         assertEquals("auth_login_failed", AnalyticsEvent.AuthLoginFailed("rate").name)
+        assertEquals(
+            "assistant_question_asked",
+            AnalyticsEvent.AssistantQuestionAsked(12).name,
+        )
+        assertEquals(
+            "assistant_tool_used",
+            AnalyticsEvent.AssistantToolUsed("search_listings").name,
+        )
+        assertEquals(
+            "assistant_fairness_blocked",
+            AnalyticsEvent.AssistantFairnessBlocked(2).name,
+        )
+        assertEquals("assistant_failed", AnalyticsEvent.AssistantFailed("Server").name)
     }
 
     @Test

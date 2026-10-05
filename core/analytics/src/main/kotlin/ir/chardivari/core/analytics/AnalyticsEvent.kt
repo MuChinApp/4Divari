@@ -153,4 +153,28 @@ sealed interface AnalyticsEvent {
         override val name: String = "auth_login_failed"
         override val params: Map<String, String> = mapOf("reason" to reason)
     }
+
+    data class AssistantQuestionAsked(val messageLength: Int) : AnalyticsEvent {
+        override val name: String = "assistant_question_asked"
+        override val params: Map<String, String> = mapOf(
+            "message_length" to messageLength.toString(),
+        )
+    }
+
+    data class AssistantToolUsed(val tool: String) : AnalyticsEvent {
+        override val name: String = "assistant_tool_used"
+        override val params: Map<String, String> = mapOf("tool" to tool)
+    }
+
+    data class AssistantFairnessBlocked(val matchedCriteria: Int) : AnalyticsEvent {
+        override val name: String = "assistant_fairness_blocked"
+        override val params: Map<String, String> = mapOf(
+            "matched_criteria" to matchedCriteria.toString(),
+        )
+    }
+
+    data class AssistantFailed(val reason: String) : AnalyticsEvent {
+        override val name: String = "assistant_failed"
+        override val params: Map<String, String> = mapOf("reason" to reason)
+    }
 }

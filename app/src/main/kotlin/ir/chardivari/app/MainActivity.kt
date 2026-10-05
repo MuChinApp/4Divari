@@ -33,6 +33,7 @@ import ir.chardivari.core.navigation.CustomerTab
 import ir.chardivari.core.navigation.Routes
 import ir.chardivari.core.ui.PlaceholderScreen
 import ir.chardivari.feature.agent.AgentRoute
+import ir.chardivari.feature.assistant.AssistantRoute
 import ir.chardivari.feature.auth.AuthRoute
 import ir.chardivari.feature.admin.AdminRoute
 import ir.chardivari.feature.home.HomeRoute
@@ -126,6 +127,18 @@ private fun ChardivariRoot() {
                     },
                     onSearchNavigate = { query ->
                         navController.navigate(Routes.searchWithQuery(query))
+                    },
+                    onOpenAssistant = {
+                        navController.navigate(Routes.ASSISTANT)
+                    },
+                )
+            }
+            composable(Routes.ASSISTANT) {
+                AssistantRoute(
+                    onBack = { navController.popBackStack() },
+                    onLogin = { navController.navigate(Routes.AUTH) },
+                    onListingClick = { id ->
+                        navController.navigate(Routes.propertyDetail(id))
                     },
                 )
             }
