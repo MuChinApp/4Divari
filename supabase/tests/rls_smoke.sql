@@ -1,0 +1,869 @@
+-- RLS verification as non-owner role app_user (FORCE RLS is on).
+-- Fixtures created as superuser (bypasses RLS); assertions run as app_user.
+
+begin;
+
+-- ---- Superuser fixtures ----
+insert into users (id, phone_e164, phone_verified_at, status)
+values
+  ('10000000-0000-0000-0000-00000000000a', '+989311111111', now(), 'active'),
+  ('20000000-0000-0000-0000-00000000000b', '+989311111112', now(), 'active')
+on conflict (phone_e164) do nothing;
+
+insert into properties (id, property_type, area_sqm, city, province)
+values ('30000000-0000-0000-0000-00000000000c', 'HOUSE', 120, 'Esfahan', 'Esfahan')
+on conflict (id) do nothing;
+
+insert into listings (id, property_id, seller_id, deal_type, price_rial, status)
+values ('40000000-0000-0000-0000-00000000000d', '30000000-0000-0000-0000-00000000000c',
+        '10000000-0000-0000-0000-00000000000a', 'SALE', 5000000000, 'DRAFT')
+on conflict (id) do nothing;
+
+-- ---- Phase 5 agent fixtures (superuser) ----
+insert into users (id, phone_e164, phone_verified_at, status)
+values
+  ('50000000-0000-0000-0000-00000000000e', '+9893111111113', now(), 'active'),
+  ('60000000-0000-0000-0000-00000000000c', '+9893111111114', now(), 'active')
+on conflict (phone_e164) do nothing;
+
+insert into user_roles (user_id, role)
+values ('50000000-0000-0000-0000-00000000000e', 'AGENT')
+on conflict do nothing;
+
+insert into properties (id, property_type, area_sqm, bedrooms, has_elevator, city, province)
+values ('51000000-0000-0000-0000-00000000000f', 'APARTMENT', 90, 2, true, 'Tehran', 'Tehran')
+on conflict (id) do nothing;
+
+insert into listings (id, property_id, seller_id, agent_id, deal_type, price_rial, status)
+values ('52000000-0000-0000-0000-000000000001', '51000000-0000-0000-0000-00000000000f',
+        '10000000-0000-0000-0000-00000000000a', '50000000-0000-0000-0000-00000000000e',
+        'SALE', 5000000000, 'ACTIVE')
+on conflict (id) do nothing;
+
+insert into leads (id, agent_id, buyer_id, listing_id, source, stage)
+values ('53000000-0000-0000-0000-000000000002', '50000000-0000-0000-0000-00000000000e',
+        '20000000-0000-0000-0000-00000000000b', '52000000-0000-0000-0000-000000000001',
+        'contact', 'NEW')
+on conflict (id) do nothing;
+
+insert into buyer_requirements (id, buyer_id, lead_id, deal_type, budget_min_rial, budget_max_rial,
+                                area_min, area_max, bedrooms, cities, features, is_active)
+values ('54000000-0000-0000-0000-000000000003', '20000000-0000-0000-0000-00000000000b',
+        '53000000-0000-0000-0000-000000000002', 'SALE', 4000000000, 6000000000,
+        80, 100, array[2], array['Tehran'], '{"has_elevator": true}'::jsonb, true)
+on conflict (id) do nothing;
+
+insert into visits (id, listing_id, buyer_id, agent_id, slot_start, slot_end, status)
+values ('55000000-0000-0000-0000-000000000004', '52000000-0000-0000-0000-000000000001',
+        '20000000-0000-0000-0000-00000000000b', '50000000-0000-0000-0000-00000000000e',
+        now() + interval '2 day', now() + interval '2 day 1 hour', 'REQUESTED')
+on conflict (id) do nothing;
+
+-- ---- Drop to non-privileged role (RLS applies) ----
+set role app_user;
+
+-- Act as seller A
+select set_config('request.jwt.claim.sub', '10000000-0000-0000-0000-00000000000a', false);
+
+do $$
+declare n int;
+begin
+  select count(*) into n from listings where id = '40000000-0000-0000-0000-00000000000d';
+  if n <> 1 then
+    raise exception 'RLS: seller cannot see own draft (got %)', n;
+  end if;
+
+  select count(*) into n from users where id = '10000000-0000-0000-0000-00000000000a';
+  if n <> 1 then
+    raise exception 'RLS: seller cannot read own user row (got %)', n;
+  end if;
+end;
+$$;
+
+-- Seller activates own draft
+update listings set status = 'ACTIVE'
+where id = '40000000-0000-0000-0000-00000000000d';
+
+do $$
+declare n int;
+begin
+  select count(*) into n from listing_status_history
+  where listing_id = '40000000-0000-0000-0000-00000000000d' and to_status = 'ACTIVE';
+  if n < 1 then
+    raise exception 'status_history not written on seller transition (got %)', n;
+  end if;
+end;
+$$;
+
+-- Switch to stranger B
+select set_config('request.jwt.claim.sub', '20000000-0000-0000-0000-00000000000b', false);
+
+do $$
+declare n int;
+begin
+  select count(*) into n from listings where id = '40000000-0000-0000-0000-00000000000d';
+  if n <> 1 then
+    raise exception 'RLS: active listing not public (got %)', n;
+  end if;
+
+  select count(*) into n from users where id = '10000000-0000-0000-0000-00000000000a';
+  if n <> 0 then
+    raise exception 'RLS leak: user B can read user A row';
+  end if;
+
+  select count(*) into n from users where phone_e164 = '+989311111111';
+  if n <> 0 then
+    raise exception 'RLS leak: phone numbers readable by strangers';
+  end if;
+end;
+$$;
+
+-- B must not self-grant ADMIN
+do $$
+begin
+  begin
+    insert into user_roles (user_id, role)
+    values ('20000000-0000-0000-0000-00000000000b', 'ADMIN');
+  exception when others then
+    null;
+  end;
+  if exists (
+    select 1 from user_roles
+    where user_id = '20000000-0000-0000-0000-00000000000b' and role = 'ADMIN'
+  ) then
+    raise exception 'Role escalation: user granted ADMIN to self';
+  end if;
+end;
+$$;
+
+-- B must not write favorites as A
+do $$
+begin
+  begin
+    insert into favorites (user_id, listing_id)
+    values ('10000000-0000-0000-0000-00000000000a',
+            '40000000-0000-0000-0000-00000000000d');
+  exception when others then
+    null;
+  end;
+  if exists (
+    select 1 from favorites
+    where user_id = '10000000-0000-0000-0000-00000000000a'
+  ) then
+    raise exception 'RLS: B wrote favorites for A';
+  end if;
+end;
+$$;
+
+-- B cannot update A listing
+do $$
+declare n int;
+begin
+  update listings set price_rial = 1
+  where id = '40000000-0000-0000-0000-00000000000d';
+
+  get diagnostics n = row_count;
+  if n <> 0 then
+    raise exception 'RLS: stranger updated listing (rows=%)', n;
+  end if;
+end;
+$$;
+
+-- ---- Seller wizard RPC smoke (as seller A) ----
+select set_config('request.jwt.claim.sub', '10000000-0000-0000-0000-00000000000a', false);
+
+do $$
+declare
+  v_created jsonb;
+  v_listing uuid;
+  v_status listing_status;
+  v_count int;
+  v_ok boolean;
+begin
+  -- create draft: property + listing atomically
+  v_created := public.seller_create_draft(
+    jsonb_build_object(
+      'property_type', 'APARTMENT',
+      'area_sqm', 95,
+      'bedrooms', 2,
+      'city', 'Tehran',
+      'province', 'Tehran',
+      'neighborhood', 'Yangi',
+      'description', 'smoke draft'
+    ),
+    jsonb_build_object(
+      'deal_type', 'SALE',
+      'price_rial', 4200000000
+    )
+  );
+  if v_created is null or v_created->>'listing_id' is null then
+    raise exception 'seller_create_draft returned null';
+  end if;
+  v_listing := (v_created->>'listing_id')::uuid;
+  if v_created->>'property_id' is null then
+    raise exception 'seller_create_draft missing property_id';
+  end if;
+
+  select status into v_status from listings where id = v_listing;
+  if v_status is distinct from 'DRAFT'::listing_status then
+    raise exception 'seller_create_draft status expected DRAFT got %', v_status;
+  end if;
+
+  select count(*) into v_count from listing_status_history
+  where listing_id = v_listing and to_status = 'DRAFT';
+  if v_count < 1 then
+    raise exception 'draft history missing';
+  end if;
+
+  -- publish
+  v_status := public.seller_set_status(v_listing, 'ACTIVE');
+  if v_status <> 'ACTIVE' then
+    raise exception 'publish failed: %', v_status;
+  end if;
+
+  select published_at is not null into v_ok from listings where id = v_listing;
+  if v_ok is distinct from true then
+    raise exception 'published_at not set on ACTIVE';
+  end if;
+
+  -- illegal: ACTIVE -> DRAFT
+  begin
+    perform public.seller_set_status(v_listing, 'DRAFT');
+    raise exception 'guard bypassed: ACTIVE to DRAFT was allowed';
+  exception
+    when raise_exception then
+      if sqlerrm like 'illegal transition%' then
+        null; -- expected guard error
+      else
+        raise;
+      end if;
+  end;
+
+  -- pause then resume then sold
+  v_status := public.seller_set_status(v_listing, 'PAUSED');
+  if v_status <> 'PAUSED' then
+    raise exception 'pause failed';
+  end if;
+  v_status := public.seller_set_status(v_listing, 'ACTIVE');
+  if v_status <> 'ACTIVE' then
+    raise exception 'resume failed';
+  end if;
+  v_status := public.seller_set_status(v_listing, 'SOLD');
+  if v_status <> 'SOLD' then
+    raise exception 'mark sold failed';
+  end if;
+
+  -- media metadata insert on own property
+  insert into property_media (property_id, storage_path, media_type, mime_type, byte_size, sort_order, is_cover)
+  select property_id, 'smoke/' || id || '/cover.jpg', 'image', 'image/jpeg', 12345, 0, true
+  from listings where id = v_listing;
+end;
+$$;
+
+-- ---- Stranger B must not transition or see A's draft ----
+select set_config('request.jwt.claim.sub', '20000000-0000-0000-0000-00000000000b', false);
+
+do $$
+declare
+  v_listing uuid;
+begin
+  select id into v_listing from listings
+  where seller_id = '10000000-0000-0000-0000-00000000000a'
+    and status = 'SOLD'
+  limit 1;
+
+  begin
+    perform public.seller_set_status(v_listing, 'ACTIVE');
+    raise exception 'stranger transitioned A listing';
+  exception
+    when raise_exception then
+      if sqlerrm like 'listing not found%' then
+        null; -- expected ownership guard
+      elsif sqlerrm = 'stranger transitioned A listing' then
+        raise;
+      else
+        raise;
+      end if;
+  end;
+
+  -- stranger cannot insert media on A's fixture property
+  begin
+    insert into property_media (property_id, storage_path, media_type, mime_type, byte_size)
+    values ('30000000-0000-0000-0000-00000000000c', 'evil/' || gen_random_uuid() || '.jpg',
+            'image', 'image/jpeg', 100);
+    raise exception 'stranger inserted media on A property';
+  exception
+    when others then
+      if sqlerrm = 'stranger inserted media on A property' then
+        raise;
+      end if;
+  end;
+end;
+$$;
+
+
+-- ---- Phase 5: agent dashboard + matching (as agent) ----
+select set_config('request.jwt.claim.sub', '50000000-0000-0000-0000-00000000000e', false);
+
+do $$
+declare
+  v_stats jsonb;
+  v_n int;
+  v_score numeric;
+begin
+  v_stats := public.agent_dashboard_stats();
+  if (v_stats->>'files_active')::int < 1 then
+    raise exception 'agent dashboard files_active expected >=1 got %', v_stats->>'files_active';
+  end if;
+  if (v_stats->>'leads_new')::int < 1 then
+    raise exception 'agent dashboard leads_new expected >=1';
+  end if;
+  if (v_stats->>'visits_pending')::int < 1 then
+    raise exception 'agent dashboard visits_pending expected >=1';
+  end if;
+
+  v_n := public.refresh_lead_matches('53000000-0000-0000-0000-000000000002');
+  if v_n < 1 then
+    raise exception 'refresh_lead_matches produced no matches (got %)', v_n;
+  end if;
+
+  select m.score into v_score
+  from matches m
+  where m.requirement_id = '54000000-0000-0000-0000-000000000003'
+    and m.listing_id = '52000000-0000-0000-0000-000000000001';
+  if v_score is null or v_score < 0 or v_score > 100 then
+    raise exception 'match score out of range or missing: %', v_score;
+  end if;
+  -- fixture listing satisfies city+budget+area+bedrooms+elevator → high score
+  if v_score < 70 then
+    raise exception 'expected strong match score, got %', v_score;
+  end if;
+
+  -- agent reads visits for own files
+  select count(*) into v_n from visits where listing_id = '52000000-0000-0000-0000-000000000001';
+  if v_n <> 1 then
+    raise exception 'agent cannot read own visit (got %)', v_n;
+  end if;
+end;
+$$;
+
+-- agent confirms the visit (party update)
+update visits set status = 'CONFIRMED'
+where id = '55000000-0000-0000-0000-000000000004';
+
+-- agent requirement upsert round-trip
+do $$
+declare v_id uuid;
+begin
+  v_id := public.agent_upsert_requirement(
+    '53000000-0000-0000-0000-000000000002', 'SALE',
+    4000000000, 6500000000, 80, 110, array[2,3], array['Tehran'], null);
+  if v_id is null then
+    raise exception 'agent_upsert_requirement returned null';
+  end if;
+  if not exists (select 1 from buyer_requirements where id = v_id and lead_id is not null) then
+    raise exception 'requirement lead link missing';
+  end if;
+end;
+$$;
+
+-- ---- Phase 5: stranger C contacts (lead created once, then dedup) ----
+select set_config('request.jwt.claim.sub', '60000000-0000-0000-0000-00000000000c', false);
+
+do $$
+declare
+  r record;
+  v_n int;
+begin
+  select * into r from public.listing_contact('52000000-0000-0000-0000-000000000001');
+  if r.lead_created is not true then
+    raise exception 'first contact should create a lead (got %)', r.lead_created;
+  end if;
+
+  select * into r from public.listing_contact('52000000-0000-0000-0000-000000000001');
+  if r.lead_created is not false then
+    raise exception 'second contact must dedup (got %)', r.lead_created;
+  end if;
+
+  -- (lead row itself is agent-scoped under RLS; counted below as superuser)
+
+  -- C is not the agent and not a party: cannot read the buyer requirement
+  select count(*) into v_n from buyer_requirements
+  where id = '54000000-0000-0000-0000-000000000003';
+  if v_n <> 0 then
+    raise exception 'RLS leak: stranger read buyer requirement';
+  end if;
+
+  -- C is not a listing party: assignment rejected
+  begin
+    perform public.assign_agent('52000000-0000-0000-0000-000000000001', '+9893111111114');
+    raise exception 'assign_agent allowed for non-party';
+  exception
+    when raise_exception then
+      if sqlerrm = 'assign_agent allowed for non-party' then
+        raise;
+      elsif sqlerrm = 'not a listing party' then
+        null;
+      else
+        raise;
+      end if;
+  end;
+
+  -- C cannot refresh matches of someone else's lead
+  begin
+    perform public.refresh_lead_matches('53000000-0000-0000-0000-000000000002');
+    raise exception 'refresh_lead_matches allowed for non-agent';
+  exception
+    when raise_exception then
+      if sqlerrm = 'refresh_lead_matches allowed for non-agent' then
+        raise;
+      elsif sqlerrm = 'lead not found or not owned' then
+        null;
+      else
+        raise;
+      end if;
+  end;
+end;
+$$;
+
+-- ---- Phase 5: seller A assigns the (already assigned) agent; bad phone rejected ----
+select set_config('request.jwt.claim.sub', '10000000-0000-0000-0000-00000000000a', false);
+
+do $$
+declare v_agent uuid;
+begin
+  v_agent := (public.assign_agent('52000000-0000-0000-0000-000000000001', '+9893111111113')->>'agent_id')::uuid;
+  if v_agent is distinct from '50000000-0000-0000-0000-00000000000e'::uuid then
+    raise exception 'assign_agent did not resolve AGENT role holder';
+  end if;
+
+  begin
+    perform public.assign_agent('52000000-0000-0000-0000-000000000001', '+9893111111114');
+    raise exception 'assigned non-agent phone';
+  exception
+    when raise_exception then
+      if sqlerrm = 'assigned non-agent phone' then
+        raise;
+      elsif sqlerrm = 'no active agent with this phone' then
+        null;
+      else
+        raise;
+      end if;
+  end;
+end;
+$$;
+
+reset role;
+
+-- ---- Superuser verification: exactly one contact lead was created ----
+do $$
+declare v_n int;
+begin
+  select count(*) into v_n from leads
+  where buyer_id = '60000000-0000-0000-0000-00000000000c'
+    and agent_id = '50000000-0000-0000-0000-00000000000e'
+    and source = 'contact';
+  if v_n <> 1 then
+    raise exception 'expected exactly one contact lead (got %)', v_n;
+  end if;
+end;
+$$;
+
+-- ---- Phase 6: conversation entry, read receipts, message notifications ----
+set role app_user;
+
+create temp table p6 (conv uuid, conv_agent_seller uuid, visit1 uuid);
+
+select set_config('request.jwt.claim.sub', '20000000-0000-0000-0000-00000000000b', false);
+
+do $$
+declare
+  v1 uuid;
+  v2 uuid;
+  v_n int;
+  v_agent uuid := '50000000-0000-0000-0000-00000000000e';
+  v_list jsonb;
+  v_item jsonb;
+begin
+  -- buyer starts (or finds) the conversation with the listing's agent
+  v1 := public.start_conversation('52000000-0000-0000-0000-000000000001');
+  if v1 is null then
+    raise exception 'start_conversation returned null';
+  end if;
+  v2 := public.start_conversation('52000000-0000-0000-0000-000000000001');
+  if v2 is distinct from v1 then
+    raise exception 'start_conversation not idempotent (% vs %)', v1, v2;
+  end if;
+  insert into p6 (conv) values (v1);
+
+  -- participant can read the conversation row (no policy recursion)
+  select count(*) into v_n from conversations where id = v1;
+  if v_n <> 1 then
+    raise exception 'participant cannot read own conversation (got %)', v_n;
+  end if;
+
+  -- stranger cannot see the conversation rows
+  perform set_config('request.jwt.claim.sub', '60000000-0000-0000-0000-00000000000c', false);
+  select count(*) into v_n from conversations where id = v1;
+  if v_n <> 0 then
+    raise exception 'RLS leak: stranger read conversation';
+  end if;
+  select count(*) into v_n from messages where conversation_id = v1;
+  if v_n <> 0 then
+    raise exception 'RLS leak: stranger read messages';
+  end if;
+
+  -- stranger cannot post into the conversation
+  begin
+    insert into messages (conversation_id, sender_id, body)
+    values (v1, '60000000-0000-0000-0000-00000000000c', 'spam');
+    raise exception 'non-participant message insert allowed';
+  exception
+    when insufficient_privilege then
+      null;
+    when raise_exception then
+      if sqlerrm = 'non-participant message insert allowed' then
+        raise;
+      else
+        raise;
+      end if;
+  end;
+
+  -- my_conversations(): buyer sees the conversation with unread + counterpart
+  perform set_config('request.jwt.claim.sub', '20000000-0000-0000-0000-00000000000b', false);
+  v_list := public.my_conversations();
+  if jsonb_typeof(v_list) <> 'array' or jsonb_array_length(v_list) < 1 then
+    raise exception 'my_conversations empty for buyer';
+  end if;
+  select elem into v_item from jsonb_array_elements(v_list) elem
+  where elem->>'conversation_id' = v1::text;
+  if v_item is null then
+    raise exception 'my_conversations missing the conversation';
+  end if;
+  if v_item->>'counterpart_id' <> '50000000-0000-0000-0000-00000000000e' then
+    raise exception 'my_conversations counterpart wrong: %', v_item->>'counterpart_id';
+  end if;
+
+  -- back to the buyer: message + read receipt
+  perform set_config('request.jwt.claim.sub', '20000000-0000-0000-0000-00000000000b', false);
+  insert into messages (conversation_id, sender_id, body)
+  values (v1, '20000000-0000-0000-0000-00000000000b', 'سلام، آپارتمان موجود است؟');
+
+  update conversation_participants
+    set last_read_at = now()
+    where conversation_id = v1 and user_id = '20000000-0000-0000-0000-00000000000b';
+  if not exists (
+    select 1 from conversation_participants
+    where conversation_id = v1
+      and user_id = '20000000-0000-0000-0000-00000000000b'
+      and last_read_at is not null
+  ) then
+    raise exception 'own last_read_at update failed';
+  end if;
+
+  -- updating ANOTHER participant row must affect 0 rows
+  update conversation_participants
+    set last_read_at = now()
+    where conversation_id = v1 and user_id = v_agent;
+  get diagnostics v_n = row_count;
+  if v_n <> 0 then
+    raise exception 'RLS leak: buyer updated agent participant row';
+  end if;
+
+  -- agent sees the notification created by the message trigger
+  perform set_config('request.jwt.claim.sub', '50000000-0000-0000-0000-00000000000e', false);
+  select count(*) into v_n
+  from notifications
+  where user_id = v_agent and type = 'message';
+  if v_n < 1 then
+    raise exception 'message notification for agent missing';
+  end if;
+
+  -- agent starts a conversation on own listing -> pair (agent, seller), distinct conv
+  v2 := public.start_conversation('52000000-0000-0000-0000-000000000001');
+  if v2 is null or v2 = v1 then
+    raise exception 'agent-side start_conversation wrong (%, %)', v2, v1;
+  end if;
+  update p6 set conv_agent_seller = v2;
+end;
+$$;
+
+-- ---- Phase 6: visit double-book guard + visit notifications ----
+select set_config('request.jwt.claim.sub', '20000000-0000-0000-0000-00000000000b', false);
+
+do $$
+declare
+  v_slot timestamptz := now() + interval '5 day';
+  v_visit uuid;
+  v_n int;
+begin
+  insert into visits (listing_id, buyer_id, slot_start, slot_end)
+  values ('52000000-0000-0000-0000-000000000001', '20000000-0000-0000-0000-00000000000b',
+          v_slot, v_slot + interval '1 hour')
+  returning id into v_visit;
+  update p6 set visit1 = v_visit;
+
+  -- insert trigger notified the listing's agent
+  perform set_config('request.jwt.claim.sub', '50000000-0000-0000-0000-00000000000e', false);
+  select count(*) into v_n
+  from notifications
+  where user_id = '50000000-0000-0000-0000-00000000000e'
+    and type = 'visit_requested';
+  if v_n < 1 then
+    raise exception 'visit_requested notification missing';
+  end if;
+  perform set_config('request.jwt.claim.sub', '20000000-0000-0000-0000-00000000000b', false);
+
+  -- double book on the same slot must hit the unique guard
+  begin
+    insert into visits (listing_id, buyer_id, slot_start, slot_end)
+    values ('52000000-0000-0000-0000-000000000001', '20000000-0000-0000-0000-00000000000b',
+            v_slot, v_slot + interval '1 hour');
+    raise exception 'double book allowed';
+  exception
+    when unique_violation then
+      null;
+    when raise_exception then
+      if sqlerrm = 'double book allowed' then
+        raise;
+      else
+        raise;
+      end if;
+  end;
+
+  -- cancelling releases the slot; buyer notification for the status change
+  update visits set status = 'CANCELLED' where id = v_visit;
+  select count(*) into v_n
+  from notifications
+  where user_id = '20000000-0000-0000-0000-00000000000b'
+    and type = 'visit_status';
+  if v_n < 1 then
+    raise exception 'visit_status notification for buyer missing';
+  end if;
+
+  insert into visits (listing_id, buyer_id, slot_start, slot_end)
+  values ('52000000-0000-0000-0000-000000000001', '20000000-0000-0000-0000-00000000000b',
+          v_slot, v_slot + interval '1 hour');
+end;
+$$;
+
+reset role;
+-- ---- Phase 7: reports, freshness, verification, moderation, fraud signals ----
+reset role;
+
+insert into users (id, phone_e164, phone_verified_at, status)
+values ('70000000-0000-0000-0000-0000000000aa', '+9893111111115', now(), 'active')
+on conflict (id) do nothing;
+
+insert into user_roles (user_id, role)
+values ('70000000-0000-0000-0000-0000000000aa', 'ADMIN')
+on conflict do nothing;
+
+update listings
+  set last_verified_at = now() - interval '60 days',
+      freshness = 'stale'
+where id = 'bbbbbbbb-0000-0000-0000-000000000001';
+
+set role app_user;
+
+create temp table p7 (report1 uuid);
+
+do $$
+declare
+  v_l uuid := 'bbbbbbbb-0000-0000-0000-000000000001';
+  v_seller uuid := '11111111-1111-1111-1111-111111111111';
+  v_buyer uuid := '20000000-0000-0000-0000-00000000000b';
+  v_admin uuid := '70000000-0000-0000-0000-0000000000aa';
+  v_agent uuid := '50000000-0000-0000-0000-00000000000e';
+  v_report uuid;
+  v_f text;
+  v_status text;
+  v_n int;
+  v_q jsonb;
+  v_flags jsonb;
+begin
+  -- 1) buyer files a report (session required)
+  perform set_config('request.jwt.claim.sub', v_buyer::text, false);
+  v_report := public.report_listing(v_l, 'قیمت بازار نیست', 'گزارش تست فاز ۷');
+  insert into p7 values (v_report);
+  if v_report is null then
+    raise exception 'report_listing returned null';
+  end if;
+
+  -- admin gets the queue feed notification (read with the admin session:
+  -- notifications RLS is self-only)
+  perform set_config('request.jwt.claim.sub', v_admin::text, false);
+  select count(*) into v_n from notifications
+  where user_id = v_admin and title = 'report_filed';
+  if v_n < 1 then
+    raise exception 'report_filed admin notification missing';
+  end if;
+
+  -- 2) open duplicate rejected
+  perform set_config('request.jwt.claim.sub', v_buyer::text, false);
+  begin
+    perform public.report_listing(v_l, 'قیمت بازار نیست', null);
+    raise exception 'P7_FAIL: duplicate report accepted';
+  exception when raise_exception then
+    if sqlerrm like 'P7_FAIL:%' then raise; end if;
+  end;
+
+  -- 3) seller cannot report own listing
+  perform set_config('request.jwt.claim.sub', v_seller::text, false);
+  begin
+    perform public.report_listing(v_l, 'دلیل نامعتبر', null);
+    raise exception 'P7_FAIL: own-listing report accepted';
+  exception when raise_exception then
+    if sqlerrm like 'P7_FAIL:%' then raise; end if;
+  end;
+
+  -- 4) freshness confirmation is party-only; seller resets staleness
+  perform set_config('request.jwt.claim.sub', v_buyer::text, false);
+  begin
+    perform public.confirm_listing(v_l);
+    raise exception 'P7_FAIL: non-party confirm accepted';
+  exception when raise_exception then
+    if sqlerrm like 'P7_FAIL:%' then raise; end if;
+  end;
+
+  perform set_config('request.jwt.claim.sub', v_seller::text, false);
+  select public.confirm_listing(v_l) into v_f;
+  if v_f <> 'fresh' then
+    raise exception 'confirm_listing did not reset freshness (got %)', v_f;
+  end if;
+
+  -- 5) verification lifecycle: unverified -> pending (party) ...
+  select public.request_listing_verification(v_l) into v_status;
+  if v_status <> 'pending' then
+    raise exception 'expected pending, got %', v_status;
+  end if;
+
+  -- non-party request rejected
+  perform set_config('request.jwt.claim.sub', v_buyer::text, false);
+  begin
+    perform public.request_listing_verification(v_l);
+    raise exception 'P7_FAIL: non-party verification request accepted';
+  exception when raise_exception then
+    if sqlerrm like 'P7_FAIL:%' then raise; end if;
+  end;
+
+  -- 6) moderation queue: admin sees report + pending verification, buyer cannot
+  perform set_config('request.jwt.claim.sub', v_admin::text, false);
+  select public.moderation_queue() into v_q;
+  if (v_q->'counts'->>'open_reports')::int < 1 then
+    raise exception 'queue open_reports < 1';
+  end if;
+  if (v_q->'counts'->>'pending_verifications')::int < 1 then
+    raise exception 'queue pending_verifications < 1';
+  end if;
+  if jsonb_array_length(v_q->'reports') < 1 then
+    raise exception 'queue reports array empty';
+  end if;
+  if jsonb_array_length(v_q->'verifications') < 1 then
+    raise exception 'queue verifications array empty';
+  end if;
+  if not exists (
+    select 1 from jsonb_array_elements(v_q->'reports') e
+    where e->>'id' = (select report1 from p7)::text
+  ) then
+    raise exception 'queue missing the filed report';
+  end if;
+
+  perform set_config('request.jwt.claim.sub', v_buyer::text, false);
+  begin
+    select public.moderation_queue() into v_q;
+    raise exception 'P7_FAIL: non-admin queue access';
+  exception when raise_exception then
+    if sqlerrm like 'P7_FAIL:%' then raise; end if;
+  end;
+
+  -- non-admin verification decision rejected
+  perform set_config('request.jwt.claim.sub', v_buyer::text, false);
+  begin
+    perform public.admin_set_listing_verification(v_l, 'rejected');
+    raise exception 'P7_FAIL: non-admin decision accepted';
+  exception when raise_exception then
+    if sqlerrm like 'P7_FAIL:%' then raise; end if;
+  end;
+
+  -- 7) fraud flags: open report is visible with evidence; no invented price call
+  select public.listing_risk_signals(v_l) into v_flags;
+  if jsonb_typeof(v_flags->'flags') <> 'array' then
+    raise exception 'risk flags not an array';
+  end if;
+  if not (v_flags->'flags') @> '[{"code": "OPEN_REPORTS"}]'::jsonb then
+    raise exception 'OPEN_REPORTS flag missing: %', v_flags;
+  end if;
+  if not (v_flags->'flags') @> '[{"code": "PRICE_UNKNOWN"}]'::jsonb
+     and not (v_flags->'flags') @> '[{"code": "PRICE_OUTLIER_HIGH"}]'::jsonb
+     and not (v_flags->'flags') @> '[{"code": "PRICE_OUTLIER_LOW"}]'::jsonb
+  then
+    raise exception 'price assessed without any price flag: %', v_flags;
+  end if;
+
+  -- 8) admin decides verification -> verified + owner notified
+  perform set_config('request.jwt.claim.sub', v_admin::text, false);
+  select public.admin_set_listing_verification(v_l, 'verified') into v_status;
+  if v_status <> 'verified' then
+    raise exception 'admin decision failed: %', v_status;
+  end if;
+
+  -- seller reads own notification (self-only RLS) and re-requests idempotently
+  perform set_config('request.jwt.claim.sub', v_seller::text, false);
+  select count(*) into v_n from notifications
+  where user_id = v_seller and title = 'verification_status';
+  if v_n < 1 then
+    raise exception 'verification_status notification for seller missing';
+  end if;
+
+  select public.request_listing_verification(v_l) into v_status;
+  if v_status <> 'verified' then
+    raise exception 'verification request after verified should stay verified, got %', v_status;
+  end if;
+
+  -- 9) admin resolves the report -> reporter notified; readers scoped by RLS
+  perform set_config('request.jwt.claim.sub', v_admin::text, false);
+  update reports set status = 'actioned' where id = (select report1 from p7);
+
+  perform set_config('request.jwt.claim.sub', v_buyer::text, false);
+  select count(*) into v_n from notifications
+  where user_id = v_buyer and title = 'report_status';
+  if v_n < 1 then
+    raise exception 'report_status notification for reporter missing';
+  end if;
+
+  select count(*) into v_n from reports where id = (select report1 from p7);
+  if v_n <> 1 then
+    raise exception 'reporter cannot read own report (got %)', v_n;
+  end if;
+
+  perform set_config('request.jwt.claim.sub', v_agent::text, false);
+  select count(*) into v_n from reports where id = (select report1 from p7);
+  if v_n <> 0 then
+    raise exception 'stranger leak on reports (got %)', v_n;
+  end if;
+end;
+$$;
+
+-- verification artifacts: assert as superuser (table has no client read policy)
+reset role;
+do $$
+declare v_n int;
+begin
+  select count(*) into v_n
+  from property_verifications
+  where listing_id = 'bbbbbbbb-0000-0000-0000-000000000001'
+    and kind = 'completeness'
+    and status = 'passed';
+  if v_n < 1 then
+    raise exception 'passed property_verifications row missing (got %)', v_n;
+  end if;
+end;
+$$;
+
+set role app_user;
+select set_config('request.jwt.claim.sub', '', false);
+
+rollback;
+
+select 'RLS_SMOKE_OK' as result;

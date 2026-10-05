@@ -1,0 +1,453 @@
+package ir.chardivari.feature.property
+
+import androidx.lifecycle.SavedStateHandle
+import app.cash.turbine.test
+import ir.chardivari.core.analytics.AnalyticsEvent
+import ir.chardivari.core.analytics.AnalyticsTracker
+import ir.chardivari.core.common.AppError
+import ir.chardivari.core.common.AppResult
+import ir.chardivari.core.common.UiState
+import ir.chardivari.core.marketplace.ChatMessage
+import ir.chardivari.core.marketplace.ChatRepository
+import ir.chardivari.core.marketplace.ConversationItem
+import ir.chardivari.core.marketplace.DealType
+import ir.chardivari.core.marketplace.FavoritesRepository
+import ir.chardivari.core.marketplace.MyVisit
+import ir.chardivari.core.marketplace.TrustRepository
+import ir.chardivari.core.marketplace.VisitsRepository
+import ir.chardivari.core.marketplace.Listing
+import ir.chardivari.core.marketplace.ListingContact
+import ir.chardivari.core.marketplace.ListingContactRepository
+import ir.chardivari.core.marketplace.ListingRepository
+import ir.chardivari.core.marketplace.PropertyDto
+import ir.chardivari.core.marketplace.PropertyType
+import ir.chardivari.core.marketplace.SearchFilters
+import ir.chardivari.core.marketplace.StorageBaseUrl
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.test.UnconfinedTestDispatcher
+import kotlinx.coroutines.test.resetMain
+import kotlinx.coroutines.test.runTest
+import kotlinx.coroutines.test.setMain
+import org.junit.After
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertNotNull
+import org.junit.Assert.assertNull
+import org.junit.Assert.assertTrue
+import org.junit.Before
+import org.junit.Test
+
+@OptIn(ExperimentalCoroutinesApi::class)
+class PropertyDetailViewModelTest {
+
+    private val dispatcher = UnconfinedTestDispatcher()
+
+    private class RecordingTracker : AnalyticsTracker {
+        val recorded = mutableListOf<AnalyticsEvent>()
+        private val flow = MutableSharedFlow<AnalyticsEvent>(extraBufferCapacity = 16)
+        override val events: SharedFlow<AnalyticsEvent> = flow
+        override fun track(event: AnalyticsEvent) {
+            recorded += event
+        }
+    }
+
+    private class FakeListings(
+        var result: AppResult<Listing> = AppResult.Success(sampleListing()),
+    ) : ListingRepository {
+        override suspend fun feed(limit: Int) = AppResult.Empty
+        override suspend fun search(filters: SearchFilters, limit: Int) = AppResult.Empty
+        override suspend fun byId(listingId: String): AppResult<Listing> = result
+
+        companion object {
+            fun sampleListing() = Listing(
+                id = "l1",
+                propertyId = "p1",
+                dealType = DealType.SALE,
+                priceRial = 1L,
+                depositRial = null,
+                rentRial = null,
+                status = "ACTIVE",
+                publishedAt = null,
+                verificationStatus = "unverified",
+                freshness = "fresh",
+                dataSource = "REAL",
+                property = PropertyDto(
+                    id = "p1",
+                    propertyType = PropertyType.APARTMENT,
+                    areaSqm = 1,
+                    city = "x",
+                    province = "y",
+                ),
+            )
+        }
+    }
+
+    private class FakeFavorites(
+        var result: AppResult<Unit> = AppResult.Success(Unit),
+    ) : FavoritesRepository {
+        var last: Pair<String, Boolean>? = null
+        override suspend fun favoriteIds(): AppResult<Set<String>> = AppResult.Success(emptySet())
+        override suspend fun setFavorite(listingId: String, favorite: Boolean): AppResult<Unit> {
+            last = listingId to favorite
+            return result
+        }
+    }
+
+    private class FakeContacts(
+        var result: AppResult<ListingContact> = AppResult.Success(
+            ListingContact("+989121111111", "مشاور", "agent"),
+        ),
+    ) : ListingContactRepository {
+        override suspend fun contact(listingId: String) = result
+    }
+
+    private class FakeChat(
+        var startResult: AppResult<String> = AppResult.Success("c1"),
+    ) : ChatRepository {
+        override suspend fun conversations(): AppResult<List<ConversationItem>> =
+            AppResult.Empty
+        override suspend fun startConversation(listingId: String) = startResult
+        override suspend fun messages(conversationId: String): AppResult<List<ChatMessage>> =
+            AppResult.Empty
+        override suspend fun sendMessage(
+            conversationId: String,
+            body: String,
+        ): AppResult<ChatMessage> = AppResult.Empty
+        override suspend fun markRead(conversationId: String) = AppResult.Success(Unit)
+    }
+
+    private class FakeTrust(
+        var reportResult: AppResult<String> = AppResult.Success("r1"),
+    ) : TrustRepository {
+        var lastReport: Triple<String, String, String?>? = null
+        override suspend fun reportListing(
+            listingId: String,
+            reason: String,
+            detail: String?,
+        ): AppResult<String> {
+            lastReport = Triple(listingId, reason, detail)
+            return reportResult
+        }
+        override suspend fun confirmListing(listingId: String): AppResult<String> =
+            AppResult.Success("fresh")
+        override suspend fun requestVerification(listingId: String): AppResult<String> =
+            AppResult.Success("pending")
+    }
+
+    private class FakeVisits(
+        var requestResult: AppResult<Unit> = AppResult.Success(Unit),
+    ) : VisitsRepository {
+        var lastRequest: Triple<String, String, String>? = null
+        override suspend fun myVisits(): AppResult<List<MyVisit>> = AppResult.Empty
+        override suspend fun requestVisit(
+            listingId: String,
+            slotStart: String,
+            slotEnd: String,
+        ): AppResult<Unit> {
+            lastRequest = Triple(listingId, slotStart, slotEnd)
+            return requestResult
+        }
+        override suspend fun cancelVisit(visitId: String) = AppResult.Success(Unit)
+    }
+
+    @Before
+    fun setUp() {
+        Dispatchers.setMain(dispatcher)
+    }
+
+    @After
+    fun tearDown() {
+        Dispatchers.resetMain()
+    }
+
+    private fun vm(
+        listings: FakeListings = FakeListings(),
+        favorites: FakeFavorites = FakeFavorites(),
+        contacts: FakeContacts = FakeContacts(),
+        chat: FakeChat = FakeChat(),
+        visits: FakeVisits = FakeVisits(),
+        trust: FakeTrust = FakeTrust(),
+        tracker: RecordingTracker = RecordingTracker(),
+    ) = PropertyDetailViewModel(
+        savedStateHandle = SavedStateHandle(mapOf("propertyId" to "l1")),
+        listings = listings,
+        favorites = favorites,
+        contacts = contacts,
+        chat = chat,
+        visits = visits,
+        trust = trust,
+        storage = StorageBaseUrl("https://x.supabase.co"),
+        analytics = tracker,
+    )
+
+    @Test
+    fun load_success_emitsDetailAndTracksView() = runTest(dispatcher.scheduler) {
+        val tracker = RecordingTracker()
+        val viewModel = vm(tracker = tracker)
+
+        viewModel.uiState.test {
+            val state = expectMostRecentItem()
+            assertTrue(state is UiState.Content)
+            assertEquals("l1", (state as UiState.Content).data.detail.listingId)
+            cancel()
+        }
+        assertTrue(tracker.recorded.any { it.name == "property_view" })
+    }
+
+    @Test
+    fun load_empty_emitsEmpty() = runTest(dispatcher.scheduler) {
+        val viewModel = vm(listings = FakeListings(AppResult.Empty))
+        viewModel.uiState.test {
+            assertEquals(UiState.Empty, expectMostRecentItem())
+            cancel()
+        }
+    }
+
+    @Test
+    fun toggleFavorite_success_updatesStateAndTracks() = runTest(dispatcher.scheduler) {
+        val tracker = RecordingTracker()
+        val favorites = FakeFavorites()
+        val viewModel = vm(favorites = favorites, tracker = tracker)
+
+        viewModel.uiState.test {
+            expectMostRecentItem() // initial content (may be loading then content)
+            // wait until content
+        }
+        // Ensure content
+        val deadline = System.currentTimeMillis() + 2000
+        while (viewModel.uiState.value !is UiState.Content && System.currentTimeMillis() < deadline) {
+            kotlinx.coroutines.delay(10)
+        }
+        assertTrue(viewModel.uiState.value is UiState.Content)
+
+        viewModel.toggleFavorite()
+        val join = System.currentTimeMillis() + 2000
+        while (favorites.last == null && System.currentTimeMillis() < join) {
+            kotlinx.coroutines.delay(10)
+        }
+        assertEquals("l1" to true, favorites.last)
+        val content = viewModel.uiState.value as UiState.Content
+        assertTrue(content.data.detail.isFavorited)
+        assertTrue(tracker.recorded.any { it.name == "property_favorite" })
+    }
+
+    @Test
+    fun toggleFavorite_unauthorized_setsMessage() = runTest(dispatcher.scheduler) {
+        val favorites = FakeFavorites(AppResult.Failure(AppError.Unauthorized))
+        val viewModel = vm(favorites = favorites)
+
+        val deadline = System.currentTimeMillis() + 2000
+        while (viewModel.uiState.value !is UiState.Content && System.currentTimeMillis() < deadline) {
+            kotlinx.coroutines.delay(10)
+        }
+        viewModel.toggleFavorite()
+        val join = System.currentTimeMillis() + 2000
+        while ((viewModel.uiState.value as? UiState.Content)?.data?.favoriteError == null &&
+            System.currentTimeMillis() < join
+        ) {
+            kotlinx.coroutines.delay(10)
+        }
+        val content = viewModel.uiState.value as UiState.Content
+        assertNotNull(content.data.favoriteError)
+        assertFalse(content.data.detail.isFavorited)
+    }
+
+    @Test
+    fun openConversation_success_emitsOpenThread() = runTest(dispatcher.scheduler) {
+        val viewModel = vm(chat = FakeChat(AppResult.Success("conv-9")))
+
+        val deadline = System.currentTimeMillis() + 2000
+        while (viewModel.uiState.value !is UiState.Content && System.currentTimeMillis() < deadline) {
+            kotlinx.coroutines.delay(10)
+        }
+
+        var opened: String? = null
+        viewModel.events.test {
+            viewModel.openConversation()
+            val event = expectMostRecentItem()
+            assertTrue(event is PropertyDetailEvent.OpenThread)
+            opened = (event as PropertyDetailEvent.OpenThread).conversationId
+            cancel()
+        }
+        assertEquals("conv-9", opened)
+    }
+
+    @Test
+    fun openConversation_unauthorized_emitsLogin() = runTest(dispatcher.scheduler) {
+        val viewModel = vm(chat = FakeChat(AppResult.Failure(AppError.Unauthorized)))
+
+        val deadline = System.currentTimeMillis() + 2000
+        while (viewModel.uiState.value !is UiState.Content && System.currentTimeMillis() < deadline) {
+            kotlinx.coroutines.delay(10)
+        }
+
+        viewModel.events.test {
+            viewModel.openConversation()
+            assertEquals(PropertyDetailEvent.LoginRequired, expectMostRecentItem())
+            cancel()
+        }
+    }
+
+    @Test
+    fun submitVisit_success_tracksVisitRequestedAndCloses() = runTest(dispatcher.scheduler) {
+        val tracker = RecordingTracker()
+        val visits = FakeVisits()
+        val viewModel = vm(visits = visits, tracker = tracker)
+
+        val deadline = System.currentTimeMillis() + 2000
+        while (viewModel.uiState.value !is UiState.Content && System.currentTimeMillis() < deadline) {
+            kotlinx.coroutines.delay(10)
+        }
+
+        viewModel.openVisitDialog()
+        viewModel.setVisitDate(1_699_920_000_000L) // 2023-11-14T00:00:00Z
+        viewModel.setVisitTime(11, 30)
+        viewModel.submitVisit()
+
+        val join = System.currentTimeMillis() + 2000
+        while (tracker.recorded.none { it.name == "visit_requested" } &&
+            System.currentTimeMillis() < join
+        ) {
+            kotlinx.coroutines.delay(10)
+        }
+        assertTrue(tracker.recorded.any { it.name == "visit_requested" })
+        val request = visits.lastRequest
+        assertNotNull(request)
+        assertEquals("l1", request!!.first)
+        assertTrue(request.second.endsWith("+03:30"))
+        val content = viewModel.uiState.value as UiState.Content
+        assertNotNull(content.data.visitMessage)
+        assertNull(content.data.visitDialog)
+    }
+
+    @Test
+    fun submitVisit_doubleBook409_showsFriendlyError() = runTest(dispatcher.scheduler) {
+        val visits = FakeVisits(
+            requestResult = AppResult.Failure(AppError.Client(409, "duplicate key")),
+        )
+        val viewModel = vm(visits = visits)
+
+        val deadline = System.currentTimeMillis() + 2000
+        while (viewModel.uiState.value !is UiState.Content && System.currentTimeMillis() < deadline) {
+            kotlinx.coroutines.delay(10)
+        }
+
+        viewModel.openVisitDialog()
+        viewModel.setVisitDate(1_699_920_000_000L)
+        viewModel.submitVisit()
+
+        val join = System.currentTimeMillis() + 2000
+        while ((viewModel.uiState.value as? UiState.Content)?.data?.visitDialog?.error == null &&
+            System.currentTimeMillis() < join
+        ) {
+            kotlinx.coroutines.delay(10)
+        }
+        val content = viewModel.uiState.value as UiState.Content
+        val error = content.data.visitDialog?.error
+        assertNotNull(error)
+        assertTrue(error!!.contains("رزرو"))
+    }
+
+    @Test
+    fun buildSlotIso_usesTehranOffsetAndHourAdvance() {
+        // Any 2023-11-14 UTC instant: date parts are read in UTC, the wall
+        // clock is applied in Tehran (+03:30) and +1h advances the end slot.
+        val date = 1_699_920_000_000L // 2023-11-14T00:00:00Z
+        val start = buildSlotIso(date, hour = 10, minute = 30, plusHours = 0)
+        val end = buildSlotIso(date, hour = 10, minute = 30, plusHours = 1)
+        assertEquals("2023-11-14T10:30:00+03:30", start)
+        assertEquals("2023-11-14T11:30:00+03:30", end)
+    }
+
+    @Test
+    fun submitReport_success_tracksAndCloses() = runTest(dispatcher.scheduler) {
+        val tracker = RecordingTracker()
+        val trust = FakeTrust()
+        val viewModel = vm(trust = trust, tracker = tracker)
+
+        val deadline = System.currentTimeMillis() + 2000
+        while (viewModel.uiState.value !is UiState.Content && System.currentTimeMillis() < deadline) {
+            kotlinx.coroutines.delay(10)
+        }
+
+        viewModel.openReportDialog()
+        viewModel.setReportReason("قیمت نامعتبر")
+        viewModel.setReportDetail("توضیح تست")
+        viewModel.submitReport()
+
+        val join = System.currentTimeMillis() + 2000
+        while (tracker.recorded.none { it.name == "report_submitted" } &&
+            System.currentTimeMillis() < join
+        ) {
+            kotlinx.coroutines.delay(10)
+        }
+        assertTrue(tracker.recorded.any { it.name == "report_submitted" })
+        assertEquals("l1", trust.lastReport?.first)
+        assertEquals("price_invalid", trust.lastReport?.second)
+        val content = viewModel.uiState.value as UiState.Content
+        assertNotNull(content.data.reportMessage)
+        assertNull(content.data.reportDialog)
+    }
+
+    @Test
+    fun submitReport_withoutReason_setsError() = runTest(dispatcher.scheduler) {
+        val trust = FakeTrust()
+        val viewModel = vm(trust = trust)
+
+        val deadline = System.currentTimeMillis() + 2000
+        while (viewModel.uiState.value !is UiState.Content && System.currentTimeMillis() < deadline) {
+            kotlinx.coroutines.delay(10)
+        }
+
+        viewModel.openReportDialog()
+        viewModel.submitReport()
+
+        val content = viewModel.uiState.value as UiState.Content
+        assertNotNull(content.data.reportDialog?.error)
+        assertNull(trust.lastReport)
+    }
+
+    @Test
+    fun submitReport_unauthorized_emitsLogin() = runTest(dispatcher.scheduler) {
+        val trust = FakeTrust(reportResult = AppResult.Failure(AppError.Unauthorized))
+        val viewModel = vm(trust = trust)
+
+        val deadline = System.currentTimeMillis() + 2000
+        while (viewModel.uiState.value !is UiState.Content && System.currentTimeMillis() < deadline) {
+            kotlinx.coroutines.delay(10)
+        }
+
+        viewModel.openReportDialog()
+        viewModel.setReportReason("سایر")
+        viewModel.setReportDetail("توضیح")
+
+        viewModel.events.test {
+            viewModel.submitReport()
+            assertEquals(PropertyDetailEvent.LoginRequired, expectMostRecentItem())
+            cancel()
+        }
+    }
+
+    @Test
+    fun submitReport_otherReason_requiresDetail() = runTest(dispatcher.scheduler) {
+        val trust = FakeTrust()
+        val viewModel = vm(trust = trust)
+
+        val deadline = System.currentTimeMillis() + 2000
+        while (viewModel.uiState.value !is UiState.Content && System.currentTimeMillis() < deadline) {
+            kotlinx.coroutines.delay(10)
+        }
+
+        viewModel.openReportDialog()
+        viewModel.setReportReason("سایر")
+        viewModel.submitReport()
+
+        val content = viewModel.uiState.value as UiState.Content
+        assertNotNull(content.data.reportDialog?.error)
+        assertNull(trust.lastReport)
+    }
+}
+
