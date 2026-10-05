@@ -1,220 +1,124 @@
-=== CI FAILURE CAPTURE 2026-10-04T02:13:34Z ===
+=== CI FAILURE CAPTURE 2026-10-05T03:04:08Z ===
 
 ########## /tmp/test-log.txt : FAILURE HEADERS ##########
-590:MessagingViewModelsTest > thread_send_failure_setsErrorAndKeepsInput FAILED
-593:MessagingViewModelsTest > thread_realtimeEvent_appendsDeduplicated FAILED
-596:MessagingViewModelsTest > notifications_markRead_flipsLocalAndCallsServer FAILED
-598:        Caused by: java.lang.IllegalStateException at MessagingViewModelsTest.kt:194
-599:            Caused by: java.lang.IllegalStateException at MessagingViewModelsTest.kt:194
-600:                Caused by: java.lang.RuntimeException at MessagingViewModelsTest.kt:194
-602:MessagingViewModelsTest > thread_send_success_appendsAndClearsInput FAILED
-605:MessagingViewModelsTest > thread_init_loadsMessagesAndMarksRead FAILED
-610:> Task :feature:messaging:testDebugUnitTest FAILED
-613:FAILURE: Build failed with an exception.
-615:* What went wrong:
-655:Caused by: org.gradle.api.internal.exceptions.MarkedVerificationException: There were failing tests. See the report at: file:///home/runner/work/4Divari/4Divari/feature/messaging/build/reports/tests/testDebugUnitTest/index.html
-789:BUILD FAILED in 1m 47s
+5:FAILURE: Build failed with an exception.
+10:* What went wrong:
+210:BUILD FAILED in 21s
 
 ########## /tmp/test-log.txt : FAILED CONTEXT (30 lines each) ##########
-588-> Task :feature:messaging:testDebugUnitTest
-589-
-590:MessagingViewModelsTest > thread_send_failure_setsErrorAndKeepsInput FAILED
-591-    org.junit.runners.model.TestTimedOutException at MessagingViewModelsTest.kt:279
-592-
-593:MessagingViewModelsTest > thread_realtimeEvent_appendsDeduplicated FAILED
-594-    org.junit.runners.model.TestTimedOutException at MessagingViewModelsTest.kt:302
-595-
-596:MessagingViewModelsTest > notifications_markRead_flipsLocalAndCallsServer FAILED
-597-    kotlinx.coroutines.DispatchException at MessagingViewModelsTest.kt:194
-598-        Caused by: java.lang.IllegalStateException at MessagingViewModelsTest.kt:194
-599-            Caused by: java.lang.IllegalStateException at MessagingViewModelsTest.kt:194
-600-                Caused by: java.lang.RuntimeException at MessagingViewModelsTest.kt:194
-601-
-602:MessagingViewModelsTest > thread_send_success_appendsAndClearsInput FAILED
-603-    org.junit.runners.model.TestTimedOutException at MessagingViewModelsTest.kt:245
-604-
-605:MessagingViewModelsTest > thread_init_loadsMessagesAndMarksRead FAILED
-606-    org.junit.runners.model.TestTimedOutException at MessagingViewModelsTest.kt:214
-607-
-608-9 tests completed, 5 failed
-609-
-610:> Task :feature:messaging:testDebugUnitTest FAILED
-611-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/tests-1791079870021.json
-612-
-613-FAILURE: Build failed with an exception.
-614-
-615-* What went wrong:
-616-Execution failed for task ':feature:messaging:testDebugUnitTest'.
-617-> There were failing tests. See the report at: file:///home/runner/work/4Divari/4Divari/feature/messaging/build/reports/tests/testDebugUnitTest/index.html
-618-
-619-* Try:
-620-> Run with --scan to get full insights.
-621-
-622-* Exception is:
-623-org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':feature:messaging:testDebugUnitTest'.
-624-	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.lambda$executeIfValid$1(ExecuteActionsTaskExecuter.java:130)
-625-	at org.gradle.internal.Try$Failure.ifSuccessfulOrElse(Try.java:293)
-626-	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.executeIfValid(ExecuteActionsTaskExecuter.java:128)
-627-	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.execute(ExecuteActionsTaskExecuter.java:116)
-628-	at org.gradle.api.internal.tasks.execution.FinalizePropertiesTaskExecuter.execute(FinalizePropertiesTaskExecuter.java:46)
-629-	at org.gradle.api.internal.tasks.execution.ResolveTaskExecutionModeExecuter.execute(ResolveTaskExecutionModeExecuter.java:51)
-630-	at org.gradle.api.internal.tasks.execution.SkipTaskWithNoActionsExecuter.execute(SkipTaskWithNoActionsExecuter.java:57)
-631-	at org.gradle.api.internal.tasks.execution.SkipOnlyIfTaskExecuter.execute(SkipOnlyIfTaskExecuter.java:74)
-632-	at org.gradle.api.internal.tasks.execution.CatchExceptionTaskExecuter.execute(CatchExceptionTaskExecuter.java:36)
-633-	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter$1.executeTask(EventFiringTaskExecuter.java:77)
-634-	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter$1.call(EventFiringTaskExecuter.java:55)
-635-	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter$1.call(EventFiringTaskExecuter.java:52)
-636-	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:209)
-637-	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:204)
-638-	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
-639-	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
-640-	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:166)
---
-787-
-788-
-789:BUILD FAILED in 1m 47s
-790-445 actionable tasks: 97 executed, 348 from cache
+208-
+209-
+210:BUILD FAILED in 21s
 
 ########## /tmp/test-log.txt (first 80 lines) ##########
 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.11.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
 Daemon will be stopped at the end of the build 
-> Task :core:analytics:preBuild UP-TO-DATE
-> Task :core:auth:preBuild UP-TO-DATE
-> Task :core:common:preBuild UP-TO-DATE
-> Task :app:preBuild UP-TO-DATE
-> Task :app:preDebugBuild UP-TO-DATE
-> Task :core:common:preDebugBuild UP-TO-DATE
-> Task :core:auth:preDebugBuild UP-TO-DATE
-> Task :core:analytics:preDebugBuild UP-TO-DATE
-> Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
-> Task :app:generateDebugBuildConfig FROM-CACHE
-> Task :core:designsystem:preBuild UP-TO-DATE
-> Task :core:designsystem:preDebugBuild UP-TO-DATE
-> Task :core:common:writeDebugAarMetadata
-> Task :core:analytics:writeDebugAarMetadata
-> Task :core:environment:preBuild UP-TO-DATE
-> Task :core:environment:preDebugBuild UP-TO-DATE
-> Task :core:auth:writeDebugAarMetadata
-> Task :core:navigation:preBuild UP-TO-DATE
-> Task :core:navigation:preDebugBuild UP-TO-DATE
-> Task :core:marketplace:preBuild UP-TO-DATE
-> Task :core:marketplace:preDebugBuild UP-TO-DATE
-> Task :core:designsystem:writeDebugAarMetadata
-> Task :core:network:preBuild UP-TO-DATE
-> Task :core:network:preDebugBuild UP-TO-DATE
-> Task :core:network:writeDebugAarMetadata
-> Task :core:navigation:writeDebugAarMetadata
-> Task :core:ui:preBuild UP-TO-DATE
-> Task :core:ui:preDebugBuild UP-TO-DATE
-> Task :feature:admin:preBuild UP-TO-DATE
-> Task :feature:admin:preDebugBuild UP-TO-DATE
-> Task :core:environment:writeDebugAarMetadata
-> Task :feature:agent:preBuild UP-TO-DATE
-> Task :feature:agent:preDebugBuild UP-TO-DATE
-> Task :core:marketplace:writeDebugAarMetadata
-> Task :feature:auth:preBuild UP-TO-DATE
-> Task :feature:auth:preDebugBuild UP-TO-DATE
-> Task :feature:agent:writeDebugAarMetadata
-> Task :feature:home:preBuild UP-TO-DATE
-> Task :core:ui:writeDebugAarMetadata
-> Task :feature:home:preDebugBuild UP-TO-DATE
-> Task :feature:messaging:preBuild UP-TO-DATE
-> Task :feature:messaging:preDebugBuild UP-TO-DATE
-> Task :feature:auth:writeDebugAarMetadata
-> Task :feature:profile:preBuild UP-TO-DATE
-> Task :feature:profile:preDebugBuild UP-TO-DATE
-> Task :feature:admin:writeDebugAarMetadata
-> Task :feature:property:preBuild UP-TO-DATE
-> Task :feature:property:preDebugBuild UP-TO-DATE
-> Task :feature:messaging:writeDebugAarMetadata
-> Task :feature:profile:writeDebugAarMetadata
-> Task :feature:saved:preBuild UP-TO-DATE
-> Task :feature:saved:preDebugBuild UP-TO-DATE
-> Task :feature:property:writeDebugAarMetadata
-> Task :feature:search:preBuild UP-TO-DATE
-> Task :feature:home:writeDebugAarMetadata
-> Task :feature:seller:preBuild UP-TO-DATE
-> Task :feature:search:preDebugBuild UP-TO-DATE
-> Task :feature:seller:preDebugBuild UP-TO-DATE
-> Task :feature:seller:writeDebugAarMetadata
-> Task :feature:search:writeDebugAarMetadata
-> Task :app:generateDebugResValues FROM-CACHE
-> Task :feature:saved:writeDebugAarMetadata
-> Task :core:common:generateDebugResValues FROM-CACHE
-> Task :core:analytics:generateDebugResValues FROM-CACHE
-> Task :core:auth:generateDebugResValues FROM-CACHE
-> Task :core:common:generateDebugResources FROM-CACHE
-> Task :core:analytics:generateDebugResources FROM-CACHE
-> Task :core:auth:generateDebugResources FROM-CACHE
-> Task :core:analytics:packageDebugResources FROM-CACHE
-> Task :core:common:packageDebugResources FROM-CACHE
-> Task :core:designsystem:generateDebugResValues FROM-CACHE
-> Task :core:environment:generateDebugResValues FROM-CACHE
-> Task :core:auth:packageDebugResources FROM-CACHE
-> Task :core:designsystem:generateDebugResources FROM-CACHE
-> Task :core:environment:generateDebugResources FROM-CACHE
-> Task :core:marketplace:generateDebugResValues FROM-CACHE
-> Task :core:marketplace:generateDebugResources FROM-CACHE
-> Task :core:environment:packageDebugResources FROM-CACHE
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/tests-1791169416124.json
+
+FAILURE: Build failed with an exception.
+
+* Where:
+Build file '/home/runner/work/4Divari/4Divari/app/build.gradle.kts' line: 101
+
+* What went wrong:
+Project with path ':core:ai' could not be found in project ':app'.
+
+* Try:
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+* Exception is:
+org.gradle.api.UnknownProjectException: Project with path ':core:ai' could not be found in project ':app'.
+	at org.gradle.api.internal.project.DefaultProject.project(DefaultProject.java:715)
+	at org.gradle.api.internal.project.DefaultProject.project(DefaultProject.java:708)
+	at org.gradle.internal.service.scopes.DefaultProjectFinder.getProject(DefaultProjectFinder.java:33)
+	at org.gradle.api.internal.notations.ProjectDependencyFactory$ProjectDependencyMapNotationConverter.parseMap(ProjectDependencyFactory.java:55)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at org.gradle.internal.typeconversion.MapNotationConverter.parseType(MapNotationConverter.java:93)
+	at org.gradle.internal.typeconversion.MapNotationConverter.parseType(MapNotationConverter.java:40)
+	at org.gradle.internal.typeconversion.TypedNotationConverter.convert(TypedNotationConverter.java:43)
+	at org.gradle.internal.typeconversion.NotationConverterToNotationParserAdapter.parseNotation(NotationConverterToNotationParserAdapter.java:31)
+	at org.gradle.internal.typeconversion.JustReturningParser.parseNotation(JustReturningParser.java:40)
+	at org.gradle.internal.typeconversion.ErrorHandlingNotationParser.parseNotation(ErrorHandlingNotationParser.java:48)
+	at org.gradle.api.internal.notations.ProjectDependencyFactory.createFromMap(ProjectDependencyFactory.java:38)
+	at org.gradle.api.internal.artifacts.DefaultDependencyFactory.createProjectDependencyFromMap(DefaultDependencyFactory.java:108)
+	at org.gradle.api.internal.artifacts.dsl.dependencies.DefaultDependencyHandler.project(DefaultDependencyHandler.java:238)
+	at org.gradle.kotlin.dsl.support.delegates.DependencyHandlerDelegate.project(DependencyHandlerDelegate.kt:87)
+	at org.gradle.kotlin.dsl.DependencyHandlerExtensionsKt.project(DependencyHandlerExtensions.kt:255)
+	at org.gradle.kotlin.dsl.DependencyHandlerExtensionsKt.project$default(DependencyHandlerExtensions.kt:249)
+	at Build_gradle$2.invoke(build.gradle.kts:101)
+	at Build_gradle$2.invoke(build.gradle.kts:90)
+	at org.gradle.kotlin.dsl.ProjectExtensionsKt.dependencies(ProjectExtensions.kt:237)
+	at Build_gradle.<init>(build.gradle.kts:90)
+	at Program.execute(Unknown Source)
+	at org.gradle.kotlin.dsl.execution.Interpreter$ProgramHost.eval(Interpreter.kt:516)
+	at org.gradle.kotlin.dsl.execution.Interpreter$ProgramHost.evaluateSecondStageOf(Interpreter.kt:445)
+	at Program.execute(Unknown Source)
+	at org.gradle.kotlin.dsl.execution.Interpreter$ProgramHost.eval(Interpreter.kt:516)
+	at org.gradle.kotlin.dsl.execution.Interpreter.eval(Interpreter.kt:214)
+	at org.gradle.kotlin.dsl.provider.StandardKotlinScriptEvaluator.evaluate(KotlinScriptEvaluator.kt:130)
+	at org.gradle.kotlin.dsl.provider.KotlinScriptPluginFactory$create$1.invoke(KotlinScriptPluginFactory.kt:46)
+	at org.gradle.kotlin.dsl.provider.KotlinScriptPluginFactory$create$1.invoke(KotlinScriptPluginFactory.kt:43)
+	at org.gradle.kotlin.dsl.provider.KotlinScriptPlugin.apply(KotlinScriptPlugin.kt:35)
+	at org.gradle.configuration.BuildOperationScriptPlugin$1.run(BuildOperationScriptPlugin.java:68)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOperationRunner.java:29)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOperationRunner.java:26)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:166)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:59)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.run(DefaultBuildOperationRunner.java:47)
+	at org.gradle.configuration.BuildOperationScriptPlugin.lambda$apply$0(BuildOperationScriptPlugin.java:65)
+	at org.gradle.internal.code.DefaultUserCodeApplicationContext.apply(DefaultUserCodeApplicationContext.java:44)
+	at org.gradle.configuration.BuildOperationScriptPlugin.apply(BuildOperationScriptPlugin.java:65)
+	at org.gradle.api.internal.project.DefaultProjectStateRegistry$ProjectStateImpl.lambda$applyToMutableState$1(DefaultProjectStateRegistry.java:411)
+	at org.gradle.api.internal.project.DefaultProjectStateRegistry$ProjectStateImpl.fromMutableState(DefaultProjectStateRegistry.java:429)
+	at org.gradle.api.internal.project.DefaultProjectStateRegistry$ProjectStateImpl.applyToMutableState(DefaultProjectStateRegistry.java:410)
+	at org.gradle.configuration.project.BuildScriptProcessor.execute(BuildScriptProcessor.java:46)
+	at org.gradle.configuration.project.BuildScriptProcessor.execute(BuildScriptProcessor.java:27)
+	at org.gradle.configuration.project.ConfigureActionsProjectEvaluator.evaluate(ConfigureActionsProjectEvaluator.java:35)
+	at org.gradle.configuration.project.LifecycleProjectEvaluator$EvaluateProject.lambda$run$0(LifecycleProjectEvaluator.java:109)
+	at org.gradle.api.internal.project.DefaultProjectStateRegistry$ProjectStateImpl.lambda$applyToMutableState$1(DefaultProjectStateRegistry.java:411)
+	at org.gradle.api.internal.project.DefaultProjectStateRegistry$ProjectStateImpl.lambda$fromMutableState$2(DefaultProjectStateRegistry.java:434)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.withReplacedLocks(DefaultWorkerLeaseService.java:359)
+	at org.gradle.api.internal.project.DefaultProjectStateRegistry$ProjectStateImpl.fromMutableState(DefaultProjectStateRegistry.java:434)
+	at org.gradle.api.internal.project.DefaultProjectStateRegistry$ProjectStateImpl.applyToMutableState(DefaultProjectStateRegistry.java:410)
+	at org.gradle.configuration.project.LifecycleProjectEvaluator$EvaluateProject.run(LifecycleProjectEvaluator.java:100)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOperationRunner.java:29)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOperationRunner.java:26)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
 
 ########## /tmp/test-log.txt (last 80 lines) ##########
-	at org.gradle.internal.Try$Success.map(Try.java:175)
-	at org.gradle.internal.execution.steps.BuildCacheStep.executeWithCache(BuildCacheStep.java:85)
-	at org.gradle.internal.execution.steps.BuildCacheStep.lambda$execute$0(BuildCacheStep.java:74)
-	at org.gradle.internal.Either$Left.fold(Either.java:115)
-	at org.gradle.internal.execution.caching.CachingState.fold(CachingState.java:62)
-	at org.gradle.internal.execution.steps.BuildCacheStep.execute(BuildCacheStep.java:73)
-	at org.gradle.internal.execution.steps.BuildCacheStep.execute(BuildCacheStep.java:48)
-	at org.gradle.internal.execution.steps.StoreExecutionStateStep.execute(StoreExecutionStateStep.java:46)
-	at org.gradle.internal.execution.steps.StoreExecutionStateStep.execute(StoreExecutionStateStep.java:35)
-	at org.gradle.internal.execution.steps.SkipUpToDateStep.executeBecause(SkipUpToDateStep.java:75)
-	at org.gradle.internal.execution.steps.SkipUpToDateStep.lambda$execute$2(SkipUpToDateStep.java:53)
-	at org.gradle.internal.execution.steps.SkipUpToDateStep.execute(SkipUpToDateStep.java:53)
-	at org.gradle.internal.execution.steps.SkipUpToDateStep.execute(SkipUpToDateStep.java:35)
-	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsFinishedStep.execute(MarkSnapshottingInputsFinishedStep.java:37)
-	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsFinishedStep.execute(MarkSnapshottingInputsFinishedStep.java:27)
-	at org.gradle.internal.execution.steps.ResolveIncrementalCachingStateStep.executeDelegate(ResolveIncrementalCachingStateStep.java:49)
-	at org.gradle.internal.execution.steps.ResolveIncrementalCachingStateStep.executeDelegate(ResolveIncrementalCachingStateStep.java:27)
-	at org.gradle.internal.execution.steps.AbstractResolveCachingStateStep.execute(AbstractResolveCachingStateStep.java:71)
-	at org.gradle.internal.execution.steps.AbstractResolveCachingStateStep.execute(AbstractResolveCachingStateStep.java:39)
-	at org.gradle.internal.execution.steps.ResolveChangesStep.execute(ResolveChangesStep.java:65)
-	at org.gradle.internal.execution.steps.ResolveChangesStep.execute(ResolveChangesStep.java:36)
-	at org.gradle.internal.execution.steps.ValidateStep.execute(ValidateStep.java:107)
-	at org.gradle.internal.execution.steps.ValidateStep.execute(ValidateStep.java:56)
-	at org.gradle.internal.execution.steps.AbstractCaptureStateBeforeExecutionStep.execute(AbstractCaptureStateBeforeExecutionStep.java:64)
-	at org.gradle.internal.execution.steps.AbstractCaptureStateBeforeExecutionStep.execute(AbstractCaptureStateBeforeExecutionStep.java:43)
-	at org.gradle.internal.execution.steps.AbstractSkipEmptyWorkStep.executeWithNonEmptySources(AbstractSkipEmptyWorkStep.java:125)
-	at org.gradle.internal.execution.steps.AbstractSkipEmptyWorkStep.execute(AbstractSkipEmptyWorkStep.java:61)
-	at org.gradle.internal.execution.steps.AbstractSkipEmptyWorkStep.execute(AbstractSkipEmptyWorkStep.java:36)
-	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsStartedStep.execute(MarkSnapshottingInputsStartedStep.java:38)
-	at org.gradle.internal.execution.steps.LoadPreviousExecutionStateStep.execute(LoadPreviousExecutionStateStep.java:36)
-	at org.gradle.internal.execution.steps.LoadPreviousExecutionStateStep.execute(LoadPreviousExecutionStateStep.java:23)
-	at org.gradle.internal.execution.steps.HandleStaleOutputsStep.execute(HandleStaleOutputsStep.java:75)
-	at org.gradle.internal.execution.steps.HandleStaleOutputsStep.execute(HandleStaleOutputsStep.java:41)
-	at org.gradle.internal.execution.steps.AssignMutableWorkspaceStep.lambda$execute$0(AssignMutableWorkspaceStep.java:35)
-	at org.gradle.api.internal.tasks.execution.TaskExecution$4.withWorkspace(TaskExecution.java:289)
-	at org.gradle.internal.execution.steps.AssignMutableWorkspaceStep.execute(AssignMutableWorkspaceStep.java:31)
-	at org.gradle.internal.execution.steps.AssignMutableWorkspaceStep.execute(AssignMutableWorkspaceStep.java:22)
-	at org.gradle.internal.execution.steps.ChoosePipelineStep.execute(ChoosePipelineStep.java:40)
-	at org.gradle.internal.execution.steps.ChoosePipelineStep.execute(ChoosePipelineStep.java:23)
-	at org.gradle.internal.execution.steps.ExecuteWorkBuildOperationFiringStep.lambda$execute$2(ExecuteWorkBuildOperationFiringStep.java:67)
-	at org.gradle.internal.execution.steps.ExecuteWorkBuildOperationFiringStep.execute(ExecuteWorkBuildOperationFiringStep.java:67)
-	at org.gradle.internal.execution.steps.ExecuteWorkBuildOperationFiringStep.execute(ExecuteWorkBuildOperationFiringStep.java:39)
-	at org.gradle.internal.execution.steps.IdentityCacheStep.execute(IdentityCacheStep.java:46)
-	at org.gradle.internal.execution.steps.IdentityCacheStep.execute(IdentityCacheStep.java:34)
-	at org.gradle.internal.execution.steps.IdentifyStep.execute(IdentifyStep.java:48)
-	at org.gradle.internal.execution.steps.IdentifyStep.execute(IdentifyStep.java:35)
-	at org.gradle.internal.execution.impl.DefaultExecutionEngine$1.execute(DefaultExecutionEngine.java:61)
-	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.executeIfValid(ExecuteActionsTaskExecuter.java:127)
-	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.execute(ExecuteActionsTaskExecuter.java:116)
-	at org.gradle.api.internal.tasks.execution.FinalizePropertiesTaskExecuter.execute(FinalizePropertiesTaskExecuter.java:46)
-	at org.gradle.api.internal.tasks.execution.ResolveTaskExecutionModeExecuter.execute(ResolveTaskExecutionModeExecuter.java:51)
-	at org.gradle.api.internal.tasks.execution.SkipTaskWithNoActionsExecuter.execute(SkipTaskWithNoActionsExecuter.java:57)
-	at org.gradle.api.internal.tasks.execution.SkipOnlyIfTaskExecuter.execute(SkipOnlyIfTaskExecuter.java:74)
-	at org.gradle.api.internal.tasks.execution.CatchExceptionTaskExecuter.execute(CatchExceptionTaskExecuter.java:36)
-	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter$1.executeTask(EventFiringTaskExecuter.java:77)
-	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter$1.call(EventFiringTaskExecuter.java:55)
-	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter$1.call(EventFiringTaskExecuter.java:52)
+	at org.gradle.internal.buildtree.DefaultBuildTreeLifecycleController.lambda$runBuild$4(DefaultBuildTreeLifecycleController.java:120)
+	at org.gradle.internal.model.StateTransitionController.lambda$transition$6(StateTransitionController.java:169)
+	at org.gradle.internal.model.StateTransitionController.doTransition(StateTransitionController.java:266)
+	at org.gradle.internal.model.StateTransitionController.lambda$transition$7(StateTransitionController.java:169)
+	at org.gradle.internal.work.DefaultSynchronizer.withLock(DefaultSynchronizer.java:46)
+	at org.gradle.internal.model.StateTransitionController.transition(StateTransitionController.java:169)
+	at org.gradle.internal.buildtree.DefaultBuildTreeLifecycleController.runBuild(DefaultBuildTreeLifecycleController.java:117)
+	at org.gradle.internal.buildtree.DefaultBuildTreeLifecycleController.scheduleAndRunTasks(DefaultBuildTreeLifecycleController.java:77)
+	at org.gradle.internal.buildtree.DefaultBuildTreeLifecycleController.scheduleAndRunTasks(DefaultBuildTreeLifecycleController.java:72)
+	at org.gradle.tooling.internal.provider.ExecuteBuildActionRunner.run(ExecuteBuildActionRunner.java:31)
+	at org.gradle.launcher.exec.ChainingBuildActionRunner.run(ChainingBuildActionRunner.java:35)
+	at org.gradle.internal.buildtree.ProblemReportingBuildActionRunner.run(ProblemReportingBuildActionRunner.java:49)
+	at org.gradle.launcher.exec.BuildOutcomeReportingBuildActionRunner.run(BuildOutcomeReportingBuildActionRunner.java:66)
+	at org.gradle.tooling.internal.provider.FileSystemWatchingBuildActionRunner.run(FileSystemWatchingBuildActionRunner.java:140)
+	at org.gradle.launcher.exec.BuildCompletionNotifyingBuildActionRunner.run(BuildCompletionNotifyingBuildActionRunner.java:41)
+	at org.gradle.launcher.exec.RootBuildLifecycleBuildActionExecutor.lambda$execute$0(RootBuildLifecycleBuildActionExecutor.java:54)
+	at org.gradle.composite.internal.DefaultRootBuildState.run(DefaultRootBuildState.java:130)
+	at org.gradle.launcher.exec.RootBuildLifecycleBuildActionExecutor.execute(RootBuildLifecycleBuildActionExecutor.java:54)
+	at org.gradle.internal.buildtree.InitDeprecationLoggingActionExecutor.execute(InitDeprecationLoggingActionExecutor.java:62)
+	at org.gradle.internal.buildtree.InitProblems.execute(InitProblems.java:36)
+	at org.gradle.internal.buildtree.DefaultBuildTreeContext.execute(DefaultBuildTreeContext.java:40)
+	at org.gradle.launcher.exec.BuildTreeLifecycleBuildActionExecutor.lambda$execute$0(BuildTreeLifecycleBuildActionExecutor.java:71)
+	at org.gradle.internal.buildtree.BuildTreeState.run(BuildTreeState.java:60)
+	at org.gradle.launcher.exec.BuildTreeLifecycleBuildActionExecutor.execute(BuildTreeLifecycleBuildActionExecutor.java:71)
+	at org.gradle.launcher.exec.RunAsBuildOperationBuildActionExecutor$3.call(RunAsBuildOperationBuildActionExecutor.java:61)
+	at org.gradle.launcher.exec.RunAsBuildOperationBuildActionExecutor$3.call(RunAsBuildOperationBuildActionExecutor.java:57)
 	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:209)
 	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:204)
 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
@@ -222,377 +126,157 @@ Daemon will be stopped at the end of the build
 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:166)
 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:59)
 	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:53)
-	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter.execute(EventFiringTaskExecuter.java:52)
-	at org.gradle.execution.plan.LocalTaskNodeExecutor.execute(LocalTaskNodeExecutor.java:42)
-	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$InvokeNodeExecutorsAction.execute(DefaultTaskExecutionGraph.java:331)
-	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$InvokeNodeExecutorsAction.execute(DefaultTaskExecutionGraph.java:318)
-	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.lambda$execute$0(DefaultTaskExecutionGraph.java:314)
-	at org.gradle.internal.operations.CurrentBuildOperationRef.with(CurrentBuildOperationRef.java:85)
-	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.execute(DefaultTaskExecutionGraph.java:314)
-	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.execute(DefaultTaskExecutionGraph.java:303)
-	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.execute(DefaultPlanExecutor.java:459)
-	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.run(DefaultPlanExecutor.java:376)
+	at org.gradle.launcher.exec.RunAsBuildOperationBuildActionExecutor.execute(RunAsBuildOperationBuildActionExecutor.java:57)
+	at org.gradle.launcher.exec.RunAsWorkerThreadBuildActionExecutor.lambda$execute$0(RunAsWorkerThreadBuildActionExecutor.java:36)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocks(DefaultWorkerLeaseService.java:263)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:127)
+	at org.gradle.launcher.exec.RunAsWorkerThreadBuildActionExecutor.execute(RunAsWorkerThreadBuildActionExecutor.java:36)
+	at org.gradle.tooling.internal.provider.continuous.ContinuousBuildActionExecutor.execute(ContinuousBuildActionExecutor.java:110)
+	at org.gradle.tooling.internal.provider.SubscribableBuildActionExecutor.execute(SubscribableBuildActionExecutor.java:64)
+	at org.gradle.internal.session.DefaultBuildSessionContext.execute(DefaultBuildSessionContext.java:46)
+	at org.gradle.internal.buildprocess.execution.BuildSessionLifecycleBuildActionExecutor$ActionImpl.apply(BuildSessionLifecycleBuildActionExecutor.java:92)
+	at org.gradle.internal.buildprocess.execution.BuildSessionLifecycleBuildActionExecutor$ActionImpl.apply(BuildSessionLifecycleBuildActionExecutor.java:80)
+	at org.gradle.internal.session.BuildSessionState.run(BuildSessionState.java:71)
+	at org.gradle.internal.buildprocess.execution.BuildSessionLifecycleBuildActionExecutor.execute(BuildSessionLifecycleBuildActionExecutor.java:62)
+	at org.gradle.internal.buildprocess.execution.BuildSessionLifecycleBuildActionExecutor.execute(BuildSessionLifecycleBuildActionExecutor.java:41)
+	at org.gradle.internal.buildprocess.execution.StartParamsValidatingActionExecutor.execute(StartParamsValidatingActionExecutor.java:64)
+	at org.gradle.internal.buildprocess.execution.StartParamsValidatingActionExecutor.execute(StartParamsValidatingActionExecutor.java:32)
+	at org.gradle.internal.buildprocess.execution.SessionFailureReportingActionExecutor.execute(SessionFailureReportingActionExecutor.java:51)
+	at org.gradle.internal.buildprocess.execution.SessionFailureReportingActionExecutor.execute(SessionFailureReportingActionExecutor.java:39)
+	at org.gradle.internal.buildprocess.execution.SetupLoggingActionExecutor.execute(SetupLoggingActionExecutor.java:47)
+	at org.gradle.internal.buildprocess.execution.SetupLoggingActionExecutor.execute(SetupLoggingActionExecutor.java:31)
+	at org.gradle.launcher.daemon.server.exec.ExecuteBuild.doBuild(ExecuteBuild.java:70)
+	at org.gradle.launcher.daemon.server.exec.BuildCommandOnly.execute(BuildCommandOnly.java:37)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.WatchForDisconnection.execute(WatchForDisconnection.java:39)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.ResetDeprecationLogger.execute(ResetDeprecationLogger.java:29)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.RequestStopIfSingleUsedDaemon.execute(RequestStopIfSingleUsedDaemon.java:35)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.ForwardClientInput.lambda$execute$0(ForwardClientInput.java:40)
+	at org.gradle.internal.daemon.clientinput.ClientInputForwarder.forwardInput(ClientInputForwarder.java:80)
+	at org.gradle.launcher.daemon.server.exec.ForwardClientInput.execute(ForwardClientInput.java:37)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.LogAndCheckHealth.execute(LogAndCheckHealth.java:53)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.LogToClient.doBuild(LogToClient.java:63)
+	at org.gradle.launcher.daemon.server.exec.BuildCommandOnly.execute(BuildCommandOnly.java:37)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.EstablishBuildEnvironment.doBuild(EstablishBuildEnvironment.java:84)
+	at org.gradle.launcher.daemon.server.exec.BuildCommandOnly.execute(BuildCommandOnly.java:37)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.StartBuildOrRespondWithBusy$1.run(StartBuildOrRespondWithBusy.java:52)
+	at org.gradle.launcher.daemon.server.DaemonStateCoordinator.lambda$runCommand$0(DaemonStateCoordinator.java:321)
 	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
 	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:48)
 
 
-BUILD FAILED in 1m 47s
-445 actionable tasks: 97 executed, 348 from cache
+BUILD FAILED in 21s
 
 ########## /tmp/detekt-log.txt : FAILURE HEADERS ##########
+5:FAILURE: Build failed with an exception.
+10:* What went wrong:
+19:BUILD FAILED in 8s
 
 ########## /tmp/detekt-log.txt : FAILED CONTEXT (30 lines each) ##########
+17-> Get more help at https://help.gradle.org.
+18-
+19:BUILD FAILED in 8s
 
 ########## /tmp/detekt-log.txt (first 80 lines) ##########
 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.11.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
 Daemon will be stopped at the end of the build 
-> Task :detekt FROM-CACHE
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/detekt-1791079975550.json
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/detekt-1791169434251.json
 
-BUILD SUCCESSFUL in 13s
-1 actionable task: 1 from cache
+FAILURE: Build failed with an exception.
+
+* Where:
+Build file '/home/runner/work/4Divari/4Divari/app/build.gradle.kts' line: 101
+
+* What went wrong:
+Project with path ':core:ai' could not be found in project ':app'.
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 8s
 
 ########## /tmp/detekt-log.txt (last 80 lines) ##########
 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.11.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
 Daemon will be stopped at the end of the build 
-> Task :detekt FROM-CACHE
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/detekt-1791079975550.json
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/detekt-1791169434251.json
 
-BUILD SUCCESSFUL in 13s
-1 actionable task: 1 from cache
+FAILURE: Build failed with an exception.
+
+* Where:
+Build file '/home/runner/work/4Divari/4Divari/app/build.gradle.kts' line: 101
+
+* What went wrong:
+Project with path ':core:ai' could not be found in project ':app'.
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 8s
 
 ########## /tmp/lint-log.txt : FAILURE HEADERS ##########
+5:FAILURE: Build failed with an exception.
+10:* What went wrong:
+19:BUILD FAILED in 8s
 
 ########## /tmp/lint-log.txt : FAILED CONTEXT (30 lines each) ##########
+17-> Get more help at https://help.gradle.org.
+18-
+19:BUILD FAILED in 8s
 
 ########## /tmp/lint-log.txt (first 80 lines) ##########
 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.11.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
 Daemon will be stopped at the end of the build 
-> Task :core:environment:preBuild UP-TO-DATE
-> Task :core:designsystem:checkKotlinGradlePluginConfigurationErrors SKIPPED
-> Task :core:ui:preBuild UP-TO-DATE
-> Task :core:common:checkKotlinGradlePluginConfigurationErrors SKIPPED
-> Task :core:ui:preDebugBuild UP-TO-DATE
-> Task :core:designsystem:preBuild UP-TO-DATE
-> Task :core:common:preBuild UP-TO-DATE
-> Task :core:environment:preDebugBuild UP-TO-DATE
-> Task :core:common:preDebugBuild UP-TO-DATE
-> Task :core:designsystem:preDebugBuild UP-TO-DATE
-> Task :core:common:generateDebugResValues UP-TO-DATE
-> Task :core:designsystem:generateDebugResValues UP-TO-DATE
-> Task :core:common:generateDebugResources UP-TO-DATE
-> Task :core:designsystem:generateDebugResources UP-TO-DATE
-> Task :core:common:packageDebugResources UP-TO-DATE
-> Task :core:designsystem:packageDebugResources UP-TO-DATE
-> Task :core:common:parseDebugLocalResources UP-TO-DATE
-> Task :core:designsystem:parseDebugLocalResources UP-TO-DATE
-> Task :core:designsystem:generateDebugRFile UP-TO-DATE
-> Task :core:common:generateDebugRFile UP-TO-DATE
-> Task :core:ui:mergeDebugJniLibFolders
-> Task :core:environment:mergeDebugJniLibFolders
-> Task :core:environment:mergeDebugNativeLibs NO-SOURCE
-> Task :core:ui:mergeDebugNativeLibs NO-SOURCE
-> Task :core:environment:stripDebugDebugSymbols NO-SOURCE
-> Task :core:ui:stripDebugDebugSymbols NO-SOURCE
-> Task :core:ui:copyDebugJniLibsProjectAndLocalJars
-> Task :core:ui:checkKotlinGradlePluginConfigurationErrors SKIPPED
-> Task :core:environment:copyDebugJniLibsProjectAndLocalJars
-> Task :core:environment:checkKotlinGradlePluginConfigurationErrors SKIPPED
-> Task :core:ui:generateDebugResValues UP-TO-DATE
-> Task :core:environment:generateDebugBuildConfig UP-TO-DATE
-> Task :core:ui:generateDebugResources UP-TO-DATE
-> Task :core:environment:generateDebugResValues UP-TO-DATE
-> Task :core:environment:generateDebugResources UP-TO-DATE
-> Task :core:ui:packageDebugResources UP-TO-DATE
-> Task :core:ui:parseDebugLocalResources UP-TO-DATE
-> Task :core:environment:packageDebugResources UP-TO-DATE
-> Task :core:ui:generateDebugRFile UP-TO-DATE
-> Task :core:environment:parseDebugLocalResources UP-TO-DATE
-> Task :core:environment:generateDebugRFile UP-TO-DATE
-> Task :core:ui:extractDeepLinksForAarDebug FROM-CACHE
-> Task :core:ui:javaPreCompileDebug UP-TO-DATE
-> Task :core:ui:mergeDebugShaders
-> Task :core:ui:compileDebugShaders NO-SOURCE
-> Task :core:ui:generateDebugAssets UP-TO-DATE
-> Task :core:common:compileDebugKotlin UP-TO-DATE
-> Task :core:ui:packageDebugAssets
-> Task :core:common:javaPreCompileDebug UP-TO-DATE
-> Task :core:ui:prepareDebugArtProfile
-> Task :core:common:compileDebugJavaWithJavac NO-SOURCE
-> Task :core:common:bundleLibCompileToJarDebug UP-TO-DATE
-> Task :core:environment:compileDebugKotlin UP-TO-DATE
-> Task :core:ui:prepareLintJarForPublish
-> Task :core:common:mergeDebugJniLibFolders
-> Task :core:common:mergeDebugNativeLibs NO-SOURCE
-> Task :core:ui:processDebugManifest UP-TO-DATE
-> Task :core:common:stripDebugDebugSymbols NO-SOURCE
-> Task :core:ui:writeDebugAarMetadata UP-TO-DATE
-> Task :core:network:preBuild UP-TO-DATE
-> Task :core:network:preDebugBuild UP-TO-DATE
-> Task :core:common:copyDebugJniLibsProjectAndLocalJars
-> Task :core:network:mergeDebugJniLibFolders
-> Task :core:network:mergeDebugNativeLibs NO-SOURCE
-> Task :core:network:stripDebugDebugSymbols NO-SOURCE
-> Task :core:network:copyDebugJniLibsProjectAndLocalJars
-> Task :core:network:checkKotlinGradlePluginConfigurationErrors SKIPPED
-> Task :core:network:generateDebugResValues UP-TO-DATE
-> Task :core:network:generateDebugResources UP-TO-DATE
-> Task :core:network:packageDebugResources UP-TO-DATE
-> Task :core:network:parseDebugLocalResources UP-TO-DATE
-> Task :core:environment:extractDebugAnnotations FROM-CACHE
-> Task :core:environment:extractDeepLinksForAarDebug FROM-CACHE
-> Task :core:network:generateDebugRFile UP-TO-DATE
-> Task :core:environment:javaPreCompileDebug UP-TO-DATE
-> Task :core:network:extractDeepLinksForAarDebug FROM-CACHE
-> Task :core:common:extractDebugAnnotations FROM-CACHE
-> Task :core:environment:compileDebugJavaWithJavac UP-TO-DATE
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/lint-1791169443190.json
+
+FAILURE: Build failed with an exception.
+
+* Where:
+Build file '/home/runner/work/4Divari/4Divari/app/build.gradle.kts' line: 101
+
+* What went wrong:
+Project with path ':core:ai' could not be found in project ':app'.
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 8s
 
 ########## /tmp/lint-log.txt (last 80 lines) ##########
-> Task :feature:seller:generateDebugAndroidTestLintModel
-> Task :feature:seller:preDebugUnitTestBuild UP-TO-DATE
-> Task :feature:search:generateDebugAndroidTestLintModel
-> Task :feature:search:preDebugUnitTestBuild UP-TO-DATE
-> Task :feature:property:lintAnalyzeDebugUnitTest FROM-CACHE
-> Task :core:analytics:generateDebugLintReportModel
-> Task :feature:saved:generateDebugUnitTestLintModel
-> Task :feature:saved:lintAnalyzeDebugAndroidTest FROM-CACHE
-> Task :feature:search:generateDebugUnitTestLintModel
-> Task :feature:saved:lintAnalyzeDebugUnitTest FROM-CACHE
-> Task :feature:seller:generateDebugUnitTestLintModel
-> Task :feature:search:lintAnalyzeDebugAndroidTest FROM-CACHE
-> Task :core:auth:generateDebugLintReportModel
-> Task :feature:search:lintAnalyzeDebugUnitTest FROM-CACHE
-> Task :feature:seller:lintAnalyzeDebugAndroidTest FROM-CACHE
-> Task :core:common:generateDebugLintReportModel
-> Task :feature:seller:lintAnalyzeDebugUnitTest FROM-CACHE
-> Task :core:analytics:lintReportDebug
-> Task :core:analytics:lintDebug
-> Task :core:auth:lintReportDebug
-> Task :core:auth:lintDebug
-> Task :core:environment:generateDebugLintReportModel
-> Task :core:designsystem:generateDebugLintReportModel
-> Task :core:common:lintReportDebug
-> Task :core:common:lintDebug
-> Task :core:marketplace:generateDebugLintReportModel
-> Task :core:environment:lintReportDebug
-> Task :core:environment:lintDebug
-> Task :core:navigation:generateDebugLintReportModel
-> Task :core:marketplace:lintReportDebug
-> Task :core:marketplace:lintDebug
-> Task :core:network:generateDebugLintReportModel
-> Task :core:navigation:lintReportDebug
-> Task :core:navigation:lintDebug
-> Task :core:ui:generateDebugLintReportModel
-> Task :core:designsystem:lintReportDebug
-> Task :core:designsystem:lintDebug
-> Task :core:network:lintReportDebug
-> Task :core:network:lintDebug
-> Task :feature:admin:generateDebugLintReportModel
-> Task :feature:agent:generateDebugLintReportModel
-> Task :core:ui:lintReportDebug
-> Task :core:ui:lintDebug
-> Task :feature:auth:generateDebugLintReportModel
-> Task :feature:admin:lintReportDebug
-> Task :feature:admin:lintDebug
-> Task :feature:home:generateDebugLintReportModel
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.11.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/lint-1791169443190.json
 
-> Task :app:lintReportDebug
-Wrote HTML report to file:///home/runner/work/4Divari/4Divari/app/build/reports/lint-results-debug.html
+FAILURE: Build failed with an exception.
 
-> Task :app:lintDebug
-> Task :feature:messaging:generateDebugLintReportModel
-> Task :feature:agent:lintReportDebug
-> Task :feature:agent:lintDebug
-> Task :feature:profile:generateDebugLintReportModel
-> Task :feature:auth:lintReportDebug
-> Task :feature:auth:lintDebug
-> Task :feature:property:generateDebugLintReportModel
-> Task :feature:home:lintReportDebug
-> Task :feature:home:lintDebug
-> Task :feature:saved:generateDebugLintReportModel
-> Task :feature:messaging:lintReportDebug
-> Task :feature:messaging:lintDebug
-> Task :feature:search:generateDebugLintReportModel
-> Task :feature:profile:lintReportDebug
-> Task :feature:profile:lintDebug
-> Task :feature:property:lintReportDebug
-> Task :feature:property:lintDebug
-> Task :feature:seller:generateDebugLintReportModel
-> Task :feature:saved:lintReportDebug
-> Task :feature:saved:lintDebug
-> Task :feature:search:lintReportDebug
-> Task :feature:search:lintDebug
-> Task :feature:seller:lintReportDebug
-> Task :feature:seller:lintDebug
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/lint-1791079988907.json
+* Where:
+Build file '/home/runner/work/4Divari/4Divari/app/build.gradle.kts' line: 101
 
-BUILD SUCCESSFUL in 28s
-828 actionable tasks: 367 executed, 137 from cache, 324 up-to-date
+* What went wrong:
+Project with path ':core:ai' could not be found in project ':app'.
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 8s
 
 ########## messaging test-results inventory ##########
-total 44
-drwxr-xr-x 3 runner runner  4096 Oct  4 02:12 .
-drwxr-xr-x 3 runner runner  4096 Oct  4 02:11 ..
--rw-r--r-- 1 runner runner 29612 Oct  4 02:12 TEST-ir.chardivari.feature.messaging.MessagingViewModelsTest.xml
-drwxr-xr-x 2 runner runner  4096 Oct  4 02:12 binary
--- feature/messaging/build/test-results/testDebugUnitTest/TEST-ir.chardivari.feature.messaging.MessagingViewModelsTest.xml
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ir.chardivari.feature.messaging.MessagingViewModelsTest" tests="9" skipped="0" failures="5" errors="0" timestamp="2026-10-04T02:11:31" hostname="runnervm8df0l" time="80.11">
-  <properties/>
-  <testcase name="thread_send_failure_setsErrorAndKeepsInput" classname="ir.chardivari.feature.messaging.MessagingViewModelsTest" time="20.053">
-    <failure message="org.junit.runners.model.TestTimedOutException: test timed out after 20 seconds" type="org.junit.runners.model.TestTimedOutException">org.junit.runners.model.TestTimedOutException: test timed out after 20 seconds
-	at java.base@17.0.20.1/java.lang.Throwable.fillInStackTrace(Native Method)
-	at java.base@17.0.20.1/java.lang.Throwable.fillInStackTrace(Throwable.java:798)
-	at java.base@17.0.20.1/java.lang.Throwable.&lt;init&gt;(Throwable.java:271)
-	at app//kotlinx.coroutines.test.internal.TestMainDispatcher$NonConcurrentlyModifiable.getValue(TestMainDispatcher.kt:76)
-	at app//kotlinx.coroutines.test.internal.TestMainDispatcher.getDispatcher(TestMainDispatcher.kt:22)
-	at app//kotlinx.coroutines.test.internal.TestMainDispatcher.isDispatchNeeded(TestMainDispatcher.kt:32)
-	at app//kotlinx.coroutines.internal.DispatchedContinuationKt.safeIsDispatchNeeded(DispatchedContinuation.kt:262)
-	at app//kotlinx.coroutines.DispatchedTaskKt.dispatch(DispatchedTask.kt:144)
-	at app//kotlinx.coroutines.CancellableContinuationImpl.dispatchResume(CancellableContinuationImpl.kt:470)
-	at app//kotlinx.coroutines.CancellableContinuationImpl.resumeImpl$kotlinx_coroutines_core(CancellableContinuationImpl.kt:504)
-	at app//kotlinx.coroutines.CancellableContinuationImpl.resumeImpl$kotlinx_coroutines_core$default(CancellableContinuationImpl.kt:493)
-	at app//kotlinx.coroutines.CancellableContinuationImpl.resumeUndispatched(CancellableContinuationImpl.kt:596)
-	at app//kotlinx.coroutines.test.CancellableContinuationRunnable.run(TestDispatcher.kt:60)
-	at app//kotlinx.coroutines.test.TestDispatcher.processEvent$kotlinx_coroutines_test(TestDispatcher.kt:24)
-	at app//kotlinx.coroutines.test.TestCoroutineScheduler.tryRunNextTaskUnless$kotlinx_coroutines_test(TestCoroutineScheduler.kt:99)
-	at app//kotlinx.coroutines.test.TestCoroutineScheduler.advanceUntilIdleOr$kotlinx_coroutines_test(TestCoroutineScheduler.kt:118)
-	at app//kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt$runTest$2$1.invokeSuspend(TestBuilders.kt:370)
-	at app//kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
-	at app//kotlinx.coroutines.internal.ScopeCoroutine.afterResume(Scopes.kt:35)
-	at app//kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
-	at app//kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
-	at app//kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
-	at app//kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
-	at app//kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:95)
-	at app//kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:69)
-	at app//kotlinx.coroutines.BuildersKt.runBlocking(Unknown Source)
-	at app//kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:47)
-	at app//kotlinx.coroutines.BuildersKt.runBlocking$default(Unknown Source)
-	at app//kotlinx.coroutines.test.TestBuildersJvmKt.createTestResult(TestBuildersJvm.kt:10)
-	at app//kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt.runTest-8Mi8wO0(TestBuilders.kt:309)
-	at app//kotlinx.coroutines.test.TestBuildersKt.runTest-8Mi8wO0(Unknown Source)
-	at app//kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt.runTest-8Mi8wO0(TestBuilders.kt:167)
-	at app//kotlinx.coroutines.test.TestBuildersKt.runTest-8Mi8wO0(Unknown Source)
-	at app//kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt.runTest-8Mi8wO0$default(TestBuilders.kt:159)
-	at app//kotlinx.coroutines.test.TestBuildersKt.runTest-8Mi8wO0$default(Unknown Source)
-	at app//ir.chardivari.feature.messaging.MessagingViewModelsTest.thread_send_failure_setsErrorAndKeepsInput(MessagingViewModelsTest.kt:279)
-	at java.base@17.0.20.1/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base@17.0.20.1/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base@17.0.20.1/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base@17.0.20.1/java.lang.reflect.Method.invoke(Method.java:569)
-	at app//org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
-	at app//org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
-	at app//org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
-	at app//org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
-	at app//org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
-	at app//org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
-	at app//org.junit.internal.runners.statements.FailOnTimeout$CallableStatement.call(FailOnTimeout.java:299)
-	at app//org.junit.internal.runners.statements.FailOnTimeout$CallableStatement.call(FailOnTimeout.java:293)
-	at java.base@17.0.20.1/java.util.concurrent.FutureTask.run(FutureTask.java:264)
-	at java.base@17.0.20.1/java.lang.Thread.run(Thread.java:840)
-</failure>
-  </testcase>
-  <testcase name="conversations_success_emitsContent" classname="ir.chardivari.feature.messaging.MessagingViewModelsTest" time="0.018"/>
-  <testcase name="thread_realtimeEvent_appendsDeduplicated" classname="ir.chardivari.feature.messaging.MessagingViewModelsTest" time="20.003">
-    <failure message="org.junit.runners.model.TestTimedOutException: test timed out after 20 seconds" type="org.junit.runners.model.TestTimedOutException">org.junit.runners.model.TestTimedOutException: test timed out after 20 seconds
-	at java.base@17.0.20.1/java.lang.Throwable.fillInStackTrace(Native Method)
-	at java.base@17.0.20.1/java.lang.Throwable.fillInStackTrace(Throwable.java:798)
-	at java.base@17.0.20.1/java.lang.Throwable.&lt;init&gt;(Throwable.java:271)
-	at app//kotlinx.coroutines.test.internal.TestMainDispatcher$NonConcurrentlyModifiable.getValue(TestMainDispatcher.kt:76)
-	at app//kotlinx.coroutines.test.internal.TestMainDispatcher.getDispatcher(TestMainDispatcher.kt:22)
-	at app//kotlinx.coroutines.test.internal.TestMainDispatcher.isDispatchNeeded(TestMainDispatcher.kt:32)
-	at app//kotlinx.coroutines.internal.DispatchedContinuationKt.safeIsDispatchNeeded(DispatchedContinuation.kt:262)
-	at app//kotlinx.coroutines.DispatchedTaskKt.dispatch(DispatchedTask.kt:144)
-	at app//kotlinx.coroutines.CancellableContinuationImpl.dispatchResume(CancellableContinuationImpl.kt:470)
-	at app//kotlinx.coroutines.CancellableContinuationImpl.resumeImpl$kotlinx_coroutines_core(CancellableContinuationImpl.kt:504)
-	at app//kotlinx.coroutines.CancellableContinuationImpl.resumeImpl$kotlinx_coroutines_core$default(CancellableContinuationImpl.kt:493)
-	at app//kotlinx.coroutines.CancellableContinuationImpl.resumeUndispatched(CancellableContinuationImpl.kt:596)
-	at app//kotlinx.coroutines.test.CancellableContinuationRunnable.run(TestDispatcher.kt:60)
-	at app//kotlinx.coroutines.test.TestDispatcher.processEvent$kotlinx_coroutines_test(TestDispatcher.kt:24)
-	at app//kotlinx.coroutines.test.TestCoroutineScheduler.tryRunNextTaskUnless$kotlinx_coroutines_test(TestCoroutineScheduler.kt:99)
-	at app//kotlinx.coroutines.test.TestCoroutineScheduler.advanceUntilIdleOr$kotlinx_coroutines_test(TestCoroutineScheduler.kt:118)
-	at app//kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt$runTest$2$1.invokeSuspend(TestBuilders.kt:370)
-	at app//kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
-	at app//kotlinx.coroutines.internal.ScopeCoroutine.afterResume(Scopes.kt:35)
-	at app//kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
-	at app//kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
-	at app//kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
-	at app//kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
-	at app//kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:95)
-	at app//kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:69)
-	at app//kotlinx.coroutines.BuildersKt.runBlocking(Unknown Source)
-	at app//kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:47)
-	at app//kotlinx.coroutines.BuildersKt.runBlocking$default(Unknown Source)
-	at app//kotlinx.coroutines.test.TestBuildersJvmKt.createTestResult(TestBuildersJvm.kt:10)
-	at app//kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt.runTest-8Mi8wO0(TestBuilders.kt:309)
-	at app//kotlinx.coroutines.test.TestBuildersKt.runTest-8Mi8wO0(Unknown Source)
-	at app//kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt.runTest-8Mi8wO0(TestBuilders.kt:167)
-	at app//kotlinx.coroutines.test.TestBuildersKt.runTest-8Mi8wO0(Unknown Source)
-	at app//kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt.runTest-8Mi8wO0$default(TestBuilders.kt:159)
-	at app//kotlinx.coroutines.test.TestBuildersKt.runTest-8Mi8wO0$default(Unknown Source)
-	at app//ir.chardivari.feature.messaging.MessagingViewModelsTest.thread_realtimeEvent_appendsDeduplicated(MessagingViewModelsTest.kt:302)
-	at java.base@17.0.20.1/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base@17.0.20.1/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base@17.0.20.1/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base@17.0.20.1/java.lang.reflect.Method.invoke(Method.java:569)
-	at app//org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
-	at app//org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
-	at app//org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
-	at app//org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
-	at app//org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
-	at app//org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
-	at app//org.junit.internal.runners.statements.FailOnTimeout$CallableStatement.call(FailOnTimeout.java:299)
-	at app//org.junit.internal.runners.statements.FailOnTimeout$CallableStatement.call(FailOnTimeout.java:293)
-	at java.base@17.0.20.1/java.util.concurrent.FutureTask.run(FutureTask.java:264)
-	at java.base@17.0.20.1/java.lang.Thread.run(Thread.java:840)
-</failure>
-  </testcase>
-  <testcase name="notifications_markRead_flipsLocalAndCallsServer" classname="ir.chardivari.feature.messaging.MessagingViewModelsTest" time="0.01">
-    <failure message="kotlinx.coroutines.DispatchException: Coroutine dispatcher Dispatchers.Main threw an exception, context = [CoroutineId(13), &quot;coroutine#13&quot;:StandaloneCoroutine{Active}@23939131, Dispatchers.Main]" type="kotlinx.coroutines.DispatchException">kotlinx.coroutines.DispatchException: Coroutine dispatcher Dispatchers.Main threw an exception, context = [CoroutineId(13), &quot;coroutine#13&quot;:StandaloneCoroutine{Active}@23939131, Dispatchers.Main]
-	at app//kotlinx.coroutines.internal.DispatchedContinuationKt.safeIsDispatchNeeded(DispatchedContinuation.kt:264)
-	at app//kotlinx.coroutines.DispatchedTaskKt.dispatch(DispatchedTask.kt:144)
-	at app//kotlinx.coroutines.CancellableContinuationImpl.dispatchResume(CancellableContinuationImpl.kt:470)
-	at app//kotlinx.coroutines.CancellableContinuationImpl.resumeImpl$kotlinx_coroutines_core(CancellableContinuationImpl.kt:504)
-	at app//kotlinx.coroutines.CancellableContinuationImpl.resumeImpl$kotlinx_coroutines_core$default(CancellableContinuationImpl.kt:493)
-	at app//kotlinx.coroutines.CancellableContinuationImpl.resumeUndispatched(CancellableContinuationImpl.kt:596)
-	at app//kotlinx.coroutines.test.CancellableContinuationRunnable.run(TestDispatcher.kt:60)
-	at app//kotlinx.coroutines.test.TestDispatcher.processEvent$kotlinx_coroutines_test(TestDispatcher.kt:24)
-	at app//kotlinx.coroutines.test.TestCoroutineScheduler.tryRunNextTaskUnless$kotlinx_coroutines_test(TestCoroutineScheduler.kt:99)
-	at app//kotlinx.coroutines.test.TestCoroutineScheduler.advanceUntilIdleOr$kotlinx_coroutines_test(TestCoroutineScheduler.kt:118)
-	at app//kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt$runTest$2$1.invokeSuspend(TestBuilders.kt:370)
-	at app//kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
-	at app//kotlinx.coroutines.internal.ScopeCoroutine.afterResume(Scopes.kt:35)
-	at app//kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
-	at app//kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
-	at app//kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
-	at app//kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
-	at app//kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:95)
-	at app//kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:69)
-	at app//kotlinx.coroutines.BuildersKt.runBlocking(Unknown Source)
-	at app//kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:47)
-	at app//kotlinx.coroutines.BuildersKt.runBlocking$default(Unknown Source)
-	at app//kotlinx.coroutines.test.TestBuildersJvmKt.createTestResult(TestBuildersJvm.kt:10)
-	at app//kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt.runTest-8Mi8wO0(TestBuilders.kt:309)
-	at app//kotlinx.coroutines.test.TestBuildersKt.runTest-8Mi8wO0(Unknown Source)
-	at app//kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt.runTest-8Mi8wO0(TestBuilders.kt:167)
-	at app//kotlinx.coroutines.test.TestBuildersKt.runTest-8Mi8wO0(Unknown Source)
-	at app//kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt.runTest-8Mi8wO0$default(TestBuilders.kt:159)
-	at app//kotlinx.coroutines.test.TestBuildersKt.runTest-8Mi8wO0$default(Unknown Source)
-	at app//ir.chardivari.feature.messaging.MessagingViewModelsTest.notifications_markRead_flipsLocalAndCallsServer(MessagingViewModelsTest.kt:194)
-	at java.base@17.0.20.1/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base@17.0.20.1/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base@17.0.20.1/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base@17.0.20.1/java.lang.reflect.Method.invoke(Method.java:569)
-	at app//org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
-	at app//org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
-	at app//org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
-	at app//org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
-	at app//org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
-	at app//org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
-	at app//org.junit.internal.runners.statements.FailOnTimeout$CallableStatement.call(FailOnTimeout.java:299)
-	at app//org.junit.internal.runners.statements.FailOnTimeout$CallableStatement.call(FailOnTimeout.java:293)
-	at java.base@17.0.20.1/java.util.concurrent.FutureTask.run(FutureTask.java:264)
-	at java.base@17.0.20.1/java.lang.Thread.run(Thread.java:840)
-Caused by: java.lang.IllegalStateException: Dispatchers.Main was accessed when the platform dispatcher was absent and the test dispatcher was unset. Please make sure that Dispatchers.setMain() is called before accessing Dispatchers.Main and that Dispatchers.Main is not accessed after Dispatchers.resetMain().
-	at kotlinx.coroutines.test.internal.TestMainDispatcherJvmKt.reportMissingMainCoroutineDispatcher(TestMainDispatcherJvm.kt:45)
+(no results dir)
