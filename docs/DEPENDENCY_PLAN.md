@@ -32,7 +32,7 @@ Single source of truth: `gradle/libs.versions.toml`.
 | Missing on purpose | Adds in |
 |--------------------|---------|
 | Room | Phase 3 offline favorites cache |
-| Play Services Maps / MapLibre | Phase 3 map (provider abstraction first) |
+| osmdroid (OSM, keyless) — behind `OsmMapView` provider seam; Play/MapLibre swappable later | Phase 3 map (provider abstraction first) |
 | supabase-kt | Phase 2 after schema+RLS verified |
 | Paging3 | Phase 3 when feed endpoints exist |
 | Coil video / 3D | Later media phases |

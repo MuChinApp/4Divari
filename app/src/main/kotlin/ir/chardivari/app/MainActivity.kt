@@ -31,12 +31,12 @@ import ir.chardivari.core.designsystem.components.FloatingSurface
 import ir.chardivari.core.designsystem.theme.ChardivariTheme
 import ir.chardivari.core.navigation.CustomerTab
 import ir.chardivari.core.navigation.Routes
-import ir.chardivari.core.ui.PlaceholderScreen
 import ir.chardivari.feature.agent.AgentRoute
 import ir.chardivari.feature.assistant.AssistantRoute
 import ir.chardivari.feature.auth.AuthRoute
 import ir.chardivari.feature.admin.AdminRoute
 import ir.chardivari.feature.home.HomeRoute
+import ir.chardivari.feature.map.MapRoute
 import ir.chardivari.feature.messaging.ConversationsRoute
 import ir.chardivari.feature.messaging.NotificationsRoute
 import ir.chardivari.feature.messaging.ThreadRoute
@@ -168,9 +168,10 @@ private fun ChardivariRoot() {
                 )
             }
             composable(Routes.MAP) {
-                PlaceholderScreen(
-                    title = "نقشه",
-                    message = "جستجوی نقشه‌ای، مارکرها و رسم محدوده پس از افزودن SDK نقشه فعال می‌شود.\nفعلاً نتیجه ساختگی نمایش داده نمی‌شود.",
+                MapRoute(
+                    onListingClick = { id ->
+                        navController.navigate(Routes.propertyDetail(id))
+                    },
                 )
             }
             composable(Routes.SAVED) {

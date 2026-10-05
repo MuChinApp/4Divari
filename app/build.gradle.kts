@@ -110,6 +110,7 @@ dependencies {
     implementation(project(":feature:messaging"))
     implementation(project(":feature:admin"))
     implementation(project(":feature:assistant"))
+    implementation(project(":feature:map"))
 
     // Compose
     implementation(platform(libs.compose.bom))
