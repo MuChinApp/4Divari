@@ -32,6 +32,7 @@ include(":core:navigation")
 include(":core:analytics")
 include(":core:auth")
 include(":core:marketplace")
+include(":core:ai")
 
 // Features — customer-facing
 include(":feature:home")
