@@ -53,7 +53,6 @@ class AssistantViewModelTest {
 
         override fun track(event: AnalyticsEvent) {
             recorded += event
-            events.tryEmit(event)
         }
     }
 

@@ -91,13 +91,13 @@ class MarketplaceToolRegistryTest {
         name: String,
         args: JsonObject = buildJsonObject { },
     ): ToolResult {
-        val result = runBlocking { registry.execute(name, args) }
+        val result = runBlocking<Unit> { registry.execute(name, args) }
         check(result is AppResult.Success) { "expected Success, was $result" }
         return result.data
     }
 
     @Test
-    fun `search returns cards, summary json and listing sources`() = runBlocking {
+    fun `search returns cards, summary json and listing sources`() = runBlocking<Unit> {
         val repo = FakeListingRepository(
             searchResult = AppResult.Success(
                 listOf(
@@ -128,7 +128,7 @@ class MarketplaceToolRegistryTest {
     }
 
     @Test
-    fun `search with no matches returns honest empty result`() = runBlocking {
+    fun `search with no matches returns honest empty result`() = runBlocking<Unit> {
         val repo = FakeListingRepository(searchResult = AppResult.Empty)
 
         val result = resultOf(registry(repo), AiTools.SEARCH)
@@ -140,7 +140,7 @@ class MarketplaceToolRegistryTest {
     }
 
     @Test
-    fun `search maps persian-digit strings into filters`() = runBlocking {
+    fun `search maps persian-digit strings into filters`() = runBlocking<Unit> {
         val repo = FakeListingRepository(
             searchResult = AppResult.Success(listOf(listing("l1", priceRial = 1_000))),
         )
@@ -155,7 +155,7 @@ class MarketplaceToolRegistryTest {
     }
 
     @Test
-    fun `estimate price builds band over sale prices`() = runBlocking {
+    fun `estimate price builds band over sale prices`() = runBlocking<Unit> {
         val prices = (1L..12L).map { it * 1_000_000_000 }
         val repo = FakeListingRepository(
             searchResult = AppResult.Success(
@@ -182,7 +182,7 @@ class MarketplaceToolRegistryTest {
     }
 
     @Test
-    fun `estimate flags insufficient samples`() = runBlocking {
+    fun `estimate flags insufficient samples`() = runBlocking<Unit> {
         val repo = FakeListingRepository(
             searchResult = AppResult.Success(
                 (1L..3L).map { listing("l$it", priceRial = it * 1_000_000_000) },
@@ -197,7 +197,7 @@ class MarketplaceToolRegistryTest {
     }
 
     @Test
-    fun `estimate for rent uses deposit basis`() = runBlocking {
+    fun `estimate for rent uses deposit basis`() = runBlocking<Unit> {
         val repo = FakeListingRepository(
             searchResult = AppResult.Success(
                 (1L..10L).map {
@@ -224,7 +224,7 @@ class MarketplaceToolRegistryTest {
     }
 
     @Test
-    fun `estimate with no data returns no_data json and no artifact`() = runBlocking {
+    fun `estimate with no data returns no_data json and no artifact`() = runBlocking<Unit> {
         val repo = FakeListingRepository(searchResult = AppResult.Empty)
 
         val result = resultOf(registry(repo), AiTools.PRICE)
@@ -235,7 +235,7 @@ class MarketplaceToolRegistryTest {
     }
 
     @Test
-    fun `compare builds rows for found listings and records missing ids`() = runBlocking {
+    fun `compare builds rows for found listings and records missing ids`() = runBlocking<Unit> {
         val repo = FakeListingRepository(
             byIdResults = mapOf(
                 "a" to AppResult.Success(listing("a", priceRial = 5_000_000_000)),
@@ -257,7 +257,7 @@ class MarketplaceToolRegistryTest {
     }
 
     @Test
-    fun `compare with fewer than two ids returns recoverable error`() = runBlocking {
+    fun `compare with fewer than two ids returns recoverable error`() = runBlocking<Unit> {
         val args = argsOf(
             "listing_ids" to JsonArray(listOf(JsonPrimitive("a"))),
         )
@@ -270,7 +270,7 @@ class MarketplaceToolRegistryTest {
     }
 
     @Test
-    fun `unknown tool fails closed`() = runBlocking {
+    fun `unknown tool fails closed`() = runBlocking<Unit> {
         val result = registry(FakeListingRepository())
             .execute("nope", buildJsonObject { })
         assertThat(result).isInstanceOf(AppResult.Failure::class.java)
