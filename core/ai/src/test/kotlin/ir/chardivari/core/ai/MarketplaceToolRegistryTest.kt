@@ -91,7 +91,7 @@ class MarketplaceToolRegistryTest {
         name: String,
         args: JsonObject = buildJsonObject { },
     ): ToolResult {
-        val result = runBlocking<Unit> { registry.execute(name, args) }
+        val result = runBlocking { registry.execute(name, args) }
         check(result is AppResult.Success) { "expected Success, was $result" }
         return result.data
     }
