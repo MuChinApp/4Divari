@@ -42,6 +42,24 @@ android {
         )
     }
 
+    signingConfigs {
+        // Optional real release keystore (e.g. for Play upload later):
+        //   -P4divari.releaseStoreFile=/path/to.keystore -P4divari.releaseStorePassword=...
+        //   -P4divari.releaseKeyAlias=... -P4divari.releaseKeyPassword=...
+        // Without it, `release` falls back to the DEBUG key below so
+        // assembleRelease still yields an INSTALLABLE apk for sideload testing
+        // (fine for QA; never ship the debug-key-signed build to Play).
+        val storeFilePath = project.findProperty("4divari.releaseStoreFile") as String?
+        if (storeFilePath != null) {
+            create("release") {
+                storeFile = file(storeFilePath)
+                storePassword = project.findProperty("4divari.releaseStorePassword") as String?
+                keyAlias = project.findProperty("4divari.releaseKeyAlias") as String?
+                keyPassword = project.findProperty("4divari.releaseKeyPassword") as String?
+            }
+        }
+    }
+
     buildTypes {
         debug {
             applicationIdSuffix = ".debug"
@@ -59,6 +77,9 @@ android {
                 "APP_ENVIRONMENT",
                 "\"${(project.findProperty("4divari.releaseEnvironment") as String?) ?: "PRODUCTION"}\"",
             )
+            // Unsigned release apks cannot be installed; always sign.
+            signingConfig = signingConfigs.findByName("release")
+                ?: signingConfigs.getByName("debug")
         }
     }
 

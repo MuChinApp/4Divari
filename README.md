@@ -10,10 +10,24 @@ Real-estate marketplace platform for Iran — discovery, trust, and decision sup
 
 | Layer | State |
 |-------|--------|
-| App skeleton, design system, RTL, nav, network, DI, env, analytics, CI | ✅ **CI green** (`abffaa6`) |
-| Backend (Supabase, auth, RLS) | ⬜ Phase 2 |
-| Marketplace feeds / map / detail | ⬜ Phase 3 |
-| Seller / Agent / Chat / Trust / AI | ⬜ Phases 4–8 |
+| App skeleton, design system, RTL, nav, network, DI, env, analytics, CI | ✅ **CI green** |
+| Backend (Supabase, auth, RLS) | ✅ migrations + RLS smoke tests in CI |
+| Marketplace feeds / map / detail | ✅ MVP |
+| Seller / Agent / Chat / Trust / AI | ✅ MVP (phases 0–8) |
+
+## Install & test (APK)
+
+CI can build installable APKs on demand (`Actions → APK → Run workflow`):
+
+- `4Divari-<version>-debug.apk` — debug build (`ir.chardivari.app.debug`), best for QA/debugging
+- `4Divari-<version>-release.apk` — minified release build (`ir.chardivari.app`), production-like
+
+They are attached to the run's artifacts and to a GitHub Release (default tag `test-build`),
+so you can download the file in a browser (phone included) and sideload it
+(allow «install unknown apps» for your browser/file manager). minSdk 24 (Android 7+).
+
+Release builds are signed: with `-P4divari.releaseStoreFile=...` keystore properties if
+provided, otherwise with the debug key — installable for testing, not for Play upload.
 
 ## Architecture (short)
 

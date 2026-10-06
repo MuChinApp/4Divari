@@ -1,0 +1,114 @@
+name: APK
+
+# Builds installable APKs and publishes them three ways:
+#   1. workflow artifact (download from the run page)
+#   2. GitHub Release (download from the release page, e.g. on a phone)
+#   3. committed back to the branch with [skip ci] (sandbox visibility,
+#      same convention as the ci-*-error.log files)
+#
+# Run manually: gh workflow run apk.yml --ref <branch>
+# Tag pushes matching v* get a versioned (non-prerelease) release.
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Release tag to publish the APKs under"
+        required: false
+        default: "test-build"
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: apk-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  apk:
+    name: Build installable APKs
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          cache-read-only: false
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Build debug + release APKs
+        run: ./gradlew --no-daemon :app:assembleDebug :app:assembleRelease
+
+      - name: Collect APKs
+        id: collect
+        run: |
+          set -euo pipefail
+          VERSION=$(sed -n 's/.*versionName = "\([^"]*\)".*/\1/p' app/build.gradle.kts | head -1)
+          test -n "$VERSION"
+          mkdir -p dist
+          cp app/build/outputs/apk/debug/app-debug.apk "dist/4Divari-${VERSION}-debug.apk"
+          cp app/build/outputs/apk/release/app-release.apk "dist/4Divari-${VERSION}-release.apk"
+          chmod 644 dist/*.apk
+          ls -la dist
+          echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: 4Divari-apk
+          path: dist/*.apk
+          retention-days: 30
+          if-no-files-found: error
+
+      - name: Publish GitHub Release
+        if: github.event_name == 'workflow_dispatch' || startsWith(github.ref, 'refs/tags/')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            TAG="${{ github.event.inputs.tag }}"
+            PRERELEASE="--prerelease"
+          else
+            TAG="${GITHUB_REF_NAME}"
+            PRERELEASE=""
+          fi
+          NOTES="APK های قابل نصب برای تست (نصب جانبی / sideload).
+
+          - \`4Divari-${{ steps.collect.outputs.version }}-debug.apk\` → نسخه دیباگ (applicationId: ir.chardivari.app.debug)
+          - \`4Divari-${{ steps.collect.outputs.version }}-release.apk\` → نسخه release مینیفای‌شده (applicationId: ir.chardivari.app)
+
+          روی دستگاه اندرویدی دانلود و نصب کنید (minSdk 24 / Android 7+)."
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release upload "$TAG" dist/*.apk --clobber
+            gh release edit "$TAG" --notes "$NOTES"
+          else
+            gh release create "$TAG" dist/*.apk $PRERELEASE \
+              --title "4Divari test build ${{ steps.collect.outputs.version }} (${GITHUB_SHA::7})" \
+              --notes "$NOTES"
+          fi
+
+      - name: Commit APKs to branch (sandbox visibility)
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          set -euo pipefail
+          git config user.name "MuChinApp"
+          git config user.email "311970907+MuChinApp@users.noreply.github.com"
+          git add -f dist
+          git commit -m "build: attach test APKs ${GITHUB_SHA::7} [skip ci]" || true
+          git pull --rebase origin "${GITHUB_REF_NAME}" || true
+          git push origin HEAD
