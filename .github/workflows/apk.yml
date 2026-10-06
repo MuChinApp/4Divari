@@ -17,6 +17,10 @@ on:
         required: false
         default: "test-build"
   push:
+    # Session/test branches get on-demand APKs without polluting main history;
+    # version tags get a proper release. (workflow_dispatch additionally works
+    # once this file exists on the default branch.)
+    branches: ["arena/**"]
     tags: ["v*"]
 
 permissions:
@@ -75,24 +79,27 @@ jobs:
           if-no-files-found: error
 
       - name: Publish GitHub Release
-        if: github.event_name == 'workflow_dispatch' || startsWith(github.ref, 'refs/tags/')
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            TAG="${{ github.event.inputs.tag }}"
-            PRERELEASE="--prerelease"
-          else
+          if [ "${GITHUB_REF_TYPE}" = "tag" ]; then
             TAG="${GITHUB_REF_NAME}"
             PRERELEASE=""
+          else
+            TAG="${{ github.event.inputs.tag || 'test-build' }}"
+            PRERELEASE="--prerelease"
           fi
-          NOTES="APK های قابل نصب برای تست (نصب جانبی / sideload).
+          NOTES=$(cat <<'EOF'
+          APK های قابل نصب برای تست (نصب جانبی / sideload).
 
-          - \`4Divari-${{ steps.collect.outputs.version }}-debug.apk\` → نسخه دیباگ (applicationId: ir.chardivari.app.debug)
-          - \`4Divari-${{ steps.collect.outputs.version }}-release.apk\` → نسخه release مینیفای‌شده (applicationId: ir.chardivari.app)
+          - 4Divari-VERSION-debug.apk → نسخه دیباگ (applicationId: ir.chardivari.app.debug)
+          - 4Divari-VERSION-release.apk → نسخه release مینیفای‌شده (applicationId: ir.chardivari.app)
 
-          روی دستگاه اندرویدی دانلود و نصب کنید (minSdk 24 / Android 7+)."
+          روی دستگاه اندرویدی دانلود و نصب کنید (minSdk 24 / Android 7+).
+          EOF
+          )
+          NOTES="${NOTES//VERSION/${{ steps.collect.outputs.version }}}"
           if gh release view "$TAG" >/dev/null 2>&1; then
             gh release upload "$TAG" dist/*.apk --clobber
             gh release edit "$TAG" --notes "$NOTES"
@@ -103,7 +110,7 @@ jobs:
           fi
 
       - name: Commit APKs to branch (sandbox visibility)
-        if: github.event_name == 'workflow_dispatch'
+        if: github.ref_type == 'branch'
         run: |
           set -euo pipefail
           git config user.name "MuChinApp"
